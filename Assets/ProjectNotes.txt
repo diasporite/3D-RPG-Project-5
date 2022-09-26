@@ -1,0 +1,10 @@
+
+3D RPG PROJECT 5 NOTES
+
+- Builds on 3D RPG Project 4
+  - Time slow mechanics removed
+- Attacks can only be used at full stamina or during an attack chain
+- Defensive actions can be performed anytime
+
+26/9/22
+- Working on movement

@@ -20,6 +20,38 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Teleport",
+                    "type": "Button",
+                    "id": "42209cde-da78-4fe3-be07-8e9099b095cb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
+                },
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "1df03b51-066d-4766-bec0-cd4b5d2b62af",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold"
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "58227752-7d6b-4de5-b475-ed5681a88a68",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
+                },
+                {
+                    "name": "Guard",
+                    "type": "Button",
+                    "id": "25c5a5c8-0eea-42c3-9a4f-1cbe0ea5d3db",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold"
                 }
             ],
             "bindings": [
@@ -242,6 +274,94 @@
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "6870e1b4-fde2-4af2-a849-a42bf3d2a04a",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Teleport",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4da92d69-b0f0-4cdd-9c40-008fd186368b",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Teleport",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51f2617c-0d2e-41e4-b268-63869d6cdd1d",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "449bf05e-b2f6-47cb-a190-a68a8a28ddea",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9e22d8b-b3dc-4312-a137-2f87965765ac",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47fba53b-ec50-4606-869d-f99bbfe986e2",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0f0791dd-a0e6-4e87-ab77-b81f6bb59a50",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Guard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d33794aa-592b-4dae-80f5-42810a5c170c",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Guard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

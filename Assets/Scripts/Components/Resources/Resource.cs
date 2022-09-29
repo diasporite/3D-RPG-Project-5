@@ -8,7 +8,20 @@ namespace RPG_Project
     {
         [field: SerializeField] public Cooldown ResourceCooldown { get; protected set; }
 
+        [SerializeField] protected float baseSpeed;
+        [SerializeField] float speedFactor;
+
         protected PartyController party;
+
+        public float SpeedFactor
+        {
+            get => speedFactor;
+            set
+            {
+                speedFactor = value;
+                ResourceCooldown.Speed = speedFactor * baseSpeed;
+            }
+        }
 
         public int ResourcePoints => Mathf.CeilToInt(ResourceCooldown.Count);
 
@@ -20,7 +33,7 @@ namespace RPG_Project
             party = GetComponentInParent<PartyController>();
         }
 
-        public void Tick()
+        public virtual void Tick()
         {
             ResourceCooldown.Tick();
 

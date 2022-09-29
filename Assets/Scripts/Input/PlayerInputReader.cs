@@ -35,11 +35,11 @@ namespace RPG_Project
             Rotate = context.ReadValue<Vector2>();
         }
 
-        public void OnTeleport(InputAction.CallbackContext context)
+        public void OnDodge(InputAction.CallbackContext context)
         {
             if (context.performed)
             {
-                InputQueue.AddInput(new TeleportCommand(Party, this, Move));
+                InputQueue.AddInput(new DodgeCommand(Party, this, Move));
                 InputQueue.Execute();
             }
         }

@@ -40,12 +40,21 @@ namespace RPG_Project
 
             foreach (var p in pms) PartyMembers.Add(p);
 
-            if (PartyMembers.Count > 0) CurrentController = PartyMembers[0];
+            SetCurrentMember(0);
         }
 
         private void Start()
         {
-            //FindObjectOfType<UIManager>().Battle.InitHUD(this);
+            FindObjectOfType<UIManager>().Battle.InitHUD(this);
+        }
+
+        void SetCurrentMember(int index)
+        {
+            index = Mathf.Clamp(index, 0, PartyMembers.Count);
+
+            CurrentController = PartyMembers[index];
+
+            InvokeCharacterChange();
         }
 
         #region Delegates

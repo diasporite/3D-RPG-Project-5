@@ -42,7 +42,7 @@ namespace RPG_Project
 
     public class InputReader : MonoBehaviour
     {
-        public event Action OnTeleportAction;
+        public event Action OnDodgeAction;
 
         public event Action OnGuardAction;
         public event Action OnGuardCancel;
@@ -69,9 +69,9 @@ namespace RPG_Project
         }
 
         #region Delegates
-        public void InvokeTeleport()
+        public void InvokeDodge()
         {
-            OnTeleportAction?.Invoke();
+            OnDodgeAction?.Invoke();
         }
 
         public void InvokeGuard()

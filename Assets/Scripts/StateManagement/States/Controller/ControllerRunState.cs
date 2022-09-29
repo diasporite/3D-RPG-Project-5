@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG_Project
 {
-    public class ControllerMoveState : IState
+    public class ControllerRunState : IState
     {
         Controller controller;
         StateMachine csm;
@@ -14,49 +14,49 @@ namespace RPG_Project
 
         Movement movement;
 
-        CharacterModel cm;
-
-        public ControllerMoveState(Controller con)
+        public ControllerRunState(Controller controller)
         {
-            controller = con;
-            csm = con.sm;
+            this.controller = controller;
+            csm = controller.sm;
 
             health = controller.Health;
             stamina = controller.Stamina;
 
             movement = controller.Movement;
-
-            //cm = controller.Cm;
         }
 
+        #region InterfaceMethods
         public void Enter(params object[] args)
         {
-            health.SpeedFactor = 1f;
-            stamina.SpeedFactor = 1f;
+            health.SpeedFactor = 0f;
+            stamina.SpeedFactor = -1f;
+            stamina.Charged = false;
 
-            //cm.PlayAnimation(controller.moveHash);
+            //controller.Cm.PlayAnimation(controller.moveHash);
         }
 
         public void ExecuteFrame()
         {
             var dir = controller.Ir.Move;
 
-            if (dir == Vector2.zero) health.Tick(0f);
-            else health.Tick();
+            health.Tick();
             stamina.Tick();
 
-            //UpdateAnim(dir);
+            if (dir == Vector2.zero || stamina.Empty)
+                csm.ChangeState(StateID.ControllerMove);
+
+            //UpdateAnim(controller.Ir.Move);
 
             controller.Ir.InputQueue.Execute();
 
-            movement.MovePosition(dir, Time.deltaTime, SpeedMode.Walk);
+            controller.Movement.MovePosition(dir, Time.deltaTime, SpeedMode.Run);
 
             if (!movement.Grounded) csm.ChangeState(StateID.ControllerFall);
         }
 
         public void ExecuteFrameFixed()
         {
-
+            
         }
 
         public void ExecuteFrameLate()
@@ -68,11 +68,13 @@ namespace RPG_Project
         {
 
         }
+        #endregion
 
         void UpdateAnim(Vector2 input)
         {
-            if (input != Vector2.zero) cm.SetFloat("Speed", movement.WalkSpeed);
-            else cm.SetFloat("Speed", 0f);
+            if (input != Vector2.zero)
+                controller.Cm.SetFloat("Speed", controller.Movement.RunSpeed);
+            else controller.Cm.SetFloat("Speed", 0f);
         }
     }
 }

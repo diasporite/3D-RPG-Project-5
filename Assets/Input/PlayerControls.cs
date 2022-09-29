@@ -35,7 +35,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Teleport"",
+                    ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""42209cde-da78-4fe3-be07-8e9099b095cb"",
                     ""expectedControlType"": ""Button"",
@@ -62,6 +62,38 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""Guard"",
                     ""type"": ""Button"",
                     ""id"": ""25c5a5c8-0eea-42c3-9a4f-1cbe0ea5d3db"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold""
+                },
+                {
+                    ""name"": ""Action1"",
+                    ""type"": ""Button"",
+                    ""id"": ""c5c77c76-499b-4687-a5da-0882571e9fab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold""
+                },
+                {
+                    ""name"": ""Action2"",
+                    ""type"": ""Button"",
+                    ""id"": ""74caffb2-dff2-4149-892e-555f5200c243"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold""
+                },
+                {
+                    ""name"": ""Action3"",
+                    ""type"": ""Button"",
+                    ""id"": ""e546a64b-9239-48e5-be7c-d6a44ab15b8d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold""
+                },
+                {
+                    ""name"": ""Action4"",
+                    ""type"": ""Button"",
+                    ""id"": ""e638c746-7831-4e46-bf78-e15ec7569b9d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Hold""
@@ -295,7 +327,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Teleport"",
+                    ""action"": ""Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -306,7 +338,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Teleport"",
+                    ""action"": ""Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -375,6 +407,94 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Guard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9467e185-a258-4bfc-9dbd-0822fd411c76"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Action1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20192a07-8a28-48a0-8428-e33c689ec2e7"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Action1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""31ecaa80-037f-456c-a8f1-9e23c27c44bd"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Action2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f055dca-f056-494b-97fb-66a4f70ffe19"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Action2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88852b5b-fcb1-4f5e-a51f-cfe861c6fb47"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Action3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d1363a89-65a2-43ae-bbb6-a0a7b159efc4"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Action3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3f03dd2-86ad-47ec-88e3-b19c16020f80"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Action4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eeed8f92-3ae2-4da9-901a-a3c60101cffa"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Action4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -408,10 +528,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
-        m_Player_Teleport = m_Player.FindAction("Teleport", throwIfNotFound: true);
+        m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Guard = m_Player.FindAction("Guard", throwIfNotFound: true);
+        m_Player_Action1 = m_Player.FindAction("Action1", throwIfNotFound: true);
+        m_Player_Action2 = m_Player.FindAction("Action2", throwIfNotFound: true);
+        m_Player_Action3 = m_Player.FindAction("Action3", throwIfNotFound: true);
+        m_Player_Action4 = m_Player.FindAction("Action4", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -463,20 +587,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Rotate;
-    private readonly InputAction m_Player_Teleport;
+    private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Guard;
+    private readonly InputAction m_Player_Action1;
+    private readonly InputAction m_Player_Action2;
+    private readonly InputAction m_Player_Action3;
+    private readonly InputAction m_Player_Action4;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
-        public InputAction @Teleport => m_Wrapper.m_Player_Teleport;
+        public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Guard => m_Wrapper.m_Player_Guard;
+        public InputAction @Action1 => m_Wrapper.m_Player_Action1;
+        public InputAction @Action2 => m_Wrapper.m_Player_Action2;
+        public InputAction @Action3 => m_Wrapper.m_Player_Action3;
+        public InputAction @Action4 => m_Wrapper.m_Player_Action4;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -492,9 +624,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Rotate.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
                 @Rotate.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
                 @Rotate.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
-                @Teleport.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
-                @Teleport.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
-                @Teleport.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
+                @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
+                @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Run.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
                 @Run.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
                 @Run.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
@@ -504,6 +636,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Guard.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGuard;
                 @Guard.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGuard;
                 @Guard.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGuard;
+                @Action1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1;
+                @Action1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1;
+                @Action1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1;
+                @Action2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2;
+                @Action2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2;
+                @Action2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction2;
+                @Action3.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction3;
+                @Action3.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction3;
+                @Action3.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction3;
+                @Action4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4;
+                @Action4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4;
+                @Action4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -514,9 +658,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
-                @Teleport.started += instance.OnTeleport;
-                @Teleport.performed += instance.OnTeleport;
-                @Teleport.canceled += instance.OnTeleport;
+                @Dodge.started += instance.OnDodge;
+                @Dodge.performed += instance.OnDodge;
+                @Dodge.canceled += instance.OnDodge;
                 @Run.started += instance.OnRun;
                 @Run.performed += instance.OnRun;
                 @Run.canceled += instance.OnRun;
@@ -526,6 +670,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Guard.started += instance.OnGuard;
                 @Guard.performed += instance.OnGuard;
                 @Guard.canceled += instance.OnGuard;
+                @Action1.started += instance.OnAction1;
+                @Action1.performed += instance.OnAction1;
+                @Action1.canceled += instance.OnAction1;
+                @Action2.started += instance.OnAction2;
+                @Action2.performed += instance.OnAction2;
+                @Action2.canceled += instance.OnAction2;
+                @Action3.started += instance.OnAction3;
+                @Action3.performed += instance.OnAction3;
+                @Action3.canceled += instance.OnAction3;
+                @Action4.started += instance.OnAction4;
+                @Action4.performed += instance.OnAction4;
+                @Action4.canceled += instance.OnAction4;
             }
         }
     }
@@ -552,9 +708,13 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
-        void OnTeleport(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnGuard(InputAction.CallbackContext context);
+        void OnAction1(InputAction.CallbackContext context);
+        void OnAction2(InputAction.CallbackContext context);
+        void OnAction3(InputAction.CallbackContext context);
+        void OnAction4(InputAction.CallbackContext context);
     }
 }

@@ -53,9 +53,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   party: {fileID: 0}
   resource: {fileID: 0}
-  fill: {fileID: 0}
-  fillShadow: {fileID: 0}
+  fill: {fileID: 8526514733080478047}
+  fillShadow: {fileID: 6133418322504546067}
   updateSpeed: 0.3
+  charging: {r: 0.376, g: 0.376, b: 0.376, a: 1}
 --- !u!1 &1087327329631982435
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.78431374, g: 0.78431374, b: 0.2509804, a: 1}
+  m_Color: {r: 0.7529412, g: 0.7529412, b: 0.2509804, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -262,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0.78431374, a: 1}
+  m_Color: {r: 0, g: 0, b: 0.7529412, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

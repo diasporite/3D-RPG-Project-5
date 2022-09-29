@@ -11,3 +11,7 @@
 
 28/9/22
 - Imported UI from 3D RPG Project 3-4
+
+29/9/22
+- Basic actions set up (jump, run, guard)
+- Health/stamina bars functional

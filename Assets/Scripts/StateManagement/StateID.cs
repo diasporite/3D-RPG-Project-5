@@ -15,7 +15,7 @@ namespace RPG_Project
         ControllerDeath = 16,
         ControllerStagger = 17,
         ControllerKnockback = 18,
-        ControllerTeleport = 19,
+        ControllerDodge = 19,
         ControllerGuard = 20,
 
         ControllerAction1 = 21,
@@ -26,5 +26,8 @@ namespace RPG_Project
         ControllerAction6 = 26,
         ControllerAction7 = 27,
         ControllerAction8 = 28,
+
+        ControllerJump = 29,
+        ControllerStandby = 30,
     }
 }

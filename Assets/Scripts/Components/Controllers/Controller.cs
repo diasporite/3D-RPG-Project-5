@@ -32,15 +32,18 @@ namespace RPG_Project
 
         [SerializeField] StateID currentState;
 
+        public int CurrentActionHash { get; private set; }
+        public Vector3 CurrentDodgeDir { get; private set; }
+
         public Movement Movement { get; private set; }
         public InputReader Ir { get; private set; }
 
         public Health Health { get; private set; }
         public Stamina Stamina { get; private set; }
 
-        //public Character Character { get; private set; }
+        public Character Character { get; private set; }
 
-        //public CharacterModel Cm { get; private set; }
+        public CharacterModel Cm { get; private set; }
 
         public readonly StateMachine sm = new StateMachine();
 
@@ -82,49 +85,110 @@ namespace RPG_Project
 
         private void OnEnable()
         {
-            //Ir.OnTeleportAction += Teleport;
+            Ir.OnDodgeAction += Dodge;
 
-            //Ir.OnGuardAction += Guard;
-            //Ir.OnGuardCancel += GuardCancel;
+            Ir.OnGuardAction += Guard;
+            Ir.OnGuardCancel += GuardCancel;
 
-            //Ir.OnJumpAction += Jump;
+            Ir.OnJumpAction += Jump;
 
-            //Ir.OnRunAction += Run;
-            //Ir.OnRunCancel += RunCancel;
+            Ir.OnRunAction += Run;
+            Ir.OnRunCancel += RunCancel;
 
-            //Ir.OnAttackAction += Action;
+            Ir.OnAttackAction += Action;
         }
 
         private void OnDisable()
         {
-            //Ir.OnTeleportAction -= Teleport;
+            Ir.OnDodgeAction -= Dodge;
 
-            //Ir.OnGuardAction -= Guard;
-            //Ir.OnGuardCancel -= GuardCancel;
+            Ir.OnGuardAction -= Guard;
+            Ir.OnGuardCancel -= GuardCancel;
 
-            //Ir.OnJumpAction -= Jump;
+            Ir.OnJumpAction -= Jump;
 
-            //Ir.OnRunAction -= Run;
-            //Ir.OnRunCancel -= RunCancel;
+            Ir.OnRunAction -= Run;
+            Ir.OnRunCancel -= RunCancel;
 
-            //Ir.OnAttackAction -= Action;
+            Ir.OnAttackAction -= Action;
         }
 
         void InitSM()
         {
             sm.AddState(StateID.ControllerMove, new ControllerMoveState(this));
-            //sm.AddState(StateID.ControllerRun, new ControllerRunState(this));
-            //sm.AddState(StateID.ControllerFall, new ControllerFallState(this));
-            //sm.AddState(StateID.ControllerAction, new ControllerActionState(this, 0));
-            //sm.AddState(StateID.ControllerGuard, new ControllerGuardState(this));
-            //sm.AddState(StateID.ControllerTeleport, new ControllerTeleportState(this));
+            sm.AddState(StateID.ControllerFall, new ControllerFallState(this));
+
+            //sm.AddState(StateID.ControllerDodge, new ControllerTeleportState(this));
+            sm.AddState(StateID.ControllerRun, new ControllerRunState(this));
+            sm.AddState(StateID.ControllerGuard, new ControllerGuardState(this));
+
+            sm.AddState(StateID.ControllerAction, new ControllerActionState(this));
+
             //sm.AddState(StateID.ControllerStagger, new ControllerStaggerState(this));
             //sm.AddState(StateID.ControllerDeath, new ControllerDeathState(this));
 
-            //sm.AddState(StateID.ControllerAction1, new ControllerActionState(this, 0));
-            //sm.AddState(StateID.ControllerAction2, new ControllerActionState(this, 1));
-            //sm.AddState(StateID.ControllerAction3, new ControllerActionState(this, 2));
-            //sm.AddState(StateID.ControllerAction4, new ControllerActionState(this, 3));
+            sm.AddState(StateID.ControllerStandby, new ControllerStandbyState(this));
+        }
+
+        #region Actions
+        void Dodge()
+        {
+            if (sm.InState(StateID.ControllerMove, StateID.ControllerMove))
+            {
+                CurrentDodgeDir = transform.forward;
+            }
+        }
+
+        void Guard()
+        {
+            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun))
+                sm.ChangeState(StateID.ControllerGuard);
+        }
+
+        void GuardCancel()
+        {
+            if (sm.InState(StateID.ControllerGuard))
+                sm.ChangeState(StateID.ControllerMove);
+        }
+
+        void Jump()
+        {
+            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun))
+            {
+                Movement.Jump(10f);
+                Stamina.ChangeValue(-30);
+                Stamina.Charged = false;
+                sm.ChangeState(StateID.ControllerFall);
+            }
+        }
+
+        void Run()
+        {
+            if (sm.InState(StateID.ControllerMove))
+                sm.ChangeState(StateID.ControllerRun);
+        }
+
+        void RunCancel()
+        {
+            if (sm.InState(StateID.ControllerRun))
+                sm.ChangeState(StateID.ControllerMove);
+        }
+
+        void Action(int index)
+        {
+            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun, 
+                StateID.ControllerAction) && Stamina.Charged)
+            {
+                index = Mathf.Clamp(index, 0, actionHashes.Count);
+                CurrentActionHash = actionHashes[index];
+                sm.ChangeState(StateID.ControllerAction);
+            }
+        }
+        #endregion
+
+        public void SetStandby()
+        {
+            sm.ChangeState(StateID.ControllerStandby);
         }
     }
 }

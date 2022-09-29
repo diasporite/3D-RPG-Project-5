@@ -12,6 +12,14 @@ namespace RPG_Project
         SideScroll = 2,
     }
 
+    public enum SpeedMode
+    {
+        Walk = 0,
+        Run = 1,
+        Strafe = 2,
+        Fall = 3,
+    }
+
     public class Movement : MonoBehaviour
     {
         public event Action OnStateSwitch;
@@ -88,31 +96,64 @@ namespace RPG_Project
             Gizmos.DrawRay(transform.position, 5f * transform.forward);
         }
 
-        public void MovePosition(Vector2 inputDir, float dt, bool running)
+        public void MovePosition(Vector2 inputDir, float dt, SpeedMode mode)
         {
+            var speed = 0f;
+
+            switch (mode)
+            {
+                case SpeedMode.Walk:
+                    speed = WalkSpeed;
+                    break;
+                case SpeedMode.Run:
+                    speed = RunSpeed;
+                    break;
+                case SpeedMode.Strafe:
+                    speed = StrafeSpeed;
+                    break;
+                case SpeedMode.Fall:
+                    speed = FallSpeed;
+                    break;
+            }
+            
             switch (State)
             {
                 case MovementState.ThirdPerson:
-                    MovePosition3rdPerson(inputDir, dt, running);
+                    MovePosition3rdPerson(inputDir, speed, dt);
                     break;
                 case MovementState.TopDown:
-                    MovePositionTopDown(inputDir, dt, running);
+                    MovePositionTopDown(inputDir, speed, dt);
                     break;
                 case MovementState.SideScroll:
-                    MovePositionSideScroll(inputDir, dt, running);
+                    MovePositionSideScroll(inputDir, speed, dt);
                     break;
                 default:
-                    MovePosition3rdPerson(inputDir, dt, running);
+                    MovePosition3rdPerson(inputDir, speed, dt);
                     break;
             }
         }
 
-        public void MovePosition3rdPerson(Vector2 inputDir, float dt, bool running)
+        public void MovePosition(Vector2 inputDir, float dt, float speed)
         {
-            var speed = WalkSpeed;
+            switch (State)
+            {
+                case MovementState.ThirdPerson:
+                    MovePosition3rdPerson(inputDir, speed, dt);
+                    break;
+                case MovementState.TopDown:
+                    MovePositionTopDown(inputDir, speed, dt);
+                    break;
+                case MovementState.SideScroll:
+                    MovePositionSideScroll(inputDir, speed, dt);
+                    break;
+                default:
+                    MovePosition3rdPerson(inputDir, speed, dt);
+                    break;
+            }
+        }
 
-            if (running) speed = RunSpeed;
-
+        public void MovePosition3rdPerson(Vector2 inputDir, float speed, float dt)
+        {
             var ds = inputDir.x * transform.right + inputDir.y * transform.forward;
 
             if (isPlayer) RotateRelativeToCamera(inputDir);
@@ -120,15 +161,11 @@ namespace RPG_Project
 
             //cm.RotateTowards(inputDir);
 
-            if (ds != Vector3.zero) cc.Move(WalkSpeed * ds * dt);
+            if (ds != Vector3.zero) cc.Move(speed * ds * dt);
         }
 
-        public void MovePositionTopDown(Vector2 dir, float dt, bool running)
+        public void MovePositionTopDown(Vector2 dir, float speed, float dt)
         {
-            var speed = WalkSpeed;
-
-            if (running) speed = RunSpeed;
-
             var x = 1f;
             var y = 1f;
 
@@ -141,12 +178,8 @@ namespace RPG_Project
             if (ds != Vector3.zero) cc.Move(speed * ds * dt);
         }
 
-        public void MovePositionSideScroll(Vector2 dir, float dt, bool running)
+        public void MovePositionSideScroll(Vector2 dir, float speed, float dt)
         {
-            var speed = WalkSpeed;
-
-            if (running) speed = RunSpeed;
-
             var ds = transform.right * dir.x;
             //cm.RotateTowards(ds);
             if (ds != Vector3.zero) cc.Move(speed * ds * dt);

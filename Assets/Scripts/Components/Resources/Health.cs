@@ -10,7 +10,8 @@ namespace RPG_Project
         {
             base.Awake();
 
-            ResourceCooldown = new Cooldown(100f, 1f, 100f);
+            baseSpeed = 1f;
+            ResourceCooldown = new Cooldown(100f, baseSpeed, 100f);
         }
 
         protected override void UpdateUI()

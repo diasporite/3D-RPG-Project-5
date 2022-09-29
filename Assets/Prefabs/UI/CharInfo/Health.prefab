@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.78431374, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.7529412, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -127,8 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   party: {fileID: 0}
   resource: {fileID: 0}
-  fill: {fileID: 0}
-  fillShadow: {fileID: 0}
+  fill: {fileID: 3715107054551352685}
+  fillShadow: {fileID: 1208287002448900897}
   updateSpeed: 0.3
 --- !u!1 &5389686864099186513
 GameObject:
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.78431374, g: 0.78431374, b: 0.2509804, a: 1}
+  m_Color: {r: 0.7529412, g: 0.7529412, b: 0.2509804, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

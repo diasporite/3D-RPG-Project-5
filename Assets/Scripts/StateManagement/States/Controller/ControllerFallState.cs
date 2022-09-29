@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG_Project
 {
-    public class ControllerMoveState : IState
+    public class ControllerFallState : IState
     {
         Controller controller;
         StateMachine csm;
@@ -16,7 +16,7 @@ namespace RPG_Project
 
         CharacterModel cm;
 
-        public ControllerMoveState(Controller con)
+        public ControllerFallState(Controller con)
         {
             controller = con;
             csm = con.sm;
@@ -26,32 +26,31 @@ namespace RPG_Project
 
             movement = controller.Movement;
 
-            //cm = controller.Cm;
+            cm = controller.Cm;
         }
 
         public void Enter(params object[] args)
         {
-            health.SpeedFactor = 1f;
-            stamina.SpeedFactor = 1f;
+            health.SpeedFactor = 0f;
+            stamina.SpeedFactor = 0f;
 
-            //cm.PlayAnimation(controller.moveHash);
+            //cm.PlayAnimation(controller.fallHash);
         }
 
         public void ExecuteFrame()
         {
             var dir = controller.Ir.Move;
 
-            if (dir == Vector2.zero) health.Tick(0f);
-            else health.Tick();
+            health.Tick();
             stamina.Tick();
 
-            //UpdateAnim(dir);
+            movement.MovePosition(dir, Time.deltaTime, SpeedMode.Fall);
 
-            controller.Ir.InputQueue.Execute();
-
-            movement.MovePosition(dir, Time.deltaTime, SpeedMode.Walk);
-
-            if (!movement.Grounded) csm.ChangeState(StateID.ControllerFall);
+            if (movement.VerticalVelocity <= 0)
+            {
+                if (movement.Grounded) csm.ChangeState(StateID.ControllerMove);
+                else csm.ChangeState(StateID.ControllerFall);
+            }
         }
 
         public void ExecuteFrameFixed()
@@ -67,12 +66,6 @@ namespace RPG_Project
         public void Exit()
         {
 
-        }
-
-        void UpdateAnim(Vector2 input)
-        {
-            if (input != Vector2.zero) cm.SetFloat("Speed", movement.WalkSpeed);
-            else cm.SetFloat("Speed", 0f);
         }
     }
 }

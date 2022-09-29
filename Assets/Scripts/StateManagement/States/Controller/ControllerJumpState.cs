@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG_Project
 {
-    public class ControllerMoveState : IState
+    public class ControllerJumpState : IState
     {
         Controller controller;
         StateMachine csm;
@@ -14,9 +14,7 @@ namespace RPG_Project
 
         Movement movement;
 
-        CharacterModel cm;
-
-        public ControllerMoveState(Controller con)
+        public ControllerJumpState(Controller con)
         {
             controller = con;
             csm = con.sm;
@@ -25,16 +23,12 @@ namespace RPG_Project
             stamina = controller.Stamina;
 
             movement = controller.Movement;
-
-            //cm = controller.Cm;
         }
 
         public void Enter(params object[] args)
         {
             health.SpeedFactor = 1f;
-            stamina.SpeedFactor = 1f;
-
-            //cm.PlayAnimation(controller.moveHash);
+            stamina.SpeedFactor = 0f;
         }
 
         public void ExecuteFrame()
@@ -45,13 +39,9 @@ namespace RPG_Project
             else health.Tick();
             stamina.Tick();
 
-            //UpdateAnim(dir);
+            movement.MovePosition(dir, Time.deltaTime, SpeedMode.Fall);
 
-            controller.Ir.InputQueue.Execute();
-
-            movement.MovePosition(dir, Time.deltaTime, SpeedMode.Walk);
-
-            if (!movement.Grounded) csm.ChangeState(StateID.ControllerFall);
+            if (movement.Grounded) csm.ChangeState(StateID.ControllerMove);
         }
 
         public void ExecuteFrameFixed()
@@ -67,12 +57,6 @@ namespace RPG_Project
         public void Exit()
         {
 
-        }
-
-        void UpdateAnim(Vector2 input)
-        {
-            if (input != Vector2.zero) cm.SetFloat("Speed", movement.WalkSpeed);
-            else cm.SetFloat("Speed", 0f);
         }
     }
 }

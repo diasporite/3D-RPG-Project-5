@@ -7,9 +7,6 @@ namespace RPG_Project
 {
     public class UIManager : MonoBehaviour
     {
-        // Temporary - look into shaders for grayscale
-        [field: SerializeField] public Image Grayscale { get; private set; }
-
         public BattleHUD Battle { get; private set; }
 
         private void Awake()

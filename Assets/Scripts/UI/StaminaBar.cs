@@ -8,10 +8,14 @@ namespace RPG_Project
     {
         Stamina stamina;
 
+        [SerializeField] Color charging = new Color(0.376f, 0.376f, 0.376f);
+        [SerializeField] Color charged = new Color(0f, 0f, 0.753f);
+
         public override void InitUI(PartyController party)
         {
             this.party = party;
             resource = party.CurrentStamina;
+            stamina = (Stamina)resource;
 
             base.InitUI(party);
         }
@@ -24,6 +28,14 @@ namespace RPG_Project
         public override void UnsubscribeFromDelegates()
         {
             party.OnStaminaTick -= Tick;
+        }
+
+        protected override void Tick()
+        {
+            base.Tick();
+
+            if (stamina.Charged) fill.color = charged;
+            else fill.color = charging;
         }
 
         protected override void UpdateResource()

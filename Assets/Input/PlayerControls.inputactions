@@ -22,7 +22,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Teleport",
+                    "name": "Dodge",
                     "type": "Button",
                     "id": "42209cde-da78-4fe3-be07-8e9099b095cb",
                     "expectedControlType": "Button",
@@ -49,6 +49,38 @@
                     "name": "Guard",
                     "type": "Button",
                     "id": "25c5a5c8-0eea-42c3-9a4f-1cbe0ea5d3db",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold"
+                },
+                {
+                    "name": "Action1",
+                    "type": "Button",
+                    "id": "c5c77c76-499b-4687-a5da-0882571e9fab",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold"
+                },
+                {
+                    "name": "Action2",
+                    "type": "Button",
+                    "id": "74caffb2-dff2-4149-892e-555f5200c243",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold"
+                },
+                {
+                    "name": "Action3",
+                    "type": "Button",
+                    "id": "e546a64b-9239-48e5-be7c-d6a44ab15b8d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold"
+                },
+                {
+                    "name": "Action4",
+                    "type": "Button",
+                    "id": "e638c746-7831-4e46-bf78-e15ec7569b9d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Hold"
@@ -282,7 +314,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Teleport",
+                    "action": "Dodge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -293,7 +325,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Teleport",
+                    "action": "Dodge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -360,6 +392,94 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Guard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9467e185-a258-4bfc-9dbd-0822fd411c76",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Action1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "20192a07-8a28-48a0-8428-e33c689ec2e7",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Action1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31ecaa80-037f-456c-a8f1-9e23c27c44bd",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Action2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f055dca-f056-494b-97fb-66a4f70ffe19",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Action2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88852b5b-fcb1-4f5e-a51f-cfe861c6fb47",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Action3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d1363a89-65a2-43ae-bbb6-a0a7b159efc4",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Action3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3f03dd2-86ad-47ec-88e3-b19c16020f80",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Action4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eeed8f92-3ae2-4da9-901a-a3c60101cffa",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Action4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

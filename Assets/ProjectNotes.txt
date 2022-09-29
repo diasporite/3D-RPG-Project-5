@@ -5,6 +5,7 @@
   - Time slow mechanics removed
 - Attacks can only be used at full stamina or during an attack chain
 - Defensive actions can be performed anytime
+- Standby party members build stamina slower (currently 5x)
 
 26/9/22
 - Working on movement

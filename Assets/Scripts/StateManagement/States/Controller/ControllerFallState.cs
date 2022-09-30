@@ -34,7 +34,7 @@ namespace RPG_Project
             health.SpeedFactor = 0f;
             stamina.SpeedFactor = 0f;
 
-            //cm.PlayAnimation(controller.fallHash);
+            cm.PlayAnimation(controller.fallHash);
         }
 
         public void ExecuteFrame()

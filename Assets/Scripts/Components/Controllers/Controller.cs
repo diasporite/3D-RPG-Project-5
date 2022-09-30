@@ -40,7 +40,6 @@ namespace RPG_Project
 
         public Health Health { get; private set; }
         public Stamina Stamina { get; private set; }
-
         public Character Character { get; private set; }
 
         public CharacterModel Cm { get; private set; }
@@ -54,10 +53,9 @@ namespace RPG_Project
 
             Health = GetComponent<Health>();
             Stamina = GetComponent<Stamina>();
+            Character = GetComponent<Character>();
 
-            //Character = GetComponent<Character>();
-
-            //Cm = GetComponentInChildren<CharacterModel>();
+            Cm = GetComponentInChildren<CharacterModel>();
 
             actionHashes.Add(0, action1Hash);
             actionHashes.Add(1, action2Hash);
@@ -155,7 +153,7 @@ namespace RPG_Project
         {
             if (sm.InState(StateID.ControllerMove, StateID.ControllerRun))
             {
-                Movement.Jump(10f);
+                Movement.Jump(8f);
                 Stamina.ChangeValue(-30);
                 Stamina.Charged = false;
                 sm.ChangeState(StateID.ControllerFall);

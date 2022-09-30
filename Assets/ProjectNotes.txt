@@ -16,3 +16,7 @@
 29/9/22
 - Basic actions set up (jump, run, guard)
 - Health/stamina bars functional
+
+30/9/22
+- Imported Maria animations
+  - Look at techniques for tuning walking speeds

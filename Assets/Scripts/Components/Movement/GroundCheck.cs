@@ -27,6 +27,7 @@ namespace RPG_Project
             transform.position = cc.transform.position - 
                 (0.25f + skinWidth) * cc.height * Vector3.up;
 
+            // Any walkable surface - environment, objects, characters
             ground = LayerMask.GetMask("Environment");
         }
 

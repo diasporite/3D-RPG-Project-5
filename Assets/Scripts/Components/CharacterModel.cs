@@ -7,7 +7,7 @@ namespace RPG_Project
     public class CharacterModel : MonoBehaviour
     {
         float rotationSpeed = 720f;
-        float animFadeTime = 0.25f;
+        float animFadeTime = 0.15f;
 
         public Animator Anim { get; private set; }
 
@@ -47,7 +47,7 @@ namespace RPG_Project
 
         public void PlayAnimation(int hash)
         {
-            Anim.CrossFadeInFixedTime(hash, animFadeTime);
+            Anim.CrossFadeInFixedTime(hash, animFadeTime, 0);
         }
 
         public void SetFloat(string name, float value)

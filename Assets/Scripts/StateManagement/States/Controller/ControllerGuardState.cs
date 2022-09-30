@@ -26,7 +26,7 @@ namespace RPG_Project
             health.ResourceCooldown.Speed = 0f;
             stamina.ResourceCooldown.Speed = 0f;
 
-            //controller.Cm.PlayAnimation(controller.guardHash);
+            controller.Cm.PlayAnimation(controller.guardHash);
         }
 
         public void ExecuteFrame()

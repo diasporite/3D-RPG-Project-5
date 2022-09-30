@@ -32,6 +32,7 @@ namespace RPG_Project
         [field: SerializeField] public float RunSpeed { get; private set; } = 8f;
         [field: SerializeField] public float StrafeSpeed { get; private set; } = 3f;
         [field: SerializeField] public float FallSpeed { get; private set; } = 2f;
+        public float CurrentSpeed { get; private set; }
 
         [Header("Forces")]
         [SerializeField] Vector3 forceVelocity;
@@ -154,18 +155,22 @@ namespace RPG_Project
 
         public void MovePosition3rdPerson(Vector2 inputDir, float speed, float dt)
         {
+            CurrentSpeed = speed;
+
             var ds = inputDir.x * transform.right + inputDir.y * transform.forward;
 
             if (isPlayer) RotateRelativeToCamera(inputDir);
             else RotateTowards(inputDir);
 
-            //cm.RotateTowards(inputDir);
+            cm.RotateTowards(inputDir);
 
-            if (ds != Vector3.zero) cc.Move(speed * ds * dt);
+            if (ds != Vector3.zero) cc.Move(CurrentSpeed * ds * dt);
         }
 
         public void MovePositionTopDown(Vector2 dir, float speed, float dt)
         {
+            CurrentSpeed = speed;
+
             var x = 1f;
             var y = 1f;
 
@@ -175,14 +180,16 @@ namespace RPG_Project
             var ds = x * dir.x * transform.right + y * dir.y * transform.forward;
             //RotateRelativeToCamera(ds);
             //cm.RotateTowards(dir);
-            if (ds != Vector3.zero) cc.Move(speed * ds * dt);
+            if (ds != Vector3.zero) cc.Move(CurrentSpeed * ds * dt);
         }
 
         public void MovePositionSideScroll(Vector2 dir, float speed, float dt)
         {
+            CurrentSpeed = speed;
+
             var ds = transform.right * dir.x;
             //cm.RotateTowards(ds);
-            if (ds != Vector3.zero) cc.Move(speed * ds * dt);
+            if (ds != Vector3.zero) cc.Move(CurrentSpeed * ds * dt);
         }
 
         public void MoveAir(Vector2 inputDir, float dt)
@@ -254,10 +261,10 @@ namespace RPG_Project
 
         void UpdateSpeeds()
         {
-            //WalkSpeed = party.CurrentController.Character.WalkSpeed;
-            //RunSpeed = party.CurrentController.Character.RunSpeed;
-            //StrafeSpeed = party.CurrentController.Character.StrafeSpeed;
-            //FallSpeed = party.CurrentController.Character.FallSpeed;
+            WalkSpeed = party.CurrentController.Character.WalkSpeed;
+            RunSpeed = party.CurrentController.Character.RunSpeed;
+            StrafeSpeed = party.CurrentController.Character.StrafeSpeed;
+            FallSpeed = party.CurrentController.Character.FallSpeed;
         }
 
         public void SwitchMovementState(MovementState state)
@@ -295,6 +302,14 @@ namespace RPG_Project
         {
             VerticalVelocity = speed;
             cc.Move(VerticalVelocity * Vector3.up * Time.unscaledDeltaTime);
+        }
+
+        public float AnimBlendValue(float speed)
+        {
+            if (speed > 0 && speed <= WalkSpeed) return .5f;
+            if (speed > WalkSpeed) return 1f;
+
+            return 0f;
         }
     }
 }

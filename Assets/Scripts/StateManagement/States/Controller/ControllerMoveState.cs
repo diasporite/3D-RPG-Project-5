@@ -26,7 +26,7 @@ namespace RPG_Project
 
             movement = controller.Movement;
 
-            //cm = controller.Cm;
+            cm = controller.Cm;
         }
 
         public void Enter(params object[] args)
@@ -34,7 +34,7 @@ namespace RPG_Project
             health.SpeedFactor = 1f;
             stamina.SpeedFactor = 1f;
 
-            //cm.PlayAnimation(controller.moveHash);
+            cm.PlayAnimation(controller.moveHash);
         }
 
         public void ExecuteFrame()
@@ -45,7 +45,7 @@ namespace RPG_Project
             else health.Tick();
             stamina.Tick();
 
-            //UpdateAnim(dir);
+            UpdateAnim(dir);
 
             controller.Ir.InputQueue.Execute();
 
@@ -71,8 +71,9 @@ namespace RPG_Project
 
         void UpdateAnim(Vector2 input)
         {
-            if (input != Vector2.zero) cm.SetFloat("Speed", movement.WalkSpeed);
-            else cm.SetFloat("Speed", 0f);
+            if (input != Vector2.zero) cm.SetFloat("RelativeSpeed", 
+                movement.AnimBlendValue(movement.CurrentSpeed));
+            else cm.SetFloat("RelativeSpeed", 0f);
         }
     }
 }

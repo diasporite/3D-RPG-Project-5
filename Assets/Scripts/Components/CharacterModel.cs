@@ -40,6 +40,17 @@ namespace RPG_Project
             }
         }
 
+        public void RotateTowards(Vector3 dir)
+        {
+            if (dir != Vector3.zero)
+            {
+                var rotation = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+
+                transform.localRotation = Quaternion.RotateTowards(transform.localRotation,
+                    Quaternion.Euler(0, rotation, 0), rotationSpeed * Time.deltaTime);
+            }
+        }
+
         public void ResetRotation()
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);

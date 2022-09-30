@@ -48,6 +48,9 @@ namespace RPG_Project
         [SerializeField] bool invertY = false;
         bool isPlayer;
 
+        [SerializeField] SideScrollPathLinear currentPath;
+        [SerializeField] float distanceFromNearestPoint;
+
         PartyController party;
 
         CharacterController cc;
@@ -74,6 +77,8 @@ namespace RPG_Project
         private void Start()
         {
             isPlayer = GetComponentInParent<PartyController>().IsPlayer;
+
+            SwitchMovementState(MovementState.ThirdPerson, null);
         }
 
         private void Update()
@@ -97,6 +102,7 @@ namespace RPG_Project
             Gizmos.DrawRay(transform.position, 5f * transform.forward);
         }
 
+        #region MovePosition
         public void MovePosition(Vector2 inputDir, float dt, SpeedMode mode)
         {
             var speed = 0f;
@@ -187,16 +193,18 @@ namespace RPG_Project
         {
             CurrentSpeed = speed;
 
-            var ds = transform.right * dir.x;
-            //cm.RotateTowards(ds);
+            var ds = currentPath.Rightward * dir.x;
+            cm.RotateTowards(ds);
             if (ds != Vector3.zero) cc.Move(CurrentSpeed * ds * dt);
         }
 
-        public void MoveAir(Vector2 inputDir, float dt)
+        public void MoveToPosition(Vector3 pos)
         {
-            
+            cc.Move(pos - transform.position);
         }
+        #endregion
 
+        #region Forces
         public void ApplyForce(Vector3 impulse)
         {
             forceVelocity += impulse;
@@ -231,7 +239,9 @@ namespace RPG_Project
                 cc.Move(gravity * Vector3.up * Time.deltaTime);
             }
         }
+        #endregion
 
+        #region Rotation
         void RotateTowards(Vector2 inputDir)
         {
             if (inputDir != Vector2.zero)
@@ -253,11 +263,7 @@ namespace RPG_Project
                     Quaternion.Euler(0, rotation, 0), RotationSpeed * Time.deltaTime);
             }
         }
-
-        public void MoveToPosition(Vector3 pos)
-        {
-            cc.Move(pos);
-        }
+        #endregion
 
         void UpdateSpeeds()
         {
@@ -267,8 +273,9 @@ namespace RPG_Project
             FallSpeed = party.CurrentController.Character.FallSpeed;
         }
 
-        public void SwitchMovementState(MovementState state)
+        public void SwitchMovementState(MovementState state, SideScrollPathLinear linear)
         {
+            var oldState = State;
             State = state;
 
             switch (State)
@@ -282,8 +289,12 @@ namespace RPG_Project
                     cm.ResetRotation();
                     break;
                 case MovementState.SideScroll:
-                    //FindSideScrollPath();
-                    cm.ResetRotation();
+                    if (linear != null)
+                    {
+                        currentPath = linear;
+                        MoveToPosition(linear.ClosestEnd(transform.position));
+                    }
+                    else State = MovementState.ThirdPerson;
                     break;
             }
 

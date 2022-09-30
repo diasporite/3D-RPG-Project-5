@@ -14,6 +14,8 @@ namespace RPG_Project
 
         Movement movement;
 
+        CharacterModel cm;
+
         public ControllerRunState(Controller controller)
         {
             this.controller = controller;
@@ -23,16 +25,18 @@ namespace RPG_Project
             stamina = controller.Stamina;
 
             movement = controller.Movement;
+
+            cm = controller.Cm;
         }
 
         #region InterfaceMethods
         public void Enter(params object[] args)
         {
             health.SpeedFactor = 0f;
-            stamina.SpeedFactor = -1f;
+            stamina.SpeedFactor = -0.5f;
             stamina.Charged = false;
 
-            //controller.Cm.PlayAnimation(controller.moveHash);
+            cm.PlayAnimation(controller.moveHash);
         }
 
         public void ExecuteFrame()
@@ -45,7 +49,7 @@ namespace RPG_Project
             if (dir == Vector2.zero || stamina.Empty)
                 csm.ChangeState(StateID.ControllerMove);
 
-            //UpdateAnim(controller.Ir.Move);
+            UpdateAnim(controller.Ir.Move);
 
             controller.Ir.InputQueue.Execute();
 
@@ -72,9 +76,9 @@ namespace RPG_Project
 
         void UpdateAnim(Vector2 input)
         {
-            if (input != Vector2.zero)
-                controller.Cm.SetFloat("Speed", controller.Movement.RunSpeed);
-            else controller.Cm.SetFloat("Speed", 0f);
+            var value = movement.AnimBlendValue(movement.CurrentSpeed);
+            if (input != Vector2.zero) cm.SetFloat("RelativeSpeed", value);
+            else cm.SetFloat("RelativeSpeed", 0f);
         }
     }
 }

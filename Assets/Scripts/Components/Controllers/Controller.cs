@@ -175,7 +175,7 @@ namespace RPG_Project
         void Action(int index)
         {
             if (sm.InState(StateID.ControllerMove, StateID.ControllerRun, 
-                StateID.ControllerAction) && Stamina.Charged)
+                StateID.ControllerGuard, StateID.ControllerAction) && Stamina.Charged)
             {
                 index = Mathf.Clamp(index, 0, actionHashes.Count);
                 CurrentActionHash = actionHashes[index];

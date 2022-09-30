@@ -20,3 +20,8 @@
 30/9/22
 - Imported Maria animations
   - Look at techniques for tuning walking speeds
+- Linear side scroll movement
+
+RESOURCES
+- Bezier curves (30/9/22)
+  - https://en.wikipedia.org/wiki/B%C3%A9zier_curve

@@ -71,8 +71,8 @@ namespace RPG_Project
 
         void UpdateAnim(Vector2 input)
         {
-            if (input != Vector2.zero) cm.SetFloat("RelativeSpeed", 
-                movement.AnimBlendValue(movement.CurrentSpeed));
+            var value = movement.AnimBlendValue(movement.CurrentSpeed);
+            if (input != Vector2.zero) cm.SetFloat("RelativeSpeed", value);
             else cm.SetFloat("RelativeSpeed", 0f);
         }
     }

@@ -46,6 +46,8 @@ namespace RPG_Project
         private void Start()
         {
             FindObjectOfType<UIManager>().Battle.InitHUD(this);
+
+            SetCurrentMember(0);
         }
 
         void SetCurrentMember(int index)

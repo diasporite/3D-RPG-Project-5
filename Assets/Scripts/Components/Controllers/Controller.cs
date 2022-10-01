@@ -116,7 +116,7 @@ namespace RPG_Project
             sm.AddState(StateID.ControllerMove, new ControllerMoveState(this));
             sm.AddState(StateID.ControllerFall, new ControllerFallState(this));
 
-            //sm.AddState(StateID.ControllerDodge, new ControllerTeleportState(this));
+            sm.AddState(StateID.ControllerDodge, new ControllerDodgeState(this));
             sm.AddState(StateID.ControllerRun, new ControllerRunState(this));
             sm.AddState(StateID.ControllerGuard, new ControllerGuardState(this));
 
@@ -134,6 +134,8 @@ namespace RPG_Project
             if (sm.InState(StateID.ControllerMove, StateID.ControllerMove))
             {
                 CurrentDodgeDir = transform.forward;
+                Stamina.ChangeValue(-30);
+                sm.ChangeState(StateID.ControllerDodge);
             }
         }
 
@@ -179,6 +181,7 @@ namespace RPG_Project
             {
                 index = Mathf.Clamp(index, 0, actionHashes.Count);
                 CurrentActionHash = actionHashes[index];
+                Stamina.ChangeValue(-30);
                 sm.ChangeState(StateID.ControllerAction);
             }
         }

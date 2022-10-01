@@ -9,8 +9,10 @@ namespace RPG_Project
     {
         PlayerControls controls;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             controls = new PlayerControls();
             controls.Player.SetCallbacks(this);
         }
@@ -38,10 +40,7 @@ namespace RPG_Project
         public void OnDodge(InputAction.CallbackContext context)
         {
             if (context.performed)
-            {
                 InputQueue.AddInput(new DodgeCommand(Party, this, Move));
-                InputQueue.Execute();
-            }
         }
 
         public void OnGuard(InputAction.CallbackContext context)
@@ -63,22 +62,26 @@ namespace RPG_Project
 
         public void OnAction1(InputAction.CallbackContext context)
         {
-            if (context.performed) InputQueue.AddInput(new AttackCommand(Party, this, 0));
+            if (context.performed && Party.CurrentStamina.Charged)
+                InputQueue.AddInput(new AttackCommand(Party, this, 0));
         }
 
         public void OnAction2(InputAction.CallbackContext context)
         {
-            if (context.performed) InputQueue.AddInput(new AttackCommand(Party, this, 1));
+            if (context.performed && Party.CurrentStamina.Charged)
+                InputQueue.AddInput(new AttackCommand(Party, this, 1));
         }
 
         public void OnAction3(InputAction.CallbackContext context)
         {
-            if (context.performed) InputQueue.AddInput(new AttackCommand(Party, this, 2));
+            if (context.performed && Party.CurrentStamina.Charged)
+                InputQueue.AddInput(new AttackCommand(Party, this, 2));
         }
 
         public void OnAction4(InputAction.CallbackContext context)
         {
-            if (context.performed) InputQueue.AddInput(new AttackCommand(Party, this, 3));
+            if (context.performed && Party.CurrentStamina.Charged)
+                InputQueue.AddInput(new AttackCommand(Party, this, 3));
         }
     }
 }

@@ -34,6 +34,10 @@ namespace RPG_Project
             health.SpeedFactor = 1f;
             stamina.SpeedFactor = 1f;
 
+            stamina.Charged = stamina.Full;
+
+            controller.Ir.InputQueue.ClearInputs();
+
             cm.PlayAnimation(controller.moveHash);
         }
 

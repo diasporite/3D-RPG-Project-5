@@ -50,15 +50,18 @@ namespace RPG_Project
             health.Tick();
             stamina.Tick();
 
-            normalisedTime = cm.Anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            normalisedTime = NormalizedTime();
 
             if (normalisedTime >= advanceThreshold)
             {
                 var actionsLeft = input.InputQueue.Advance();
-                if (actionsLeft) input.InputQueue.Execute();
+
+                if (actionsLeft)
+                    input.InputQueue.Execute();
                 else
                 {
-                    if (!controller.Movement.Grounded) csm.ChangeState(StateID.ControllerFall);
+                    if (!controller.Movement.Grounded)
+                        csm.ChangeState(StateID.ControllerFall);
                     else csm.ChangeState(StateID.ControllerMove);
                 }
             }
@@ -77,6 +80,12 @@ namespace RPG_Project
         public void Exit()
         {
 
+        }
+
+        float NormalizedTime()
+        {
+            float t = cm.Anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            return t - Mathf.Floor(t);
         }
     }
 }

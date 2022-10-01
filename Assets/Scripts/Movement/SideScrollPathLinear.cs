@@ -23,13 +23,6 @@ namespace RPG_Project
             return right.position;
         }
 
-        private void Awake()
-        {
-            var col = GetComponent<BoxCollider>();
-            col.center = 0.5f * Size;
-            col.size = Size;
-        }
-
         private void OnDrawGizmos()
         {
             Gizmos.DrawLine(left.position, right.position);

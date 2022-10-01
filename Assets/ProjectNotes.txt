@@ -21,6 +21,8 @@
 - Imported Maria animations
   - Look at techniques for tuning walking speeds
 - Linear side scroll movement
+- BUG: Attack animations get skipped
+  - Revert to individual ControllerActionState instances for each attack
 
 RESOURCES
 - Bezier curves (30/9/22)

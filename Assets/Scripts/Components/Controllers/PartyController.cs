@@ -23,15 +23,13 @@ namespace RPG_Project
 
         public InputReader Ir { get; private set; }
 
-        public Controller CurrentController { get; private set; }
+        [field: SerializeField] public Controller CurrentController { get; private set; }
 
         public Health CurrentHealth => CurrentController?.Health;
         public Stamina CurrentStamina => CurrentController?.Stamina;
 
         private void Awake()
         {
-            //Health = GetComponent<Health>();
-            //Stamina = GetComponent<Stamina>();
             Ir = GetComponent<InputReader>();
 
             IsPlayer = Ir is PlayerInputReader;

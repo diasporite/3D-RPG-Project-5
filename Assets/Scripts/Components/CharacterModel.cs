@@ -61,6 +61,11 @@ namespace RPG_Project
             Anim.CrossFadeInFixedTime(hash, animFadeTime, 0);
         }
 
+        public void PlayAnimationInstant(int hash)
+        {
+            Anim.Play(hash, 0);
+        }
+
         public void SetFloat(string name, float value)
         {
             Anim.SetFloat(name, value);

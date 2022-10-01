@@ -17,15 +17,13 @@ namespace RPG_Project
         public void AddInput(InputCommand input)
         {
             if (Inputs.Count < inputCap) Inputs.Add(input);
-
-            //if (Inputs.Count == 1) Inputs[0].Execute();
         }
 
         // Returns true if there are actions to be executed
         public bool Advance()
         {
             if (Inputs.Count > 0) Inputs.Remove(Inputs[0]);
-
+            Debug.Log(Inputs.Count);
             return Inputs.Count > 0;
         }
 
@@ -59,11 +57,12 @@ namespace RPG_Project
 
         [field: SerializeField] public bool Run { get; protected set; } = false;
 
-        [field: SerializeField] public InputQueue InputQueue { get; protected set; } = new InputQueue();
+        [field: SerializeField] public InputQueue InputQueue { get; protected set; } = 
+            new InputQueue();
 
         public PartyController Party { get; private set; }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             Party = GetComponent<PartyController>();
         }

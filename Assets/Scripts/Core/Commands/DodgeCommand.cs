@@ -9,7 +9,7 @@ namespace RPG_Project
     {
         public DodgeCommand(PartyController party, InputReader ir, Vector2 inputDir) : base(party, ir)
         {
-            inputName = "teleport " + inputDir;
+            inputName = "dodge " + inputDir;
         }
 
         public override void Execute()

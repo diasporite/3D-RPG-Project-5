@@ -46,6 +46,15 @@ namespace RPG_Project
 
         public readonly StateMachine sm = new StateMachine();
 
+        //Dictionary<int, StateID> actionStateMap = new Dictionary<int, StateID>();
+
+        public bool InCombat => true;
+
+        //bool InActionState => sm.InState(StateID.ControllerAction, StateID.ControllerAction1, 
+        //    StateID.ControllerAction2, StateID.ControllerAction3, StateID.ControllerAction4, 
+        //    StateID.ControllerAction5, StateID.ControllerAction6, StateID.ControllerAction7, 
+        //    StateID.ControllerAction8);
+
         private void Awake()
         {
             Ir = GetComponentInParent<InputReader>();
@@ -65,6 +74,15 @@ namespace RPG_Project
             actionHashes.Add(5, action6Hash);
             actionHashes.Add(6, action7Hash);
             actionHashes.Add(7, action8Hash);
+
+            //actionStateMap.Add(0, StateID.ControllerAction1);
+            //actionStateMap.Add(1, StateID.ControllerAction2);
+            //actionStateMap.Add(2, StateID.ControllerAction3);
+            //actionStateMap.Add(3, StateID.ControllerAction4);
+            //actionStateMap.Add(4, StateID.ControllerAction5);
+            //actionStateMap.Add(5, StateID.ControllerAction6);
+            //actionStateMap.Add(6, StateID.ControllerAction7);
+            //actionStateMap.Add(7, StateID.ControllerAction8);
         }
 
         private void Start()
@@ -121,6 +139,15 @@ namespace RPG_Project
             sm.AddState(StateID.ControllerGuard, new ControllerGuardState(this));
 
             sm.AddState(StateID.ControllerAction, new ControllerActionState(this));
+
+            //sm.AddState(StateID.ControllerAction1, new ControllerActionState(this, 0));
+            //sm.AddState(StateID.ControllerAction2, new ControllerActionState(this, 1));
+            //sm.AddState(StateID.ControllerAction3, new ControllerActionState(this, 2));
+            //sm.AddState(StateID.ControllerAction4, new ControllerActionState(this, 3));
+            //sm.AddState(StateID.ControllerAction5, new ControllerActionState(this, 4));
+            //sm.AddState(StateID.ControllerAction6, new ControllerActionState(this, 5));
+            //sm.AddState(StateID.ControllerAction7, new ControllerActionState(this, 6));
+            //sm.AddState(StateID.ControllerAction8, new ControllerActionState(this, 7));
 
             //sm.AddState(StateID.ControllerStagger, new ControllerStaggerState(this));
             //sm.AddState(StateID.ControllerDeath, new ControllerDeathState(this));
@@ -180,8 +207,9 @@ namespace RPG_Project
                 StateID.ControllerGuard, StateID.ControllerAction) && Stamina.Charged)
             {
                 index = Mathf.Clamp(index, 0, actionHashes.Count);
-                CurrentActionHash = actionHashes[index];
+                //CurrentActionHash = actionHashes[index];
                 Stamina.ChangeValue(-30);
+                //sm.ChangeState(actionStateMap[index]);
                 sm.ChangeState(StateID.ControllerAction);
             }
         }

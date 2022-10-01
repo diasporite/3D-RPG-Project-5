@@ -24,6 +24,11 @@
 - BUG: Attack animations get skipped
   - Revert to individual ControllerActionState instances for each attack
 
+1/10/22
+- Attack animations working
+  - Anim.Play(hash, 0) does not allow reentering animation
+  - Use Anim.Play(hash, 0, 0f) to reset same animation
+
 RESOURCES
 - Bezier curves (30/9/22)
   - https://en.wikipedia.org/wiki/B%C3%A9zier_curve

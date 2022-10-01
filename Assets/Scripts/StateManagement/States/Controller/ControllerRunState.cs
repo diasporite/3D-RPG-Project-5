@@ -33,7 +33,9 @@ namespace RPG_Project
         public void Enter(params object[] args)
         {
             health.SpeedFactor = 0f;
-            stamina.SpeedFactor = -0.5f;
+            if (controller.InCombat) stamina.SpeedFactor = -0.5f;
+            else stamina.SpeedFactor = 1f;
+
             stamina.Charged = false;
 
             cm.PlayAnimation(controller.moveHash);
@@ -41,6 +43,9 @@ namespace RPG_Project
 
         public void ExecuteFrame()
         {
+            if (controller.InCombat) stamina.SpeedFactor = -0.5f;
+            else stamina.SpeedFactor = 1f;
+
             var dir = controller.Ir.Move;
 
             health.Tick();

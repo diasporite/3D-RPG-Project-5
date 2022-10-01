@@ -23,7 +23,7 @@ namespace RPG_Project
         public bool Advance()
         {
             if (Inputs.Count > 0) Inputs.Remove(Inputs[0]);
-            Debug.Log(Inputs.Count);
+            //Debug.Log(Inputs.Count);
             return Inputs.Count > 0;
         }
 

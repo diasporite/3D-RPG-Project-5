@@ -62,25 +62,25 @@ namespace RPG_Project
 
         public void OnAction1(InputAction.CallbackContext context)
         {
-            if (context.performed && Party.CurrentStamina.Charged)
+            if (context.performed)
                 InputQueue.AddInput(new AttackCommand(Party, this, 0));
         }
 
         public void OnAction2(InputAction.CallbackContext context)
         {
-            if (context.performed && Party.CurrentStamina.Charged)
+            if (context.performed)
                 InputQueue.AddInput(new AttackCommand(Party, this, 1));
         }
 
         public void OnAction3(InputAction.CallbackContext context)
         {
-            if (context.performed && Party.CurrentStamina.Charged)
+            if (context.performed)
                 InputQueue.AddInput(new AttackCommand(Party, this, 2));
         }
 
         public void OnAction4(InputAction.CallbackContext context)
         {
-            if (context.performed && Party.CurrentStamina.Charged)
+            if (context.performed)
                 InputQueue.AddInput(new AttackCommand(Party, this, 3));
         }
     }

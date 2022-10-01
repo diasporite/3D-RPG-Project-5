@@ -63,7 +63,7 @@ namespace RPG_Project
 
         public void PlayAnimationInstant(int hash)
         {
-            Anim.Play(hash, 0);
+            Anim.Play(hash, 0, 0f);
         }
 
         public void SetFloat(string name, float value)

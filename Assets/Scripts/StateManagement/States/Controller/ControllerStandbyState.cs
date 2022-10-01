@@ -28,7 +28,8 @@ namespace RPG_Project
         public void Enter(params object[] args)
         {
             health.SpeedFactor = 0f;
-            stamina.SpeedFactor = 0.2f;
+            if (controller.InCombat) stamina.SpeedFactor = 0.5f;
+            else stamina.SpeedFactor = 0f;
 
             controller.Cm.gameObject.SetActive(false);
         }

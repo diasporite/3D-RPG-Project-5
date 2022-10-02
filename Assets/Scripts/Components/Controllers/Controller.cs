@@ -175,10 +175,7 @@ namespace RPG_Project
         void GuardCancel()
         {
             if (sm.InState(StateID.ControllerGuard))
-            {
-                print("cancel1");
                 sm.ChangeState(StateID.ControllerMove);
-            }
         }
 
         void Jump()

@@ -88,7 +88,6 @@ namespace RPG_Project
 
         public void InvokeGuardCancel()
         {
-            print("cancel0");
             OnGuardCancel?.Invoke();
         }
 

@@ -85,13 +85,6 @@ namespace RPG_Project
             //actionStateMap.Add(7, StateID.ControllerAction8);
         }
 
-        private void Start()
-        {
-            InitSM();
-
-            sm.ChangeState(StateID.ControllerMove);
-        }
-
         private void Update()
         {
             currentState = sm.CurrentStateKey;
@@ -127,6 +120,13 @@ namespace RPG_Project
             Ir.OnRunCancel -= RunCancel;
 
             Ir.OnAttackAction -= Action;
+        }
+
+        public void Init()
+        {
+            InitSM();
+
+            sm.ChangeState(StateID.ControllerMove);
         }
 
         void InitSM()
@@ -207,7 +207,7 @@ namespace RPG_Project
                 StateID.ControllerGuard, StateID.ControllerAction) && Stamina.Charged)
             {
                 index = Mathf.Clamp(index, 0, actionHashes.Count);
-                //CurrentActionHash = actionHashes[index];
+                CurrentActionHash = actionHashes[index];
                 Stamina.ChangeValue(-30);
                 //sm.ChangeState(actionStateMap[index]);
                 sm.ChangeState(StateID.ControllerAction);
@@ -215,9 +215,14 @@ namespace RPG_Project
         }
         #endregion
 
-        public void SetStandby()
+        public void SetStandby(bool value)
         {
-            sm.ChangeState(StateID.ControllerStandby);
+            if (sm.States.ContainsKey(StateID.ControllerMove) && 
+                sm.States.ContainsKey(StateID.ControllerStandby))
+            {
+                if (value) sm.ChangeState(StateID.ControllerStandby);
+                else sm.ChangeState(StateID.ControllerMove);
+            }
         }
     }
 }

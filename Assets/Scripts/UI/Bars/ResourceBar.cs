@@ -7,6 +7,8 @@ namespace RPG_Project
 {
     public class ResourceBar : MonoBehaviour, IUIElement
     {
+        protected bool forCurrent = false;
+
         [SerializeField] protected PartyController party;
         [SerializeField] protected Resource resource;
 
@@ -16,6 +18,11 @@ namespace RPG_Project
         [SerializeField] protected float updateSpeed = 0.3f;
 
         public virtual void InitUI(PartyController party)
+        {
+            SubscribeToDelegates();
+        }
+
+        public virtual void InitUI(PartyController party, int index)
         {
             SubscribeToDelegates();
         }
@@ -38,7 +45,8 @@ namespace RPG_Project
 
         protected virtual void Tick()
         {
-            fill.fillAmount = resource.ResourceCooldown.CooldownFraction;
+            if (resource != null)
+                fill.fillAmount = resource.ResourceCooldown.CooldownFraction;
         }
 
         protected virtual void UpdateResource()

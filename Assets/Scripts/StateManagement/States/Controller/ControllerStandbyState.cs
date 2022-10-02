@@ -31,6 +31,8 @@ namespace RPG_Project
             if (controller.InCombat) stamina.SpeedFactor = 0.5f;
             else stamina.SpeedFactor = 0f;
 
+            stamina.Charged = stamina.Full;
+
             controller.Cm.gameObject.SetActive(false);
         }
 
@@ -38,6 +40,9 @@ namespace RPG_Project
         {
             health.Tick();
             stamina.Tick();
+
+            if (controller.InCombat) stamina.SpeedFactor = 0.333f;
+            else stamina.SpeedFactor = 0f;
         }
 
         public void ExecuteFrameFixed()
@@ -52,7 +57,7 @@ namespace RPG_Project
 
         public void Exit()
         {
-
+            controller.Cm.gameObject.SetActive(true);
         }
     }
 }

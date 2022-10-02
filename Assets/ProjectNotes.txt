@@ -28,6 +28,11 @@
 - Attack animations working
   - Anim.Play(hash, 0) does not allow reentering animation
   - Use Anim.Play(hash, 0, 0f) to reset same animation
+- Basic character switching
+- UI work (char info, party panels)
+- TO DO: Cameras
+  - Each camera is a cube for viewing/debug purposes
+  - Cameras move, CameraController on main camera moves towards current camera
 
 RESOURCES
 - Bezier curves (30/9/22)

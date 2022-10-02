@@ -14,19 +14,40 @@ namespace RPG_Project
         public override void InitUI(PartyController party)
         {
             this.party = party;
+
+            forCurrent = true;
             resource = party.CurrentStamina;
             stamina = (Stamina)resource;
 
             base.InitUI(party);
         }
 
+        public override void InitUI(PartyController party, int index)
+        {
+            this.party = party;
+
+            forCurrent = false;
+
+            if (index < party.PartyMembers.Count)
+            {
+                resource = party.PartyMembers[index].Stamina;
+                stamina = (Stamina)resource;
+            }
+
+            base.InitUI(party);
+        }
+
         public override void SubscribeToDelegates()
         {
+            if (forCurrent) party.OnCharacterChange += UpdateResource;
+
             party.OnStaminaTick += Tick;
         }
 
         public override void UnsubscribeFromDelegates()
         {
+            if (forCurrent) party.OnCharacterChange -= UpdateResource;
+
             party.OnStaminaTick -= Tick;
         }
 
@@ -34,13 +55,20 @@ namespace RPG_Project
         {
             base.Tick();
 
-            if (stamina.Charged) fill.color = charged;
-            else fill.color = charging;
+            if (stamina != null)
+            {
+                if (stamina.Charged) fill.color = charged;
+                else fill.color = charging;
+            }
         }
 
         protected override void UpdateResource()
         {
             resource = party.CurrentStamina;
+            stamina = (Stamina)resource;
+
+            fill.fillAmount = resource.ResourceCooldown.CooldownFraction;
+            fillShadow.fillAmount = resource.ResourceCooldown.CooldownFraction;
         }
     }
 }

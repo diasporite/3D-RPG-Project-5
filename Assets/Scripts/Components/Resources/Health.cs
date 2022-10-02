@@ -9,9 +9,12 @@ namespace RPG_Project
         protected override void Awake()
         {
             base.Awake();
+        }
 
-            baseSpeed = 1f;
-            ResourceCooldown = new Cooldown(100f, baseSpeed, 100f);
+        protected override void Start()
+        {
+            baseSpeed = GameManager.instance.Combat.HealthRegen;
+            ResourceCooldown = new Cooldown(150f, baseSpeed, 150f);
         }
 
         protected override void UpdateUI()

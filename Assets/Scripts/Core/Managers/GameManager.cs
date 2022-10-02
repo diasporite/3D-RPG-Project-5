@@ -8,9 +8,9 @@ namespace RPG_Project
     {
         public static GameManager instance = null;
 
-        public UIManager UiManager { get; private set; }
+        [field: SerializeField] public CombatDatabase Combat { get; private set; }
 
-        public CombatDatabase Combat { get; private set; }
+        public UIManager UiManager { get; private set; }
 
         private void Awake()
         {

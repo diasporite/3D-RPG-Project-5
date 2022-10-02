@@ -33,6 +33,11 @@ namespace RPG_Project
             party = GetComponentInParent<PartyController>();
         }
 
+        protected virtual void Start()
+        {
+            
+        }
+
         public virtual void Tick()
         {
             ResourceCooldown.Tick();

@@ -7,9 +7,10 @@ namespace RPG_Project
 {
     public enum MovementState
     {
-        ThirdPerson = 0,
-        TopDown = 1,
-        SideScroll = 2,
+        ThirdPersonFree = 0,
+        ThirdPersonStrafe = 1,
+        TopDown = 2,
+        SideScroll = 3,
     }
 
     public enum SpeedMode
@@ -25,7 +26,7 @@ namespace RPG_Project
         public event Action OnStateSwitch;
 
         [field: SerializeField] public MovementState State { get; private set; } = 
-            MovementState.ThirdPerson;
+            MovementState.ThirdPersonFree;
 
         [field: Header("Speeds")]
         [field: SerializeField] public float WalkSpeed { get; private set; } = 5f;
@@ -78,7 +79,7 @@ namespace RPG_Project
         {
             isPlayer = GetComponentInParent<PartyController>().IsPlayer;
 
-            SwitchMovementState(MovementState.ThirdPerson, null);
+            SwitchMovementState(MovementState.ThirdPersonFree, null);
         }
 
         private void Update()
@@ -89,12 +90,12 @@ namespace RPG_Project
 
         private void OnEnable()
         {
-            party.OnCharacterChange += UpdateSpeeds;
+            party.OnCharacterChange += UpdateCharacter;
         }
 
         private void OnDisable()
         {
-            party.OnCharacterChange -= UpdateSpeeds;
+            party.OnCharacterChange -= UpdateCharacter;
         }
 
         private void OnDrawGizmos()
@@ -125,8 +126,11 @@ namespace RPG_Project
             
             switch (State)
             {
-                case MovementState.ThirdPerson:
-                    MovePosition3rdPerson(inputDir, speed, dt);
+                case MovementState.ThirdPersonFree:
+                    MovePosition3rdPersonFree(inputDir, speed, dt);
+                    break;
+                case MovementState.ThirdPersonStrafe:
+                    MovePosition3rdPersonStrafe(inputDir, speed, dt);
                     break;
                 case MovementState.TopDown:
                     MovePositionTopDown(inputDir, speed, dt);
@@ -135,7 +139,7 @@ namespace RPG_Project
                     MovePositionSideScroll(inputDir, speed, dt);
                     break;
                 default:
-                    MovePosition3rdPerson(inputDir, speed, dt);
+                    MovePosition3rdPersonFree(inputDir, speed, dt);
                     break;
             }
         }
@@ -144,8 +148,8 @@ namespace RPG_Project
         {
             switch (State)
             {
-                case MovementState.ThirdPerson:
-                    MovePosition3rdPerson(inputDir, speed, dt);
+                case MovementState.ThirdPersonFree:
+                    MovePosition3rdPersonFree(inputDir, speed, dt);
                     break;
                 case MovementState.TopDown:
                     MovePositionTopDown(inputDir, speed, dt);
@@ -154,12 +158,12 @@ namespace RPG_Project
                     MovePositionSideScroll(inputDir, speed, dt);
                     break;
                 default:
-                    MovePosition3rdPerson(inputDir, speed, dt);
+                    MovePosition3rdPersonFree(inputDir, speed, dt);
                     break;
             }
         }
 
-        public void MovePosition3rdPerson(Vector2 inputDir, float speed, float dt)
+        public void MovePosition3rdPersonFree(Vector2 inputDir, float speed, float dt)
         {
             CurrentSpeed = speed;
 
@@ -171,6 +175,11 @@ namespace RPG_Project
             cm.RotateTowards(inputDir);
 
             if (ds != Vector3.zero) cc.Move(CurrentSpeed * ds * dt);
+        }
+
+        public void MovePosition3rdPersonStrafe(Vector2 dir, float speed, float dt)
+        {
+
         }
 
         public void MovePositionTopDown(Vector2 dir, float speed, float dt)
@@ -265,8 +274,10 @@ namespace RPG_Project
         }
         #endregion
 
-        void UpdateSpeeds()
+        void UpdateCharacter()
         {
+            cm = party.CurrentController.Cm;
+
             WalkSpeed = party.CurrentController.Character.WalkSpeed;
             RunSpeed = party.CurrentController.Character.RunSpeed;
             StrafeSpeed = party.CurrentController.Character.StrafeSpeed;
@@ -280,7 +291,7 @@ namespace RPG_Project
 
             switch (State)
             {
-                case MovementState.ThirdPerson:
+                case MovementState.ThirdPersonFree:
                     break;
                 case MovementState.TopDown:
                     invertX = false;
@@ -294,7 +305,7 @@ namespace RPG_Project
                         currentPath = linear;
                         MoveToPosition(linear.ClosestEnd(transform.position));
                     }
-                    else State = MovementState.ThirdPerson;
+                    else State = MovementState.ThirdPersonFree;
                     break;
             }
 

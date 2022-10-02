@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb2fed50b242c743aef83d0c1ab0d53, type: 3}
+  m_Name: CombatDatabase
+  m_EditorClassIdentifier: 
+  <WeakMultiplier>k__BackingField: 1.4
+  <ResistMultiplier>k__BackingField: 0.7
+  <FrontMultiplier>k__BackingField: 0.7
+  <BackMultiplier>k__BackingField: 1.4
+  <HealthRegen>k__BackingField: 1
+  <StaminaRegen>k__BackingField: 10
+  <MinDodgeResist>k__BackingField: 0.1
+  <MaxDodgeResist>k__BackingField: 0.5
+  <MinGuardResist>k__BackingField: 0.3
+  <MaxGuardResist>k__BackingField: 0.7

@@ -37,7 +37,7 @@ namespace RPG_Project
             var move = other.GetComponent<Movement>();
 
             if (move)
-                move.SwitchMovementState(MovementState.ThirdPerson, null);
+                move.SwitchMovementState(MovementState.ThirdPersonFree, null);
         }
     }
 }

@@ -40,6 +40,8 @@ namespace RPG_Project
 
     public class InputReader : MonoBehaviour
     {
+        public event Action<int> OnSwitchAction;
+
         public event Action OnDodgeAction;
 
         public event Action OnGuardAction;
@@ -54,6 +56,7 @@ namespace RPG_Project
 
         [field: SerializeField] public Vector2 Move { get; protected set; }
         [field: SerializeField] public Vector2 Rotate { get; protected set; }
+        [field: SerializeField] public Vector2 Dpad { get; protected set; }
 
         [field: SerializeField] public bool Run { get; protected set; } = false;
 
@@ -68,6 +71,11 @@ namespace RPG_Project
         }
 
         #region Delegates
+        public void InvokeSwitch(int index)
+        {
+            OnSwitchAction?.Invoke(index);
+        }
+
         public void InvokeDodge()
         {
             OnDodgeAction?.Invoke();

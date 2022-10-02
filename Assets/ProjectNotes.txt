@@ -34,6 +34,10 @@
   - Each camera is a cube for viewing/debug purposes
   - Cameras move, CameraController on main camera moves towards current camera
 
+2/10/22
+- Started work on cameras
+- GuardCancel not working
+
 RESOURCES
 - Bezier curves (30/9/22)
   - https://en.wikipedia.org/wiki/B%C3%A9zier_curve

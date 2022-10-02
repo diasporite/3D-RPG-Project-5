@@ -158,7 +158,7 @@ namespace RPG_Project
         #region Actions
         void Dodge()
         {
-            if (sm.InState(StateID.ControllerMove, StateID.ControllerMove))
+            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun))
             {
                 CurrentDodgeDir = transform.forward;
                 Stamina.ChangeValue(-30);
@@ -175,7 +175,10 @@ namespace RPG_Project
         void GuardCancel()
         {
             if (sm.InState(StateID.ControllerGuard))
+            {
+                print("cancel1");
                 sm.ChangeState(StateID.ControllerMove);
+            }
         }
 
         void Jump()

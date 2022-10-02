@@ -55,7 +55,12 @@ namespace RPG_Project
 
             movement.MovePosition(dir, Time.deltaTime, SpeedMode.Walk);
 
-            if (!movement.Grounded) csm.ChangeState(StateID.ControllerFall);
+            if (!movement.Grounded)
+            {
+                movement.FallSpeed = movement.WalkSpeed;
+                Debug.Log(movement.FallSpeed);
+                csm.ChangeState(StateID.ControllerFall);
+            }
         }
 
         public void ExecuteFrameFixed()

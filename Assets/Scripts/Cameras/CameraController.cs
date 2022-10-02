@@ -8,7 +8,7 @@ namespace RPG_Project
     {
         [SerializeField] public float updateSpeed = 50f;
 
-        public PlayerCamera CurrentCamera { get; set; }
+        [field: SerializeField] public PlayerCamera CurrentCamera { get; set; }
 
         public Transform Follow { get; private set; }
 

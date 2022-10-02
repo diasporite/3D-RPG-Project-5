@@ -21,17 +21,19 @@ namespace RPG_Project
         [field: SerializeField] public List<Controller> PartyMembers { get; private set; } = 
             new List<Controller>();
 
-        public InputReader Ir { get; private set; }
-
         [field: SerializeField] public Controller CurrentController { get; private set; }
 
         [field: SerializeField] public Quaternion CurrentModelRotation { get; private set; }
+
+        public Movement Movement { get; private set; }
+        public InputReader Ir { get; private set; }
 
         public Health CurrentHealth => CurrentController?.Health;
         public Stamina CurrentStamina => CurrentController?.Stamina;
 
         private void Awake()
         {
+            Movement = GetComponent<Movement>();
             Ir = GetComponent<InputReader>();
 
             IsPlayer = Ir is PlayerInputReader;

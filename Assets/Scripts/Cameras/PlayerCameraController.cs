@@ -31,25 +31,9 @@ namespace RPG_Project
             Cc = FindObjectOfType<CameraController>();
         }
 
-        private void Start()
+        public void SwitchCamera(MovementState state)
         {
-            SwitchCamera();
-            Cc.InstantFollow();
-        }
-
-        private void OnEnable()
-        {
-            Movement.OnStateSwitch += SwitchCamera;
-        }
-
-        private void OnDisable()
-        {
-            Movement.OnStateSwitch -= SwitchCamera;
-        }
-
-        private void SwitchCamera()
-        {
-            switch (Party.CurrentController.Movement.State)
+            switch (state)
             {
                 case MovementState.ThirdPersonFree:
                     Cc.CurrentCamera = Tp;

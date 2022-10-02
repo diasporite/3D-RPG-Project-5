@@ -183,8 +183,15 @@ namespace RPG_Project
             if (sm.InState(StateID.ControllerMove, StateID.ControllerRun))
             {
                 Movement.Jump(8f);
+
                 Stamina.ChangeValue(-30);
                 Stamina.Charged = false;
+
+                if (sm.InState(StateID.ControllerMove))
+                    Movement.FallSpeed = Movement.WalkSpeed;
+                if (sm.InState(StateID.ControllerRun))
+                    Movement.FallSpeed = Movement.RunSpeed;
+
                 sm.ChangeState(StateID.ControllerFall);
             }
         }

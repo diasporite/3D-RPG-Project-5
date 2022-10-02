@@ -36,7 +36,8 @@
 
 2/10/22
 - Started work on cameras
-- GuardCancel not working
+- Started work on relative motion
+- BUG: Side scroll camera flips between sides when moving between left/right
 
 RESOURCES
 - Bezier curves (30/9/22)

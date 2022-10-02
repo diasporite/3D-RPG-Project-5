@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734427390279493056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: -1}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 7304775406170888503}
@@ -100,13 +100,13 @@ MonoBehaviour:
   radius: 0
   theta: 0
   <TopOrbit>k__BackingField:
-    <Radius>k__BackingField: 0
-    <Height>k__BackingField: 0
+    <Radius>k__BackingField: 1
+    <Height>k__BackingField: 1
   <MiddleOrbit>k__BackingField:
-    <Radius>k__BackingField: 0
-    <Height>k__BackingField: 0
+    <Radius>k__BackingField: 2
+    <Height>k__BackingField: 0.5
   <BottomOrbit>k__BackingField:
-    <Radius>k__BackingField: 0
+    <Radius>k__BackingField: 1
     <Height>k__BackingField: 0
   freeTarget: {fileID: 0}
   lockTarget: {fileID: 0}
@@ -451,7 +451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6217373322490546336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 1398847202732344826}
@@ -682,7 +682,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7854844355972865598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.5, z: -0.5}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 1398847202732344826}

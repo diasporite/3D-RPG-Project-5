@@ -23,8 +23,6 @@ namespace RPG_Project
 
     public class Movement : MonoBehaviour
     {
-        public event Action OnStateSwitch;
-
         [field: SerializeField] public MovementState State { get; private set; } = 
             MovementState.ThirdPersonFree;
 
@@ -32,7 +30,7 @@ namespace RPG_Project
         [field: SerializeField] public float WalkSpeed { get; private set; } = 5f;
         [field: SerializeField] public float RunSpeed { get; private set; } = 8f;
         [field: SerializeField] public float StrafeSpeed { get; private set; } = 3f;
-        [field: SerializeField] public float FallSpeed { get; private set; } = 2f;
+        [field: SerializeField] public float FallSpeed { get; set; } = 2f;
         public float CurrentSpeed { get; private set; }
 
         [Header("Forces")]
@@ -57,6 +55,7 @@ namespace RPG_Project
         CharacterController cc;
 
         CharacterModel cm;
+        PlayerCameraController pcc;
 
         Camera main;
 
@@ -69,6 +68,7 @@ namespace RPG_Project
             cc = GetComponent<CharacterController>();
 
             cm = GetComponentInChildren<CharacterModel>();
+            pcc = GetComponentInChildren<PlayerCameraController>();
 
             main = Camera.main;
 
@@ -167,14 +167,12 @@ namespace RPG_Project
         {
             CurrentSpeed = speed;
 
-            var ds = inputDir.x * transform.right + inputDir.y * transform.forward;
+            var ds = inputDir.x * cm.transform.right + inputDir.y * cm.transform.forward;
 
-            if (isPlayer) RotateRelativeToCamera(inputDir);
-            else RotateTowards(inputDir);
+            if (party.IsPlayer) cm.RotateTowards(inputDir, pcc.Tp.Theta);
+            else cm.RotateTowards(inputDir);
 
-            cm.RotateTowards(inputDir);
-
-            if (ds != Vector3.zero) cc.Move(CurrentSpeed * ds * dt);
+            if (ds != Vector3.zero) cc.Move(CurrentSpeed * cm.transform.forward * dt);
         }
 
         public void MovePosition3rdPersonStrafe(Vector2 dir, float speed, float dt)
@@ -192,10 +190,11 @@ namespace RPG_Project
             if (invertX) x = -1f;
             if (invertY) y = -1f;
 
-            var ds = x * dir.x * transform.right + y * dir.y * transform.forward;
-            //RotateRelativeToCamera(ds);
-            //cm.RotateTowards(dir);
-            if (ds != Vector3.zero) cc.Move(CurrentSpeed * ds * dt);
+            var ds = x * dir.x * cm.transform.right + y * dir.y * cm.transform.forward;
+
+            cm.RotateTowards(dir);
+
+            if (ds != Vector3.zero) cc.Move(CurrentSpeed * cm.transform.forward * dt);
         }
 
         public void MovePositionSideScroll(Vector2 dir, float speed, float dt)
@@ -203,8 +202,11 @@ namespace RPG_Project
             CurrentSpeed = speed;
 
             var ds = currentPath.Rightward * dir.x;
+
             cm.RotateTowards(ds);
-            if (ds != Vector3.zero) cc.Move(CurrentSpeed * ds * dt);
+
+            if (ds != Vector3.zero)
+                cc.Move(CurrentSpeed * Mathf.Sign(dir.x) * currentPath.Rightward * dt);
         }
 
         public void MoveToPosition(Vector3 pos)
@@ -256,9 +258,8 @@ namespace RPG_Project
             if (inputDir != Vector2.zero)
             {
                 var rotation = Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg;
-                transform.localRotation = Quaternion.RotateTowards(transform.localRotation,
-                    Quaternion.Euler(0, rotation, 0),
-                    RotationSpeed * Time.deltaTime);
+                cm.transform.localRotation = Quaternion.RotateTowards(transform.localRotation,
+                    Quaternion.Euler(0, rotation, 0), RotationSpeed * Time.deltaTime);
             }
         }
 
@@ -266,9 +267,10 @@ namespace RPG_Project
         {
             if (inputDir != Vector2.zero && isPlayer)
             {
-                var rotation = main.transform.eulerAngles.y;
+                var rotation = main.transform.eulerAngles.y + 
+                    Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg;
 
-                transform.localRotation = Quaternion.RotateTowards(transform.localRotation,
+                cm.transform.localRotation = Quaternion.RotateTowards(transform.localRotation,
                     Quaternion.Euler(0, rotation, 0), RotationSpeed * Time.deltaTime);
             }
         }
@@ -309,7 +311,7 @@ namespace RPG_Project
                     break;
             }
 
-            OnStateSwitch?.Invoke();
+            pcc.SwitchCamera(State);
         }
 
         float RoundAngle(float angle)

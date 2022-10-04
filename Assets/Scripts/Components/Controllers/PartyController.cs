@@ -9,6 +9,7 @@ namespace RPG_Project
     {
         public event Action OnHealthTick;
         public event Action OnStaminaTick;
+        public event Action OnPowerTick;
 
         public event Action OnCharacterChange;
         public event Action OnMovementChange;
@@ -30,6 +31,7 @@ namespace RPG_Project
 
         public Health CurrentHealth => CurrentController?.Health;
         public Stamina CurrentStamina => CurrentController?.Stamina;
+        public Power CurrentPower => CurrentController?.Power;
 
         private void Awake()
         {
@@ -111,6 +113,11 @@ namespace RPG_Project
         public void InvokeStaminaTick()
         {
             OnStaminaTick?.Invoke();
+        }
+
+        public void InvokePowerTick()
+        {
+            OnPowerTick?.Invoke();
         }
 
         public void InvokeCharacterChange()

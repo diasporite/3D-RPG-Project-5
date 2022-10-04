@@ -39,6 +39,8 @@
 - Started work on relative motion
 - Start thinking about 1st person movement
 - Basic dodging
+- Added power (PP) bar
+- ActionData and CharData
 - BUG: Side scroll camera flips between sides when moving between left/right
 
 RESOURCES

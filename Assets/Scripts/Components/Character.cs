@@ -6,6 +6,8 @@ namespace RPG_Project
 {
     public class Character : MonoBehaviour, IDamageable
     {
+        [field: SerializeField] public CharData CharData { get; private set; }
+
         [field: SerializeField] public string CharName { get; private set; }
 
         [field: Header("Movement")]
@@ -44,6 +46,13 @@ namespace RPG_Project
         {
             DodgeReduction = GameManager.instance.Combat.DodgeReduction(Weight);
             GuardReduction = GameManager.instance.Combat.GuardReduction(Weight);
+        }
+
+        void InitCharacter()
+        {
+            CharName = CharData.CharName;
+
+            Weight = CharData.Weight;
         }
 
         public void OnDamage(DamageInfo info)

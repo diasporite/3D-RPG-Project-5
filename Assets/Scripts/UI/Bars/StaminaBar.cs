@@ -9,7 +9,7 @@ namespace RPG_Project
         Stamina stamina;
 
         [SerializeField] Color charging = new Color(0.376f, 0.376f, 0.376f);
-        [SerializeField] Color charged = new Color(0f, 0f, 0.753f);
+        [SerializeField] Color charged = new Color(0.753f, 0.753f, 0.125f);
 
         public override void InitUI(PartyController party)
         {

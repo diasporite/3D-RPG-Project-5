@@ -41,6 +41,7 @@ namespace RPG_Project
 
         public Health Health { get; private set; }
         public Stamina Stamina { get; private set; }
+        public Power Power { get; private set; }
         public Character Character { get; private set; }
 
         public CharacterModel Cm { get; private set; }
@@ -63,6 +64,7 @@ namespace RPG_Project
 
             Health = GetComponent<Health>();
             Stamina = GetComponent<Stamina>();
+            Power = GetComponent<Power>();
             Character = GetComponent<Character>();
 
             Cm = GetComponentInChildren<CharacterModel>();

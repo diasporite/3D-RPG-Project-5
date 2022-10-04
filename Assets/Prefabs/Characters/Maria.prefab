@@ -2256,6 +2256,7 @@ GameObject:
   - component: {fileID: 8598477651914444571}
   - component: {fileID: 8598477651914444582}
   - component: {fileID: 8598477651914444583}
+  - component: {fileID: 8434227839298663190}
   - component: {fileID: 8598477651914444568}
   m_Layer: 0
   m_Name: Maria
@@ -2328,6 +2329,24 @@ MonoBehaviour:
     count: 0
   baseSpeed: 0
   speedFactor: 0
+--- !u!114 &8434227839298663190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8598477651914444573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7939d8fe5dad019498820c3521c354bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ResourceCooldown>k__BackingField:
+    cooldown: 0
+    speed: 0
+    count: 0
+  baseSpeed: 0
+  speedFactor: 0
 --- !u!114 &8598477651914444568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2340,6 +2359,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d024809d1135314db8088c1c216d2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CharData>k__BackingField: {fileID: 11400000, guid: 8f876ca4a7198a24f9e609c42fa46e2f,
+    type: 2}
   <CharName>k__BackingField: 
   <WalkSpeed>k__BackingField: 2
   <RunSpeed>k__BackingField: 4

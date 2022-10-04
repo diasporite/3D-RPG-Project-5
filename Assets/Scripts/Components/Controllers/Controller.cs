@@ -12,6 +12,7 @@ namespace RPG_Project
 
         public readonly int jumpHash = Animator.StringToHash("Jump");
         public readonly int guardHash = Animator.StringToHash("Guard");
+        public readonly int dodgeHash = Animator.StringToHash("Dodge");
 
         public readonly int fallHash = Animator.StringToHash("Fall");
 
@@ -158,7 +159,8 @@ namespace RPG_Project
         #region Actions
         void Dodge()
         {
-            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun))
+            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun, 
+                StateID.ControllerDodge, StateID.ControllerGuard, StateID.ControllerAction))
             {
                 CurrentDodgeDir = transform.forward;
                 Stamina.ChangeValue(-30);
@@ -180,7 +182,9 @@ namespace RPG_Project
 
         void Jump()
         {
-            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun))
+            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun, 
+                StateID.ControllerGuard, StateID.ControllerDodge, 
+                StateID.ControllerAction))
             {
                 Movement.Jump(8f);
 
@@ -211,7 +215,8 @@ namespace RPG_Project
         void Action(int index)
         {
             if (sm.InState(StateID.ControllerMove, StateID.ControllerRun, 
-                StateID.ControllerGuard, StateID.ControllerAction) && Stamina.Charged)
+                StateID.ControllerDodge, StateID.ControllerGuard, 
+                StateID.ControllerAction) && Stamina.Charged)
             {
                 index = Mathf.Clamp(index, 0, actionHashes.Count);
                 CurrentActionHash = actionHashes[index];

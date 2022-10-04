@@ -11,6 +11,8 @@ namespace RPG_Project
         ThirdPersonStrafe = 1,
         TopDown = 2,
         SideScroll = 3,
+        FirstPersonFree = 4,
+        FirstPersonStrafe = 5,
     }
 
     public enum SpeedMode
@@ -138,6 +140,12 @@ namespace RPG_Project
                 case MovementState.SideScroll:
                     MovePositionSideScroll(inputDir, speed, dt);
                     break;
+                case MovementState.FirstPersonFree:
+                    MovePosition1stPersonFree(inputDir, speed, dt);
+                    break;
+                case MovementState.FirstPersonStrafe:
+                    MovePosition1stPersonStrafe(inputDir, speed, dt);
+                    break;
                 default:
                     MovePosition3rdPersonFree(inputDir, speed, dt);
                     break;
@@ -156,6 +164,12 @@ namespace RPG_Project
                     break;
                 case MovementState.SideScroll:
                     MovePositionSideScroll(inputDir, speed, dt);
+                    break;
+                case MovementState.FirstPersonFree:
+                    MovePosition1stPersonFree(inputDir, speed, dt);
+                    break;
+                case MovementState.FirstPersonStrafe:
+                    MovePosition1stPersonStrafe(inputDir, speed, dt);
                     break;
                 default:
                     MovePosition3rdPersonFree(inputDir, speed, dt);
@@ -207,6 +221,21 @@ namespace RPG_Project
 
             if (ds != Vector3.zero)
                 cc.Move(CurrentSpeed * Mathf.Sign(dir.x) * currentPath.Rightward * dt);
+        }
+
+        public void MovePosition1stPersonFree(Vector2 dir, float speed, float dt)
+        {
+
+        }
+
+        public void MovePosition1stPersonStrafe(Vector2 dir, float speed, float dt)
+        {
+
+        }
+
+        public void MovePositionDodge(Vector3 dir, float dt, float speed)
+        {
+            cc.Move(speed * dir * dt);
         }
 
         public void MoveToPosition(Vector3 pos)

@@ -11,12 +11,13 @@ namespace RPG_Project
 
         Health health;
         Stamina stamina;
+        Character character;
 
         CharacterModel cm;
 
         float normalizedTime = 0f;
 
-        Cooldown timer = new Cooldown(1f, 1f, 0f);
+        bool advancing = false;
 
         public ControllerDodgeState(Controller con)
         {
@@ -25,6 +26,7 @@ namespace RPG_Project
 
             health = controller.Health;
             stamina = controller.Stamina;
+            character = controller.Character;
 
             cm = controller.Cm;
         }
@@ -36,7 +38,9 @@ namespace RPG_Project
 
             normalizedTime = 0f;
 
-            timer.Reset();
+            advancing = false;
+
+            cm.PlayAnimationInstant(controller.dodgeHash);
         }
 
         public void ExecuteFrame()
@@ -44,9 +48,26 @@ namespace RPG_Project
             health.Tick();
             stamina.Tick();
 
-            timer.Tick();
+            normalizedTime = NormalizedTime();
 
-            if (timer.Full) csm.ChangeState(StateID.ControllerMove);
+            controller.Movement.MovePositionDodge(controller.Cm.transform.forward, Time.deltaTime, 
+                controller.Character.DodgeAction.MotionCurve.Evaluate(normalizedTime));
+
+            if (!advancing && normalizedTime >= 0.8f)
+            {
+                advancing = true;
+
+                var actionsLeft = controller.Ir.InputQueue.Advance();
+
+                if (actionsLeft)
+                    controller.Ir.InputQueue.Execute();
+                else
+                {
+                    if (!controller.Movement.Grounded)
+                        csm.ChangeState(StateID.ControllerFall);
+                    else csm.ChangeState(StateID.ControllerMove);
+                }
+            }
         }
 
         public void ExecuteFrameFixed()

@@ -20,6 +20,9 @@ namespace RPG_Project
         public float DodgeReduction { get; private set; }
         public float GuardReduction { get; private set; }
 
+        [field: Header("Dodge")]
+        [field: SerializeField] public ActionData DodgeAction { get; private set; }
+
         PartyController party;
         Movement movement;
 

@@ -33,6 +33,8 @@ namespace RPG_Project
         {
             health.Tick();
             stamina.Tick();
+
+            controller.Ir.InputQueue.Execute();
         }
 
         public void ExecuteFrameFixed()

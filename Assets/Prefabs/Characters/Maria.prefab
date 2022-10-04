@@ -2340,10 +2340,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d024809d1135314db8088c1c216d2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CharName>k__BackingField: 
   <WalkSpeed>k__BackingField: 2
   <RunSpeed>k__BackingField: 4
   <StrafeSpeed>k__BackingField: 1.5
   <FallSpeed>k__BackingField: 1.5
+  <Weight>k__BackingField: 128
+  <DodgeAction>k__BackingField: {fileID: 11400000, guid: 76531c90286d6154aab649128d5e875c,
+    type: 2}
 --- !u!1 &8598477651984122379
 GameObject:
   m_ObjectHideFlags: 0

@@ -493,7 +493,7 @@ Animator:
   m_GameObject: {fileID: 4367688941787603901}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3d299c4458eae16458258160558fd7f8, type: 2}
+  m_Controller: {fileID: 22100000, guid: bba8757806b09d04ba1d79b80807c7af, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -632,9 +632,9 @@ MonoBehaviour:
   <CharData>k__BackingField: {fileID: 11400000, guid: 03d42a6fc96c1cd40bcd6ff7d5cb621c,
     type: 2}
   <CharName>k__BackingField: 
-  <WalkSpeed>k__BackingField: 5
-  <RunSpeed>k__BackingField: 8
-  <StrafeSpeed>k__BackingField: 3
+  <WalkSpeed>k__BackingField: 2.43
+  <RunSpeed>k__BackingField: 4.4
+  <StrafeSpeed>k__BackingField: 1.62
   <FallSpeed>k__BackingField: 4
   <Weight>k__BackingField: 128
   <DodgeAction>k__BackingField: {fileID: 0}

@@ -34,13 +34,14 @@
   - Each camera is a cube for viewing/debug purposes
   - Cameras move, CameraController on main camera moves towards current camera
 
-2/10/22 -
+2/10/22 - 4/10/22
 - Started work on cameras
 - Started work on relative motion
 - Started work on 1st person movement
 - Basic dodging
 - Added power (PP) bar
 - ActionData and CharData
+- Imported Mutant
 - BUGS: 
   - Side scroll camera flips between sides when moving between left/right [FIXED]
   - Jump cancels out of roll

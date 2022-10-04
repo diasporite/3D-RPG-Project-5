@@ -11,6 +11,7 @@ namespace RPG_Project
         public ThirdPersonCameraController Tp { get; private set; }
         public TopDownCameraController Td { get; private set; }
         public SideScrollCameraController Ss { get; private set; }
+        public FirstPersonCameraController Fp { get; private set; }
 
         public PartyController Party { get; private set; }
         public Transform Follow { get; private set; }
@@ -27,6 +28,7 @@ namespace RPG_Project
             Tp = GetComponentInChildren<ThirdPersonCameraController>();
             Td = GetComponentInChildren<TopDownCameraController>();
             Ss = GetComponentInChildren<SideScrollCameraController>();
+            Fp = GetComponentInChildren<FirstPersonCameraController>();
 
             Cc = FindObjectOfType<CameraController>();
         }
@@ -43,6 +45,9 @@ namespace RPG_Project
                     break;
                 case MovementState.SideScroll:
                     Cc.CurrentCamera = Ss;
+                    break;
+                case MovementState.FirstPersonFree:
+                    Cc.CurrentCamera = Fp;
                     break;
             }
         }

@@ -24,7 +24,8 @@ namespace RPG_Project
                 transform.position = Vector3.MoveTowards(transform.position, 
                     CurrentCamera.transform.position, updateSpeed * Time.deltaTime);
 
-                transform.LookAt(Follow);
+                //transform.LookAt(Follow);
+                transform.rotation = CurrentCamera.transform.rotation;
             }
         }
 

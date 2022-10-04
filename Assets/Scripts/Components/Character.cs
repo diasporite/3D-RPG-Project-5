@@ -32,6 +32,8 @@ namespace RPG_Project
         Health health;
         Stamina stamina;
 
+        CombatDatabase combat;
+
         private void Awake()
         {
             party = GetComponentInParent<PartyController>();
@@ -44,8 +46,12 @@ namespace RPG_Project
 
         private void Start()
         {
-            DodgeReduction = GameManager.instance.Combat.DodgeReduction(Weight);
-            GuardReduction = GameManager.instance.Combat.GuardReduction(Weight);
+            combat = GameManager.instance.Combat;
+
+            DodgeReduction = combat.DodgeReduction(Weight);
+            GuardReduction = combat.GuardReduction(Weight);
+
+            InitCharacter();
         }
 
         void InitCharacter()
@@ -53,6 +59,8 @@ namespace RPG_Project
             CharName = CharData.CharName;
 
             Weight = CharData.Weight;
+
+            DodgeAction = CharData.DodgeAction;
         }
 
         public void OnDamage(DamageInfo info)

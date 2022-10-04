@@ -61,9 +61,11 @@ namespace RPG_Project
         {
             foreach (var pm in PartyMembers) pm.Init();
 
-            SetCurrentMember(0);
+            //SetCurrentMember(0);
 
             FindObjectOfType<UIManager>().Battle.InitHUD(this);
+
+            SetCurrentMember(0);
         }
 
         void SwitchCharDpad(int index)

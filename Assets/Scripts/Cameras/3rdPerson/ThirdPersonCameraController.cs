@@ -31,9 +31,12 @@ namespace RPG_Project
         [SerializeField] float theta = 0f;
 
         [field: Header("Orbits")]
-        [field: SerializeField] public CameraOrbit TopOrbit { get; private set; } = new CameraOrbit(0.5f, 1);
-        [field: SerializeField] public CameraOrbit MiddleOrbit { get; private set; } = new CameraOrbit(1f, 0.5f);
-        [field: SerializeField] public CameraOrbit BottomOrbit { get; private set; } = new CameraOrbit(0.5f, 0f);
+        [field: SerializeField] public CameraOrbit TopOrbit { get; private set; } = 
+            new CameraOrbit(0.5f, 1);
+        [field: SerializeField] public CameraOrbit MiddleOrbit { get; private set; } = 
+            new CameraOrbit(1f, 0.5f);
+        [field: SerializeField] public CameraOrbit BottomOrbit { get; private set; } = 
+            new CameraOrbit(0.5f, 0f);
 
         [Header("Transforms")]
         [SerializeField] Transform freeTarget;
@@ -78,6 +81,7 @@ namespace RPG_Project
             radius = InterpolateRadius(height);
 
             transform.position = TargetCamPos();
+            transform.LookAt(pcc.Follow);
         }
 
         public Vector3 TargetCamPos()

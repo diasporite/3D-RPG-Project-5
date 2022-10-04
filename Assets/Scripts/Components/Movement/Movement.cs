@@ -49,7 +49,7 @@ namespace RPG_Project
         [SerializeField] bool invertY = false;
         bool isPlayer;
 
-        [SerializeField] SideScrollPathLinear currentPath;
+        [field: SerializeField] public SideScrollPathLinear CurrentPath { get; private set; }
         [SerializeField] float distanceFromNearestPoint;
 
         PartyController party;
@@ -215,17 +215,25 @@ namespace RPG_Project
         {
             CurrentSpeed = speed;
 
-            var ds = currentPath.Rightward * dir.x;
+            var ds = CurrentPath.Rightward * dir.x;
 
             cm.RotateTowards(ds);
 
             if (ds != Vector3.zero)
-                cc.Move(CurrentSpeed * Mathf.Sign(dir.x) * currentPath.Rightward * dt);
+                cc.Move(CurrentSpeed * Mathf.Sign(dir.x) * CurrentPath.Rightward * dt);
         }
 
         public void MovePosition1stPersonFree(Vector2 dir, float speed, float dt)
         {
+            CurrentSpeed = speed;
 
+            cm.Rotation(pcc.Fp.EulerY);
+
+            var ds = dir.x * party.CurrentController.Cm.transform.right + 
+                dir.y * party.CurrentController.Cm.transform.forward;
+
+            if (ds != Vector3.zero)
+                cc.Move(CurrentSpeed * ds * dt);
         }
 
         public void MovePosition1stPersonStrafe(Vector2 dir, float speed, float dt)
@@ -333,7 +341,7 @@ namespace RPG_Project
                 case MovementState.SideScroll:
                     if (linear != null)
                     {
-                        currentPath = linear;
+                        CurrentPath = linear;
                         MoveToPosition(linear.ClosestEnd(transform.position));
                     }
                     else State = MovementState.ThirdPersonFree;

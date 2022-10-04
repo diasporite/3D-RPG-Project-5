@@ -17,7 +17,7 @@ MonoBehaviour:
   <FrontMultiplier>k__BackingField: 0.7
   <BackMultiplier>k__BackingField: 1.4
   <HealthRegen>k__BackingField: 1
-  <StaminaRegen>k__BackingField: 10
+  <StaminaRegen>k__BackingField: 15
   <MinDodgeResist>k__BackingField: 0.1
   <MaxDodgeResist>k__BackingField: 0.5
   <MinGuardResist>k__BackingField: 0.3

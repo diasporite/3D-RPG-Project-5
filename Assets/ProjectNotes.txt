@@ -37,11 +37,14 @@
 2/10/22 -
 - Started work on cameras
 - Started work on relative motion
-- Start thinking about 1st person movement
+- Started work on 1st person movement
 - Basic dodging
 - Added power (PP) bar
 - ActionData and CharData
-- BUG: Side scroll camera flips between sides when moving between left/right
+- BUGS: 
+  - Side scroll camera flips between sides when moving between left/right [FIXED]
+  - Jump cancels out of roll
+  - Power bar not initialising properly
 
 RESOURCES
 - Bezier curves (30/9/22)

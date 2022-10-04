@@ -856,7 +856,7 @@ PrefabInstance:
     - target: {fileID: 8598477651914444572, guid: 2796f62cd3295d242b1a09ca508b3abe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8598477651914444572, guid: 2796f62cd3295d242b1a09ca508b3abe,
         type: 3}
@@ -1710,7 +1710,7 @@ PrefabInstance:
     - target: {fileID: 8598477651914444572, guid: 2796f62cd3295d242b1a09ca508b3abe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8598477651914444572, guid: 2796f62cd3295d242b1a09ca508b3abe,
         type: 3}
@@ -2668,7 +2668,7 @@ PrefabInstance:
     - target: {fileID: 8598477651914444572, guid: 2796f62cd3295d242b1a09ca508b3abe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8598477651914444572, guid: 2796f62cd3295d242b1a09ca508b3abe,
         type: 3}
@@ -3762,6 +3762,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Party
+      objectReference: {fileID: 0}
+    - target: {fileID: 5973199515669013823, guid: bb399d617352bbc439e93249eeb7c64b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7458251331687783885, guid: bb399d617352bbc439e93249eeb7c64b,
         type: 3}

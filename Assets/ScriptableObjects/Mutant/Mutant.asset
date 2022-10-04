@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95bdbe59640414947bae8fee00d477c2, type: 3}
-  m_Name: Maria
+  m_Name: Mutant
   m_EditorClassIdentifier: 
-  <CharName>k__BackingField: Maria
+  <CharName>k__BackingField: Mutant
   <Portrait>k__BackingField: {fileID: 0}
   <WalkSpeed>k__BackingField: 2
   <RunSpeed>k__BackingField: 4
   <StrafeSpeed>k__BackingField: 1.5
   <Weight>k__BackingField: 128
-  <DodgeAction>k__BackingField: {fileID: 11400000, guid: 76531c90286d6154aab649128d5e875c,
+  <DodgeAction>k__BackingField: {fileID: 11400000, guid: bf77908cb3b5a11499ed9560aaee33a0,
     type: 2}

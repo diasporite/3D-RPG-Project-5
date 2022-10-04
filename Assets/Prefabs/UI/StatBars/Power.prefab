@@ -83,8 +83,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 272388611785658886}
+  - component: {fileID: 9111666967786266697}
+  - component: {fileID: 4637375468796306}
   m_Layer: 0
-  m_Name: ActionGauge
+  m_Name: Power
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,6 +115,37 @@ RectTransform:
   m_AnchoredPosition: {x: -140, y: 230}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9111666967786266697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638596825085405704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96bd34ca8ea209448bd2e22f2d2fee5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  party: {fileID: 0}
+  resource: {fileID: 0}
+  fill: {fileID: 8884791809275107318}
+  fillShadow: {fileID: 6343068961592074682}
+  updateSpeed: 0.3
+--- !u!114 &4637375468796306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638596825085405704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c9e07c401ab594493d604016c9bafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  party: {fileID: 0}
+  text: {fileID: 0}
 --- !u!1 &2906595822252211823
 GameObject:
   m_ObjectHideFlags: 0

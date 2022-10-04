@@ -29,6 +29,17 @@ namespace RPG_Project
             rotationSpeed = GetComponentInParent<Movement>().RotationSpeed;
         }
 
+        public void Rotation(float eulerY)
+        {
+            transform.localRotation = Quaternion.Euler(0, eulerY, 0);
+        }
+
+        public void RotateTowards(float eulerY)
+        {
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation,
+                Quaternion.Euler(0, eulerY, 0), rotationSpeed * Time.deltaTime);
+        }
+
         public void RotateTowards(Vector2 inputDir)
         {
             if (inputDir != Vector2.zero)

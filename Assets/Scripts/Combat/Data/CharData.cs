@@ -20,5 +20,7 @@ namespace RPG_Project
         [field: Header("Stats")]
         [field: Range(0, 255)]
         [field: SerializeField] public int Weight { get; private set; } = 128;
+
+        [field: SerializeField] public ActionData DodgeAction { get; private set; }
     }
 }

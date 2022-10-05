@@ -73,6 +73,26 @@ namespace RPG_Project
             health.Tick();
             stamina.Tick();
 
+            ProcessQueue();
+        }
+
+        public void ExecuteFrameFixed()
+        {
+
+        }
+
+        public void ExecuteFrameLate()
+        {
+
+        }
+
+        public void Exit()
+        {
+
+        }
+
+        void ProcessQueue()
+        {
             normalisedTime = NormalizedTime();
 
             if (!advancing && normalisedTime >= advanceThreshold)
@@ -90,21 +110,6 @@ namespace RPG_Project
                     else csm.ChangeState(StateID.ControllerMove);
                 }
             }
-        }
-
-        public void ExecuteFrameFixed()
-        {
-
-        }
-
-        public void ExecuteFrameLate()
-        {
-
-        }
-
-        public void Exit()
-        {
-
         }
 
         float NormalizedTime()

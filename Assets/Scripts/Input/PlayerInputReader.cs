@@ -68,7 +68,8 @@ namespace RPG_Project
 
         public void OnJump(InputAction.CallbackContext context)
         {
-            if (context.performed) InvokeJump();
+            if (context.performed)
+                InputQueue.AddInput(new JumpCommand(Party, this, Vector2.zero));
         }
 
         public void OnRun(InputAction.CallbackContext context)

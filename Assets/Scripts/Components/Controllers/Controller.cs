@@ -137,6 +137,7 @@ namespace RPG_Project
             sm.AddState(StateID.ControllerMove, new ControllerMoveState(this));
             sm.AddState(StateID.ControllerFall, new ControllerFallState(this));
 
+            sm.AddState(StateID.ControllerJump, new ControllerJumpState(this));
             sm.AddState(StateID.ControllerDodge, new ControllerDodgeState(this));
             sm.AddState(StateID.ControllerRun, new ControllerRunState(this));
             sm.AddState(StateID.ControllerGuard, new ControllerGuardState(this));
@@ -198,7 +199,7 @@ namespace RPG_Project
                 if (sm.InState(StateID.ControllerRun))
                     Movement.FallSpeed = Movement.RunSpeed;
 
-                sm.ChangeState(StateID.ControllerFall);
+                sm.ChangeState(StateID.ControllerJump);
             }
         }
 

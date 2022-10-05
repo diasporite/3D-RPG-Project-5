@@ -32,7 +32,7 @@ namespace RPG_Project
         public void Enter(params object[] args)
         {
             health.SpeedFactor = 0f;
-            stamina.SpeedFactor = 0f;
+            stamina.SpeedFactor = 1f;
 
             cm.PlayAnimation(controller.fallHash);
         }

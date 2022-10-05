@@ -14,6 +14,9 @@ namespace RPG_Project
 
         Movement movement;
 
+        float normalisedTime;
+        bool advancing = false;
+
         public ControllerJumpState(Controller con)
         {
             controller = con;
@@ -27,21 +30,23 @@ namespace RPG_Project
 
         public void Enter(params object[] args)
         {
-            health.SpeedFactor = 1f;
+            health.SpeedFactor = 0f;
             stamina.SpeedFactor = 0f;
+
+            controller.Cm.PlayAnimationInstant(controller.fallHash);
         }
 
         public void ExecuteFrame()
         {
             var dir = controller.Ir.Move;
 
-            if (dir == Vector2.zero) health.Tick(0f);
-            else health.Tick();
+            health.Tick();
             stamina.Tick();
 
             movement.MovePosition(dir, Time.deltaTime, SpeedMode.Fall);
 
-            if (movement.Grounded) csm.ChangeState(StateID.ControllerMove);
+            if (movement.VerticalVelocity <= 0f)
+                csm.ChangeState(StateID.ControllerFall);
         }
 
         public void ExecuteFrameFixed()
@@ -57,6 +62,33 @@ namespace RPG_Project
         public void Exit()
         {
 
+        }
+
+        void ProcessQueue()
+        {
+            //normalisedTime = NormalizedTime();
+
+            //if (!advancing && normalisedTime >= 0.9f)
+            //{
+            //    advancing = true;
+
+            //    var actionsLeft = input.InputQueue.Advance();
+
+            //    if (actionsLeft)
+            //        input.InputQueue.Execute();
+            //    else
+            //    {
+            //        if (!controller.Movement.Grounded)
+            //            csm.ChangeState(StateID.ControllerFall);
+            //        else csm.ChangeState(StateID.ControllerMove);
+            //    }
+            //}
+        }
+
+        float NormalizedTime()
+        {
+            float t = controller.Cm.Anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            return t - Mathf.Floor(t);
         }
     }
 }

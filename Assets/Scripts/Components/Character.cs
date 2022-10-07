@@ -7,6 +7,7 @@ namespace RPG_Project
     public class Character : MonoBehaviour, IDamageable
     {
         [field: SerializeField] public CharData CharData { get; private set; }
+        [field: SerializeField] public EnemyAIPattern EnemyAi { get; private set; }
 
         [field: SerializeField] public string CharName { get; private set; }
 

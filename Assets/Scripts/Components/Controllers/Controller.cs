@@ -36,6 +36,7 @@ namespace RPG_Project
         public int CurrentActionHash { get; private set; }
         public Vector3 CurrentDodgeDir { get; private set; }
 
+        public PartyController Party { get; private set; }
         public Movement Movement { get; private set; }
         public InputReader Ir { get; private set; }
 
@@ -50,7 +51,7 @@ namespace RPG_Project
 
         //Dictionary<int, StateID> actionStateMap = new Dictionary<int, StateID>();
 
-        public bool InCombat => true;
+        public bool InCombat => Party.Aggro.Count > 0;
 
         //bool InActionState => sm.InState(StateID.ControllerAction, StateID.ControllerAction1, 
         //    StateID.ControllerAction2, StateID.ControllerAction3, StateID.ControllerAction4, 
@@ -59,6 +60,7 @@ namespace RPG_Project
 
         private void Awake()
         {
+            Party = GetComponentInParent<PartyController>();
             Ir = GetComponentInParent<InputReader>();
             Movement = GetComponentInParent<Movement>();
 

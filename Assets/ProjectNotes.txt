@@ -47,6 +47,11 @@
   - Jump cancels out of roll
   - Power bar not initialising properly
 
+6/10/22
+- Basic enemy AI
+  - Aggro system
+  - Add weighting to action sequences
+
 RESOURCES
 - Bezier curves (30/9/22)
   - https://en.wikipedia.org/wiki/B%C3%A9zier_curve

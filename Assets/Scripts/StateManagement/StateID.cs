@@ -29,5 +29,9 @@ namespace RPG_Project
 
         ControllerJump = 29,
         ControllerStandby = 30,
+
+        EnemyAIIdle = 41,
+        EnemyAIChase = 42,
+        EnemyAIStrafe = 43,
     }
 }

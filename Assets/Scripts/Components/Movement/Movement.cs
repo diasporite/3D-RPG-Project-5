@@ -79,7 +79,7 @@ namespace RPG_Project
 
         private void Start()
         {
-            isPlayer = GetComponentInParent<PartyController>().IsPlayer;
+            isPlayer = GetComponent<PartyController>().IsPlayer;
 
             SwitchMovementState(MovementState.ThirdPersonFree, null);
         }
@@ -227,7 +227,7 @@ namespace RPG_Project
         {
             CurrentSpeed = speed;
 
-            cm.Rotation(pcc.Fp.EulerY);
+            if (party.IsPlayer) cm.Rotation(pcc.Fp.EulerY);
 
             var ds = dir.x * party.CurrentController.Cm.transform.right + 
                 dir.y * party.CurrentController.Cm.transform.forward;
@@ -348,7 +348,7 @@ namespace RPG_Project
                     break;
             }
 
-            pcc.SwitchCamera(State);
+            pcc?.SwitchCamera(State);
         }
 
         float RoundAngle(float angle)

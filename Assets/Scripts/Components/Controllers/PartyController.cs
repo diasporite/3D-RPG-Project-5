@@ -26,6 +26,9 @@ namespace RPG_Project
 
         [field: SerializeField] public Quaternion CurrentModelRotation { get; private set; }
 
+        [field: SerializeField] public List<PartyController> Aggro { get; private set; } = 
+            new List<PartyController>();
+
         public Movement Movement { get; private set; }
         public InputReader Ir { get; private set; }
 
@@ -61,9 +64,7 @@ namespace RPG_Project
         {
             foreach (var pm in PartyMembers) pm.Init();
 
-            //SetCurrentMember(0);
-
-            FindObjectOfType<UIManager>().Battle.InitHUD(this);
+            if (IsPlayer) FindObjectOfType<UIManager>().Battle.InitHUD(this);
 
             SetCurrentMember(0);
         }

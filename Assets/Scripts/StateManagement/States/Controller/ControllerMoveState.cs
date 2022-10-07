@@ -58,7 +58,7 @@ namespace RPG_Project
             if (!movement.Grounded)
             {
                 movement.FallSpeed = movement.WalkSpeed;
-                Debug.Log(movement.FallSpeed);
+
                 csm.ChangeState(StateID.ControllerFall);
             }
         }

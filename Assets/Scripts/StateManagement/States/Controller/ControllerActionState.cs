@@ -20,7 +20,7 @@ namespace RPG_Project
         int actionHash;
 
         float normalisedTime = 0f;
-        float advanceThreshold = 0.85f;
+        float advanceThreshold = 0.9f;
 
         CharacterModel cm;
 

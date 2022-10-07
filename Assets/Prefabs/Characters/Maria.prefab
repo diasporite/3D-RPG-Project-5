@@ -2361,6 +2361,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharData>k__BackingField: {fileID: 11400000, guid: 8f876ca4a7198a24f9e609c42fa46e2f,
     type: 2}
+  <EnemyAi>k__BackingField: {fileID: 11400000, guid: ef7701d76cd89b84b9c5bfc7d1e9525a,
+    type: 2}
   <CharName>k__BackingField: 
   <WalkSpeed>k__BackingField: 2
   <RunSpeed>k__BackingField: 4

@@ -52,6 +52,11 @@
   - Aggro system
   - Add weighting to action sequences
 
+7/10/22
+- Started work on targeting
+- TO DO:
+  - Targeting camera
+
 RESOURCES
 - Bezier curves (30/9/22)
   - https://en.wikipedia.org/wiki/B%C3%A9zier_curve

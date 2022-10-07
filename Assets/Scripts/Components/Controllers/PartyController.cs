@@ -31,6 +31,8 @@ namespace RPG_Project
 
         public Movement Movement { get; private set; }
         public InputReader Ir { get; private set; }
+        
+        public TargetSphere Ts { get; private set; }
 
         public Health CurrentHealth => CurrentController?.Health;
         public Stamina CurrentStamina => CurrentController?.Stamina;
@@ -40,6 +42,8 @@ namespace RPG_Project
         {
             Movement = GetComponent<Movement>();
             Ir = GetComponent<InputReader>();
+
+            Ts = GetComponentInChildren<TargetSphere>();
 
             IsPlayer = Ir is PlayerInputReader;
 

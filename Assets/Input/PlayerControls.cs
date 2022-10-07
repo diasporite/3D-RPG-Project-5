@@ -105,6 +105,22 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""PauseSelect"",
+                    ""type"": ""Button"",
+                    ""id"": ""21e0ed53-d59f-4301-814c-8f5c52d78593"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ToggleTarget"",
+                    ""type"": ""Button"",
+                    ""id"": ""ca0c3f05-97d7-4cea-99f1-3a3721e92a3c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -613,6 +629,50 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Dpad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45f90f48-9cf8-4279-8d6d-3d3ed457bc25"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""PauseSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f7ecd7ff-5dd8-44ef-a90c-342154efcec1"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PauseSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b04f066-dc32-4452-b943-383de0652fcc"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""ToggleTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4712dad6-f01c-4140-a097-1c0216086f88"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ToggleTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -655,6 +715,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player_Action2 = m_Player.FindAction("Action2", throwIfNotFound: true);
         m_Player_Action3 = m_Player.FindAction("Action3", throwIfNotFound: true);
         m_Player_Action4 = m_Player.FindAction("Action4", throwIfNotFound: true);
+        m_Player_PauseSelect = m_Player.FindAction("PauseSelect", throwIfNotFound: true);
+        m_Player_ToggleTarget = m_Player.FindAction("ToggleTarget", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -715,6 +777,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Action2;
     private readonly InputAction m_Player_Action3;
     private readonly InputAction m_Player_Action4;
+    private readonly InputAction m_Player_PauseSelect;
+    private readonly InputAction m_Player_ToggleTarget;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -730,6 +794,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Action2 => m_Wrapper.m_Player_Action2;
         public InputAction @Action3 => m_Wrapper.m_Player_Action3;
         public InputAction @Action4 => m_Wrapper.m_Player_Action4;
+        public InputAction @PauseSelect => m_Wrapper.m_Player_PauseSelect;
+        public InputAction @ToggleTarget => m_Wrapper.m_Player_ToggleTarget;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -772,6 +838,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Action4.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4;
                 @Action4.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4;
                 @Action4.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction4;
+                @PauseSelect.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseSelect;
+                @PauseSelect.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseSelect;
+                @PauseSelect.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseSelect;
+                @ToggleTarget.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleTarget;
+                @ToggleTarget.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleTarget;
+                @ToggleTarget.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleTarget;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -809,6 +881,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Action4.started += instance.OnAction4;
                 @Action4.performed += instance.OnAction4;
                 @Action4.canceled += instance.OnAction4;
+                @PauseSelect.started += instance.OnPauseSelect;
+                @PauseSelect.performed += instance.OnPauseSelect;
+                @PauseSelect.canceled += instance.OnPauseSelect;
+                @ToggleTarget.started += instance.OnToggleTarget;
+                @ToggleTarget.performed += instance.OnToggleTarget;
+                @ToggleTarget.canceled += instance.OnToggleTarget;
             }
         }
     }
@@ -844,5 +922,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnAction2(InputAction.CallbackContext context);
         void OnAction3(InputAction.CallbackContext context);
         void OnAction4(InputAction.CallbackContext context);
+        void OnPauseSelect(InputAction.CallbackContext context);
+        void OnToggleTarget(InputAction.CallbackContext context);
     }
 }

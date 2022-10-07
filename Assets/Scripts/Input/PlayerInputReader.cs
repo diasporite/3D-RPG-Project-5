@@ -101,5 +101,15 @@ namespace RPG_Project
             if (context.performed && Party.CurrentStamina.Charged)
                 InputQueue.AddInput(new AttackCommand(Party, this, 3));
         }
+
+        public void OnPauseSelect(InputAction.CallbackContext context)
+        {
+            if (context.performed) InvokePauseSelect();
+        }
+
+        public void OnToggleTarget(InputAction.CallbackContext context)
+        {
+            if (context.performed) InvokeToggleLock();
+        }
     }
 }

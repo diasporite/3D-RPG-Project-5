@@ -25,7 +25,9 @@ namespace RPG_Project
 
     public class Movement : MonoBehaviour
     {
-        [field: SerializeField] public MovementState State { get; private set; } = 
+        [field: SerializeField] public MovementState CurrentMovementState { get; private set; } = 
+            MovementState.ThirdPersonFree;
+        [field: SerializeField] public MovementState LocalMovementState { get; private set; } = 
             MovementState.ThirdPersonFree;
 
         [field: Header("Speeds")]
@@ -126,7 +128,7 @@ namespace RPG_Project
                     break;
             }
             
-            switch (State)
+            switch (CurrentMovementState)
             {
                 case MovementState.ThirdPersonFree:
                     MovePosition3rdPersonFree(inputDir, speed, dt);
@@ -154,7 +156,7 @@ namespace RPG_Project
 
         public void MovePosition(Vector2 inputDir, float dt, float speed)
         {
-            switch (State)
+            switch (CurrentMovementState)
             {
                 case MovementState.ThirdPersonFree:
                     MovePosition3rdPersonFree(inputDir, speed, dt);
@@ -191,7 +193,13 @@ namespace RPG_Project
 
         public void MovePosition3rdPersonStrafe(Vector2 dir, float speed, float dt)
         {
+            CurrentSpeed = speed;
 
+            var ds = dir.x * cm.transform.right + dir.y * cm.transform.forward;
+
+            cm.RotateTowardsTarget(party.Ts.CurrentTargetTransform);
+
+            if (ds != Vector3.zero) cc.Move(CurrentSpeed * ds * dt);
         }
 
         public void MovePositionTopDown(Vector2 dir, float speed, float dt)
@@ -325,10 +333,10 @@ namespace RPG_Project
 
         public void SwitchMovementState(MovementState state, SideScrollPathLinear linear)
         {
-            var oldState = State;
-            State = state;
+            var oldState = CurrentMovementState;
+            CurrentMovementState = state;
 
-            switch (State)
+            switch (CurrentMovementState)
             {
                 case MovementState.ThirdPersonFree:
                     break;
@@ -344,11 +352,11 @@ namespace RPG_Project
                         CurrentPath = linear;
                         MoveToPosition(linear.ClosestEnd(transform.position));
                     }
-                    else State = MovementState.ThirdPersonFree;
+                    else CurrentMovementState = MovementState.ThirdPersonFree;
                     break;
             }
 
-            pcc?.SwitchCamera(State);
+            pcc?.SwitchCamera(CurrentMovementState);
         }
 
         float RoundAngle(float angle)

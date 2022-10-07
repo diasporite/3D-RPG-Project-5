@@ -9,6 +9,8 @@ namespace RPG_Project
         Controller controller;
         StateMachine csm;
 
+        PartyController party;
+
         Health health;
         Stamina stamina;
 
@@ -28,6 +30,8 @@ namespace RPG_Project
         {
             controller = con;
             csm = con.sm;
+
+            party = controller.Party;
 
             health = controller.Health;
             stamina = controller.Stamina;
@@ -72,6 +76,8 @@ namespace RPG_Project
         {
             health.Tick();
             stamina.Tick();
+
+            cm.RotateTowardsTarget(party.Ts.CurrentTargetTransform);
 
             ProcessQueue();
         }

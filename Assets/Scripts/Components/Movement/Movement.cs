@@ -58,8 +58,10 @@ namespace RPG_Project
 
         CharacterController cc;
 
-        CharacterModel cm;
         PlayerCameraController pcc;
+        TargetSphere ts;
+
+        CharacterModel cm;
 
         Camera main;
 
@@ -71,8 +73,10 @@ namespace RPG_Project
 
             cc = GetComponent<CharacterController>();
 
-            cm = GetComponentInChildren<CharacterModel>();
             pcc = GetComponentInChildren<PlayerCameraController>();
+            ts = GetComponentInChildren<TargetSphere>();
+
+            cm = GetComponentInChildren<CharacterModel>();
 
             main = Camera.main;
 
@@ -185,7 +189,7 @@ namespace RPG_Project
 
             var ds = inputDir.x * cm.transform.right + inputDir.y * cm.transform.forward;
 
-            if (party.IsPlayer) cm.RotateTowards(inputDir, pcc.Tp.Theta);
+            if (party.IsPlayer) cm.RotateTowards(inputDir, -pcc.Tp.Theta);
             else cm.RotateTowards(inputDir);
 
             if (ds != Vector3.zero) cc.Move(CurrentSpeed * cm.transform.forward * dt);
@@ -197,7 +201,7 @@ namespace RPG_Project
 
             var ds = dir.x * cm.transform.right + dir.y * cm.transform.forward;
 
-            cm.RotateTowardsTarget(party.Ts.CurrentTargetTransform);
+            cm.RotateTowardsTarget(ts.CurrentTargetTransform);
 
             if (ds != Vector3.zero) cc.Move(CurrentSpeed * ds * dt);
         }

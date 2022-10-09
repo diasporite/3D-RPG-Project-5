@@ -24,11 +24,16 @@ namespace RPG_Project
         [Header("Settings")]
         [SerializeField] float pitchSpeed = 1f;
         [SerializeField] float yawSpeed = 90f;
+        [SerializeField] float maxLockedAngle = 12f;
+        [SerializeField] float minLockedAngle = -12f;
 
         [Header("Variables")]
         [SerializeField] float height = 0f;
         [SerializeField] float radius = 0f;
-        [SerializeField] float theta = 0f;
+        [SerializeField] float theta = 180f;
+        [SerializeField] float theta0 = 0f;
+        [SerializeField] float thetaMax = 180f;
+        [SerializeField] float thetaMin = 180f;
 
         [field: Header("Orbits")]
         [field: SerializeField] public CameraOrbit TopOrbit { get; private set; } = 
@@ -42,7 +47,10 @@ namespace RPG_Project
         [SerializeField] Transform freeTarget;
         [SerializeField] Transform lockTarget;
 
-        InputReader input;
+
+        InputReader ir;
+
+        TargetSphere ts;
 
         public float Theta => theta;
 
@@ -60,35 +68,69 @@ namespace RPG_Project
         {
             base.Awake();
 
-            input = GetComponentInParent<InputReader>();
+            ir = GetComponentInParent<InputReader>();
 
             height = MiddleOrbit.Height;
             radius = MiddleOrbit.Radius;
-            theta = 0;
+            theta = 180f;
+        }
+
+        private void Start()
+        {
+            ts = GetComponentInParent<PartyController>().Ts;
         }
 
         private void Update()
         {
-            Move(input.Rotate);
+            Move(ir.Rotate);
         }
 
         protected override void Move(Vector2 input)
         {
-            height = Mathf.Clamp(height + input.y * pitchSpeed * Time.unscaledDeltaTime,
-                BottomOrbit.Height, TopOrbit.Height);
-            theta = (theta + input.x * yawSpeed * Time.unscaledDeltaTime) % 360f;
+            if (ts.Locked)
+            {
+                var dir = ts.CurrentTargetTransform.position - ts.transform.position;
+                float dist = Vector3.Distance(ts.CurrentTargetTransform.position, ts.transform.position);
+                theta0 = 180f + Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+                thetaMax = theta0 + maxLockedAngle;
+                thetaMin = theta0 + minLockedAngle;
 
-            radius = InterpolateRadius(height);
+                theta = Mathf.Clamp(theta + 0.25f * ir.Move.x * yawSpeed * Time.deltaTime, thetaMin, thetaMax);
+                //height = Mathf.Lerp(MiddleOrbit.Height, TopOrbit.Height, 0.5f);   // Temporary
+                height = (dist + radius) * Mathf.Tan(Mathf.Atan2(MiddleOrbit.Height, dist));
+                radius = InterpolateRadius(height);
 
-            transform.position = TargetCamPos();
-            transform.LookAt(pcc.Follow);
+                transform.position = TargetCamPos();
+                transform.LookAt(ts.Tf.transform);
+            }
+            else
+            {
+                height = Mathf.Clamp(height + input.y * pitchSpeed * Time.unscaledDeltaTime,
+                    BottomOrbit.Height, TopOrbit.Height);
+                theta = (theta + input.x * yawSpeed * Time.unscaledDeltaTime) % 360f;
+
+                radius = InterpolateRadius(height);
+
+                transform.position = TargetCamPos();
+                transform.LookAt(pcc.Follow);
+            }
+        }
+
+        void MoveFree()
+        {
+
+        }
+
+        void MoveLocked()
+        {
+
         }
 
         public Vector3 TargetCamPos()
         {
             return pcc.Follow.transform.position +
                 height * Vector3.up + radius * (Mathf.Sin(theta * Mathf.Deg2Rad) *
-                Vector3.right - Mathf.Cos(theta * Mathf.Deg2Rad) * Vector3.forward);
+                Vector3.right + Mathf.Cos(theta * Mathf.Deg2Rad) * Vector3.forward);
         }
 
         void DrawRadii(CameraOrbit orbit)

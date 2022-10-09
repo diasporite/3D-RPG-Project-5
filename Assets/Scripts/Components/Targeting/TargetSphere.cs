@@ -12,6 +12,8 @@ namespace RPG_Project
             new List<Target>();
         [field: SerializeField] public Target CurrentTarget { get; private set; }
 
+        public TargetFocus Tf { get; private set; }
+
         public Movement Movement { get; private set; }
         public InputReader Ir { get; private set; }
 
@@ -19,6 +21,8 @@ namespace RPG_Project
 
         private void Awake()
         {
+            Tf = GetComponentInChildren<TargetFocus>();
+
             Movement = GetComponentInParent<Movement>();
             Ir = GetComponentInParent<InputReader>();
         }

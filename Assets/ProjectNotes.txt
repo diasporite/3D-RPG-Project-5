@@ -57,6 +57,11 @@
 - TO DO:
   - Targeting camera
 
+8/10/22
+- Work on locked 3rd person camera
+  - Camera jitter
+  - Locked cam wrapping issue
+
 RESOURCES
 - Bezier curves (30/9/22)
   - https://en.wikipedia.org/wiki/B%C3%A9zier_curve

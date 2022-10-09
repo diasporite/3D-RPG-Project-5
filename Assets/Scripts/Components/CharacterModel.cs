@@ -55,7 +55,7 @@ namespace RPG_Project
         {
             if (inputDir != Vector2.zero)
             {
-                var rotation = -camTheta + Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg;
+                var rotation = 180f - camTheta + Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg;
 
                 transform.localRotation = Quaternion.RotateTowards(transform.localRotation,
                     Quaternion.Euler(0, rotation, 0), rotationSpeed * Time.deltaTime);

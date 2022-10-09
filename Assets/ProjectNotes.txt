@@ -5,7 +5,7 @@
   - Time slow mechanics removed
 - Attacks can only be used at full stamina or during an attack chain
 - Defensive actions can be performed anytime
-- Standby party members build stamina slower (currently 5x)
+- Standby party members build stamina slower (currently 2/3x speed)
 
 26/9/22
 - Working on movement
@@ -57,10 +57,15 @@
 - TO DO:
   - Targeting camera
 
-8/10/22
+8/10/22 -
 - Work on locked 3rd person camera
-  - Camera jitter
+  - Camera jitter [FIXED]
+    - Interpolate rotation as well as position
   - Locked cam wrapping issue
+- Higher stamina regen for enemies
+- TO DO:
+  - Implement stopping distance for enemy AI to prevent jitter
+  - Implement timer for pausing stamina regen when hit
 
 RESOURCES
 - Bezier curves (30/9/22)

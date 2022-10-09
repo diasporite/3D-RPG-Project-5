@@ -17,6 +17,7 @@ namespace RPG_Project
         [field: Header("Regen")]
         [field: SerializeField] public float HealthRegen { get; private set; } = 1f;
         [field: SerializeField] public float StaminaRegen { get; private set; } = 12f;
+        [field: SerializeField] public float EnemyStaminaRegen { get; private set; } = 40f;
 
         [field: Header("Weight Scaling")]
         [field: SerializeField] public float MinDodgeResist { get; private set; } = 0.1f;

@@ -17,7 +17,9 @@ namespace RPG_Project
         {
             Charged = false;
 
-            baseSpeed = GameManager.instance.Combat.StaminaRegen;
+            if (party.IsPlayer) baseSpeed = GameManager.instance.Combat.StaminaRegen;
+            else baseSpeed = GameManager.instance.Combat.EnemyStaminaRegen;
+
             ResourceCooldown = new Cooldown(100f, baseSpeed, Random.Range(20f, 80f));
         }
 

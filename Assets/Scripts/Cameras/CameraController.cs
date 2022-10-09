@@ -6,7 +6,8 @@ namespace RPG_Project
 {
     public class CameraController : MonoBehaviour
     {
-        [SerializeField] public float updateSpeed = 50f;
+        [SerializeField] float linearUpdateSpeed = 50f;
+        [SerializeField] float rotationalUpdateSpeed = 180f;
 
         [field: SerializeField] public PlayerCamera CurrentCamera { get; set; }
 
@@ -22,9 +23,10 @@ namespace RPG_Project
             if (CurrentCamera != null)
             {
                 transform.position = Vector3.MoveTowards(transform.position,
-                    CurrentCamera.transform.position, updateSpeed * Time.deltaTime);
+                    CurrentCamera.transform.position, linearUpdateSpeed * Time.deltaTime);
 
-                transform.rotation = CurrentCamera.transform.rotation;
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, 
+                    CurrentCamera.transform.rotation, rotationalUpdateSpeed * Time.deltaTime);
             }
         }
 

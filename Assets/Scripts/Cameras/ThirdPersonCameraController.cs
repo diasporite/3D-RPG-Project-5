@@ -47,7 +47,6 @@ namespace RPG_Project
         [SerializeField] Transform freeTarget;
         [SerializeField] Transform lockTarget;
 
-
         InputReader ir;
 
         TargetSphere ts;
@@ -90,17 +89,21 @@ namespace RPG_Project
             if (ts.Locked)
             {
                 var dir = ts.CurrentTargetTransform.position - ts.transform.position;
-                float dist = Vector3.Distance(ts.CurrentTargetTransform.position, ts.transform.position);
+                float dist = Vector3.Distance(ts.CurrentTargetTransform.position, 
+                    ts.transform.position);
+
                 theta0 = 180f + Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
                 thetaMax = theta0 + maxLockedAngle;
                 thetaMin = theta0 + minLockedAngle;
 
-                theta = Mathf.Clamp(theta + 0.25f * ir.Move.x * yawSpeed * Time.deltaTime, thetaMin, thetaMax);
-                //height = Mathf.Lerp(MiddleOrbit.Height, TopOrbit.Height, 0.5f);   // Temporary
-                height = (dist + radius) * Mathf.Tan(Mathf.Atan2(MiddleOrbit.Height, dist));
+                theta = Mathf.Clamp(theta + 0.25f * ir.Move.x * yawSpeed * Time.deltaTime, 
+                    thetaMin, thetaMax);
+                height = Mathf.Clamp((dist + radius) * 
+                    Mathf.Tan(Mathf.Atan2(MiddleOrbit.Height, dist)), BottomOrbit.Height, 
+                    TopOrbit.Height);
                 radius = InterpolateRadius(height);
 
-                transform.position = TargetCamPos();
+                transform.position = TargetCamPos;
                 transform.LookAt(ts.Tf.transform);
             }
             else
@@ -111,26 +114,19 @@ namespace RPG_Project
 
                 radius = InterpolateRadius(height);
 
-                transform.position = TargetCamPos();
+                transform.position = TargetCamPos;
                 transform.LookAt(pcc.Follow);
             }
         }
 
-        void MoveFree()
+        public Vector3 TargetCamPos
         {
-
-        }
-
-        void MoveLocked()
-        {
-
-        }
-
-        public Vector3 TargetCamPos()
-        {
-            return pcc.Follow.transform.position +
-                height * Vector3.up + radius * (Mathf.Sin(theta * Mathf.Deg2Rad) *
-                Vector3.right + Mathf.Cos(theta * Mathf.Deg2Rad) * Vector3.forward);
+            get
+            {
+                return pcc.Follow.transform.position +
+                    height * Vector3.up + radius * (Mathf.Sin(theta * Mathf.Deg2Rad) *
+                    Vector3.right + Mathf.Cos(theta * Mathf.Deg2Rad) * Vector3.forward);
+            }
         }
 
         void DrawRadii(CameraOrbit orbit)

@@ -17,6 +17,8 @@ namespace RPG_Project
         public Movement Movement { get; private set; }
         public InputReader Ir { get; private set; }
 
+        Camera main;
+
         public Transform CurrentTargetTransform => CurrentTarget?.transform;
 
         private void Awake()
@@ -25,6 +27,11 @@ namespace RPG_Project
 
             Movement = GetComponentInParent<Movement>();
             Ir = GetComponentInParent<InputReader>();
+        }
+
+        private void Start()
+        {
+            main = Camera.main;
         }
 
         private void OnEnable()
@@ -101,8 +108,14 @@ namespace RPG_Project
             Target closestTarget = null;
             float closestSqrDist = Mathf.Infinity;
 
+            Vector2 screenPos;
+
             foreach(var t in Targets)
             {
+                screenPos = main.WorldToViewportPoint(t.transform.position);
+
+                if (!(screenPos.x > 0 && screenPos.x < 1 && screenPos.y > 0 && screenPos.y < 1)) continue;
+
                 var sqrDist = (t.transform.position - transform.position).sqrMagnitude;
 
                 if (sqrDist < closestSqrDist)

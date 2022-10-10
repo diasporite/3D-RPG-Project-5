@@ -50,7 +50,7 @@ namespace RPG_Project
 
             if (t)
             {
-                if (!t.IsPlayer && !Targets.Contains(t))
+                if (t.transform.root != transform.root && !Targets.Contains(t))
                     Targets.Add(t);
             }
         }
@@ -91,7 +91,7 @@ namespace RPG_Project
             {
                 Locked = false;
             }
-            else Movement.SwitchMovementState(MovementState.ThirdPersonStrafe, null);
+            else Movement.SwitchMovementState(MovementState.ThirdPerson, null);
         }
 
         void UnlockTarget()
@@ -100,7 +100,7 @@ namespace RPG_Project
 
             CurrentTarget = null;
 
-            Movement.SwitchMovementState(MovementState.ThirdPersonFree, null);
+            Movement.SwitchMovementState(MovementState.ThirdPerson, null);
         }
 
         void GetCurrentTarget()

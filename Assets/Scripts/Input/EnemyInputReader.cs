@@ -23,5 +23,10 @@ namespace RPG_Project
                 InputQueue.AddInput(new AttackCommand(Party, this, i));
             }
         }
+
+        public void ToggleLock()
+        {
+            InvokeToggleLock();
+        }
     }
 }

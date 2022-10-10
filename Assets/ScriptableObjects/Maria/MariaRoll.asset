@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: MariaRoll
   m_EditorClassIdentifier: 
   <ActionName>k__BackingField: Roll
-  <StaminaCost>k__BackingField: 20
+  <StaminaCost>k__BackingField: 40
+  <PowerCost>k__BackingField: 4
   <MotionCurve>k__BackingField:
     serializedVersion: 2
     m_Curve:

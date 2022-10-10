@@ -24,7 +24,8 @@ namespace RPG_Project
 
         public readonly StateMachine sm = new StateMachine();
 
-        public Vector3 RelativeDirToPlayer => transform.rotation * (Follow.position - transform.position);
+        public Vector3 RelativeDirToPlayer => 
+            transform.rotation * (Follow.position - transform.position);
 
         private void Awake()
         {
@@ -93,6 +94,7 @@ namespace RPG_Project
         {
             sm.AddState(StateID.EnemyAIIdle, new EnemyAIIdleState(this));
             sm.AddState(StateID.EnemyAIChase, new EnemyAIChaseState(this));
+            sm.AddState(StateID.EnemyAIStrafe, new EnemyAIStrafeState(this));
         }
     }
 }

@@ -37,7 +37,7 @@ namespace RPG_Project
         {
             switch (state)
             {
-                case MovementState.ThirdPersonFree:
+                case MovementState.ThirdPerson:
                     Cc.CurrentCamera = Tp;
                     break;
                 case MovementState.TopDown:
@@ -46,7 +46,7 @@ namespace RPG_Project
                 case MovementState.SideScroll:
                     Cc.CurrentCamera = Ss;
                     break;
-                case MovementState.FirstPersonFree:
+                case MovementState.FirstPerson:
                     Cc.CurrentCamera = Fp;
                     break;
             }

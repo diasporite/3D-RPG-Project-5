@@ -7,12 +7,10 @@ namespace RPG_Project
 {
     public enum MovementState
     {
-        ThirdPersonFree = 0,
-        ThirdPersonStrafe = 1,
-        TopDown = 2,
-        SideScroll = 3,
-        FirstPersonFree = 4,
-        FirstPersonStrafe = 5,
+        ThirdPerson = 0,
+        TopDown = 1,
+        SideScroll = 2,
+        FirstPerson = 3,
     }
 
     public enum SpeedMode
@@ -26,9 +24,9 @@ namespace RPG_Project
     public class Movement : MonoBehaviour
     {
         [field: SerializeField] public MovementState CurrentMovementState { get; private set; } = 
-            MovementState.ThirdPersonFree;
+            MovementState.ThirdPerson;
         [field: SerializeField] public MovementState LocalMovementState { get; private set; } = 
-            MovementState.ThirdPersonFree;
+            MovementState.ThirdPerson;
 
         [field: Header("Speeds")]
         [field: SerializeField] public float WalkSpeed { get; private set; } = 5f;
@@ -87,7 +85,7 @@ namespace RPG_Project
         {
             isPlayer = GetComponent<PartyController>().IsPlayer;
 
-            SwitchMovementState(MovementState.ThirdPersonFree, null);
+            SwitchMovementState(MovementState.ThirdPerson, null);
         }
 
         private void Update()
@@ -134,11 +132,8 @@ namespace RPG_Project
             
             switch (CurrentMovementState)
             {
-                case MovementState.ThirdPersonFree:
-                    MovePosition3rdPersonFree(inputDir, speed, dt);
-                    break;
-                case MovementState.ThirdPersonStrafe:
-                    MovePosition3rdPersonStrafe(inputDir, speed, dt);
+                case MovementState.ThirdPerson:
+                    MovePosition3rdPerson(inputDir, speed, dt);
                     break;
                 case MovementState.TopDown:
                     MovePositionTopDown(inputDir, speed, dt);
@@ -146,14 +141,11 @@ namespace RPG_Project
                 case MovementState.SideScroll:
                     MovePositionSideScroll(inputDir, speed, dt);
                     break;
-                case MovementState.FirstPersonFree:
-                    MovePosition1stPersonFree(inputDir, speed, dt);
-                    break;
-                case MovementState.FirstPersonStrafe:
-                    MovePosition1stPersonStrafe(inputDir, speed, dt);
+                case MovementState.FirstPerson:
+                    MovePosition1stPerson(inputDir, speed, dt);
                     break;
                 default:
-                    MovePosition3rdPersonFree(inputDir, speed, dt);
+                    MovePosition3rdPerson(inputDir, speed, dt);
                     break;
             }
         }
@@ -162,8 +154,8 @@ namespace RPG_Project
         {
             switch (CurrentMovementState)
             {
-                case MovementState.ThirdPersonFree:
-                    MovePosition3rdPersonFree(inputDir, speed, dt);
+                case MovementState.ThirdPerson:
+                    MovePosition3rdPerson(inputDir, speed, dt);
                     break;
                 case MovementState.TopDown:
                     MovePositionTopDown(inputDir, speed, dt);
@@ -171,39 +163,40 @@ namespace RPG_Project
                 case MovementState.SideScroll:
                     MovePositionSideScroll(inputDir, speed, dt);
                     break;
-                case MovementState.FirstPersonFree:
-                    MovePosition1stPersonFree(inputDir, speed, dt);
-                    break;
-                case MovementState.FirstPersonStrafe:
-                    MovePosition1stPersonStrafe(inputDir, speed, dt);
+                case MovementState.FirstPerson:
+                    MovePosition1stPerson(inputDir, speed, dt);
                     break;
                 default:
-                    MovePosition3rdPersonFree(inputDir, speed, dt);
+                    MovePosition3rdPerson(inputDir, speed, dt);
                     break;
             }
         }
 
-        public void MovePosition3rdPersonFree(Vector2 inputDir, float speed, float dt)
+        public void MovePosition3rdPerson(Vector2 inputDir, float speed, float dt)
         {
-            CurrentSpeed = speed;
+            Vector3 ds;
 
-            var ds = inputDir.x * cm.transform.right + inputDir.y * cm.transform.forward;
+            if (ts.Locked)
+            {
+                CurrentSpeed = StrafeSpeed;
 
-            if (party.IsPlayer) cm.RotateTowards(inputDir, -pcc.Tp.Theta);
-            else cm.RotateTowards(inputDir);
+                ds = inputDir.x * cm.transform.right + inputDir.y * cm.transform.forward;
 
-            if (ds != Vector3.zero) cc.Move(CurrentSpeed * cm.transform.forward * dt);
-        }
+                cm.RotateTowardsTarget(transform.rotation, ts.CurrentTargetTransform);
 
-        public void MovePosition3rdPersonStrafe(Vector2 dir, float speed, float dt)
-        {
-            CurrentSpeed = speed;
+                if (ds != Vector3.zero) cc.Move(CurrentSpeed * ds * dt);
+            }
+            else
+            {
+                CurrentSpeed = speed;
 
-            var ds = dir.x * cm.transform.right + dir.y * cm.transform.forward;
+                ds = inputDir.x * cm.transform.right + inputDir.y * cm.transform.forward;
 
-            cm.RotateTowardsTarget(ts.CurrentTargetTransform);
+                if (party.IsPlayer) cm.RotateTowards(inputDir, -pcc.Tp.Theta);
+                else cm.RotateTowards(inputDir);
 
-            if (ds != Vector3.zero) cc.Move(CurrentSpeed * ds * dt);
+                if (ds != Vector3.zero) cc.Move(CurrentSpeed * cm.transform.forward * dt);
+            }
         }
 
         public void MovePositionTopDown(Vector2 dir, float speed, float dt)
@@ -235,17 +228,26 @@ namespace RPG_Project
                 cc.Move(CurrentSpeed * Mathf.Sign(dir.x) * CurrentPath.Rightward * dt);
         }
 
-        public void MovePosition1stPersonFree(Vector2 dir, float speed, float dt)
+        public void MovePosition1stPerson(Vector2 dir, float speed, float dt)
         {
-            CurrentSpeed = speed;
+            Vector3 ds;
 
-            if (party.IsPlayer) cm.Rotation(pcc.Fp.EulerY);
+            if (ts.Locked)
+            {
+                CurrentSpeed = StrafeSpeed;
+            }
+            else
+            {
+                CurrentSpeed = speed;
 
-            var ds = dir.x * party.CurrentController.Cm.transform.right + 
-                dir.y * party.CurrentController.Cm.transform.forward;
+                if (party.IsPlayer) cm.Rotation(pcc.Fp.EulerY);
 
-            if (ds != Vector3.zero)
-                cc.Move(CurrentSpeed * ds * dt);
+                ds = dir.x * party.CurrentController.Cm.transform.right +
+                    dir.y * party.CurrentController.Cm.transform.forward;
+
+                if (ds != Vector3.zero)
+                    cc.Move(CurrentSpeed * ds * dt);
+            }
         }
 
         public void MovePosition1stPersonStrafe(Vector2 dir, float speed, float dt)
@@ -342,7 +344,7 @@ namespace RPG_Project
 
             switch (CurrentMovementState)
             {
-                case MovementState.ThirdPersonFree:
+                case MovementState.ThirdPerson:
                     break;
                 case MovementState.TopDown:
                     invertX = false;
@@ -356,7 +358,7 @@ namespace RPG_Project
                         CurrentPath = linear;
                         MoveToPosition(linear.ClosestEnd(transform.position));
                     }
-                    else CurrentMovementState = MovementState.ThirdPersonFree;
+                    else CurrentMovementState = MovementState.ThirdPerson;
                     break;
             }
 

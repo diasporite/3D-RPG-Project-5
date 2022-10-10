@@ -32,7 +32,7 @@ namespace RPG_Project
         {
             eir.MoveEnemy(Vector3.zero);
 
-            if (Vector3.Distance(ai.Follow.position, ai.transform.position) < 5f)
+            if (Vector3.Distance(ai.Follow.position, ai.transform.position) < 8f)
             {
                 aism.ChangeState(StateID.EnemyAIChase);
             }

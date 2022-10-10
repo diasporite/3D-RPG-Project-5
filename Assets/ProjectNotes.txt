@@ -44,8 +44,8 @@
 - Imported Mutant
 - BUGS: 
   - Side scroll camera flips between sides when moving between left/right [FIXED]
-  - Jump cancels out of roll
-  - Power bar not initialising properly
+  - Jump cancels out of roll [FIXED]
+  - Power bar not initialising properly [FIXED]
 
 6/10/22
 - Basic enemy AI
@@ -59,13 +59,19 @@
 
 8/10/22 -
 - Work on locked 3rd person camera
-  - Camera jitter [FIXED]
+  - Camera jitter
     - Interpolate rotation as well as position
   - Locked cam wrapping issue
 - Higher stamina regen for enemies
+- Enemy rotates towards player when locked
+- Consider adding TimeController from 3D RPG Project 4
+  - Consider automated dodging/blocking
 - TO DO:
   - Implement stopping distance for enemy AI to prevent jitter
   - Implement timer for pausing stamina regen when hit
+  - Forward movement during attacks
+  - Fix CharInfo bar shadows [FIXED]
+    - Resource initialisation moved to Init(), called in Controller, instead of Start()
 
 RESOURCES
 - Bezier curves (30/9/22)

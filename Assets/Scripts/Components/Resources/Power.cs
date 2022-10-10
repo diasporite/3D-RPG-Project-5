@@ -11,7 +11,7 @@ namespace RPG_Project
             base.Awake();
         }
 
-        protected override void Start()
+        public override void Init()
         {
             ResourceCooldown = new Cooldown(128f, 0, 128f);
         }

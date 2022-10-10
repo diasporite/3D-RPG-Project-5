@@ -73,15 +73,17 @@ namespace RPG_Project
             }
         }
 
-        public void RotateTowardsTarget(Transform target)
+        public void RotateTowardsTarget(Quaternion partyRot, Transform target)
         {
             if (target == null) return;
 
             var dir = target.position - transform.position;
             dir.y = 0;
 
-            transform.localRotation = Quaternion.Euler(0, Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg, 0);
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, 
+                Quaternion.LookRotation(partyRot * dir), rotationSpeed * Time.deltaTime);
         }
+
         public void ResetRotation()
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);

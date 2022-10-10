@@ -13,7 +13,7 @@ namespace RPG_Project
             base.Awake();
         }
 
-        protected override void Start()
+        public override void Init()
         {
             Charged = false;
 

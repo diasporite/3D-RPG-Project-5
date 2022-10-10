@@ -1931,7 +1931,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ff3a6c6ccf2a24f9246f8a3b208e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateSpeed: 50
+  linearUpdateSpeed: 50
+  rotationalUpdateSpeed: 180
   <CurrentCamera>k__BackingField: {fileID: 0}
 --- !u!1001 &1396519600
 PrefabInstance:

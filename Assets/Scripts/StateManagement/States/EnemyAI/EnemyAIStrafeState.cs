@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace RPG_Project
 {
-    public class EnemyAIChaseState : IState
+    public class EnemyAIStrafeState : IState
     {
         EnemyAIController ai;
         StateMachine aism;
 
         EnemyInputReader eir;
 
-        public EnemyAIChaseState(EnemyAIController ai)
+        public EnemyAIStrafeState(EnemyAIController ai)
         {
             this.ai = ai;
             aism = ai.sm;
@@ -21,18 +21,14 @@ namespace RPG_Project
 
         public void Enter(params object[] args)
         {
-            if (!ai.Player.Aggro.Contains(ai.Party))
-            {
-                ai.Party.Aggro.Add(ai.Player);
-                ai.Player.Aggro.Add(ai.Party);
-            }
+            eir.ToggleLock();
         }
 
         public void ExecuteFrame()
         {
             if (eir.InputQueue.Inputs.Count <= 0) ai.Timer.Tick();
 
-            eir.MoveEnemy(ai.RelativeDirToPlayer);
+            eir.MoveEnemy(Vector3.right);
 
             if (ai.Timer.Full)
             {
@@ -45,13 +41,9 @@ namespace RPG_Project
 
             float dist = Vector3.Distance(ai.Follow.position, ai.transform.position);
 
-            if (dist >= 8f)
+            if (dist >= 5f)
             {
-                aism.ChangeState(StateID.EnemyAIIdle);
-            }
-            else if (dist < 2f)
-            {
-                aism.ChangeState(StateID.EnemyAIStrafe);
+                aism.ChangeState(StateID.EnemyAIChase);
             }
         }
 
@@ -67,7 +59,7 @@ namespace RPG_Project
 
         public void Exit()
         {
-
+            eir.ToggleLock();
         }
     }
 }

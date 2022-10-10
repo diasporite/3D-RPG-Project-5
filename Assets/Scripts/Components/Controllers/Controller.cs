@@ -129,6 +129,10 @@ namespace RPG_Project
 
         public void Init()
         {
+            Health.Init();
+            Stamina.Init();
+            Power.Init();
+
             InitSM();
 
             sm.ChangeState(StateID.ControllerMove);
@@ -168,7 +172,7 @@ namespace RPG_Project
                 StateID.ControllerDodge, StateID.ControllerGuard, StateID.ControllerAction))
             {
                 CurrentDodgeDir = transform.forward;
-                Stamina.ChangeValue(-30);
+                Stamina.ChangeValue(-Character.DodgeAction.StaminaCost);
                 sm.ChangeState(StateID.ControllerDodge);
             }
         }

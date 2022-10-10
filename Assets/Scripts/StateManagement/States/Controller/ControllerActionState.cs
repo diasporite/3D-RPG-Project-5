@@ -77,7 +77,7 @@ namespace RPG_Project
             health.Tick();
             stamina.Tick();
 
-            cm.RotateTowardsTarget(party.Ts.CurrentTargetTransform);
+            cm.RotateTowardsTarget(party.transform.rotation, party.Ts.CurrentTargetTransform);
 
             ProcessQueue();
         }

@@ -21,11 +21,9 @@ namespace RPG_Project
 
             if (hurt)
             {
-                if (hurt.transform.root == transform.root) return;
-
                 var dam = hurt.Damageable;
 
-                if (dam != null)
+                if (dam != null && dam != character)
                 {
                     if (!hits.ContainsKey(dam))
                         hits.Add(dam, new HurtboxHits(hurt));

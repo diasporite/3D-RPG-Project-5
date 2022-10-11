@@ -75,6 +75,8 @@
   - Implement timer for pausing stamina regen when hit
   - Fix CharInfo bar shadows [FIXED]
     - Resource initialisation moved to Init(), called in Controller, instead of Start()
+  - Add code to switch off hitboxes at start
+    - Setting prefab inactive gives error - hit detector array doesn't populate
 
 RESOURCES
 - Bezier curves (30/9/22)

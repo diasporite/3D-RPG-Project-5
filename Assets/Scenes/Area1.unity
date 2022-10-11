@@ -136,12 +136,12 @@ PrefabInstance:
     - target: {fileID: 2838714129615603065, guid: 9d54132730ad82f46a692abe445bae86,
         type: 3}
       propertyPath: height
-      value: 0.25
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 4668690320612597818, guid: 9d54132730ad82f46a692abe445bae86,
         type: 3}
       propertyPath: minDelay
-      value: 2.5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 5366002985647146274, guid: 9d54132730ad82f46a692abe445bae86,
         type: 3}

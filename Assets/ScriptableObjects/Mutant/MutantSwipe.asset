@@ -52,5 +52,5 @@ MonoBehaviour:
   <Windows>k__BackingField:
   - <EnableHitbox>k__BackingField: 0.452
     <DisableHitbox>k__BackingField: 0.63
-  <BasePower>k__BackingField: 30
+  <BasePower>k__BackingField: 75
   <Force>k__BackingField: 2

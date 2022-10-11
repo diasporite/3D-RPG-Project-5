@@ -55,6 +55,8 @@ namespace RPG_Project
                 {
                     hBar.gameObject.SetActive(false);
                     sBar.gameObject.SetActive(false);
+
+                    dText.gameObject.SetActive(false);
                 }
             }
         }

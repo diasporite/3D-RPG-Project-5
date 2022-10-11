@@ -250,12 +250,7 @@ namespace RPG_Project
             }
         }
 
-        public void MovePosition1stPersonStrafe(Vector2 dir, float speed, float dt)
-        {
-
-        }
-
-        public void MovePositionDodge(Vector3 dir, float dt, float speed)
+        public void MovePositionAction(Vector3 dir, float dt, float speed)
         {
             cc.Move(speed * dir * dt);
         }

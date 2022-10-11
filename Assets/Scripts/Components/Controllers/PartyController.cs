@@ -11,6 +11,9 @@ namespace RPG_Project
         public event Action OnStaminaTick;
         public event Action OnPowerTick;
 
+        public event Action<int> OnHealthChange;
+        public event Action<int> OnStaminaChange;
+
         public event Action OnCharacterChange;
         public event Action OnMovementChange;
 
@@ -33,6 +36,7 @@ namespace RPG_Project
         public InputReader Ir { get; private set; }
         
         public TargetSphere Ts { get; private set; }
+        [field: SerializeField] public EnemyStats Es { get; private set; }
 
         public Health CurrentHealth => CurrentController?.Health;
         public Stamina CurrentStamina => CurrentController?.Stamina;
@@ -44,6 +48,7 @@ namespace RPG_Project
             Ir = GetComponent<InputReader>();
 
             Ts = GetComponentInChildren<TargetSphere>();
+            Es = GetComponentInChildren<EnemyStats>();
 
             IsPlayer = Ir is PlayerInputReader;
 
@@ -125,6 +130,16 @@ namespace RPG_Project
         public void InvokePowerTick()
         {
             OnPowerTick?.Invoke();
+        }
+
+        public void InvokeHealthChange(int change)
+        {
+            OnHealthChange?.Invoke(change);
+        }
+
+        public void InvokeStaminaChange(int change)
+        {
+            OnStaminaChange?.Invoke(change);
         }
 
         public void InvokeCharacterChange()

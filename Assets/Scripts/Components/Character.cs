@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG_Project
 {
-    public class Character : MonoBehaviour, IDamageable
+    public class Character : Damageable
     {
         [field: SerializeField] public CharData CharData { get; private set; }
         [field: SerializeField] public EnemyAIPattern EnemyAi { get; private set; }
@@ -26,12 +26,16 @@ namespace RPG_Project
         [field: Header("Dodge")]
         [field: SerializeField] public ActionData DodgeAction { get; private set; }
 
+        [field: Header("Hitboxes")]
+        [field: SerializeField] public HitDetector[] HitDetectors { get; private set; }
+
         PartyController party;
         Movement movement;
 
         Controller con;
         Health health;
         Stamina stamina;
+        Power power;
 
         CombatDatabase combat;
 
@@ -43,6 +47,9 @@ namespace RPG_Project
             con = GetComponent<Controller>();
             health = GetComponent<Health>();
             stamina = GetComponent<Stamina>();
+            power = GetComponent<Power>();
+
+            HitDetectors = GetComponentsInChildren<HitDetector>();
         }
 
         private void Start()
@@ -64,40 +71,41 @@ namespace RPG_Project
             DodgeAction = CharData.DodgeAction;
         }
 
-        public void OnDamage(DamageInfo info)
+        public override void OnDamage(DamageInfo info)
         {
             if (con.sm.InState(StateID.ControllerDeath)) return;
 
-            health.ChangeValue(-10);
-            stamina.ChangeValue(-5);
+            var hDamage = info.FinalDamage;
+
+            health.ChangeValue(-hDamage);
+            stamina.ChangeValue(0);
+
+            print(name + " " + (party.Es == null));
+            party.Es?.OnDamage(hDamage, 0);
 
             if (health.Empty)
             {
-                con.sm.ChangeState(StateID.ControllerDeath);
-                party.InvokeDeath();
+                //con.sm.ChangeState(StateID.ControllerDeath);
+                //party.InvokeDeath();
             }
             else if (stamina.Empty)
             {
                 if (con.sm.InState(StateID.ControllerStagger)) return;
 
-                con.sm.ChangeState(StateID.ControllerStagger);
-                party.InvokeStagger();
+                //con.sm.ChangeState(StateID.ControllerStagger);
+                //party.InvokeStagger();
             }
         }
 
-        public IEnumerator OnDamageCo(DamageInfo info)
-        {
-            yield return null;
-        }
-
-        public void OnImpact(Vector3 impulse)
+        public override void OnImpact(Vector3 impulse)
         {
             movement.ApplyForce(impulse);
         }
 
-        public IEnumerator OnImpactCo(Vector3 impulse)
+        public void EnableHitDetector(int actionIndex, float normTime)
         {
-            yield return null;
+            var action = CharData.CombatActions[actionIndex];
+            HitDetectors[action.HitboxIndex].gameObject.SetActive(action.IsHitDetectorActive(normTime));
         }
     }
 }

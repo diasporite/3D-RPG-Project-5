@@ -49,7 +49,7 @@ namespace RPG_Project
 
         public void UpdateDamage(int damage)
         {
-            if (damage > 0) return;
+            if (damage <= 0) return;
 
             Timer.Reset();
             

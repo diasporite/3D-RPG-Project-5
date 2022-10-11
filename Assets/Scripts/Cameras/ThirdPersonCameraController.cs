@@ -32,6 +32,7 @@ namespace RPG_Project
         [SerializeField] float radius = 0f;
         [SerializeField] float theta = 180f;
         [SerializeField] float theta0 = 0f;
+        [SerializeField] float dTheta = 0f;
         [SerializeField] float thetaMax = 180f;
         [SerializeField] float thetaMin = 180f;
 
@@ -92,13 +93,11 @@ namespace RPG_Project
                 float dist = Vector3.Distance(ts.CurrentTargetTransform.position, 
                     ts.transform.position);
 
-                theta0 = 180f + Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-                thetaMax = theta0 + maxLockedAngle;
-                thetaMin = theta0 + minLockedAngle;
+                theta0 = (180f + Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg) % 360f;
+                dTheta = Mathf.Clamp(dTheta + 1.2f * ir.Move.x * yawSpeed * Time.deltaTime, thetaMin, thetaMax);
 
-                theta = Mathf.Clamp(theta + 0.25f * ir.Move.x * yawSpeed * Time.deltaTime, 
-                    thetaMin, thetaMax);
-                height = Mathf.Clamp((dist + radius) * 
+                theta = (theta0 + dTheta) % 360f;
+                height = Mathf.Clamp(0.6f * (dist + radius) * 
                     Mathf.Tan(Mathf.Atan2(MiddleOrbit.Height, dist)), BottomOrbit.Height, 
                     TopOrbit.Height);
                 radius = InterpolateRadius(height);

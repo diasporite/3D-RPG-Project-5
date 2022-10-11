@@ -21,6 +21,10 @@ namespace RPG_Project
         [field: Range(0, 255)]
         [field: SerializeField] public int Weight { get; private set; } = 128;
 
+        [field: Header("Actions")]
         [field: SerializeField] public ActionData DodgeAction { get; private set; }
+
+        [field: Tooltip("Index in array corresponds to action hash.")]
+        [field: SerializeField] public ActionData[] CombatActions { get; private set; }
     }
 }

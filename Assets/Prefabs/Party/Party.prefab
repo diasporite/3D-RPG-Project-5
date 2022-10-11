@@ -100,8 +100,9 @@ MonoBehaviour:
   radius: 0
   theta: 180
   theta0: 0
-  thetaMax: 180
-  thetaMin: 180
+  theta1: 0
+  thetaMax: 45
+  thetaMin: -45
   <TopOrbit>k__BackingField:
     <Radius>k__BackingField: 1
     <Height>k__BackingField: 1

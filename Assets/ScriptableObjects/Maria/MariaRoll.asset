@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ActionName>k__BackingField: Roll
   <StaminaCost>k__BackingField: 40
-  <PowerCost>k__BackingField: 4
+  <PowerCost>k__BackingField: 0
   <MotionCurve>k__BackingField:
     serializedVersion: 2
     m_Curve:
@@ -48,3 +48,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  <HitboxIndex>k__BackingField: 0
+  <Windows>k__BackingField: []

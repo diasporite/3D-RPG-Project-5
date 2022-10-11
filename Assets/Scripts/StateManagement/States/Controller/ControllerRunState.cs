@@ -60,6 +60,10 @@ namespace RPG_Project
 
             controller.Movement.MovePosition(dir, Time.deltaTime, SpeedMode.Run);
 
+            if (controller.Party.Ts.Locked)
+            {
+                csm.ChangeState(StateID.ControllerStrafe);
+            }
             if (!movement.Grounded)
             {
                 movement.FallSpeed = movement.RunSpeed;

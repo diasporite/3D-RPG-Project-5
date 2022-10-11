@@ -13,5 +13,25 @@ namespace RPG_Project
         [field: SerializeField] public int PowerCost { get; private set; } = 4;
 
         [field: SerializeField] public AnimationCurve MotionCurve { get; private set; }
+
+        [field: Header("HitDetection")]
+        [field: SerializeField] public int HitboxIndex { get; private set; }
+        [field: SerializeField] public HitboxWindow[] Windows { get; private set; }
+
+        public bool IsHitDetectorActive(float normTime)
+        {
+            foreach (var w in Windows)
+            {
+                if (normTime >= w.EnableHitbox &&
+                    normTime <= w.DisableHitbox) return true;
+            }
+
+            return false;
+        }
+
+        public virtual DamageInfo Damage(Character character)
+        {
+            return null;
+        }
     }
 }

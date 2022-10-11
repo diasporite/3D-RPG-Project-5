@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharName>k__BackingField: Mutant
   <Portrait>k__BackingField: {fileID: 0}
-  <WalkSpeed>k__BackingField: 2
-  <RunSpeed>k__BackingField: 4
-  <StrafeSpeed>k__BackingField: 1.5
+  <WalkSpeed>k__BackingField: 2.43
+  <RunSpeed>k__BackingField: 4.4
+  <StrafeSpeed>k__BackingField: 1.14
   <Weight>k__BackingField: 128
   <DodgeAction>k__BackingField: {fileID: 11400000, guid: bf77908cb3b5a11499ed9560aaee33a0,
     type: 2}
+  <CombatActions>k__BackingField:
+  - {fileID: 11400000, guid: 59824b7e4bb19bd43805e3cf80cab9a2, type: 2}
+  - {fileID: 11400000, guid: 59824b7e4bb19bd43805e3cf80cab9a2, type: 2}
+  - {fileID: 11400000, guid: 59824b7e4bb19bd43805e3cf80cab9a2, type: 2}
+  - {fileID: 11400000, guid: 59824b7e4bb19bd43805e3cf80cab9a2, type: 2}

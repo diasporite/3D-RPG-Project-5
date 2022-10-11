@@ -13,7 +13,9 @@ namespace RPG_Project
 
         public override void Init()
         {
-            baseSpeed = GameManager.instance.Combat.HealthRegen;
+            if (party.IsPlayer) baseSpeed = GameManager.instance.Combat.HealthRegen;
+            else baseSpeed = 0;
+
             ResourceCooldown = new Cooldown(150f, baseSpeed, 150f);
         }
 

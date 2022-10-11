@@ -66,10 +66,13 @@
 - Enemy rotates towards player when locked
 - Consider adding TimeController from 3D RPG Project 4
   - Consider automated dodging/blocking
+- Hit detection
+  - Remember to fill hitbox windows for actions
+- Forward movement during attacks
+- Enemy health bar
 - TO DO:
   - Implement stopping distance for enemy AI to prevent jitter
   - Implement timer for pausing stamina regen when hit
-  - Forward movement during attacks
   - Fix CharInfo bar shadows [FIXED]
     - Resource initialisation moved to Init(), called in Controller, instead of Start()
 

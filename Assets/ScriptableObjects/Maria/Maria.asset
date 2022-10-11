@@ -20,3 +20,8 @@ MonoBehaviour:
   <Weight>k__BackingField: 128
   <DodgeAction>k__BackingField: {fileID: 11400000, guid: 76531c90286d6154aab649128d5e875c,
     type: 2}
+  <CombatActions>k__BackingField:
+  - {fileID: 11400000, guid: 473c7c8b39e00ce48a246a05ac4b6c0d, type: 2}
+  - {fileID: 11400000, guid: 473c7c8b39e00ce48a246a05ac4b6c0d, type: 2}
+  - {fileID: 11400000, guid: 473c7c8b39e00ce48a246a05ac4b6c0d, type: 2}
+  - {fileID: 11400000, guid: 473c7c8b39e00ce48a246a05ac4b6c0d, type: 2}

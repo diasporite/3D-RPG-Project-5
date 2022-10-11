@@ -7,24 +7,23 @@ namespace RPG_Project
     [System.Serializable]
     public class DamageInfo
     {
+        [SerializeField] Character instigator;
         [SerializeField] Vector3 instPos;
 
         [field: SerializeField] public int Damage { get; private set; }
 
         CombatDatabase combat;
 
-        public DamageInfo(int basePower, Vector3 instPos)
-        {
-            this.instPos = instPos;
+        public int FinalDamage => Damage;
 
-            //combat = GameManager.instance.Combat;
+        public DamageInfo(Character instigator, int basePower)
+        {
+            this.instigator = instigator;
+            instPos = instigator.transform.position;
+
+            combat = GameManager.instance.Combat;
 
             Damage = combat.Damage(basePower);
-        }
-
-        public int FinalDamage(Vector3 pos)
-        {
-            return Damage;
         }
     }
 }

@@ -77,7 +77,15 @@ namespace RPG_Project
             health.Tick();
             stamina.Tick();
 
-            cm.RotateTowardsTarget(party.transform.rotation, party.Ts.CurrentTargetTransform);
+            normalisedTime = NormalizedTime();
+
+            if (party.Ts.Locked)
+                cm.RotateTowardsTarget(party.transform.rotation, party.Ts.CurrentTargetTransform);
+
+            controller.Movement.MovePositionAction(controller.Cm.transform.forward, Time.deltaTime,
+                controller.Character.CharData.CombatActions[controller.CurrentActionIndex].MotionCurve.Evaluate(normalisedTime));
+
+            controller.Character.EnableHitDetector(controller.CurrentActionIndex, normalisedTime);
 
             ProcessQueue();
         }
@@ -99,7 +107,6 @@ namespace RPG_Project
 
         void ProcessQueue()
         {
-            normalisedTime = NormalizedTime();
 
             if (!advancing && normalisedTime >= advanceThreshold)
             {

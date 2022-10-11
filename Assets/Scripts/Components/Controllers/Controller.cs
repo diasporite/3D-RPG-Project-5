@@ -33,6 +33,7 @@ namespace RPG_Project
 
         [SerializeField] StateID currentState;
 
+        public int CurrentActionIndex { get; private set; }
         public int CurrentActionHash { get; private set; }
         public Vector3 CurrentDodgeDir { get; private set; }
 
@@ -142,6 +143,7 @@ namespace RPG_Project
         {
             sm.AddState(StateID.ControllerMove, new ControllerMoveState(this));
             sm.AddState(StateID.ControllerFall, new ControllerFallState(this));
+            sm.AddState(StateID.ControllerStrafe, new ControllerStrafeState(this));
 
             sm.AddState(StateID.ControllerJump, new ControllerJumpState(this));
             sm.AddState(StateID.ControllerDodge, new ControllerDodgeState(this));
@@ -168,7 +170,7 @@ namespace RPG_Project
         #region Actions
         void Dodge()
         {
-            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun, 
+            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun, StateID.ControllerStrafe,
                 StateID.ControllerDodge, StateID.ControllerGuard, StateID.ControllerAction))
             {
                 CurrentDodgeDir = transform.forward;
@@ -179,7 +181,7 @@ namespace RPG_Project
 
         void Guard()
         {
-            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun))
+            if (sm.InState(StateID.ControllerMove, StateID.ControllerStrafe, StateID.ControllerRun))
                 sm.ChangeState(StateID.ControllerGuard);
         }
 
@@ -191,7 +193,7 @@ namespace RPG_Project
 
         void Jump()
         {
-            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun, 
+            if (sm.InState(StateID.ControllerMove, StateID.ControllerStrafe, StateID.ControllerRun, 
                 StateID.ControllerGuard, StateID.ControllerDodge, 
                 StateID.ControllerAction))
             {
@@ -226,13 +228,14 @@ namespace RPG_Project
 
         void Action(int index)
         {
-            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun, 
+            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun, StateID.ControllerStrafe,
                 StateID.ControllerDodge, StateID.ControllerGuard, 
                 StateID.ControllerAction) && Stamina.Charged)
             {
-                index = Mathf.Clamp(index, 0, actionHashes.Count);
+                CurrentActionIndex = Mathf.Clamp(index, 0, actionHashes.Count);
                 CurrentActionHash = actionHashes[index];
-                Stamina.ChangeValue(-30);
+                Stamina.ChangeValue(-Character.CharData.CombatActions[CurrentActionIndex].StaminaCost);
+                Power.ChangeValue(-Character.CharData.CombatActions[CurrentActionIndex].PowerCost);
                 //sm.ChangeState(actionStateMap[index]);
                 sm.ChangeState(StateID.ControllerAction);
             }

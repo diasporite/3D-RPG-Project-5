@@ -50,7 +50,7 @@ namespace RPG_Project
 
             normalizedTime = NormalizedTime();
 
-            controller.Movement.MovePositionDodge(controller.Cm.transform.forward, Time.deltaTime, 
+            controller.Movement.MovePositionAction(controller.Cm.transform.forward, Time.deltaTime, 
                 controller.Character.DodgeAction.MotionCurve.Evaluate(normalizedTime));
 
             if (!advancing && normalizedTime >= 0.8f)

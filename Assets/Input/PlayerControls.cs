@@ -52,11 +52,19 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Run"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""1df03b51-066d-4766-bec0-cd4b5d2b62af"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Hold""
+                },
+                {
+                    ""name"": ""RunCancel"",
+                    ""type"": ""Value"",
+                    ""id"": ""6ede69d2-bf4a-4830-a1d1-a8066d0561d8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""Jump"",
@@ -68,11 +76,19 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Guard"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""25c5a5c8-0eea-42c3-9a4f-1cbe0ea5d3db"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Hold""
+                },
+                {
+                    ""name"": ""GuardCancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""9c48b2da-632c-4adc-8b42-71b94a6f229f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
                 },
                 {
                     ""name"": ""Action1"",
@@ -673,6 +689,50 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""ToggleTarget"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65dd5e75-4562-437f-9920-2869b7665555"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""RunCancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c044db4b-d44b-4d80-b2b8-65386d28166d"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""RunCancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e9c7e74-bbe7-408d-87f7-73ee8c574084"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""GuardCancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae627598-b1fe-4d38-a484-023b7ed295a0"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""GuardCancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -709,8 +769,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player_Dpad = m_Player.FindAction("Dpad", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
+        m_Player_RunCancel = m_Player.FindAction("RunCancel", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Guard = m_Player.FindAction("Guard", throwIfNotFound: true);
+        m_Player_GuardCancel = m_Player.FindAction("GuardCancel", throwIfNotFound: true);
         m_Player_Action1 = m_Player.FindAction("Action1", throwIfNotFound: true);
         m_Player_Action2 = m_Player.FindAction("Action2", throwIfNotFound: true);
         m_Player_Action3 = m_Player.FindAction("Action3", throwIfNotFound: true);
@@ -771,8 +833,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Dpad;
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Run;
+    private readonly InputAction m_Player_RunCancel;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Guard;
+    private readonly InputAction m_Player_GuardCancel;
     private readonly InputAction m_Player_Action1;
     private readonly InputAction m_Player_Action2;
     private readonly InputAction m_Player_Action3;
@@ -788,8 +852,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Dpad => m_Wrapper.m_Player_Dpad;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @Run => m_Wrapper.m_Player_Run;
+        public InputAction @RunCancel => m_Wrapper.m_Player_RunCancel;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Guard => m_Wrapper.m_Player_Guard;
+        public InputAction @GuardCancel => m_Wrapper.m_Player_GuardCancel;
         public InputAction @Action1 => m_Wrapper.m_Player_Action1;
         public InputAction @Action2 => m_Wrapper.m_Player_Action2;
         public InputAction @Action3 => m_Wrapper.m_Player_Action3;
@@ -820,12 +886,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Run.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
                 @Run.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
                 @Run.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRun;
+                @RunCancel.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRunCancel;
+                @RunCancel.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRunCancel;
+                @RunCancel.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRunCancel;
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Guard.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGuard;
                 @Guard.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGuard;
                 @Guard.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGuard;
+                @GuardCancel.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGuardCancel;
+                @GuardCancel.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGuardCancel;
+                @GuardCancel.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGuardCancel;
                 @Action1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1;
                 @Action1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1;
                 @Action1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAction1;
@@ -863,12 +935,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Run.started += instance.OnRun;
                 @Run.performed += instance.OnRun;
                 @Run.canceled += instance.OnRun;
+                @RunCancel.started += instance.OnRunCancel;
+                @RunCancel.performed += instance.OnRunCancel;
+                @RunCancel.canceled += instance.OnRunCancel;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
                 @Guard.started += instance.OnGuard;
                 @Guard.performed += instance.OnGuard;
                 @Guard.canceled += instance.OnGuard;
+                @GuardCancel.started += instance.OnGuardCancel;
+                @GuardCancel.performed += instance.OnGuardCancel;
+                @GuardCancel.canceled += instance.OnGuardCancel;
                 @Action1.started += instance.OnAction1;
                 @Action1.performed += instance.OnAction1;
                 @Action1.canceled += instance.OnAction1;
@@ -916,8 +994,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnDpad(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
+        void OnRunCancel(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnGuard(InputAction.CallbackContext context);
+        void OnGuardCancel(InputAction.CallbackContext context);
         void OnAction1(InputAction.CallbackContext context);
         void OnAction2(InputAction.CallbackContext context);
         void OnAction3(InputAction.CallbackContext context);

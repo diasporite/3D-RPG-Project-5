@@ -70,6 +70,8 @@
   - Remember to fill hitbox windows for actions
 - Forward movement during attacks
 - Enemy health bar
+- Run and Guard input variables
+- Added Erika
 - TO DO:
   - Implement stopping distance for enemy AI to prevent jitter
   - Implement timer for pausing stamina regen when hit

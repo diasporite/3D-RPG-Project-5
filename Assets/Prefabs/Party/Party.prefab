@@ -48,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734427390279493056}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -100,7 +100,7 @@ MonoBehaviour:
   radius: 0
   theta: 180
   theta0: 0
-  theta1: 0
+  dTheta: 0
   thetaMax: 45
   thetaMin: -45
   <TopOrbit>k__BackingField:
@@ -162,7 +162,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3824251493759480476}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -391,6 +391,7 @@ MonoBehaviour:
   <CurrentController>k__BackingField: {fileID: 0}
   <CurrentModelRotation>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
   <Aggro>k__BackingField: []
+  <Es>k__BackingField: {fileID: 0}
 --- !u!114 &5973199515669013818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,6 +408,23 @@ MonoBehaviour:
   <Rotate>k__BackingField: {x: 0, y: 0}
   <Dpad>k__BackingField: {x: 0, y: 0}
   <Run>k__BackingField: 0
+  <Guard>k__BackingField: 0
+  <RunAction>k__BackingField:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 27b40ff7-e1dc-43d3-96be-a99dcd53df8a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  <GuardAction>k__BackingField:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 78a38c1d-d6af-4f2f-b2d2-089ddf807f2b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
   <InputQueue>k__BackingField:
     <Inputs>k__BackingField: []
 --- !u!114 &5973199515669013817
@@ -485,7 +503,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6217373322490546336}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -626,7 +644,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7854844355972865598}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

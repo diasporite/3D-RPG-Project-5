@@ -38,6 +38,8 @@ namespace RPG_Project
                 controller.Cm.RotateTowardsTarget(controller.Party.transform.rotation, controller.Party.Ts.CurrentTargetTransform);
 
             controller.Ir.InputQueue.Execute();
+
+            if (!controller.Ir.Guard) csm.ChangeState(StateID.ControllerMove);
         }
 
         public void ExecuteFrameFixed()

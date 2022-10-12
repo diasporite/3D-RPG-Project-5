@@ -39,11 +39,19 @@
                 },
                 {
                     "name": "Run",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "1df03b51-066d-4766-bec0-cd4b5d2b62af",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Hold"
+                },
+                {
+                    "name": "RunCancel",
+                    "type": "Value",
+                    "id": "6ede69d2-bf4a-4830-a1d1-a8066d0561d8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
                 },
                 {
                     "name": "Jump",
@@ -55,11 +63,19 @@
                 },
                 {
                     "name": "Guard",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "25c5a5c8-0eea-42c3-9a4f-1cbe0ea5d3db",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Hold"
+                },
+                {
+                    "name": "GuardCancel",
+                    "type": "Button",
+                    "id": "9c48b2da-632c-4adc-8b42-71b94a6f229f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)"
                 },
                 {
                     "name": "Action1",
@@ -658,6 +674,50 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "ToggleTarget",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "65dd5e75-4562-437f-9920-2869b7665555",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "RunCancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c044db4b-d44b-4d80-b2b8-65386d28166d",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RunCancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e9c7e74-bbe7-408d-87f7-73ee8c574084",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "GuardCancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ae627598-b1fe-4d38-a484-023b7ed295a0",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "GuardCancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

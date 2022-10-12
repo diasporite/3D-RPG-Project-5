@@ -15,7 +15,6 @@ namespace RPG_Project
         [field: SerializeField] public float WalkSpeed { get; private set; } = 4f;
         [field: SerializeField] public float RunSpeed { get; private set; } = 8f;
         [field: SerializeField] public float StrafeSpeed { get; private set; } = 3f;
-        [field: SerializeField] public float FallSpeed { get; private set; } = 2f;
 
         [field: Header("Weight")]
         [field: Range(0, 255)]
@@ -54,6 +53,8 @@ namespace RPG_Project
             HitDetectors = GetComponentsInChildren<HitDetector>();
 
             foreach (var hit in HitDetectors) hit.gameObject.SetActive(false);
+
+            InitCharacter();
         }
 
         private void Start()
@@ -65,13 +66,15 @@ namespace RPG_Project
 
             dodgeMult = 1 - DodgeReduction;
             guardMult = 1 - GuardReduction;
-
-            InitCharacter();
         }
 
         void InitCharacter()
         {
             CharName = CharData.CharName;
+
+            WalkSpeed = CharData.WalkSpeed;
+            RunSpeed = CharData.RunSpeed;
+            StrafeSpeed = CharData.StrafeSpeed;
 
             Weight = CharData.Weight;
 
@@ -91,7 +94,7 @@ namespace RPG_Project
                 hDamage = Mathf.RoundToInt(hDamage * dodgeMult);
             if (con.sm.InState(StateID.ControllerGuard))
                 hDamage = Mathf.RoundToInt(hDamage * guardMult);
-            if (con.sm.InState(StateID.ControllerAction))
+            if (con.sm.InState(StateID.ControllerAction, StateID.ControllerJump))
                 hDamage = Mathf.RoundToInt(hDamage * act);
 
             health.ChangeValue(-hDamage);

@@ -60,6 +60,8 @@ namespace RPG_Project
 
             controller.Movement.MovePosition(dir, Time.deltaTime, SpeedMode.Run);
 
+            if (!controller.Ir.Run) csm.ChangeState(StateID.ControllerMove);
+            if (controller.Ir.Guard) csm.ChangeState(StateID.ControllerGuard);
             if (controller.Party.Ts.Locked)
             {
                 csm.ChangeState(StateID.ControllerStrafe);

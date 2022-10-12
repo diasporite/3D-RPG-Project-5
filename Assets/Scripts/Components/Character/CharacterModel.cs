@@ -66,10 +66,10 @@ namespace RPG_Project
         {
             if (dir != Vector3.zero)
             {
-                var rotation = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+                //var rotation = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
 
                 transform.localRotation = Quaternion.RotateTowards(transform.localRotation,
-                    Quaternion.Euler(0, rotation, 0), rotationSpeed * Time.deltaTime);
+                    Quaternion.LookRotation(dir), rotationSpeed * Time.deltaTime);
             }
         }
 

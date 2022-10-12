@@ -57,6 +57,7 @@ namespace RPG_Project
 
             if (!controller.Party.Ts.Locked)
                 csm.ChangeState(StateID.ControllerMove);
+            if (controller.Ir.Guard) csm.ChangeState(StateID.ControllerGuard);
             if (!movement.Grounded)
             {
                 movement.FallSpeed = movement.WalkSpeed;

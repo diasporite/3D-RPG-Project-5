@@ -15,6 +15,9 @@ namespace RPG_Project
 
             controls = new PlayerControls();
             controls.Player.SetCallbacks(this);
+
+            RunAction = controls.Player.Run;
+            GuardAction = controls.Player.Guard;
         }
 
         private void OnEnable()
@@ -62,8 +65,12 @@ namespace RPG_Project
 
         public void OnGuard(InputAction.CallbackContext context)
         {
-            if (context.performed) InvokeGuard();
-            else if (context.canceled) InvokeGuardCancel();
+            if (context.performed) Guard = true;
+        }
+
+        public void OnGuardCancel(InputAction.CallbackContext context)
+        {
+            if (context.performed) Guard = false;
         }
 
         public void OnJump(InputAction.CallbackContext context)
@@ -74,8 +81,12 @@ namespace RPG_Project
 
         public void OnRun(InputAction.CallbackContext context)
         {
-            if (context.performed) InvokeRun();
-            else if (context.canceled) InvokeRunCancel();
+            if (context.performed) Run = true;
+        }
+
+        public void OnRunCancel(InputAction.CallbackContext context)
+        {
+            if (context.performed) Run = false;
         }
 
         public void OnAction1(InputAction.CallbackContext context)

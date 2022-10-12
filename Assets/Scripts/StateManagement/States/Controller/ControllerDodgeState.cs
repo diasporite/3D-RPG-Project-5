@@ -19,6 +19,8 @@ namespace RPG_Project
 
         bool advancing = false;
 
+        Vector3 dodgeDir;
+
         public ControllerDodgeState(Controller con)
         {
             controller = con;
@@ -40,7 +42,18 @@ namespace RPG_Project
 
             advancing = false;
 
+            cm.SetFloat("InputX", controller.Ir.Move.x);
+            cm.SetFloat("InputY", controller.Ir.Move.y);
+
             cm.PlayAnimationInstant(controller.dodgeHash);
+
+            if (controller.Party.Ts.Locked)
+            {
+                if (controller.CurrentDodgeDir != Vector3.zero)
+                    dodgeDir = controller.CurrentDodgeDir;
+                else dodgeDir = controller.Cm.transform.forward;
+            }
+            else dodgeDir = controller.Cm.transform.forward;
         }
 
         public void ExecuteFrame()
@@ -50,8 +63,11 @@ namespace RPG_Project
 
             normalizedTime = NormalizedTime();
 
-            controller.Movement.MovePositionAction(controller.Cm.transform.forward, Time.deltaTime, 
+            controller.Movement.MovePositionAction(dodgeDir, Time.deltaTime, 
                 controller.Character.DodgeAction.MotionCurve.Evaluate(normalizedTime));
+
+            if (!controller.DirectionalDodging)
+                cm.RotateTowards(controller.Party.transform.rotation * dodgeDir);
 
             if (!advancing && normalizedTime >= 0.8f)
             {

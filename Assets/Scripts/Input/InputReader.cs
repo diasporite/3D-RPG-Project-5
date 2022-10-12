@@ -45,12 +45,12 @@ namespace RPG_Project
         public event Action OnDodgeAction;
 
         public event Action OnGuardAction;
-        public event Action OnGuardCancel;
+        public event Action OnGuardCancelAction;
 
         public event Action OnJumpAction;
 
         public event Action OnRunAction;
-        public event Action OnRunCancel;
+        public event Action OnRunCancelAction;
 
         public event Action<int> OnAttackAction;
 
@@ -62,6 +62,10 @@ namespace RPG_Project
         [field: SerializeField] public Vector2 Dpad { get; protected set; }
 
         [field: SerializeField] public bool Run { get; protected set; } = false;
+        [field: SerializeField] public bool Guard { get; protected set; } = false;
+
+        [field: SerializeField] public InputAction RunAction { get; protected set; }
+        [field: SerializeField] public InputAction GuardAction { get; protected set; }
 
         [field: SerializeField] public InputQueue InputQueue { get; protected set; } = 
             new InputQueue();
@@ -91,7 +95,7 @@ namespace RPG_Project
 
         public void InvokeGuardCancel()
         {
-            OnGuardCancel?.Invoke();
+            OnGuardCancelAction?.Invoke();
         }
 
         public void InvokeJump()
@@ -106,7 +110,7 @@ namespace RPG_Project
 
         public void InvokeRunCancel()
         {
-            OnRunCancel?.Invoke();
+            OnRunCancelAction?.Invoke();
         }
 
         public void InvokeAttack(int index)

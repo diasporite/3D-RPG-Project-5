@@ -55,6 +55,8 @@ namespace RPG_Project
 
             movement.MovePosition(dir, Time.deltaTime, SpeedMode.Walk);
 
+            if (controller.Ir.Run) csm.ChangeState(StateID.ControllerRun);
+            if (controller.Ir.Guard) csm.ChangeState(StateID.ControllerGuard);
             if (controller.Party.Ts.Locked)
             {
                 csm.ChangeState(StateID.ControllerStrafe);

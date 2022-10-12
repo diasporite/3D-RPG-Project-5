@@ -33,6 +33,7 @@ namespace RPG_Project
 
         [SerializeField] StateID currentState;
 
+        [field: SerializeField] public bool DirectionalDodging { get; private set; }
         public int CurrentActionIndex { get; private set; }
         public int CurrentActionHash { get; private set; }
         public Vector3 CurrentDodgeDir { get; private set; }
@@ -102,13 +103,13 @@ namespace RPG_Project
         {
             Ir.OnDodgeAction += Dodge;
 
-            Ir.OnGuardAction += Guard;
-            Ir.OnGuardCancel += GuardCancel;
+            //Ir.OnGuardAction += Guard;
+            //Ir.OnGuardCancelAction += GuardCancel;
 
             Ir.OnJumpAction += Jump;
 
-            Ir.OnRunAction += Run;
-            Ir.OnRunCancel += RunCancel;
+            //Ir.OnRunAction += Run;
+            //Ir.OnRunCancelAction += RunCancel;
 
             Ir.OnAttackAction += Action;
         }
@@ -117,13 +118,13 @@ namespace RPG_Project
         {
             Ir.OnDodgeAction -= Dodge;
 
-            Ir.OnGuardAction -= Guard;
-            Ir.OnGuardCancel -= GuardCancel;
+            //Ir.OnGuardAction -= Guard;
+            //Ir.OnGuardCancelAction -= GuardCancel;
 
             Ir.OnJumpAction -= Jump;
 
-            Ir.OnRunAction -= Run;
-            Ir.OnRunCancel -= RunCancel;
+            //Ir.OnRunAction -= Run;
+            //Ir.OnRunCancelAction -= RunCancel;
 
             Ir.OnAttackAction -= Action;
         }
@@ -161,10 +162,12 @@ namespace RPG_Project
         #region Actions
         void Dodge()
         {
-            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun, StateID.ControllerStrafe,
-                StateID.ControllerDodge, StateID.ControllerGuard, StateID.ControllerAction))
+            if (sm.InState(StateID.ControllerMove, StateID.ControllerRun, 
+                StateID.ControllerStrafe, StateID.ControllerDodge, 
+                StateID.ControllerGuard, StateID.ControllerAction))
             {
-                CurrentDodgeDir = transform.forward;
+                CurrentDodgeDir = Ir.Move.x * Cm.transform.right + 
+                    Ir.Move.y * Cm.transform.forward;
                 Stamina.ChangeValue(-Character.DodgeAction.StaminaCost);
                 sm.ChangeState(StateID.ControllerDodge);
             }
@@ -172,7 +175,8 @@ namespace RPG_Project
 
         void Guard()
         {
-            if (sm.InState(StateID.ControllerMove, StateID.ControllerStrafe, StateID.ControllerRun))
+            if (sm.InState(StateID.ControllerMove, StateID.ControllerStrafe, 
+                StateID.ControllerRun))
                 sm.ChangeState(StateID.ControllerGuard);
         }
 
@@ -184,8 +188,8 @@ namespace RPG_Project
 
         void Jump()
         {
-            if (sm.InState(StateID.ControllerMove, StateID.ControllerStrafe, StateID.ControllerRun, 
-                StateID.ControllerGuard, StateID.ControllerDodge, 
+            if (sm.InState(StateID.ControllerMove, StateID.ControllerStrafe, 
+                StateID.ControllerRun, StateID.ControllerGuard, StateID.ControllerDodge, 
                 StateID.ControllerAction))
             {
                 Movement.Jump(8f);

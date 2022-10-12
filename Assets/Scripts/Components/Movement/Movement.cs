@@ -329,7 +329,6 @@ namespace RPG_Project
             WalkSpeed = party.CurrentController.Character.WalkSpeed;
             RunSpeed = party.CurrentController.Character.RunSpeed;
             StrafeSpeed = party.CurrentController.Character.StrafeSpeed;
-            FallSpeed = party.CurrentController.Character.FallSpeed;
         }
 
         public void SwitchMovementState(MovementState state, SideScrollPathLinear linear)

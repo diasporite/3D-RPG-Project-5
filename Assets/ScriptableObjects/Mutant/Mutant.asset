@@ -17,7 +17,10 @@ MonoBehaviour:
   <WalkSpeed>k__BackingField: 2.43
   <RunSpeed>k__BackingField: 4.4
   <StrafeSpeed>k__BackingField: 1.14
-  <Weight>k__BackingField: 128
+  <Health>k__BackingField: 200
+  <Stamina>k__BackingField: 125
+  <Power>k__BackingField: 50
+  <Weight>k__BackingField: 200
   <DodgeAction>k__BackingField: {fileID: 11400000, guid: bf77908cb3b5a11499ed9560aaee33a0,
     type: 2}
   <CombatActions>k__BackingField:

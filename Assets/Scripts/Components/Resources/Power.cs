@@ -13,7 +13,8 @@ namespace RPG_Project
 
         public override void Init()
         {
-            ResourceCooldown = new Cooldown(128f, 0, 128f);
+            var pp = Mathf.RoundToInt(2.56f * character.CharData.Power);
+            ResourceCooldown = new Cooldown(pp, 0, pp);
         }
 
         protected override void UpdateUI()

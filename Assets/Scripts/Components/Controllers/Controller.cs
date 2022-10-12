@@ -152,17 +152,8 @@ namespace RPG_Project
 
             sm.AddState(StateID.ControllerAction, new ControllerActionState(this));
 
-            //sm.AddState(StateID.ControllerAction1, new ControllerActionState(this, 0));
-            //sm.AddState(StateID.ControllerAction2, new ControllerActionState(this, 1));
-            //sm.AddState(StateID.ControllerAction3, new ControllerActionState(this, 2));
-            //sm.AddState(StateID.ControllerAction4, new ControllerActionState(this, 3));
-            //sm.AddState(StateID.ControllerAction5, new ControllerActionState(this, 4));
-            //sm.AddState(StateID.ControllerAction6, new ControllerActionState(this, 5));
-            //sm.AddState(StateID.ControllerAction7, new ControllerActionState(this, 6));
-            //sm.AddState(StateID.ControllerAction8, new ControllerActionState(this, 7));
-
-            //sm.AddState(StateID.ControllerStagger, new ControllerStaggerState(this));
-            //sm.AddState(StateID.ControllerDeath, new ControllerDeathState(this));
+            sm.AddState(StateID.ControllerStagger, new ControllerStaggerState(this));
+            sm.AddState(StateID.ControllerDeath, new ControllerDeathState(this));
 
             sm.AddState(StateID.ControllerStandby, new ControllerStandbyState(this));
         }
@@ -236,7 +227,6 @@ namespace RPG_Project
                 CurrentActionHash = actionHashes[index];
                 Stamina.ChangeValue(-Character.CharData.CombatActions[CurrentActionIndex].StaminaCost);
                 Power.ChangeValue(-Character.CharData.CombatActions[CurrentActionIndex].PowerCost);
-                //sm.ChangeState(actionStateMap[index]);
                 sm.ChangeState(StateID.ControllerAction);
             }
         }

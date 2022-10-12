@@ -18,6 +18,9 @@ namespace RPG_Project
         [field: SerializeField] public float StrafeSpeed { get; private set; } = 1.5f;
 
         [field: Header("Stats")]
+        [field: SerializeField] public int Health { get; private set; } = 50;
+        [field: SerializeField] public int Stamina { get; private set; } = 50;
+        [field: SerializeField] public int Power { get; private set; } = 50;
         [field: Range(0, 255)]
         [field: SerializeField] public int Weight { get; private set; } = 128;
 

@@ -17,21 +17,11 @@ namespace RPG_Project
         ControllerKnockback = 18,
         ControllerDodge = 19,
         ControllerGuard = 20,
+        ControllerJump = 21,
+        ControllerStandby = 22,
 
-        ControllerAction1 = 21,
-        ControllerAction2 = 22,
-        ControllerAction3 = 23,
-        ControllerAction4 = 24,
-        ControllerAction5 = 25,
-        ControllerAction6 = 26,
-        ControllerAction7 = 27,
-        ControllerAction8 = 28,
-
-        ControllerJump = 29,
-        ControllerStandby = 30,
-
-        EnemyAIIdle = 41,
-        EnemyAIChase = 42,
-        EnemyAIStrafe = 43,
+        EnemyAIIdle = 31,
+        EnemyAIChase = 32,
+        EnemyAIStrafe = 33,
     }
 }

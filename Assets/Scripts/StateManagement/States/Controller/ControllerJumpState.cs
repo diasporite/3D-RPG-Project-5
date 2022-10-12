@@ -43,6 +43,9 @@ namespace RPG_Project
             health.Tick();
             stamina.Tick();
 
+            if (controller.Party.Ts.Locked)
+                controller.Cm.RotateTowardsTarget(controller.Party.transform.rotation, controller.Party.Ts.CurrentTargetTransform);
+
             movement.MovePosition(dir, Time.deltaTime, SpeedMode.Fall);
 
             if (movement.VerticalVelocity <= 0f)

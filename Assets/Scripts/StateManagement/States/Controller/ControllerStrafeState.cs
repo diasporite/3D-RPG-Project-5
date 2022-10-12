@@ -55,6 +55,8 @@ namespace RPG_Project
 
             movement.MovePosition(dir, Time.deltaTime, SpeedMode.Strafe);
 
+            if (!controller.Party.Ts.Locked)
+                csm.ChangeState(StateID.ControllerMove);
             if (!movement.Grounded)
             {
                 movement.FallSpeed = movement.WalkSpeed;

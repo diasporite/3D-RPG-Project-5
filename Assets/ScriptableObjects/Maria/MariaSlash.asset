@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MariaSlash
   m_EditorClassIdentifier: 
   <ActionName>k__BackingField: Slash
-  <StaminaCost>k__BackingField: 36
+  <StaminaCost>k__BackingField: 42
   <PowerCost>k__BackingField: 4
   <MotionCurve>k__BackingField:
     serializedVersion: 2

@@ -22,7 +22,9 @@ namespace RPG_Project
         [field: SerializeField] public int Weight { get; private set; } = 128;
         public float DodgeReduction { get; private set; }
         public float GuardReduction { get; private set; }
-
+        float dodgeMult;
+        float guardMult;
+        
         [field: Header("Dodge")]
         [field: SerializeField] public ActionData DodgeAction { get; private set; }
 
@@ -50,6 +52,8 @@ namespace RPG_Project
             power = GetComponent<Power>();
 
             HitDetectors = GetComponentsInChildren<HitDetector>();
+
+            foreach (var hit in HitDetectors) hit.gameObject.SetActive(false);
         }
 
         private void Start()
@@ -58,6 +62,9 @@ namespace RPG_Project
 
             DodgeReduction = combat.DodgeReduction(Weight);
             GuardReduction = combat.GuardReduction(Weight);
+
+            dodgeMult = 1 - DodgeReduction;
+            guardMult = 1 - GuardReduction;
 
             InitCharacter();
         }
@@ -75,13 +82,23 @@ namespace RPG_Project
         {
             if (con.sm.InState(StateID.ControllerDeath)) return;
 
+            var act = 1.4f;
+
             var hDamage = info.FinalDamage;
+            var sDamage = 0;
+
+            if (con.sm.InState(StateID.ControllerDodge))
+                hDamage = Mathf.RoundToInt(hDamage * dodgeMult);
+            if (con.sm.InState(StateID.ControllerGuard))
+                hDamage = Mathf.RoundToInt(hDamage * guardMult);
+            if (con.sm.InState(StateID.ControllerAction))
+                hDamage = Mathf.RoundToInt(hDamage * act);
 
             health.ChangeValue(-hDamage);
-            stamina.ChangeValue(0);
+            stamina.ChangeValue(-sDamage);
+            if (sDamage > 0) stamina.Pause();
 
-            print(name + " " + (party.Es == null));
-            party.Es?.OnDamage(hDamage, 0);
+            party.Es?.OnDamage(hDamage, sDamage);
 
             if (health.Empty)
             {

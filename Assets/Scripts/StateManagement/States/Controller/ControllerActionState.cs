@@ -18,7 +18,6 @@ namespace RPG_Project
 
         bool advancing;
 
-        int index;
         int actionHash;
 
         float normalisedTime = 0f;
@@ -41,22 +40,6 @@ namespace RPG_Project
             cm = controller.Cm;
         }
 
-        public ControllerActionState(Controller con, int index)
-        {
-            controller = con;
-            csm = con.sm;
-
-            health = controller.Health;
-            stamina = controller.Stamina;
-
-            input = controller.Ir;
-
-            cm = controller.Cm;
-
-            this.index = index;
-            actionHash = controller.actionHashes[index];
-        }
-
         public void Enter(params object[] args)
         {
             health.SpeedFactor = 0f;
@@ -66,10 +49,7 @@ namespace RPG_Project
 
             normalisedTime = 0f;
 
-            //Debug.Log("action state " + index);
-            // Play correct animation
             cm.PlayAnimationInstant(controller.CurrentActionHash);
-            //cm.PlayAnimationInstant(actionHash);
         }
 
         public void ExecuteFrame()

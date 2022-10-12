@@ -12,6 +12,7 @@ namespace RPG_Project
         [SerializeField] float speedFactor;
 
         protected PartyController party;
+        protected Character character;
 
         public float SpeedFactor
         {
@@ -31,6 +32,7 @@ namespace RPG_Project
         protected virtual void Awake()
         {
             party = GetComponentInParent<PartyController>();
+            character = GetComponent<Character>();
         }
 
         public virtual void Init()

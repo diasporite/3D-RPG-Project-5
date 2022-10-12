@@ -8,6 +8,10 @@ namespace RPG_Project
     {
         public bool Charged { get; set; }
 
+        float pauseTime;
+
+        Cooldown PauseTimer;
+
         protected override void Awake()
         {
             base.Awake();
@@ -17,15 +21,26 @@ namespace RPG_Project
         {
             Charged = false;
 
-            if (party.IsPlayer) baseSpeed = GameManager.instance.Combat.StaminaRegen;
-            else baseSpeed = GameManager.instance.Combat.EnemyStaminaRegen;
+            if (party.IsPlayer)
+            {
+                baseSpeed = GameManager.instance.Combat.StaminaRegen;
+                pauseTime = GameManager.instance.Combat.PlayerStaminaPause;
+            }
+            else
+            {
+                baseSpeed = GameManager.instance.Combat.EnemyStaminaRegen;
+                pauseTime = GameManager.instance.Combat.EnemyStaminaPause;
+            }
 
-            ResourceCooldown = new Cooldown(100f, baseSpeed, Random.Range(20f, 80f));
+            var sp = 2f * character.CharData.Stamina;
+            ResourceCooldown = new Cooldown(sp, baseSpeed, Random.Range(0.2f, 0.8f) * sp);
+            PauseTimer = new Cooldown(pauseTime, 1f, pauseTime);
         }
 
         public override void Tick()
         {
-            ResourceCooldown.Tick();
+            if (!PauseTimer.Full) PauseTimer.Tick();
+            else ResourceCooldown.Tick();
 
             if (Full) Charged = true;
 
@@ -35,6 +50,11 @@ namespace RPG_Project
         protected override void UpdateUI()
         {
             party.InvokeStaminaTick();
+        }
+
+        public void Pause()
+        {
+            if (PauseTimer.Full) PauseTimer.Reset();
         }
     }
 }

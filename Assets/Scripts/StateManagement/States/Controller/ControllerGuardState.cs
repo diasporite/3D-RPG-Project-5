@@ -34,6 +34,9 @@ namespace RPG_Project
             health.Tick();
             stamina.Tick();
 
+            if (controller.Party.Ts.Locked)
+                controller.Cm.RotateTowardsTarget(controller.Party.transform.rotation, controller.Party.Ts.CurrentTargetTransform);
+
             controller.Ir.InputQueue.Execute();
         }
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ActionName>k__BackingField: Slash
   <StaminaCost>k__BackingField: 42
-  <PowerCost>k__BackingField: 4
+  <PowerCost>k__BackingField: 12
   <MotionCurve>k__BackingField:
     serializedVersion: 2
     m_Curve:
@@ -52,5 +52,5 @@ MonoBehaviour:
   <Windows>k__BackingField:
   - <EnableHitbox>k__BackingField: 0.447
     <DisableHitbox>k__BackingField: 0.605
-  <BasePower>k__BackingField: 30
+  <BasePower>k__BackingField: 52
   <Force>k__BackingField: 1

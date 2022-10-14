@@ -8,6 +8,11 @@ namespace RPG_Project
     {
         Vector2 moveDir = new Vector2(0, 0);
 
+        public void MoveEnemy(Vector2 inputDir)
+        {
+            Move = inputDir.normalized;
+        }
+
         public void MoveEnemy(Vector3 dir)
         {
             moveDir.x = dir.x;

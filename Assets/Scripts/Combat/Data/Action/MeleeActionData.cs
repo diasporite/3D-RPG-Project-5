@@ -11,7 +11,7 @@ namespace RPG_Project
         [field: SerializeField] public float DisableHitbox { get; private set; } = 0.6f;
     }
 
-    [CreateAssetMenu(fileName = "New Melee", menuName = "Combat/Attack/Melee")]
+    [CreateAssetMenu(fileName = "New Melee", menuName = "Combat/Actions/Melee")]
     public class MeleeActionData : ActionData
     {
         [field: Header("Damage")]

@@ -34,14 +34,14 @@ namespace RPG_Project
 
             eir.MoveEnemy(ai.RelativeDirToPlayer);
 
-            if (ai.Timer.Full)
-            {
+            //if (ai.Timer.Full)
+            //{
                 if (ai.Party.CurrentStamina.Full)
                 {
                     eir.Action(ai.Pattern.RandomPattern);
                     ai.Timer.Reset();
                 }
-            }
+            //}
 
             float dist = Vector3.Distance(ai.Follow.position, ai.transform.position);
 

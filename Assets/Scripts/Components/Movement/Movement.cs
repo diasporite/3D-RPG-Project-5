@@ -85,6 +85,7 @@ namespace RPG_Project
         {
             isPlayer = GetComponent<PartyController>().IsPlayer;
 
+            //SwitchMovementState(MovementState.TopDown, null);
             SwitchMovementState(MovementState.ThirdPerson, null);
         }
 
@@ -102,11 +103,6 @@ namespace RPG_Project
         private void OnDisable()
         {
             party.OnCharacterChange -= UpdateCharacter;
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.DrawRay(transform.position, 5f * transform.forward);
         }
 
         #region MovePosition

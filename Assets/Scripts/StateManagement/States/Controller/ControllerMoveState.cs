@@ -11,6 +11,7 @@ namespace RPG_Project
 
         Health health;
         Stamina stamina;
+        Power power;
 
         Movement movement;
 
@@ -23,6 +24,7 @@ namespace RPG_Project
 
             health = controller.Health;
             stamina = controller.Stamina;
+            power = controller.Power;
 
             movement = controller.Movement;
 
@@ -33,6 +35,7 @@ namespace RPG_Project
         {
             health.SpeedFactor = 1f;
             stamina.SpeedFactor = 1f;
+            power.SpeedFactor = -1f;
 
             stamina.Charged = stamina.Full;
 
@@ -45,9 +48,7 @@ namespace RPG_Project
         {
             var dir = controller.Ir.Move;
 
-            if (dir == Vector2.zero) health.Tick(0f);
-            else health.Tick();
-            stamina.Tick();
+            Tick(dir);
 
             UpdateAnim(dir);
 
@@ -55,13 +56,13 @@ namespace RPG_Project
 
             movement.MovePosition(dir, Time.deltaTime, SpeedMode.Walk);
 
-            if (controller.Ir.Run) csm.ChangeState(StateID.ControllerRun);
-            if (controller.Ir.Guard) csm.ChangeState(StateID.ControllerGuard);
-            if (controller.Party.Ts.Locked)
-            {
+            if (controller.Ir.Run)
+                csm.ChangeState(StateID.ControllerRun);
+            else if (controller.Ir.Guard)
+                csm.ChangeState(StateID.ControllerGuard);
+            else if (controller.Party.Ts.Locked)
                 csm.ChangeState(StateID.ControllerStrafe);
-            }
-            if (!movement.Grounded)
+            else if (!movement.Grounded)
             {
                 movement.FallSpeed = movement.WalkSpeed;
 
@@ -82,6 +83,22 @@ namespace RPG_Project
         public void Exit()
         {
 
+        }
+
+        void Tick(Vector2 dir)
+        {
+            if (dir == Vector2.zero)
+            {
+                health.Tick(0f);
+                power.Tick(0f);
+            }
+            else
+            {
+                health.Tick();
+                power.Tick();
+            }
+
+            stamina.Tick();
         }
 
         void UpdateAnim(Vector2 input)

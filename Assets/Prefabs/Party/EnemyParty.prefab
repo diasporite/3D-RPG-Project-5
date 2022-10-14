@@ -496,6 +496,23 @@ MonoBehaviour:
   <Rotate>k__BackingField: {x: 0, y: 0}
   <Dpad>k__BackingField: {x: 0, y: 0}
   <Run>k__BackingField: 0
+  <Guard>k__BackingField: 0
+  <RunAction>k__BackingField:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 3f59b874-670e-4468-8ed3-e4e45a4ee98d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  <GuardAction>k__BackingField:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9394b80d-dafb-4565-87ab-ceccc7006dbb
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
   <InputQueue>k__BackingField:
     <Inputs>k__BackingField: []
 --- !u!1 &7092928215264733791
@@ -603,6 +620,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TargetSphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 3883555703586692129, guid: c82297bdffbe3f246a90555ef672da95,
+        type: 3}
+      propertyPath: <Types>k__BackingField.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7882525397169279210, guid: c82297bdffbe3f246a90555ef672da95,
         type: 3}

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace RPG_Project
 {
     public class TargetSphere : MonoBehaviour
     {
+        [field: SerializeField] public TargetType[] Types { get; private set; }
+
         [field: SerializeField] public bool Locked { get; private set; } = false;
 
         [field: SerializeField] public List<Target> Targets { get; private set; } = 
@@ -50,7 +53,8 @@ namespace RPG_Project
 
             if (t)
             {
-                if (t.transform.root != transform.root && !Targets.Contains(t))
+                if (t.transform.root != transform.root && !Targets.Contains(t) && 
+                    Array.Exists(Types, i => i == t.Type))
                     Targets.Add(t);
             }
         }

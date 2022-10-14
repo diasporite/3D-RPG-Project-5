@@ -38,6 +38,8 @@ namespace RPG_Project
         public TargetSphere Ts { get; private set; }
         [field: SerializeField] public EnemyStats Es { get; private set; }
 
+        public readonly StateMachine sm = new StateMachine();
+
         public Health CurrentHealth => CurrentController?.Health;
         public Stamina CurrentStamina => CurrentController?.Stamina;
         public Power CurrentPower => CurrentController?.Power;
@@ -80,6 +82,10 @@ namespace RPG_Project
 
         void SwitchCharDpad(int index)
         {
+            if (index >= PartyMembers.Count) return;
+            if (CurrentController.sm.InState(StateID.ControllerStagger)) return;
+            if (PartyMembers[index].sm.InState(StateID.ControllerDeath)) return;
+
             switch (index)
             {
                 case 0: SetCurrentMember(0);
@@ -114,6 +120,16 @@ namespace RPG_Project
                 CurrentController.Cm.transform.localRotation = CurrentModelRotation;
 
             InvokeCharacterChange();
+        }
+
+        public void SwitchToNextCharacter(Controller controller)
+        {
+            for (int i = 0; i < PartyMembers.Count; i++)
+            {
+                var member = PartyMembers[i];
+                if (member != controller && !member.IsDead && !member.IsStaggered)
+                    SetCurrentMember(i);
+            }
         }
 
         #region Delegates

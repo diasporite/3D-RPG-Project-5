@@ -9,35 +9,46 @@ namespace RPG_Project
         Controller controller;
         StateMachine csm;
 
+        CharacterModel cm;
+
         public ControllerDeathState(Controller controller)
         {
             this.controller = controller;
             csm = controller.sm;
+
+            cm = controller.Cm;
         }
 
         public void Enter(params object[] args)
         {
-            throw new System.NotImplementedException();
+            controller.IsDead = true;
+
+            controller.Ir.InputQueue.ClearInputs();
+
+            cm.PlayAnimation(controller.deathHash);
         }
 
         public void ExecuteFrame()
         {
-            throw new System.NotImplementedException();
+            if (cm.CurrentNormalizedTime >= 0.9f)
+            {
+                controller.Party.SwitchToNextCharacter(controller);
+            }
         }
 
         public void ExecuteFrameFixed()
         {
-            throw new System.NotImplementedException();
+
         }
 
         public void ExecuteFrameLate()
         {
-            throw new System.NotImplementedException();
+
         }
 
         public void Exit()
         {
-            throw new System.NotImplementedException();
+
         }
     }
 }

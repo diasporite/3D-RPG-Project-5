@@ -34,6 +34,9 @@ namespace RPG_Project
         [SerializeField] StateID currentState;
 
         [field: SerializeField] public bool DirectionalDodging { get; private set; }
+        public bool IsDead { get; set; }
+        public bool IsStaggered { get; set; }
+
         public int CurrentActionIndex { get; private set; }
         public int CurrentActionHash { get; private set; }
         public Vector3 CurrentDodgeDir { get; private set; }
@@ -131,6 +134,8 @@ namespace RPG_Project
 
         public void Init()
         {
+            DirectionalDodging = Character.CharData.DodgeAction.IsDirectional;
+
             Health.Init();
             Stamina.Init();
             Power.Init();
@@ -169,6 +174,7 @@ namespace RPG_Project
                 CurrentDodgeDir = Ir.Move.x * Cm.transform.right + 
                     Ir.Move.y * Cm.transform.forward;
                 Stamina.ChangeValue(-Character.DodgeAction.StaminaCost);
+                Power.ChangeValue(-Character.DodgeAction.PowerCost);
                 sm.ChangeState(StateID.ControllerDodge);
             }
         }

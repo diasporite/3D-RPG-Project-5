@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MutantSwipe
   m_EditorClassIdentifier: 
   <ActionName>k__BackingField: Swipe
-  <StaminaCost>k__BackingField: 75
+  <StaminaCost>k__BackingField: 45
   <PowerCost>k__BackingField: 0
   <MotionCurve>k__BackingField:
     serializedVersion: 2

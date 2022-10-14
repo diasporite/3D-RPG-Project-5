@@ -28,7 +28,8 @@ namespace RPG_Project
         public void Enter(params object[] args)
         {
             health.SpeedFactor = 0f;
-            if (controller.InCombat) stamina.SpeedFactor = 0.667f;
+            if (controller.InCombat && !controller.IsDead)
+                stamina.SpeedFactor = 0.667f;
             else stamina.SpeedFactor = 0f;
 
             stamina.Charged = stamina.Full;
@@ -41,7 +42,8 @@ namespace RPG_Project
             health.Tick();
             stamina.Tick();
 
-            if (controller.InCombat) stamina.SpeedFactor = 0.333f;
+            if (controller.InCombat && !controller.IsDead)
+                stamina.SpeedFactor = 0.333f;
             else stamina.SpeedFactor = 0f;
         }
 

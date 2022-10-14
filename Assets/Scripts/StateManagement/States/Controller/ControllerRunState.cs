@@ -11,6 +11,7 @@ namespace RPG_Project
 
         Health health;
         Stamina stamina;
+        Power power;
 
         Movement movement;
 
@@ -23,6 +24,7 @@ namespace RPG_Project
 
             health = controller.Health;
             stamina = controller.Stamina;
+            power = controller.Power;
 
             movement = controller.Movement;
 
@@ -35,6 +37,7 @@ namespace RPG_Project
             health.SpeedFactor = 0f;
             if (controller.InCombat) stamina.SpeedFactor = -0.5f;
             else stamina.SpeedFactor = 1f;
+            power.SpeedFactor = -4f;
 
             stamina.Charged = false;
 
@@ -50,6 +53,7 @@ namespace RPG_Project
 
             health.Tick();
             stamina.Tick();
+            power.Tick();
 
             if (dir == Vector2.zero || stamina.Empty)
                 csm.ChangeState(StateID.ControllerMove);

@@ -57,7 +57,7 @@
 - TO DO:
   - Targeting camera
 
-8/10/22 -
+8/10/22 - 13/10/22
 - Work on locked 3rd person camera
   - Camera jitter
     - Interpolate rotation as well as position

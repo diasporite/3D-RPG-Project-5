@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9583bfbfb9e29e142844597b6174542a, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b26fafcd2cc5de4d91bde8478e2021b, type: 3}
   m_Name: MutantDodge
   m_EditorClassIdentifier: 
-  <ActionName>k__BackingField: Dodge
+  <ActionName>k__BackingField: 
   <StaminaCost>k__BackingField: 20
   <PowerCost>k__BackingField: 4
   <MotionCurve>k__BackingField:
@@ -21,3 +21,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  <HitboxIndex>k__BackingField: 0
+  <Windows>k__BackingField: []
+  <IsDirectional>k__BackingField: 0

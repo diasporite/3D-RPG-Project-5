@@ -28,16 +28,16 @@ namespace RPG_Project
         {
             if (eir.InputQueue.Inputs.Count <= 0) ai.Timer.Tick();
 
-            eir.MoveEnemy(Vector3.right);
+            eir.MoveEnemy(Vector2.one);
 
-            if (ai.Timer.Full)
-            {
+            //if (ai.Timer.Full)
+            //{
                 if (ai.Party.CurrentStamina.Full)
                 {
                     eir.Action(ai.Pattern.RandomPattern);
                     ai.Timer.Reset();
                 }
-            }
+            //}
 
             float dist = Vector3.Distance(ai.Follow.position, ai.transform.position);
 

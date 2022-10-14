@@ -15,6 +15,9 @@ namespace RPG_Project
 
         PartyController party;
 
+        public float CurrentNormalizedTime => Anim.GetCurrentAnimatorStateInfo(0).normalizedTime - 
+            Mathf.Floor(Anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
+
         private void Awake()
         {
             Anim = GetComponent<Animator>();
@@ -27,6 +30,12 @@ namespace RPG_Project
             main = Camera.main;
 
             rotationSpeed = GetComponentInParent<Movement>().RotationSpeed;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawRay(transform.position, 5f * transform.forward);
         }
 
         public void Rotation(float eulerY)

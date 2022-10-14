@@ -105,7 +105,7 @@ namespace RPG_Project
 
             if (health.Empty)
             {
-                //con.sm.ChangeState(StateID.ControllerDeath);
+                con.sm.ChangeState(StateID.ControllerDeath);
                 //party.InvokeDeath();
             }
             else if (stamina.Empty)

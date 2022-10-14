@@ -32,29 +32,37 @@ namespace RPG_Project
 
         private void Start()
         {
+            uiHolder.transform.position =
+                Camera.main.WorldToScreenPoint(party.transform.position +
+                height * Vector3.up);
+
             hBar.InitUI(party);
             sBar.InitUI(party);
             dText.InitUI(party);
 
-            hBar.gameObject.SetActive(false);
-            sBar.gameObject.SetActive(false);
+            //hBar.gameObject.SetActive(false);
+            //sBar.gameObject.SetActive(false);
             dText.gameObject.SetActive(false);
         }
 
         private void Update()
         {
+            uiHolder.transform.position = Vector3.Lerp(uiHolder.transform.position,
+    Camera.main.WorldToScreenPoint(party.transform.position +
+    height * Vector3.up), 0.8f);
+
+            //uiHolder.transform.position = Vector3.MoveTowards(uiHolder.transform.position,
+            //    Camera.main.WorldToScreenPoint(party.transform.position +
+            //    height * Vector3.up), 250f * Time.deltaTime);
+
             if (!Timer.Full)
             {
                 Timer.Tick();
 
-                uiHolder.transform.position = 
-                    Camera.main.WorldToScreenPoint(party.transform.position + 
-                    height * Vector3.up);
-
                 if (Timer.Full)
                 {
-                    hBar.gameObject.SetActive(false);
-                    sBar.gameObject.SetActive(false);
+                    //hBar.gameObject.SetActive(false);
+                    //sBar.gameObject.SetActive(false);
 
                     dText.gameObject.SetActive(false);
                 }

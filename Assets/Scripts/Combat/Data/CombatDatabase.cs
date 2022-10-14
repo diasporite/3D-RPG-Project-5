@@ -22,11 +22,8 @@ namespace RPG_Project
         [field: SerializeField] public float EnemyStaminaPause { get; private set; } = 1.5f;
 
         [field: Header("Weight Scaling")]
-        [field: SerializeField] public float MinDodgeResist { get; private set; } = 0.1f;
-        [field: SerializeField] public float MaxDodgeResist { get; private set; } = 0.5f;
-
-        [field: SerializeField] public float MinGuardResist { get; private set; } = 0.3f;
-        [field: SerializeField] public float MaxGuardResist { get; private set; } = 0.7f;
+        [field: SerializeField] public float MinResist { get; private set; } = 0.3f;
+        [field: SerializeField] public float MaxResist { get; private set; } = 0.7f;
 
         public int Damage(int basePower)
         {
@@ -38,7 +35,7 @@ namespace RPG_Project
             weight = Mathf.Clamp(weight, 0, 255);
             float t = (float)weight / 255;
 
-            return Mathf.Lerp(MinDodgeResist, MaxDodgeResist, 1 - t);
+            return Mathf.Lerp(MinResist, MaxResist, 1 - t);
         }
 
         public float GuardReduction(int weight)
@@ -46,7 +43,7 @@ namespace RPG_Project
             weight = Mathf.Clamp(weight, 0, 255);
             float t = (float)weight / 255;
 
-            return Mathf.Lerp(MinGuardResist, MaxGuardResist, t);
+            return Mathf.Lerp(MinResist, MaxResist, t);
         }
     }
 }

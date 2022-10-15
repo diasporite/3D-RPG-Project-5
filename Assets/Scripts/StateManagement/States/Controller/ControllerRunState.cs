@@ -46,7 +46,7 @@ namespace RPG_Project
 
         public void ExecuteFrame()
         {
-            if (controller.InCombat) stamina.SpeedFactor = -0.5f;
+            if (controller.InCombat) stamina.SpeedFactor = -1f;
             else stamina.SpeedFactor = 1f;
 
             var dir = controller.Ir.Move;

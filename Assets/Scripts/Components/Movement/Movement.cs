@@ -25,8 +25,6 @@ namespace RPG_Project
     {
         [field: SerializeField] public MovementState CurrentMovementState { get; private set; } = 
             MovementState.ThirdPerson;
-        [field: SerializeField] public MovementState LocalMovementState { get; private set; } = 
-            MovementState.ThirdPerson;
 
         [field: Header("Speeds")]
         [field: SerializeField] public float WalkSpeed { get; private set; } = 5f;
@@ -197,19 +195,26 @@ namespace RPG_Project
 
         public void MovePositionTopDown(Vector2 dir, float speed, float dt)
         {
-            CurrentSpeed = speed;
+            if (ts.Locked)
+            {
+                CurrentSpeed = StrafeSpeed;
 
-            var x = 1f;
-            var y = 1f;
+                var ds = dir.x * Vector3.right + dir.y * Vector3.forward;
 
-            if (invertX) x = -1f;
-            if (invertY) y = -1f;
+                cm.RotateTowardsTarget(party.transform.rotation, ts.CurrentTargetTransform);
 
-            var ds = x * dir.x * cm.transform.right + y * dir.y * cm.transform.forward;
+                if (ds != Vector3.zero) cc.Move(CurrentSpeed * ds * dt);
+            }
+            else
+            {
+                CurrentSpeed = speed;
 
-            cm.RotateTowards(dir);
+                var ds = dir.x * cm.transform.right + dir.y * cm.transform.forward;
 
-            if (ds != Vector3.zero) cc.Move(CurrentSpeed * cm.transform.forward * dt);
+                cm.RotateTowards(dir);
+
+                if (ds != Vector3.zero) cc.Move(CurrentSpeed * cm.transform.forward * dt);
+            }
         }
 
         public void MovePositionSideScroll(Vector2 dir, float speed, float dt)

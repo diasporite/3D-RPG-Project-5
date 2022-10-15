@@ -15,7 +15,7 @@ namespace RPG_Project
         {
             baseSpeed = character.CharData.PowerRegen;
 
-            var pp = Mathf.RoundToInt(7.68f * character.CharData.Power);
+            var pp = Mathf.RoundToInt(5.76f * character.CharData.Power);
             ResourceCooldown = new Cooldown(pp, baseSpeed, pp);
         }
 

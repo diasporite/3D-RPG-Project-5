@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharName>k__BackingField: Maria
   <Portrait>k__BackingField: {fileID: 0}
-  <WalkSpeed>k__BackingField: 2
-  <RunSpeed>k__BackingField: 4
-  <StrafeSpeed>k__BackingField: 1.5
+  <WalkSpeed>k__BackingField: 2.17
+  <RunSpeed>k__BackingField: 6.05
+  <StrafeSpeed>k__BackingField: 2.17
   <HealthRegen>k__BackingField: 1
-  <StaminaRegen>k__BackingField: 15
+  <StaminaRegen>k__BackingField: 14
   <PowerRegen>k__BackingField: 0.05
   <Health>k__BackingField: 50
   <Stamina>k__BackingField: 50

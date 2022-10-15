@@ -45,7 +45,7 @@ namespace RPG_Project
 
             float dist = Vector3.Distance(ai.Follow.position, ai.transform.position);
 
-            if (dist >= 8f)
+            if (dist >= 12f)
             {
                 aism.ChangeState(StateID.EnemyAIIdle);
             }

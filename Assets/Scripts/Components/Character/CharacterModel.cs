@@ -15,8 +15,17 @@ namespace RPG_Project
 
         PartyController party;
 
-        public float CurrentNormalizedTime => Anim.GetCurrentAnimatorStateInfo(0).normalizedTime - 
-            Mathf.Floor(Anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
+        public float GetNormalizedTime(string tag)
+        {
+            var currentState = Anim.GetCurrentAnimatorStateInfo(0);
+            var nextState = Anim.GetNextAnimatorStateInfo(0);
+
+            if (Anim.IsInTransition(0) && nextState.IsTag(tag))
+                return nextState.normalizedTime - Mathf.Floor(nextState.normalizedTime);
+            else if (!Anim.IsInTransition(0) && currentState.IsTag(tag))
+                return currentState.normalizedTime - Mathf.Floor(currentState.normalizedTime);
+            else return 0f;
+        }
 
         private void Awake()
         {

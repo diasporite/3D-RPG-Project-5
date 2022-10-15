@@ -33,7 +33,7 @@ namespace RPG_Project
         PartyController party;
         Movement movement;
 
-        Controller con;
+        Controller controller;
         Health health;
         Stamina stamina;
         Power power;
@@ -45,7 +45,7 @@ namespace RPG_Project
             party = GetComponentInParent<PartyController>();
             movement = GetComponentInParent<Movement>();
 
-            con = GetComponent<Controller>();
+            controller = GetComponent<Controller>();
             health = GetComponent<Health>();
             stamina = GetComponent<Stamina>();
             power = GetComponent<Power>();
@@ -83,18 +83,18 @@ namespace RPG_Project
 
         public override void OnDamage(DamageInfo info)
         {
-            if (con.sm.InState(StateID.ControllerDeath)) return;
+            if (controller.sm.InState(StateID.ControllerDeath)) return;
 
             var act = 1.4f;
 
             var hDamage = info.FinalDamage;
             var sDamage = 0;
 
-            if (con.sm.InState(StateID.ControllerDodge))
+            if (controller.sm.InState(StateID.ControllerDodge))
                 hDamage = Mathf.RoundToInt(hDamage * dodgeMult);
-            if (con.sm.InState(StateID.ControllerGuard))
+            if (controller.sm.InState(StateID.ControllerGuard))
                 hDamage = Mathf.RoundToInt(hDamage * guardMult);
-            if (con.sm.InState(StateID.ControllerAction, StateID.ControllerJump))
+            if (controller.sm.InState(StateID.ControllerAction, StateID.ControllerJump))
                 hDamage = Mathf.RoundToInt(hDamage * act);
 
             health.ChangeValue(-hDamage);
@@ -105,12 +105,12 @@ namespace RPG_Project
 
             if (health.Empty)
             {
-                con.sm.ChangeState(StateID.ControllerDeath);
+                controller.sm.ChangeState(StateID.ControllerDeath);
                 //party.InvokeDeath();
             }
             else if (stamina.Empty)
             {
-                if (con.sm.InState(StateID.ControllerStagger)) return;
+                if (controller.sm.InState(StateID.ControllerStagger)) return;
 
                 //con.sm.ChangeState(StateID.ControllerStagger);
                 //party.InvokeStagger();
@@ -126,6 +126,12 @@ namespace RPG_Project
         {
             var action = CharData.CombatActions[actionIndex];
             HitDetectors[action.HitboxIndex].gameObject.SetActive(action.IsHitDetectorActive(normTime));
+        }
+
+        public float EvaluateActionMovement(float normalisedTime)
+        {
+            return CharData.CombatActions[controller.CurrentActionIndex].
+                MotionCurve.Evaluate(normalisedTime);
         }
     }
 }

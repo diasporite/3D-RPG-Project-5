@@ -6,6 +6,31 @@ namespace RPG_Project
 {
     public class Controller : MonoBehaviour
     {
+        #region AnimationTags
+        public readonly string moveTag = "Move";
+        public readonly string strafeTag = "Strafe";
+
+        public readonly string jumpTag = "Jump";
+        public readonly string guardTag = "Guard";
+        public readonly string dodgeTag = "Dodge";
+
+        public readonly string fallTag = "Fall";
+
+        public readonly string action1Tag = "Action1";
+        public readonly string action2Tag = "Action2";
+        public readonly string action3Tag = "Action3";
+        public readonly string action4Tag = "Action4";
+        public readonly string action5Tag = "Action5";
+        public readonly string action6Tag = "Action6";
+        public readonly string action7Tag = "Action7";
+        public readonly string action8Tag = "Action8";
+
+        public readonly string staggerTag = "Stagger";
+        public readonly string deathTag = "Death";
+
+        public readonly Dictionary<int, string> actionTags = new Dictionary<int, string>();
+        #endregion
+
         #region AnimationHashes
         public readonly int moveHash = Animator.StringToHash("Move");
         public readonly int strafeHash = Animator.StringToHash("Strafe");
@@ -37,6 +62,7 @@ namespace RPG_Project
         public bool IsDead { get; set; }
         public bool IsStaggered { get; set; }
 
+        public string CurrentActionTag { get; private set; }
         public int CurrentActionIndex { get; private set; }
         public int CurrentActionHash { get; private set; }
         public Vector3 CurrentDodgeDir { get; private set; }
@@ -76,6 +102,15 @@ namespace RPG_Project
 
             Cm = GetComponentInChildren<CharacterModel>();
 
+            actionTags.Add(0, action1Tag);
+            actionTags.Add(1, action2Tag);
+            actionTags.Add(2, action3Tag);
+            actionTags.Add(3, action4Tag);
+            actionTags.Add(4, action5Tag);
+            actionTags.Add(5, action6Tag);
+            actionTags.Add(6, action7Tag);
+            actionTags.Add(7, action8Tag);
+
             actionHashes.Add(0, action1Hash);
             actionHashes.Add(1, action2Hash);
             actionHashes.Add(2, action3Hash);
@@ -84,15 +119,6 @@ namespace RPG_Project
             actionHashes.Add(5, action6Hash);
             actionHashes.Add(6, action7Hash);
             actionHashes.Add(7, action8Hash);
-
-            //actionStateMap.Add(0, StateID.ControllerAction1);
-            //actionStateMap.Add(1, StateID.ControllerAction2);
-            //actionStateMap.Add(2, StateID.ControllerAction3);
-            //actionStateMap.Add(3, StateID.ControllerAction4);
-            //actionStateMap.Add(4, StateID.ControllerAction5);
-            //actionStateMap.Add(5, StateID.ControllerAction6);
-            //actionStateMap.Add(6, StateID.ControllerAction7);
-            //actionStateMap.Add(7, StateID.ControllerAction8);
         }
 
         private void Update()
@@ -234,6 +260,7 @@ namespace RPG_Project
                 StateID.ControllerAction) && Stamina.Charged)
             {
                 CurrentActionIndex = Mathf.Clamp(index, 0, actionHashes.Count);
+                CurrentActionTag = actionTags[index];
                 CurrentActionHash = actionHashes[index];
                 Stamina.ChangeValue(-Character.CharData.CombatActions[CurrentActionIndex].StaminaCost);
                 Power.ChangeValue(-Character.CharData.CombatActions[CurrentActionIndex].PowerCost);

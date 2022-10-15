@@ -78,6 +78,10 @@
   - Fix CharInfo bar shadows [FIXED]
     - Resource initialisation moved to Init(), called in Controller, instead of Start()
 
+14/10/22 -
+- Improved cm.GetNormalizeTime() method
+- Consider faster movement/attacks if using TimeController
+
 RESOURCES
 - Bezier curves (30/9/22)
   - https://en.wikipedia.org/wiki/B%C3%A9zier_curve

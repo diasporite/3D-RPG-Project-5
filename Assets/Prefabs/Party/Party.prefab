@@ -333,6 +333,7 @@ GameObject:
   - component: {fileID: 5973199515669013813}
   - component: {fileID: 5973199515669013818}
   - component: {fileID: 5973199515669013817}
+  - component: {fileID: 5632557853045993198}
   m_Layer: 0
   m_Name: Party
   m_TagString: Untagged
@@ -410,7 +411,7 @@ MonoBehaviour:
   <Run>k__BackingField: 0
   <Guard>k__BackingField: 0
   <RunAction>k__BackingField:
-    m_Name: 
+    m_Name: <Run Action>k__Backing Field
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 27b40ff7-e1dc-43d3-96be-a99dcd53df8a
@@ -418,7 +419,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
   <GuardAction>k__BackingField:
-    m_Name: 
+    m_Name: <Guard Action>k__Backing Field
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 78a38c1d-d6af-4f2f-b2d2-089ddf807f2b
@@ -440,7 +441,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CurrentMovementState>k__BackingField: 0
-  <LocalMovementState>k__BackingField: 0
   <WalkSpeed>k__BackingField: 5
   <RunSpeed>k__BackingField: 8
   <StrafeSpeed>k__BackingField: 3
@@ -455,6 +455,18 @@ MonoBehaviour:
   invertY: 0
   <CurrentPath>k__BackingField: {fileID: 0}
   distanceFromNearestPoint: 0
+--- !u!114 &5632557853045993198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5973199515669013823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0335eede2e5ae44f9c73a7e6abf4d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6217373322490546336
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,7 +700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e02e3bdfc14480243a00cee24b65e20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 16
+  distance: 6
   angleFromVertical: 12
 --- !u!1001 &802630972379570165
 PrefabInstance:

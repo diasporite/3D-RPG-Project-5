@@ -85,6 +85,36 @@ namespace RPG_Project
         {
             cm.SetFloat("InputX", input.x);
             cm.SetFloat("InputY", input.y);
+
+            switch (movement.CurrentMovementState)
+            {
+                case MovementState.ThirdPerson:
+                    cm.SetFloat("DirX", input.x);
+                    cm.SetFloat("DirY", input.y);
+                    break;
+                case MovementState.TopDown:
+                    if (controller.Party.Ts.CurrentTargetTransform != null)
+                    {
+                        if (input != Vector2.zero)
+                        {
+                            var dir = (controller.Party.Ts.CurrentTargetTransform.position -
+                                controller.transform.position).normalized;
+                            cm.SetFloat("DirX", dir.x);
+                            cm.SetFloat("DirY", dir.y);
+                        }
+                        else
+                        {
+                            cm.SetFloat("DirX", 0f);
+                            cm.SetFloat("DirY", 0f);
+                        }
+                    }
+                    else
+                    {
+                        cm.SetFloat("DirX", input.x);
+                        cm.SetFloat("DirY", input.y);
+                    }
+                    break;
+            }
         }
     }
 }

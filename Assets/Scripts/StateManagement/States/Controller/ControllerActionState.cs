@@ -11,8 +11,10 @@ namespace RPG_Project
 
         PartyController party;
 
+        Character character;
         Health health;
         Stamina stamina;
+        Power power;
 
         InputReader input;
 
@@ -20,7 +22,7 @@ namespace RPG_Project
 
         int actionHash;
 
-        float normalisedTime = 0f;
+        float normalizedTime = 0f;
         float advanceThreshold = 0.9f;
 
         CharacterModel cm;
@@ -32,8 +34,10 @@ namespace RPG_Project
 
             party = controller.Party;
 
+            character = controller.Character;
             health = controller.Health;
             stamina = controller.Stamina;
+            power = controller.Power;
 
             input = controller.Ir;
 
@@ -44,28 +48,32 @@ namespace RPG_Project
         {
             health.SpeedFactor = 0f;
             stamina.SpeedFactor = 0f;
+            power.SpeedFactor = 0f;
 
             advancing = false;
 
-            normalisedTime = 0f;
+            normalizedTime = 0f;
 
-            cm.PlayAnimationInstant(controller.CurrentActionHash);
+            cm.PlayAnimation(controller.CurrentActionHash);
+            //cm.PlayAnimationInstant(controller.CurrentActionHash);
         }
 
         public void ExecuteFrame()
         {
             health.Tick();
             stamina.Tick();
+            power.Tick();
 
-            normalisedTime = NormalizedTime();
+            //normalizedTime = NormalizedTime();
+            normalizedTime = cm.GetNormalizedTime(controller.CurrentActionTag);
 
             if (party.Ts.Locked)
                 cm.RotateTowardsTarget(party.transform.rotation, party.Ts.CurrentTargetTransform);
 
-            controller.Movement.MovePositionAction(controller.Cm.transform.forward, Time.deltaTime,
-                controller.Character.CharData.CombatActions[controller.CurrentActionIndex].MotionCurve.Evaluate(normalisedTime));
+            controller.Movement.MovePositionAction(cm.transform.forward, Time.deltaTime,
+                character.EvaluateActionMovement(normalizedTime));
 
-            controller.Character.EnableHitDetector(controller.CurrentActionIndex, normalisedTime);
+            character.EnableHitDetector(controller.CurrentActionIndex, normalizedTime);
 
             ProcessQueue();
         }
@@ -87,8 +95,7 @@ namespace RPG_Project
 
         void ProcessQueue()
         {
-
-            if (!advancing && normalisedTime >= advanceThreshold)
+            if (!advancing && normalizedTime >= advanceThreshold)
             {
                 advancing = true;
 

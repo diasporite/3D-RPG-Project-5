@@ -95,7 +95,6 @@ namespace RPG_Project
             {
                 Locked = false;
             }
-            else Movement.SwitchMovementState(MovementState.ThirdPerson, null);
         }
 
         void UnlockTarget()
@@ -103,8 +102,6 @@ namespace RPG_Project
             Locked = false;
 
             CurrentTarget = null;
-
-            Movement.SwitchMovementState(MovementState.ThirdPerson, null);
         }
 
         void GetCurrentTarget()
@@ -118,7 +115,8 @@ namespace RPG_Project
             {
                 screenPos = main.WorldToViewportPoint(t.transform.position);
 
-                if (!(screenPos.x > 0 && screenPos.x < 1 && screenPos.y > 0 && screenPos.y < 1)) continue;
+                //if (!(screenPos.x > 0 && screenPos.x < 1 && screenPos.y > 0 && screenPos.y < 1)) continue;
+                if (t.GetComponentInChildren<Renderer>().isVisible) continue;
 
                 var sqrDist = (t.transform.position - transform.position).sqrMagnitude;
 

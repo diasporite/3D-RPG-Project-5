@@ -525,7 +525,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4367688941852044970}
   - component: {fileID: 4367688941852044973}
-  - component: {fileID: 4367688941852044944}
   - component: {fileID: 4367688941852044945}
   - component: {fileID: 3307930146088385337}
   - component: {fileID: 4367688941852044974}
@@ -564,24 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
---- !u!114 &4367688941852044944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4367688941852044971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d1c904afcf370d4fa5544d28a39dad2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <ResourceCooldown>k__BackingField:
-    cooldown: 0
-    speed: 0
-    count: 0
-  baseSpeed: 0
-  speedFactor: 0
+  <DirectionalDodging>k__BackingField: 0
 --- !u!114 &4367688941852044945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -638,7 +620,6 @@ MonoBehaviour:
   <WalkSpeed>k__BackingField: 2.43
   <RunSpeed>k__BackingField: 4.4
   <StrafeSpeed>k__BackingField: 1.14
-  <FallSpeed>k__BackingField: 4
   <Weight>k__BackingField: 200
   <DodgeAction>k__BackingField: {fileID: 0}
   <HitDetectors>k__BackingField: []

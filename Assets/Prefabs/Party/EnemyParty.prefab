@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 5366002985647146279}
   - component: {fileID: 5366002985647146284}
   - component: {fileID: 5366002985647146272}
+  - component: {fileID: 7105879705422079894}
   - component: {fileID: 4668690320612597818}
   - component: {fileID: 7014217860757951035}
   m_Layer: 0
@@ -445,7 +446,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <CurrentMovementState>k__BackingField: 0
-  <LocalMovementState>k__BackingField: 0
   <WalkSpeed>k__BackingField: 5
   <RunSpeed>k__BackingField: 8
   <StrafeSpeed>k__BackingField: 3
@@ -460,6 +460,24 @@ MonoBehaviour:
   invertY: 0
   <CurrentPath>k__BackingField: {fileID: 0}
   distanceFromNearestPoint: 0
+--- !u!114 &7105879705422079894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5366002985647146278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1c904afcf370d4fa5544d28a39dad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ResourceCooldown>k__BackingField:
+    cooldown: 0
+    speed: 0
+    count: 0
+  baseSpeed: 0
+  speedFactor: 0
 --- !u!114 &4668690320612597818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,7 +516,7 @@ MonoBehaviour:
   <Run>k__BackingField: 0
   <Guard>k__BackingField: 0
   <RunAction>k__BackingField:
-    m_Name: 
+    m_Name: <Run Action>k__Backing Field
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 3f59b874-670e-4468-8ed3-e4e45a4ee98d
@@ -506,7 +524,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
   <GuardAction>k__BackingField:
-    m_Name: 
+    m_Name: <Guard Action>k__Backing Field
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 9394b80d-dafb-4565-87ab-ceccc7006dbb

@@ -80,7 +80,10 @@
 
 14/10/22 -
 - Improved cm.GetNormalizeTime() method
-- Consider faster movement/attacks if using TimeController
+- Health shared between party, stamina and power specific to individual characters
+- Consider:
+  - Implementing TimeController slow down mechanics (similar to 3D RPG Project 4)
+  - Faster movement/attacks for TimeController
 
 RESOURCES
 - Bezier curves (30/9/22)

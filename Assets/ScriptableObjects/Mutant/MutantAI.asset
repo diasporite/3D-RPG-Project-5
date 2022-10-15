@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MinDelay>k__BackingField: 2
   <AttackPatterns>k__BackingField:
-  - ActionIndices: 0000000001000000
+  - Weight: 1
+    ActionIndices: 000000000100000002000000

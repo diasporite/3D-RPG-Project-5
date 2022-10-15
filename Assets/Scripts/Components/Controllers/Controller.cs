@@ -94,8 +94,8 @@ namespace RPG_Project
             Party = GetComponentInParent<PartyController>();
             Ir = GetComponentInParent<InputReader>();
             Movement = GetComponentInParent<Movement>();
+            Health = GetComponentInParent<Health>();
 
-            Health = GetComponent<Health>();
             Stamina = GetComponent<Stamina>();
             Power = GetComponent<Power>();
             Character = GetComponent<Character>();

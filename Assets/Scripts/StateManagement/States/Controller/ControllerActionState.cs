@@ -101,13 +101,21 @@ namespace RPG_Project
 
                 var actionsLeft = input.InputQueue.Advance();
 
-                if (actionsLeft)
-                    input.InputQueue.Execute();
+                if (stamina.Empty)
+                {
+                    input.InputQueue.ClearInputs();
+                    csm.ChangeState(StateID.ControllerMove);
+                }
                 else
                 {
-                    if (!controller.Movement.Grounded)
-                        csm.ChangeState(StateID.ControllerFall);
-                    else csm.ChangeState(StateID.ControllerMove);
+                    if (actionsLeft)
+                        input.InputQueue.Execute();
+                    else
+                    {
+                        if (!controller.Movement.Grounded)
+                            csm.ChangeState(StateID.ControllerFall);
+                        else csm.ChangeState(StateID.ControllerMove);
+                    }
                 }
             }
         }

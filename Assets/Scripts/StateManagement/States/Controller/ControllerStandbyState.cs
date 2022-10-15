@@ -11,6 +11,7 @@ namespace RPG_Project
 
         Health health;
         Stamina stamina;
+        Power power;
 
         Movement movement;
 
@@ -21,6 +22,7 @@ namespace RPG_Project
 
             health = controller.Health;
             stamina = controller.Stamina;
+            power = controller.Power;
 
             movement = controller.Movement;
         }
@@ -39,8 +41,9 @@ namespace RPG_Project
 
         public void ExecuteFrame()
         {
-            health.Tick();
+            health.Tick(0f);
             stamina.Tick();
+            power.Tick(0f);
 
             if (controller.InCombat && !controller.IsDead)
                 stamina.SpeedFactor = 0.333f;

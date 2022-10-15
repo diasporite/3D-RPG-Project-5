@@ -8,14 +8,14 @@ namespace RPG_Project
     {
         protected override void Awake()
         {
-            base.Awake();
+            party = GetComponent<PartyController>();
         }
 
         public override void Init()
         {
-            baseSpeed = character.CharData.HealthRegen;
+            baseSpeed = party.CurrentController.Character.CharData.HealthRegen;
 
-            var hp = 3f * character.CharData.Health;
+            var hp = party.Hp;
             ResourceCooldown = new Cooldown(hp, baseSpeed, hp);
         }
 

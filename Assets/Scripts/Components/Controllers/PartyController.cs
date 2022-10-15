@@ -44,6 +44,17 @@ namespace RPG_Project
         public Stamina CurrentStamina => CurrentController?.Stamina;
         public Power CurrentPower => CurrentController?.Power;
 
+        public int Hp
+        {
+            get
+            {
+                var totalHp = 0;
+                foreach (var pm in PartyMembers)
+                    totalHp += Mathf.RoundToInt(3f * pm.Character.CharData.Health);
+                return totalHp;
+            }
+        }
+
         private void Awake()
         {
             Movement = GetComponent<Movement>();

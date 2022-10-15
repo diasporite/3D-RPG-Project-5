@@ -30,10 +30,7 @@ namespace RPG_Project
 
         public void ExecuteFrame()
         {
-            if (cm.GetNormalizedTime(controller.deathTag) >= 0.9f)
-            {
-                controller.Party.SwitchToNextCharacter(controller);
-            }
+
         }
 
         public void ExecuteFrameFixed()

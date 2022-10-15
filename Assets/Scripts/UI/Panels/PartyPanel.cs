@@ -10,13 +10,13 @@ namespace RPG_Project
 
         [SerializeField] int index;
 
-        [SerializeField] HealthBar health;
         [SerializeField] StaminaBar stamina;
+        [SerializeField] PowerBar power;
 
         private void Awake()
         {
-            health = GetComponentInChildren<HealthBar>();
             stamina = GetComponentInChildren<StaminaBar>();
+            power = GetComponentInChildren<PowerBar>();
         }
 
         private void OnEnable()
@@ -35,8 +35,8 @@ namespace RPG_Project
 
             this.index = index;
 
-            health.InitUI(party, index);
             stamina.InitUI(party, index);
+            power.InitUI(party, index);
 
             SubscribeToDelegates();
         }

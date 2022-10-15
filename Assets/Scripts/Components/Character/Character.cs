@@ -44,9 +44,9 @@ namespace RPG_Project
         {
             party = GetComponentInParent<PartyController>();
             movement = GetComponentInParent<Movement>();
+            health = GetComponentInParent<Health>();
 
             controller = GetComponent<Controller>();
-            health = GetComponent<Health>();
             stamina = GetComponent<Stamina>();
             power = GetComponent<Power>();
 

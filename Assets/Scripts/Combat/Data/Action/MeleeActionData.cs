@@ -28,7 +28,7 @@ namespace RPG_Project
 
         public override DamageInfo GetDamageInfo(Character character)
         {
-            return new DamageInfo(character, Damage.HealthDamage);
+            return new DamageInfo(character, Damage);
         }
     }
 }

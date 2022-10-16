@@ -54,6 +54,6 @@ MonoBehaviour:
     <DisableHitbox>k__BackingField: 0.605
   <Damage>k__BackingField:
     <HealthDamage>k__BackingField: 58
-    <StaminaDamage>k__BackingField: 1
+    <StaminaDamage>k__BackingField: 0
   <Knockback>k__BackingField:
     <Force>k__BackingField: 0

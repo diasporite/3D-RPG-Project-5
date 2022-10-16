@@ -26,6 +26,8 @@ namespace RPG_Project
             health.ResourceCooldown.Speed = 0f;
             stamina.ResourceCooldown.Speed = 0f;
 
+            controller.Party.Tc?.SetTimescale(1f);
+
             controller.Cm.PlayAnimation(controller.guardHash);
         }
 
@@ -33,6 +35,8 @@ namespace RPG_Project
         {
             health.Tick();
             stamina.Tick();
+
+            controller.Party.Tc?.SetTimescale(1f);
 
             if (controller.Party.Ts.Locked)
                 controller.Cm.RotateTowardsTarget(controller.Party.transform.rotation, controller.Party.Ts.CurrentTargetTransform);

@@ -9,7 +9,7 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "24ea0ed4-f576-4524-a721-9f773ccef600",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": ""
                 },
@@ -17,7 +17,7 @@
                     "name": "Rotate",
                     "type": "Value",
                     "id": "d4ae4287-0b54-4ba0-bf69-2c1f6de406ef",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": ""
                 },
@@ -130,7 +130,7 @@
                 {
                     "name": "2D Vector",
                     "id": "467eb968-fc57-4556-9e07-4fcae88ff9ea",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -185,7 +185,7 @@
                 {
                     "name": "2D Vector",
                     "id": "841bb96e-9fc9-46cd-8d38-899e1a52dab7",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -240,7 +240,7 @@
                 {
                     "name": "2D Vector",
                     "id": "6fe8a3d8-25f3-42b5-b7e4-f90afcf11ccd",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -295,7 +295,7 @@
                 {
                     "name": "2D Vector",
                     "id": "a4e7ea5f-c418-4cde-beb5-630428a40cee",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

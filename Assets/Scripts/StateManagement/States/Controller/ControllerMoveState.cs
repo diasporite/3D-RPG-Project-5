@@ -54,6 +54,8 @@ namespace RPG_Project
 
             controller.Ir.InputQueue.Execute();
 
+            controller.Party.Tc?.SetTimescale(dir.magnitude);
+
             movement.MovePosition(dir, Time.deltaTime, SpeedMode.Walk);
 
             if (controller.Ir.Run)

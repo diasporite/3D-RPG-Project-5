@@ -15,9 +15,6 @@ namespace RPG_Project
 
             controls = new PlayerControls();
             controls.Player.SetCallbacks(this);
-
-            RunAction = controls.Player.Run;
-            GuardAction = controls.Player.Guard;
         }
 
         private void OnEnable()

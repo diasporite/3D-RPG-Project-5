@@ -41,6 +41,8 @@ namespace RPG_Project
 
             stamina.Charged = false;
 
+            controller.Party.Tc?.SetTimescale(1f);
+
             cm.PlayAnimation(controller.moveHash);
         }
 
@@ -54,6 +56,8 @@ namespace RPG_Project
             health.Tick();
             stamina.Tick();
             power.Tick();
+
+            controller.Party.Tc?.SetTimescale(1f);
 
             if (dir == Vector2.zero || stamina.Empty)
                 csm.ChangeState(StateID.ControllerMove);

@@ -21,18 +21,30 @@ namespace RPG_Project
 
         public void Enter(params object[] args)
         {
+            controller.Health.SpeedFactor = 0f;
+            controller.Stamina.SpeedFactor = 0f;
+            controller.Power.SpeedFactor = 0f;
+
+            controller.Stamina.Charged = false;
+
             controller.IsDead = true;
 
             controller.Ir.InputQueue.ClearInputs();
 
             controller.Character.DisableHitDetectors();
 
+            controller.Party.Tc?.SetTimescale(1f);
+
             cm.PlayAnimation(controller.deathHash);
         }
 
         public void ExecuteFrame()
         {
+            controller.Health.Tick();
+            controller.Stamina.Tick();
+            controller.Power.Tick();
 
+            controller.Party.Tc?.SetTimescale(1f);
         }
 
         public void ExecuteFrameFixed()

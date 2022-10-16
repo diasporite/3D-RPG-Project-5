@@ -87,8 +87,8 @@ namespace RPG_Project
 
             var act = 1.4f;
 
-            var hDamage = info.FinalDamage;
-            var sDamage = 0;
+            var hDamage = info.FinalHealthDamage;
+            var sDamage = info.FinalStaminaDamage;
 
             if (controller.sm.InState(StateID.ControllerDodge))
                 hDamage = Mathf.RoundToInt(hDamage * dodgeMult);

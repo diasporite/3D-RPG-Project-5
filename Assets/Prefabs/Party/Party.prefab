@@ -411,22 +411,6 @@ MonoBehaviour:
   <Dpad>k__BackingField: {x: 0, y: 0}
   <Run>k__BackingField: 0
   <Guard>k__BackingField: 0
-  <RunAction>k__BackingField:
-    m_Name: <Run Action>k__Backing Field
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 27b40ff7-e1dc-43d3-96be-a99dcd53df8a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-  <GuardAction>k__BackingField:
-    m_Name: <Guard Action>k__Backing Field
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 78a38c1d-d6af-4f2f-b2d2-089ddf807f2b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
   <InputQueue>k__BackingField:
     <Inputs>k__BackingField: []
 --- !u!114 &5973199515669013817
@@ -486,6 +470,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0335eede2e5ae44f9c73a7e6abf4d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  completeFreeze: 0
+  minTimescale: 0.05
+  acceleration: 5
 --- !u!1 &6217373322490546336
 GameObject:
   m_ObjectHideFlags: 0

@@ -94,7 +94,7 @@ namespace RPG_Project
                     ts.transform.position);
 
                 theta0 = (180f + Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg) % 360f;
-                dTheta = Mathf.Clamp(dTheta + 1.2f * ir.Move.x * yawSpeed * Time.deltaTime, thetaMin, thetaMax);
+                dTheta = Mathf.Clamp(dTheta + 1.2f * ir.Move.x * yawSpeed * Time.unscaledDeltaTime, thetaMin, thetaMax);
 
                 theta = (theta0 + dTheta) % 360f;
                 height = Mathf.Clamp(0.6f * (dist + radius) * 

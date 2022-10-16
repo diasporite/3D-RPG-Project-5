@@ -45,6 +45,8 @@ namespace RPG_Project
             cm.SetFloat("InputX", controller.Ir.Move.x);
             cm.SetFloat("InputY", controller.Ir.Move.y);
 
+            controller.Party.Tc?.SetTimescale(1f);
+
             cm.PlayAnimationInstant(controller.dodgeHash);
 
             if (controller.Party.Ts.Locked)
@@ -60,6 +62,8 @@ namespace RPG_Project
         {
             health.Tick();
             stamina.Tick();
+
+            controller.Party.Tc?.SetTimescale(1f);
 
             normalizedTime = NormalizedTime();
 

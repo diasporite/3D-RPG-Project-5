@@ -54,8 +54,9 @@ namespace RPG_Project
 
             normalizedTime = 0f;
 
+            controller.Party.Tc?.SetTimescaleInstant(1f);
+
             cm.PlayAnimation(controller.CurrentActionHash);
-            //cm.PlayAnimationInstant(controller.CurrentActionHash);
         }
 
         public void ExecuteFrame()
@@ -63,6 +64,8 @@ namespace RPG_Project
             health.Tick();
             stamina.Tick();
             power.Tick();
+
+            controller.Party.Tc?.SetTimescale(1f);
 
             //normalizedTime = NormalizedTime();
             normalizedTime = cm.GetNormalizedTime(controller.CurrentActionTag);

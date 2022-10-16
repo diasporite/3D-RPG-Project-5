@@ -34,6 +34,8 @@ namespace RPG_Project
             health.SpeedFactor = 0f;
             stamina.SpeedFactor = 1f;
 
+            controller.Party.Tc?.SetTimescale(1f);
+
             cm.PlayAnimation(controller.fallHash);
         }
 
@@ -43,6 +45,8 @@ namespace RPG_Project
 
             health.Tick();
             stamina.Tick();
+
+            controller.Party.Tc?.SetTimescale(1f);
 
             movement.MovePosition(dir, Time.deltaTime, SpeedMode.Fall);
 

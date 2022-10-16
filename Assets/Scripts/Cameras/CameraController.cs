@@ -23,10 +23,10 @@ namespace RPG_Project
             if (CurrentCamera != null)
             {
                 transform.position = Vector3.MoveTowards(transform.position,
-                    CurrentCamera.transform.position, linearUpdateSpeed * Time.deltaTime);
+                    CurrentCamera.transform.position, linearUpdateSpeed * Time.unscaledDeltaTime);
 
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, 
-                    CurrentCamera.transform.rotation, rotationalUpdateSpeed * Time.deltaTime);
+                    CurrentCamera.transform.rotation, rotationalUpdateSpeed * Time.unscaledDeltaTime);
             }
         }
 

@@ -325,11 +325,14 @@ namespace RPG_Project
 
         void UpdateCharacter()
         {
-            cm = party.CurrentController.Cm;
+            if (party.CurrentController.Character != null)
+            {
+                cm = party.CurrentController.Cm;
 
-            WalkSpeed = party.CurrentController.Character.WalkSpeed;
-            RunSpeed = party.CurrentController.Character.RunSpeed;
-            StrafeSpeed = party.CurrentController.Character.StrafeSpeed;
+                WalkSpeed = party.CurrentController.Character.WalkSpeed;
+                RunSpeed = party.CurrentController.Character.RunSpeed;
+                StrafeSpeed = party.CurrentController.Character.StrafeSpeed;
+            }
         }
 
         public void SwitchMovementState(MovementState state, SideScrollPathLinear linear)

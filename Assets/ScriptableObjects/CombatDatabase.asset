@@ -20,6 +20,6 @@ MonoBehaviour:
   <StaminaRegen>k__BackingField: 10
   <EnemyStaminaRegen>k__BackingField: 40
   <PlayerStaminaPause>k__BackingField: 0.5
-  <EnemyStaminaPause>k__BackingField: 1.5
+  <EnemyStaminaPause>k__BackingField: 0.2
   <MinResist>k__BackingField: 0.3
   <MaxResist>k__BackingField: 0.7

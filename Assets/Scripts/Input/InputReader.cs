@@ -64,9 +64,6 @@ namespace RPG_Project
         [field: SerializeField] public bool Run { get; protected set; } = false;
         [field: SerializeField] public bool Guard { get; protected set; } = false;
 
-        [field: SerializeField] public InputAction RunAction { get; protected set; }
-        [field: SerializeField] public InputAction GuardAction { get; protected set; }
-
         [field: SerializeField] public InputQueue InputQueue { get; protected set; } = 
             new InputQueue();
 

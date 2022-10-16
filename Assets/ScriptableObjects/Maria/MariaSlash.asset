@@ -19,31 +19,31 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.39
+      time: 0
       value: 0
-      inSlope: 199.99959
-      outSlope: 199.99959
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0
     - serializedVersion: 3
-      time: 0.4
+      time: 0.5
       value: 2
-      inSlope: 0.01751886
-      outSlope: 0.01751886
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.17355198
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -3.3333333
-      outSlope: -3.3333333
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -52,5 +52,8 @@ MonoBehaviour:
   <Windows>k__BackingField:
   - <EnableHitbox>k__BackingField: 0.447
     <DisableHitbox>k__BackingField: 0.605
-  <BasePower>k__BackingField: 82
-  <Force>k__BackingField: 1
+  <Damage>k__BackingField:
+    <HealthDamage>k__BackingField: 82
+    <StaminaDamage>k__BackingField: 4
+  <Knockback>k__BackingField:
+    <Force>k__BackingField: 0.5

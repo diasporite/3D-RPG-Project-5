@@ -9,35 +9,53 @@ namespace RPG_Project
         Controller controller;
         StateMachine csm;
 
+        CharacterModel cm;
+
+        float normalizedTime = 0f;
+
         public ControllerStaggerState(Controller controller)
         {
             this.controller = controller;
             csm = controller.sm;
+
+            cm = controller.Cm;
         }
 
         public void Enter(params object[] args)
         {
-            throw new System.NotImplementedException();
+            controller.IsStaggered = true;
+
+            controller.Ir.InputQueue.ClearInputs();
+
+            controller.Character.DisableHitDetectors();
+
+            normalizedTime = 0f;
+
+            cm.PlayAnimation(controller.staggerHash);
         }
 
         public void ExecuteFrame()
         {
-            throw new System.NotImplementedException();
+            normalizedTime = cm.GetNormalizedTime(controller.staggerTag);
+
+            if (normalizedTime >= 0.9f) csm.ChangeState(StateID.ControllerMove);
         }
 
         public void ExecuteFrameFixed()
         {
-            throw new System.NotImplementedException();
+
         }
 
         public void ExecuteFrameLate()
         {
-            throw new System.NotImplementedException();
+
         }
 
         public void Exit()
         {
-            throw new System.NotImplementedException();
+            controller.IsStaggered = false;
+
+            controller.Stamina.ResourceCooldown.CooldownFraction = 0.5f;
         }
     }
 }

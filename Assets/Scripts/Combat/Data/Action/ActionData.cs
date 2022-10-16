@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace RPG_Project
 {
+    [System.Serializable]
+    public class HitboxWindow
+    {
+        [field: SerializeField] public float EnableHitbox { get; private set; } = 0.5f;
+        [field: SerializeField] public float DisableHitbox { get; private set; } = 0.6f;
+    }
+
     [CreateAssetMenu(fileName = "New Action", menuName = "Combat/Action")]
     public class ActionData : ScriptableObject
     {
@@ -29,7 +36,7 @@ namespace RPG_Project
             return false;
         }
 
-        public virtual DamageInfo Damage(Character character)
+        public virtual DamageInfo GetDamageInfo(Character character)
         {
             return null;
         }

@@ -128,6 +128,11 @@ namespace RPG_Project
             HitDetectors[action.HitboxIndex].gameObject.SetActive(action.IsHitDetectorActive(normTime));
         }
 
+        public void DisableHitDetectors()
+        {
+            foreach (var hd in HitDetectors) hd.gameObject.SetActive(false);
+        }
+
         public float EvaluateActionMovement(float normalisedTime)
         {
             return CharData.CombatActions[controller.CurrentActionIndex].

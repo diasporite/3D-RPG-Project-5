@@ -5,24 +5,30 @@ using UnityEngine;
 namespace RPG_Project
 {
     [System.Serializable]
-    public class HitboxWindow
+    public class DamageData
     {
-        [field: SerializeField] public float EnableHitbox { get; private set; } = 0.5f;
-        [field: SerializeField] public float DisableHitbox { get; private set; } = 0.6f;
+        [field: SerializeField] public int HealthDamage { get; private set; }
+        [field: SerializeField] public int StaminaDamage { get; private set; }
+    }
+
+    [System.Serializable]
+    public class KnockbackData
+    {
+        [field: SerializeField] public float Force { get; private set; }
     }
 
     [CreateAssetMenu(fileName = "New Melee", menuName = "Combat/Actions/Melee")]
     public class MeleeActionData : ActionData
     {
         [field: Header("Damage")]
-        [field: SerializeField] public int BasePower { get; private set; } = 30;
+        [field: SerializeField] public DamageData Damage { get; private set; }
 
         [field: Header("Knockback")]
-        [field: SerializeField] public int Force { get; private set; } = 5;
+        [field: SerializeField] public KnockbackData Knockback { get; private set; }
 
-        public override DamageInfo Damage(Character character)
+        public override DamageInfo GetDamageInfo(Character character)
         {
-            return new DamageInfo(character, BasePower);
+            return new DamageInfo(character, Damage.HealthDamage);
         }
     }
 }

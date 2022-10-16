@@ -25,6 +25,8 @@ namespace RPG_Project
 
             controller.Ir.InputQueue.ClearInputs();
 
+            controller.Character.DisableHitDetectors();
+
             cm.PlayAnimation(controller.deathHash);
         }
 

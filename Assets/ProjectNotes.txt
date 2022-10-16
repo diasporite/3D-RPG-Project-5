@@ -84,6 +84,10 @@
 - Consider:
   - Implementing TimeController slow down mechanics (similar to 3D RPG Project 4)
   - Faster movement/attacks for TimeController
+- TO DO:
+  - Enemy health bars
+    - Show/hide depending on range to player
+    - Health bars appear for enemies behind camera
 
 RESOURCES
 - Bezier curves (30/9/22)

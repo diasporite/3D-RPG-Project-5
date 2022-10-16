@@ -7,6 +7,7 @@ namespace RPG_Project
 {
     public class TargetSphere : MonoBehaviour
     {
+        [field: SerializeField] public TargetType SelfType { get; private set; }
         [field: SerializeField] public TargetType[] Types { get; private set; }
 
         [field: SerializeField] public bool Locked { get; private set; } = false;

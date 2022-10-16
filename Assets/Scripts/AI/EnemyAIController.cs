@@ -85,9 +85,13 @@ namespace RPG_Project
 
         void UpdateCharacter()
         {
-            Pattern = Party.CurrentController.Character.EnemyAi;
+            if (Party.CurrentController.Character != null)
+            {
+                print(Party.CurrentController.Character == null);
+                Pattern = Party.CurrentController.Character.EnemyAi;
 
-            Timer = new Cooldown(Pattern.MinDelay, 1f, 0f);
+                Timer = new Cooldown(Pattern.MinDelay, 1f, 0f);
+            }
         }
 
         void InitSM()

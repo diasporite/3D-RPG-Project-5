@@ -34,7 +34,9 @@ namespace RPG_Project
 
         public Movement Movement { get; private set; }
         public InputReader Ir { get; private set; }
-        
+        public Health Health { get; private set; }
+        public TimeController Tc { get; private set; }
+
         public TargetSphere Ts { get; private set; }
         [field: SerializeField] public EnemyStats Es { get; private set; }
 
@@ -59,6 +61,8 @@ namespace RPG_Project
         {
             Movement = GetComponent<Movement>();
             Ir = GetComponent<InputReader>();
+            Health = GetComponent<Health>();
+            Tc = GetComponent<TimeController>();
 
             Ts = GetComponentInChildren<TargetSphere>();
             Es = GetComponentInChildren<EnemyStats>();

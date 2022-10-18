@@ -11,7 +11,7 @@ namespace RPG_Project
         [field: SerializeField] public float DisableHitbox { get; private set; } = 0.6f;
     }
 
-    [CreateAssetMenu(fileName = "New Action", menuName = "Combat/Action")]
+    [CreateAssetMenu(fileName = "New Action", menuName = "Combat/Actions/Action")]
     public class ActionData : ScriptableObject
     {
         [field: SerializeField] public string ActionName { get; private set; }

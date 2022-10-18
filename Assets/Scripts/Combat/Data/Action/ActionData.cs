@@ -22,17 +22,11 @@ namespace RPG_Project
         [field: SerializeField] public AnimationCurve MotionCurve { get; private set; }
 
         [field: Header("HitDetection")]
-        [field: SerializeField] public int HitboxIndex { get; private set; }
-        [field: SerializeField] public HitboxWindow[] Windows { get; private set; }
+        [field: SerializeField] public int HitboxIndex { get; protected set; }
+        [field: SerializeField] public HitboxWindow[] Windows { get; protected set; }
 
-        public bool IsHitDetectorActive(float normTime)
+        public virtual bool IsHitDetectorActive(float normTime)
         {
-            foreach (var w in Windows)
-            {
-                if (normTime >= w.EnableHitbox &&
-                    normTime <= w.DisableHitbox) return true;
-            }
-
             return false;
         }
 

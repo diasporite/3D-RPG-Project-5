@@ -58,7 +58,7 @@ namespace RPG_Project
 
             movement.MovePosition(dir, Time.deltaTime, SpeedMode.Walk);
 
-            if (controller.Ir.Run)
+            if (controller.Ir.Run && stamina.ResourceFraction >= 0.25f)
                 csm.ChangeState(StateID.ControllerRun);
             else if (controller.Ir.Guard)
                 csm.ChangeState(StateID.ControllerGuard);

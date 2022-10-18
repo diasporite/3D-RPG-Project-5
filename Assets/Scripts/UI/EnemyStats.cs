@@ -6,16 +6,18 @@ namespace RPG_Project
 {
     public class EnemyStats : MonoBehaviour
     {
+        [SerializeField] float showtime = 6f;
+        [SerializeField] float height = 1.5f;
+        [SerializeField] float updateSpeed = 250f;
+
         [SerializeField] PartyController party;
+        [SerializeField] EnemyAIController ai;
 
         [SerializeField] Transform uiHolder;
 
         [SerializeField] HealthBar hBar;
         [SerializeField] StaminaBar sBar;
         [SerializeField] DamageText dText;
-
-        [SerializeField] float showtime = 6f;
-        [SerializeField] float height = 1.5f;
 
         [SerializeField] Cooldown Timer;
 
@@ -32,6 +34,8 @@ namespace RPG_Project
 
         private void Start()
         {
+            ai = party.GetComponent<EnemyAIController>();
+
             uiHolder.transform.position =
                 Camera.main.WorldToScreenPoint(party.transform.position +
                 height * Vector3.up);
@@ -40,32 +44,29 @@ namespace RPG_Project
             sBar.InitUI(party);
             dText.InitUI(party);
 
-            //hBar.gameObject.SetActive(false);
-            //sBar.gameObject.SetActive(false);
+            hBar.gameObject.SetActive(false);
+            sBar.gameObject.SetActive(false);
             dText.gameObject.SetActive(false);
         }
 
         private void Update()
         {
-            uiHolder.transform.position = Vector3.Lerp(uiHolder.transform.position,
-    Camera.main.WorldToScreenPoint(party.transform.position +
-    height * Vector3.up), 0.8f);
+            var visible = party.GetComponent<EnemyAIController>().InPlayerRange && 
+                !party.GetComponentInChildren<Renderer>().isVisible;
 
-            //uiHolder.transform.position = Vector3.MoveTowards(uiHolder.transform.position,
-            //    Camera.main.WorldToScreenPoint(party.transform.position +
-            //    height * Vector3.up), 250f * Time.deltaTime);
+            hBar.gameObject.SetActive(visible);
+            sBar.gameObject.SetActive(visible);
+
+            uiHolder.transform.position = Vector3.MoveTowards(uiHolder.transform.position,
+                Camera.main.WorldToScreenPoint(party.transform.position +
+                height * Vector3.up), updateSpeed * Time.unscaledDeltaTime);
 
             if (!Timer.Full)
             {
-                Timer.Tick();
+                Timer.TickUnscaled();
 
                 if (Timer.Full)
-                {
-                    //hBar.gameObject.SetActive(false);
-                    //sBar.gameObject.SetActive(false);
-
                     dText.gameObject.SetActive(false);
-                }
             }
         }
 

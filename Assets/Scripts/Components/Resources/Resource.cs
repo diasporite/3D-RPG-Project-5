@@ -26,6 +26,8 @@ namespace RPG_Project
 
         public int ResourcePoints => Mathf.CeilToInt(ResourceCooldown.Count);
 
+        public float ResourceFraction => ResourceCooldown.CooldownFraction;
+
         public bool Empty => ResourceCooldown.Empty;
         public bool Full => ResourceCooldown.Full;
 

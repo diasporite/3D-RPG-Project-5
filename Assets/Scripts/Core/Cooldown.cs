@@ -55,6 +55,11 @@ namespace RPG_Project
             Count += speed * dt;
         }
 
+        public void TickUnscaled()
+        {
+            Count += speed * Time.unscaledDeltaTime;
+        }
+
         public void Reset()
         {
             Count = 0;

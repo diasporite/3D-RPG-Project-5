@@ -102,13 +102,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2730d4d89fae0954c971504c9732ae0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showtime: 6
+  height: 0.5
+  updateSpeed: 2000
   party: {fileID: 0}
+  ai: {fileID: 0}
   uiHolder: {fileID: 2975621889441025444}
   hBar: {fileID: 0}
   sBar: {fileID: 0}
   dText: {fileID: 0}
-  showtime: 6
-  height: 0.5
   Timer:
     cooldown: 0
     speed: 0
@@ -515,22 +517,6 @@ MonoBehaviour:
   <Dpad>k__BackingField: {x: 0, y: 0}
   <Run>k__BackingField: 0
   <Guard>k__BackingField: 0
-  <RunAction>k__BackingField:
-    m_Name: <Run Action>k__Backing Field
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 3f59b874-670e-4468-8ed3-e4e45a4ee98d
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-  <GuardAction>k__BackingField:
-    m_Name: <Guard Action>k__Backing Field
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 9394b80d-dafb-4565-87ab-ceccc7006dbb
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
   <InputQueue>k__BackingField:
     <Inputs>k__BackingField: []
 --- !u!1 &7092928215264733791

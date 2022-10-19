@@ -1,13 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG_Project
 {
-    public class Projectile : MonoBehaviour
+    public class Projectile : HitDetector
     {
-        [SerializeField] bool useGravity;
-        [SerializeField] float tracking;
+        [SerializeField] bool isPiercing;
+        [SerializeField] float projectileTracking;
+        [SerializeField] float gravityStrength;
+        [SerializeField] float speed;
 
         [SerializeField] Transform follow;
 
@@ -16,14 +19,30 @@ namespace RPG_Project
 
         Cooldown Lifetime;
 
-        public void InitProjectile(ProjectileActionData data, Transform follow)
+        Vector3 planeFollow;
+        Vector3 planeStraight;
+
+        Vector3 ds;
+        Vector3 dy;
+        Vector3 dv;
+
+        ProjectileWeapon weapon;
+
+        public void InitProjectile(ProjectileWeapon weapon, ProjectileActionData data, 
+            Transform muzzle, Transform follow)
         {
+            transform.rotation = Quaternion.LookRotation(muzzle.forward);
+
+            this.weapon = weapon;
             this.follow = follow;
 
-            useGravity = data.UseGravity;
-            tracking = data.ProjectileTracking;
+            projectileTracking = data.ProjectileTracking;
+            gravityStrength = data.GravityStrength;
+            speed = data.Speed;
 
             Lifetime = new Cooldown(data.Lifetime, 1f, 0f);
+
+            verticalVelocity = 0f;
         }
 
         private void Update()
@@ -33,18 +52,77 @@ namespace RPG_Project
             Tick();
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            var hurt = other.GetComponent<Hurtbox>();
+
+            if (hurt)
+            {
+                var dam = hurt.Damageable;
+
+                if (dam != null && dam != weapon.Character)
+                {
+                    if (Array.Exists(weapon.TargetTypes, i => i == hurt.TargetType))
+                    {
+                        DealDamage(dam);
+
+                        if (!isPiercing)
+                            Destroy(gameObject);
+                    }
+                }
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawRay(transform.position, 4f * transform.forward);
+            Gizmos.DrawRay(transform.position, 4f * dv);
+        }
+
         void Tick()
         {
             Lifetime.Tick();
+
+            if (Lifetime.Full)
+                Destroy(gameObject);
         }
 
         void Move(float dt)
         {
-            var dirToFollow = (follow.position - transform.position).normalized;
+            planeFollow = follow != null ? (follow.position - 
+                transform.position).normalized : transform.forward;
+            planeFollow.y = 0;
 
-            var ds = Vector3.Slerp(transform.forward, dirToFollow, tracking);
+            planeStraight = transform.forward;
+            planeStraight.y = 0;
 
-            transform.Translate(ds * dt);
+            verticalVelocity += gravityStrength * gravity * Time.deltaTime;
+
+            ds = Vector3.Lerp(planeStraight, planeFollow, projectileTracking);
+            dy = verticalVelocity * Vector3.up;
+            dv = (ds + dy).normalized;
+
+            transform.rotation = Quaternion.LookRotation(ds);
+            transform.position += speed * (transform.forward + dy) * dt;
+        }
+
+        void DealDamage()
+        {
+            foreach (var dam in hits.Keys)
+            {
+                var damage = weapon.Character.CharData.
+                    CombatActions[weapon.Controller.CurrentActionIndex].GetDamageInfo(weapon.Character);
+                dam.OnDamage(damage);
+                dam.OnImpact(Vector3.zero);
+            }
+        }
+
+        void DealDamage(Damageable dam)
+        {
+            var damage = weapon.Character.CharData.
+                CombatActions[weapon.Controller.CurrentActionIndex].GetDamageInfo(weapon.Character);
+            dam.OnDamage(damage);
+            dam.OnImpact(Vector3.zero);
         }
     }
 }

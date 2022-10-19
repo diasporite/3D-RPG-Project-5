@@ -52,22 +52,25 @@ namespace RPG_Project
         private void Update()
         {
             var visible = party.GetComponent<EnemyAIController>().InPlayerRange && 
-                !party.GetComponentInChildren<Renderer>().isVisible;
+                !party.GetComponentInChildren<Renderer>().isVisible && !party.Dead;
 
             hBar.gameObject.SetActive(visible);
             sBar.gameObject.SetActive(visible);
+            dText.gameObject.SetActive(visible && !Timer.Full);
 
             uiHolder.transform.position = Vector3.MoveTowards(uiHolder.transform.position,
                 Camera.main.WorldToScreenPoint(party.transform.position +
                 height * Vector3.up), updateSpeed * Time.unscaledDeltaTime);
 
-            if (!Timer.Full)
-            {
-                Timer.TickUnscaled();
+            Timer.TickUnscaled();
 
-                if (Timer.Full)
-                    dText.gameObject.SetActive(false);
-            }
+            //if (!Timer.Full)
+            //{
+            //    Timer.TickUnscaled();
+
+            //    if (Timer.Full)
+            //        dText.gameObject.SetActive(false);
+            //}
         }
 
         public void OnDamage(int hChange, int sChange)

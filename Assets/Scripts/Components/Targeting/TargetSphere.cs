@@ -12,6 +12,8 @@ namespace RPG_Project
 
         [field: SerializeField] public bool Locked { get; private set; } = false;
 
+        [field: SerializeField] public Target OwnTarget { get; private set; }
+
         [field: SerializeField] public List<Target> Targets { get; private set; } = 
             new List<Target>();
         [field: SerializeField] public Target CurrentTarget { get; private set; }
@@ -36,6 +38,8 @@ namespace RPG_Project
         private void Start()
         {
             main = Camera.main;
+
+            OwnTarget = GetComponentInParent<PartyController>().OwnTarget;
         }
 
         private void OnEnable()
@@ -54,9 +58,12 @@ namespace RPG_Project
 
             if (t)
             {
-                if (t.transform.root != transform.root && !Targets.Contains(t) && 
+                if (t != OwnTarget && !Targets.Contains(t) &&
                     Array.Exists(Types, i => i == t.Type))
+                {
                     Targets.Add(t);
+                    t.Subscribe(this);
+                }
             }
         }
 
@@ -69,6 +76,7 @@ namespace RPG_Project
                 if (Targets.Contains(t))
                 {                    
                     Targets.Remove(t);
+                    t.Unsubscribe(this);
 
                     if (t == CurrentTarget)
                     {
@@ -77,6 +85,23 @@ namespace RPG_Project
 
                         if (CurrentTarget == null) UnlockTarget();
                     }
+                }
+            }
+        }
+
+        public void RemoveTarget(Target target)
+        {
+            if (Targets.Contains(target))
+            {
+                Targets.Remove(target);
+
+                if (CurrentTarget == target)
+                {
+                    CurrentTarget = null;
+                    GetCurrentTarget();
+
+                    if (CurrentTarget == null)
+                        UnlockTarget();
                 }
             }
         }

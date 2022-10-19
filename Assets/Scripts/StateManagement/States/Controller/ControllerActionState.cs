@@ -76,7 +76,8 @@ namespace RPG_Project
             controller.Movement.MovePositionAction(cm.transform.forward, Time.deltaTime,
                 character.EvaluateActionMovement(normalizedTime));
 
-            character.EnableHitDetector(controller.CurrentActionIndex, normalizedTime);
+            //character.EnableHitbox(controller.CurrentActionIndex, normalizedTime);
+            character.TriggerAttack(controller.CurrentActionIndex, normalizedTime);
 
             ProcessQueue();
         }

@@ -29,7 +29,8 @@ namespace RPG_Project
             baseSpeed = character.CharData.StaminaRegen;
 
             var sp = 2f * character.CharData.Stamina;
-            ResourceCooldown = new Cooldown(sp, baseSpeed, Random.Range(0.2f, 0.8f) * sp);
+            //ResourceCooldown = new Cooldown(sp, baseSpeed, Random.Range(0.2f, 0.8f) * sp);
+            ResourceCooldown = new Cooldown(sp, baseSpeed, sp);
             PauseTimer = new Cooldown(pauseTime, 1f, pauseTime);
         }
 

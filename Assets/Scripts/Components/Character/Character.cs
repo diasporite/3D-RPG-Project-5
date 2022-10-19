@@ -28,7 +28,8 @@ namespace RPG_Project
         [field: SerializeField] public ActionData DodgeAction { get; private set; }
 
         [field: Header("Hitboxes")]
-        [field: SerializeField] public HitDetector[] HitDetectors { get; private set; }
+        [field: SerializeField] public Hitbox[] Melee { get; private set; }
+        [field: SerializeField] public ProjectileWeapon[] Projectile { get; private set; }
 
         PartyController party;
         Movement movement;
@@ -50,9 +51,10 @@ namespace RPG_Project
             stamina = GetComponent<Stamina>();
             power = GetComponent<Power>();
 
-            HitDetectors = GetComponentsInChildren<HitDetector>();
+            Melee = GetComponentsInChildren<Hitbox>();
+            Projectile = GetComponentsInChildren<ProjectileWeapon>();
 
-            foreach (var hit in HitDetectors) hit.gameObject.SetActive(false);
+            foreach (var hit in Melee) hit.gameObject.SetActive(false);
 
             InitCharacter();
         }
@@ -83,7 +85,7 @@ namespace RPG_Project
 
         public override void OnDamage(DamageInfo info)
         {
-            if (controller.sm.InState(StateID.ControllerDeath)) return;
+            if (controller.sm.InState(StateID.ControllerDeath) || info == null) return;
 
             var act = 1.4f;
 
@@ -122,15 +124,26 @@ namespace RPG_Project
             movement.ApplyForce(impulse);
         }
 
-        public void EnableHitDetector(int actionIndex, float normTime)
+        public void TriggerAttack(int actionIndex, float normTime)
+        {
+            actionIndex = Mathf.Clamp(actionIndex, 0, CharData.CombatActions.Length);
+            CharData.CombatActions[actionIndex].TriggerAttack(normTime, Melee, Projectile);
+        }
+
+        public void EnableHitbox(int actionIndex, float normTime)
         {
             var action = CharData.CombatActions[actionIndex];
-            HitDetectors[action.HitboxIndex].gameObject.SetActive(action.IsHitDetectorActive(normTime));
+            Melee[action.HitboxIndex].gameObject.SetActive(action.IsHitDetectorActive(normTime));
+        }
+
+        public void FireWeapon(int actionIndex, int weaponIndex, int bulletIndex, float normTime)
+        {
+            var action = CharData.CombatActions[actionIndex];
         }
 
         public void DisableHitDetectors()
         {
-            foreach (var hd in HitDetectors) hd.gameObject.SetActive(false);
+            foreach (var hd in Melee) hd.gameObject.SetActive(false);
         }
 
         public float EvaluateActionMovement(float normalisedTime)

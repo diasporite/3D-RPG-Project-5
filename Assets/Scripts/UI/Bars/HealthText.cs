@@ -29,8 +29,8 @@ namespace RPG_Project
 
         protected override void UpdateTick()
         {
-            text.text = header + party.CurrentHealth.ResourcePoints + "/" +
-                Mathf.RoundToInt(party.CurrentHealth.ResourceCooldown.CooldownValue);
+            text.text = header + party.Health.ResourcePoints + "/" +
+                Mathf.RoundToInt(party.Health.ResourceCooldown.CooldownValue);
         }
     }
 }

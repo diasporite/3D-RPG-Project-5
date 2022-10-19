@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SWATShoot
   m_EditorClassIdentifier: 
   <ActionName>k__BackingField: Shoot
-  <StaminaCost>k__BackingField: 20
-  <PowerCost>k__BackingField: 4
+  <StaminaCost>k__BackingField: 16
+  <PowerCost>k__BackingField: 32
   <MotionCurve>k__BackingField:
     serializedVersion: 2
     m_Curve: []
@@ -23,9 +23,21 @@ MonoBehaviour:
     m_RotationOrder: 4
   <HitboxIndex>k__BackingField: 0
   <Windows>k__BackingField: []
-  <ProjectilePrefab>k__BackingField: {fileID: 0}
-  <SpawnNormTimes>k__BackingField: []
+  <Damage>k__BackingField:
+    <IsDamaging>k__BackingField: 1
+    <HealthDamage>k__BackingField: 153
+    <StaminaDamage>k__BackingField: 0
+  <Knockback>k__BackingField:
+    <HasKnockback>k__BackingField: 1
+    <Interrupts>k__BackingField: 0
+    <Force>k__BackingField: 0
+    <Direction>k__BackingField: {x: 0, y: 0}
+  <ProjectilePrefab>k__BackingField: {fileID: 5836363600233326361, guid: 0678b5b54867f3f47a3d5ce79c76662b,
+    type: 3}
+  <FireNormTimes>k__BackingField:
+  - 0.1
+  <IsPiercing>k__BackingField: 0
   <ProjectileTracking>k__BackingField: 0
-  <UseGravity>k__BackingField: 0
+  <GravityStrength>k__BackingField: 0.02
   <Lifetime>k__BackingField: 1
   <Speed>k__BackingField: 20

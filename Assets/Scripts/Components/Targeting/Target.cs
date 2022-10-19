@@ -15,6 +15,8 @@ namespace RPG_Project
     {
         [field: SerializeField] public TargetType Type { get; private set; }
 
+        List<TargetSphere> subscribers = new List<TargetSphere>();
+
         private void Awake()
         {
             var input = GetComponentInParent<InputReader>();
@@ -22,6 +24,21 @@ namespace RPG_Project
             if (input is PlayerInputReader) Type = TargetType.Player;
             else if (input is EnemyInputReader) Type = TargetType.Enemy;
             else Type = TargetType.Object;
+        }
+
+        public void Subscribe(TargetSphere ts)
+        {
+            if (!subscribers.Contains(ts)) subscribers.Add(ts);
+        }
+
+        public void Unsubscribe(TargetSphere ts)
+        {
+            if (subscribers.Contains(ts)) subscribers.Remove(ts);
+        }
+
+        public void NotifyDeath()
+        {
+            foreach (var s in subscribers) s.RemoveTarget(this);
         }
     }
 }

@@ -23,5 +23,6 @@ namespace RPG_Project
         EnemyAIIdle = 31,
         EnemyAIChase = 32,
         EnemyAIStrafe = 33,
+        EnemyAIStandby = 34,
     }
 }

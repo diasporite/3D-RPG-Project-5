@@ -7,6 +7,8 @@ namespace RPG_Project
     [System.Serializable]
     public class DamageData
     {
+        [field: SerializeField] public bool IsDamaging { get; private set; } = true;
+
         [field: SerializeField] public int HealthDamage { get; private set; } = 0;
         [field: SerializeField] public int StaminaDamage { get; private set; } = 0;
     }
@@ -14,6 +16,8 @@ namespace RPG_Project
     [System.Serializable]
     public class KnockbackData
     {
+        [field: SerializeField] public bool HasKnockback { get; private set; } = true;
+
         [field: SerializeField] public bool Interrupts { get; private set; } = false;
         [field: SerializeField] public float Force { get; private set; } = 0f;
         [field: Tooltip("From side view, facing right, relative to attacker" +
@@ -22,13 +26,13 @@ namespace RPG_Project
     }
 
     [CreateAssetMenu(fileName = "New Melee", menuName = "Combat/Actions/Melee")]
-    public class MeleeActionData : ActionData
+    public class MeleeActionData : AttackActionData
     {
-        [field: Header("Damage")]
-        [field: SerializeField] public DamageData Damage { get; private set; }
-
-        [field: Header("Knockback")]
-        [field: SerializeField] public KnockbackData Knockback { get; private set; }
+        public override void TriggerAttack(float normTime, Hitbox[] hitboxes, 
+            ProjectileWeapon[] weapons)
+        {
+            hitboxes[HitboxIndex].gameObject.SetActive(IsHitDetectorActive(normTime));
+        }
 
         public override bool IsHitDetectorActive(float normTime)
         {
@@ -39,11 +43,6 @@ namespace RPG_Project
             }
 
             return false;
-        }
-
-        public override DamageInfo GetDamageInfo(Character character)
-        {
-            return new DamageInfo(character, Damage);
         }
     }
 }

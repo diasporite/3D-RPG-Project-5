@@ -11,7 +11,7 @@ namespace RPG_Project
             this.party = party;
 
             forCurrent = true;
-            resource = party.CurrentHealth;
+            resource = party.Health;
 
             base.InitUI(party);
         }
@@ -42,7 +42,7 @@ namespace RPG_Project
 
         protected override void UpdateResource()
         {
-            resource = party.CurrentHealth;
+            resource = party.Health;
 
             fill.fillAmount = resource.ResourceCooldown.CooldownFraction;
             fillShadow.fillAmount = resource.ResourceCooldown.CooldownFraction;

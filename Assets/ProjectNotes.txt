@@ -82,7 +82,9 @@
 - Improved cm.GetNormalizeTime() method
 - Health shared between party, stamina and power specific to individual characters
 - Implemented TimeController slow down mechanics (similar to 3D RPG Project 4)
-- Consider:
+- Added SWAT Guy
+- Added shooting
+- CONSIDER:
   - Faster movement/attacks for TimeController
   - Switching back to Cinemachine cameras
 - TO DO:
@@ -92,6 +94,7 @@
 	- Ranged hitboxes/hitrays for long range attacks
     - Particle effects to clearly indicate hitboxes
 	- Apply knockback
+	- Issue w/ Erika animations - names different between prefab and animation clip
 
 RESOURCES
 - Bezier curves (30/9/22)

@@ -38,13 +38,16 @@ namespace RPG_Project
         public TimeController Tc { get; private set; }
 
         public TargetSphere Ts { get; private set; }
+        public Target OwnTarget { get; private set; }
+
         [field: SerializeField] public EnemyStats Es { get; private set; }
 
         public readonly StateMachine sm = new StateMachine();
 
-        public Health CurrentHealth => CurrentController?.Health;
         public Stamina CurrentStamina => CurrentController?.Stamina;
         public Power CurrentPower => CurrentController?.Power;
+
+        public bool Dead => Health.Empty;
 
         public int Hp
         {
@@ -65,6 +68,8 @@ namespace RPG_Project
             Tc = GetComponent<TimeController>();
 
             Ts = GetComponentInChildren<TargetSphere>();
+            OwnTarget = GetComponentInChildren<Target>();
+
             Es = GetComponentInChildren<EnemyStats>();
 
             IsPlayer = Ir is PlayerInputReader;

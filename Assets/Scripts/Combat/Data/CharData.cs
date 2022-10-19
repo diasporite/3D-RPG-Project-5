@@ -33,6 +33,6 @@ namespace RPG_Project
         [field: SerializeField] public DodgeActionData DodgeAction { get; private set; }
 
         [field: Tooltip("Index in array corresponds to action hash.")]
-        [field: SerializeField] public ActionData[] CombatActions { get; private set; }
+        [field: SerializeField] public AttackActionData[] CombatActions { get; private set; }
     }
 }

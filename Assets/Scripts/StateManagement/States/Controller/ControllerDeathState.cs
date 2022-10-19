@@ -9,6 +9,11 @@ namespace RPG_Project
         Controller controller;
         StateMachine csm;
 
+        Health health;
+
+        Stamina stamina;
+        Power power;
+
         CharacterModel cm;
 
         public ControllerDeathState(Controller controller)
@@ -16,16 +21,21 @@ namespace RPG_Project
             this.controller = controller;
             csm = controller.sm;
 
+            health = controller.Party.Health;
+
+            stamina = controller.Stamina;
+            power = controller.Power;
+
             cm = controller.Cm;
         }
 
         public void Enter(params object[] args)
         {
-            controller.Health.SpeedFactor = 0f;
-            controller.Stamina.SpeedFactor = 0f;
-            controller.Power.SpeedFactor = 0f;
+            health.SpeedFactor = 0f;
+            stamina.SpeedFactor = 0f;
+            power.SpeedFactor = 0f;
 
-            controller.Stamina.Charged = false;
+            stamina.Charged = false;
 
             controller.IsDead = true;
 
@@ -35,14 +45,18 @@ namespace RPG_Project
 
             controller.Party.Tc?.SetTimescale(1f);
 
+            controller.Party.OwnTarget.NotifyDeath();
+
+            controller.GetComponent<EnemyAIController>()?.Standby();
+
             cm.PlayAnimation(controller.deathHash);
         }
 
         public void ExecuteFrame()
         {
-            controller.Health.Tick();
-            controller.Stamina.Tick();
-            controller.Power.Tick();
+            health.Tick();
+            stamina.Tick();
+            power.Tick();
 
             controller.Party.Tc?.SetTimescale(1f);
         }

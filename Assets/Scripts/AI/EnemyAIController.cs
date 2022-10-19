@@ -101,6 +101,12 @@ namespace RPG_Project
             sm.AddState(StateID.EnemyAIIdle, new EnemyAIIdleState(this));
             sm.AddState(StateID.EnemyAIChase, new EnemyAIChaseState(this));
             sm.AddState(StateID.EnemyAIStrafe, new EnemyAIStrafeState(this));
+            sm.AddState(StateID.EnemyAIStandby, new EnemyAIStandbyState(this));
+        }
+
+        public void Standby()
+        {
+            sm.ChangeState(StateID.EnemyAIStandby);
         }
     }
 }

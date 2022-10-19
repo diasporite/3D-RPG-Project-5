@@ -53,7 +53,11 @@ MonoBehaviour:
   - <EnableHitbox>k__BackingField: 0.452
     <DisableHitbox>k__BackingField: 0.63
   <Damage>k__BackingField:
+    <IsDamaging>k__BackingField: 1
     <HealthDamage>k__BackingField: 115
     <StaminaDamage>k__BackingField: 10
   <Knockback>k__BackingField:
+    <HasKnockback>k__BackingField: 1
+    <Interrupts>k__BackingField: 0
     <Force>k__BackingField: 2
+    <Direction>k__BackingField: {x: 0, y: 0}

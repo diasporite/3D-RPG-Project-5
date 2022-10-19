@@ -39,6 +39,8 @@ namespace RPG_Project
             main = Camera.main;
 
             rotationSpeed = GetComponentInParent<Movement>().RotationSpeed;
+
+            if (party.IsPlayer) Anim.updateMode = AnimatorUpdateMode.UnscaledTime;
         }
 
         private void OnDrawGizmos()

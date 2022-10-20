@@ -143,6 +143,11 @@ PrefabInstance:
       propertyPath: minDelay
       value: 3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5366002985647146272, guid: 9d54132730ad82f46a692abe445bae86,
+        type: 3}
+      propertyPath: damping
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5366002985647146274, guid: 9d54132730ad82f46a692abe445bae86,
         type: 3}
       propertyPath: m_RootOrder
@@ -1213,6 +1218,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285154329683726420, guid: b85f40d8d3e675149aafbd4e08ac1b9b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4655891979464209173, guid: b85f40d8d3e675149aafbd4e08ac1b9b,
         type: 3}

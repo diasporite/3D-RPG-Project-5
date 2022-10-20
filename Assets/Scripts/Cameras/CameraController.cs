@@ -25,7 +25,7 @@ namespace RPG_Project
                 transform.position = Vector3.MoveTowards(transform.position,
                     CurrentCamera.transform.position, linearUpdateSpeed * Time.unscaledDeltaTime);
 
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, 
+                transform.rotation = Quaternion.RotateTowards(transform.rotation,
                     CurrentCamera.transform.rotation, rotationalUpdateSpeed * Time.unscaledDeltaTime);
             }
         }

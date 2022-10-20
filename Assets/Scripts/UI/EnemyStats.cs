@@ -52,11 +52,11 @@ namespace RPG_Project
         private void Update()
         {
             var visible = party.GetComponent<EnemyAIController>().InPlayerRange && 
-                !party.GetComponentInChildren<Renderer>().isVisible && !party.Dead;
+                !party.GetComponentInChildren<Renderer>().isVisible;
 
-            hBar.gameObject.SetActive(visible);
-            sBar.gameObject.SetActive(visible);
-            dText.gameObject.SetActive(visible && !Timer.Full);
+            hBar.gameObject.SetActive(visible && !party.Dead);
+            sBar.gameObject.SetActive(visible && !party.Dead);
+            dText.gameObject.SetActive(visible && !party.Dead && !Timer.Full);
 
             uiHolder.transform.position = Vector3.MoveTowards(uiHolder.transform.position,
                 Camera.main.WorldToScreenPoint(party.transform.position +

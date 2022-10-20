@@ -111,18 +111,22 @@ namespace RPG_Project
             foreach (var dam in hits.Keys)
             {
                 var damage = weapon.Character.CharData.
-                    CombatActions[weapon.Controller.CurrentActionIndex].GetDamageInfo(weapon.Character);
+                    CombatActions[weapon.Controller.CurrentActionIndex].Damage.Damage(weapon.Character);
+                var knockback = weapon.Character.CharData.CombatActions[weapon.Controller.CurrentActionIndex].
+                    Knockback.Knockback(weapon.Character.transform);
                 dam.OnDamage(damage);
-                dam.OnImpact(Vector3.zero);
+                dam.OnImpact(knockback);
             }
         }
 
         void DealDamage(Damageable dam)
         {
             var damage = weapon.Character.CharData.
-                CombatActions[weapon.Controller.CurrentActionIndex].GetDamageInfo(weapon.Character);
+                CombatActions[weapon.Controller.CurrentActionIndex].Damage.Damage(weapon.Character);
+            var knockback = weapon.Character.CharData.CombatActions[weapon.Controller.CurrentActionIndex].
+                Knockback.Knockback(weapon.Character.transform);
             dam.OnDamage(damage);
-            dam.OnImpact(Vector3.zero);
+            dam.OnImpact(knockback);
         }
     }
 }

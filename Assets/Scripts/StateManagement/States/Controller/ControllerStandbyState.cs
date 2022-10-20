@@ -31,9 +31,9 @@ namespace RPG_Project
         {
             health.SpeedFactor = 0f;
             if (controller.InCombat && !controller.IsDead)
-                stamina.SpeedFactor = 0.667f;
+                stamina.SpeedFactor = 1f;
             else stamina.SpeedFactor = 0f;
-
+           
             stamina.Charged = stamina.Full;
 
             controller.Cm.gameObject.SetActive(false);

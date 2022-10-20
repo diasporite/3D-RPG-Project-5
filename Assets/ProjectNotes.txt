@@ -84,17 +84,19 @@
 - Implemented TimeController slow down mechanics (similar to 3D RPG Project 4)
 - Added SWAT Guy
 - Added shooting
+- Added knockback
+  - Damping may need adjusting
 - CONSIDER:
   - Faster movement/attacks for TimeController
   - Switching back to Cinemachine cameras
+  - Making basic 3D environments in Blender
 - TO DO:
   - Enemy health bars
     - Show/hide depending on range to player
     - Health bars appear for enemies behind camera
-	- Ranged hitboxes/hitrays for long range attacks
     - Particle effects to clearly indicate hitboxes
-	- Apply knockback
 	- Issue w/ Erika animations - names different between prefab and animation clip
+	- Switch character controller collision off when dead
 
 RESOURCES
 - Bezier curves (30/9/22)

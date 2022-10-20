@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8fd142ce1224054a82c88086f41eaa7, type: 3}
-  m_Name: SWATShoot
+  m_Name: ErikaShoot
   m_EditorClassIdentifier: 
   <ActionName>k__BackingField: Shoot
-  <StaminaCost>k__BackingField: 0
-  <PowerCost>k__BackingField: 32
+  <StaminaCost>k__BackingField: 9
+  <PowerCost>k__BackingField: 11
   <MotionCurve>k__BackingField:
     serializedVersion: 2
     m_Curve: []
@@ -23,22 +23,22 @@ MonoBehaviour:
     m_RotationOrder: 4
   <HitboxIndex>k__BackingField: 0
   <Windows>k__BackingField: []
-  <AngleToForward>k__BackingField: 1.315
+  <AngleToForward>k__BackingField: -16.36
   <Damage>k__BackingField:
     <IsDamaging>k__BackingField: 1
-    <HealthDamage>k__BackingField: 53
+    <HealthDamage>k__BackingField: 33
     <StaminaDamage>k__BackingField: 0
   <Knockback>k__BackingField:
-    <HasKnockback>k__BackingField: 1
+    <HasKnockback>k__BackingField: 0
     <Interrupts>k__BackingField: 0
-    <Force>k__BackingField: 5
-    <Direction>k__BackingField: {x: 1, y: 1}
-  <ProjectilePrefab>k__BackingField: {fileID: 5836363600233326361, guid: 0678b5b54867f3f47a3d5ce79c76662b,
+    <Force>k__BackingField: 0
+    <Direction>k__BackingField: {x: 0, y: 0}
+  <ProjectilePrefab>k__BackingField: {fileID: 2099697278448498272, guid: b5034c8b9189a1744893b5b992bf65f7,
     type: 3}
   <FireNormTimes>k__BackingField:
-  - 0.1
+  - 0.882
   <IsPiercing>k__BackingField: 0
   <ProjectileTracking>k__BackingField: 0
-  <GravityStrength>k__BackingField: 0.02
+  <GravityStrength>k__BackingField: 0
   <Lifetime>k__BackingField: 1
   <Speed>k__BackingField: 20

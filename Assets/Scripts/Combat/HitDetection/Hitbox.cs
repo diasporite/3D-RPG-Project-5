@@ -49,9 +49,11 @@ namespace RPG_Project
             foreach(var dam in hits.Keys)
             {
                 var damage = character.CharData.
-                    CombatActions[controller.CurrentActionIndex].GetDamageInfo(character);
+                    CombatActions[controller.CurrentActionIndex].Damage.Damage(character);
+                var knockback = character.CharData.CombatActions[controller.CurrentActionIndex].
+                    Knockback.Knockback(character.transform);
                 dam.OnDamage(damage);
-                dam.OnImpact(Vector3.zero);
+                dam.OnImpact(knockback);
             }
 
             hits.Clear();

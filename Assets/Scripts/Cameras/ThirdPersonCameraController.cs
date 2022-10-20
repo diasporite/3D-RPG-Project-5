@@ -7,10 +7,10 @@ namespace RPG_Project
     [System.Serializable]
     public class CameraOrbit
     {
-        [field: SerializeField] public float Radius { get; private set; } = 1f;
         [field: SerializeField] public float Height { get; private set; } = 1f;
+        [field: SerializeField] public float Radius { get; private set; } = 1f;
 
-        public CameraOrbit(float radius, float height)
+        public CameraOrbit(float height, float radius)
         {
             Radius = radius;
             Height = height;
@@ -38,11 +38,11 @@ namespace RPG_Project
 
         [field: Header("Orbits")]
         [field: SerializeField] public CameraOrbit TopOrbit { get; private set; } = 
-            new CameraOrbit(0.5f, 1);
+            new CameraOrbit(2f, 1.75f);
         [field: SerializeField] public CameraOrbit MiddleOrbit { get; private set; } = 
-            new CameraOrbit(1f, 0.5f);
+            new CameraOrbit(1f, 3f);
         [field: SerializeField] public CameraOrbit BottomOrbit { get; private set; } = 
-            new CameraOrbit(0.5f, 0f);
+            new CameraOrbit(0f, 1.75f);
 
         [Header("Transforms")]
         [SerializeField] Transform freeTarget;

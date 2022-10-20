@@ -76,7 +76,11 @@ namespace RPG_Project
 
             var pms = GetComponentsInChildren<Controller>();
 
-            foreach (var p in pms) PartyMembers.Add(p);
+            foreach (var p in pms)
+            {
+                PartyMembers.Add(p);
+                p.gameObject.layer = gameObject.layer;
+            }
 
             SetCurrentMember(0);
         }

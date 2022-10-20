@@ -7,6 +7,9 @@ namespace RPG_Project
 {
     public class TargetSphere : MonoBehaviour
     {
+        public event Action OnTargetLock;
+        public event Action OnTargetUnlock;
+
         [field: SerializeField] public TargetType SelfType { get; private set; }
         [field: SerializeField] public TargetType[] Types { get; private set; }
 
@@ -112,7 +115,7 @@ namespace RPG_Project
             else UnlockTarget();
         }
 
-        void LockTarget()
+        public void LockTarget()
         {
             Locked = true;
 
@@ -121,13 +124,16 @@ namespace RPG_Project
             {
                 Locked = false;
             }
+            else OnTargetLock?.Invoke();
         }
 
-        void UnlockTarget()
+        public void UnlockTarget()
         {
             Locked = false;
 
             CurrentTarget = null;
+
+            OnTargetUnlock?.Invoke();
         }
 
         void GetCurrentTarget()

@@ -108,8 +108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed007e87d4c37754e992fa4b8e91acd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <SelfType>k__BackingField: 0
   <Types>k__BackingField: 
   <Locked>k__BackingField: 0
+  <OwnTarget>k__BackingField: {fileID: 0}
   <Targets>k__BackingField: []
   <CurrentTarget>k__BackingField: {fileID: 0}
 --- !u!54 &5021648671138839585
@@ -141,7 +143,7 @@ GameObject:
   - component: {fileID: 5370083702562362598}
   - component: {fileID: 8720271705680358903}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: TargetFocus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

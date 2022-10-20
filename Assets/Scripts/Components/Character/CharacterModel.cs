@@ -9,6 +9,8 @@ namespace RPG_Project
         float rotationSpeed = 720f;
         float animFadeTime = 0.15f;
 
+        [field: SerializeField] public Transform Hips { get; private set; }
+
         public Animator Anim { get; private set; }
 
         Camera main;
@@ -54,6 +56,11 @@ namespace RPG_Project
             transform.localRotation = Quaternion.Euler(0, eulerY, 0);
         }
 
+        public void RotationOffset(float dy)
+        {
+            transform.Rotate(0f, dy, 0f);
+        }
+
         public void RotateTowards(float eulerY)
         {
             transform.localRotation = Quaternion.RotateTowards(transform.localRotation,
@@ -79,6 +86,22 @@ namespace RPG_Project
 
                 transform.localRotation = Quaternion.RotateTowards(transform.localRotation,
                     Quaternion.Euler(0, rotation, 0), rotationSpeed * Time.deltaTime);
+            }
+        }
+
+        public void RotateTowards(Vector2 inputDir, Transform camera)
+        {
+            if (inputDir != Vector2.zero)
+            {
+                var dx = camera.right;
+                dx.y = 0;
+                var dy = camera.forward;
+                dy.y = 0;
+
+                var ds = inputDir.x * dx + inputDir.y * dy;
+
+                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, 
+                    Quaternion.LookRotation(ds), rotationSpeed* Time.deltaTime);
             }
         }
 

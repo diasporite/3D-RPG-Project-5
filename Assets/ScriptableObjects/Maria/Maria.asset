@@ -20,10 +20,10 @@ MonoBehaviour:
   <HealthRegen>k__BackingField: 1
   <StaminaRegen>k__BackingField: 14
   <PowerRegen>k__BackingField: 0.05
-  <Health>k__BackingField: 50
-  <Stamina>k__BackingField: 50
-  <Power>k__BackingField: 50
-  <Weight>k__BackingField: 128
+  <Health>k__BackingField: 55
+  <Stamina>k__BackingField: 60
+  <Power>k__BackingField: 35
+  <Weight>k__BackingField: 144
   <DodgeAction>k__BackingField: {fileID: 11400000, guid: c9a15a3951eec324ca8d1273c0aa5941,
     type: 2}
   <CombatActions>k__BackingField:

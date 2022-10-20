@@ -42,6 +42,9 @@ namespace RPG_Project
         {
             if (!FireCooldown.Full) return;
 
+            Controller.Cm.RotationOffset(Character.CharData.
+                CombatActions[Controller.CurrentActionIndex].AngleToForward);
+
             var prObj = Instantiate(data.ProjectilePrefab.gameObject, muzzle.position,
                 Quaternion.identity) as GameObject;
             var pr = prObj.GetComponent<Projectile>();

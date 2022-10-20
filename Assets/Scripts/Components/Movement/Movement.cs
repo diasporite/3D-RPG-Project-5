@@ -186,7 +186,7 @@ namespace RPG_Project
 
                 ds = inputDir.x * cm.transform.right + inputDir.y * cm.transform.forward;
 
-                if (party.IsPlayer) cm.RotateTowards(inputDir, -pcc.Tp.Theta);
+                if (party.IsPlayer) cm.RotateTowards(inputDir, main.transform);
                 else cm.RotateTowards(inputDir);
 
                 if (ds != Vector3.zero) cc.Move(CurrentSpeed * cm.transform.forward * dt);

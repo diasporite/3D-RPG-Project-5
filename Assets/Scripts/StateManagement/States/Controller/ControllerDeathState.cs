@@ -47,7 +47,11 @@ namespace RPG_Project
 
             controller.Party.OwnTarget.NotifyDeath();
 
-            controller.GetComponent<EnemyAIController>()?.Standby();
+            controller.GetComponentInParent<EnemyAIController>()?.Standby();
+
+            controller.Party.Ts.UnlockTarget();
+
+            controller.Movement.gameObject.layer = 14;
 
             cm.PlayAnimation(controller.deathHash);
         }

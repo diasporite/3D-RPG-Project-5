@@ -78,7 +78,7 @@
   - Fix CharInfo bar shadows [FIXED]
     - Resource initialisation moved to Init(), called in Controller, instead of Start()
 
-14/10/22 -
+14/10/22 - 20/10/22
 - Improved cm.GetNormalizeTime() method
 - Health shared between party, stamina and power specific to individual characters
 - Implemented TimeController slow down mechanics (similar to 3D RPG Project 4)

@@ -22,11 +22,15 @@ namespace RPG_Project
             Charged = false;
 
             if (party.IsPlayer)
+            {
                 pauseTime = GameManager.instance.Combat.PlayerStaminaPause;
+                baseSpeed = GameManager.instance.Combat.StaminaRegen;
+            }
             else
+            {
                 pauseTime = GameManager.instance.Combat.EnemyStaminaPause;
-
-            baseSpeed = character.CharData.StaminaRegen;
+                baseSpeed = GameManager.instance.Combat.EnemyStaminaRegen;
+            }
 
             var sp = 2f * character.CharData.Stamina;
             //ResourceCooldown = new Cooldown(sp, baseSpeed, Random.Range(0.2f, 0.8f) * sp);

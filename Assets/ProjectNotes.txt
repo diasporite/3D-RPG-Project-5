@@ -98,6 +98,9 @@
 	- Issue w/ Erika animations - names different between prefab and animation clip
 	- Switch character controller collision off when dead
 
+23/10/2022
+- Imported Paladin model (setup to be completed)
+
 RESOURCES
 - Bezier curves (30/9/22)
   - https://en.wikipedia.org/wiki/B%C3%A9zier_curve

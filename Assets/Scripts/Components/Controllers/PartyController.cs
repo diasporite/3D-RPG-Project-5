@@ -22,6 +22,8 @@ namespace RPG_Project
 
         [field: SerializeField] public bool IsPlayer { get; private set; }
 
+        [SerializeField] Transform memberHolder;
+
         [field: SerializeField] public List<Controller> PartyMembers { get; private set; } = 
             new List<Controller>();
 
@@ -82,7 +84,7 @@ namespace RPG_Project
                 p.gameObject.layer = gameObject.layer;
             }
 
-            SetCurrentMember(0);
+            SwitchCharacter(0);
         }
 
         private void OnEnable()
@@ -99,10 +101,57 @@ namespace RPG_Project
         {
             foreach (var pm in PartyMembers) pm.Init();
 
-            if (IsPlayer) FindObjectOfType<UIManager>().Battle.InitHUD(this);
+            if (IsPlayer) FindObjectOfType<UIManager>().BattleHUD.InitUI();
 
-            SetCurrentMember(0);
+            SwitchCharacter(0);
         }
+
+        #region Instantiation
+        public void InstantiateParty(params CharData[] characters)
+        {
+            foreach (var c in characters)
+            {
+                GameObject chObj = Instantiate(c.Character.gameObject, transform.position,
+                    Quaternion.identity, memberHolder) as GameObject;
+
+                // Initialise combat data
+                var con = chObj.GetComponent<Controller>();
+                PartyMembers.Add(con);
+                con.Init();
+            }
+
+            Health.Init();
+
+            SwitchCharacter(0);
+
+            if (IsPlayer) FindObjectOfType<CameraController>().Init(transform);
+        }
+
+        public void InstantiateParty(SpawnData[] data)
+        {
+            foreach (var d in data)
+            {
+                GameObject chObj = Instantiate(d.CharData.Character.gameObject, transform.position,
+                    Quaternion.identity, memberHolder) as GameObject;
+
+                // Initialise combat data
+                var con = chObj.GetComponent<Controller>();
+                PartyMembers.Add(con);
+                con.Init();
+
+                chObj.gameObject.SetActive(false);
+            }
+
+            Health.Init();
+
+            SwitchCharacter(0);
+
+            if (IsPlayer)
+            {
+                FindObjectOfType<CameraController>().Init(transform);
+            }
+        }
+        #endregion
 
         void SwitchCharDpad(int index)
         {
@@ -112,20 +161,20 @@ namespace RPG_Project
 
             switch (index)
             {
-                case 0: SetCurrentMember(0);
+                case 0: SwitchCharacter(0);
                     break;
-                case 1: SetCurrentMember(1);
+                case 1: SwitchCharacter(1);
                     break;
-                case 2: SetCurrentMember(2);
+                case 2: SwitchCharacter(2);
                     break;
-                case 3: SetCurrentMember(3);
+                case 3: SwitchCharacter(3);
                     break;
                 default:
                     break;
             }
         }
 
-        void SetCurrentMember(int index)
+        void SwitchCharacter(int index)
         {
             if (CurrentController != null)
                 CurrentModelRotation = CurrentController.Cm.transform.localRotation;
@@ -152,7 +201,7 @@ namespace RPG_Project
             {
                 var member = PartyMembers[i];
                 if (member != controller && !member.IsDead && !member.IsStaggered)
-                    SetCurrentMember(i);
+                    SwitchCharacter(i);
             }
         }
 

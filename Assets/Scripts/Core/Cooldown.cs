@@ -26,14 +26,26 @@ namespace RPG_Project
         public float Count
         {
             get => count;
-            set => count = Mathf.Clamp(value, 0f, cooldown);
+            set
+            {
+                var count0 = count;
+                count = Mathf.Clamp(value, 0f, cooldown);
+                Change = count - count0;
+            }
         }
 
         public float CooldownFraction
         {
             get => count / cooldown;
-            set => count = Mathf.Clamp01(value) * CooldownValue;
+            set
+            {
+                var count0 = count;
+                count = Mathf.Clamp01(value) * CooldownValue;
+                Change = count - count0;
+            }
         }
+
+        public float Change { get; private set; }
 
         public bool Empty => count <= 0;
         public bool Full => count >= cooldown;
@@ -47,17 +59,20 @@ namespace RPG_Project
 
         public void Tick()
         {
-            Count += speed * Time.deltaTime;
+            Change = speed * Time.deltaTime;
+            Count += Change;
         }
 
         public void Tick(float dt)
         {
-            Count += speed * dt;
+            Change = speed * dt;
+            Count += Change;
         }
 
         public void TickUnscaled()
         {
-            Count += speed * Time.unscaledDeltaTime;
+            Change = speed * Time.unscaledDeltaTime;
+            Count += Change;
         }
 
         public void Reset()

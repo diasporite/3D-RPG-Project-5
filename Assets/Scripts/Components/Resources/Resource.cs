@@ -11,6 +11,8 @@ namespace RPG_Project
         [SerializeField] protected float baseSpeed;
         [SerializeField] float speedFactor;
 
+        public float Change { get; protected set; }
+
         protected PartyController party;
         protected Character character;
 
@@ -27,6 +29,8 @@ namespace RPG_Project
         public int ResourcePoints => Mathf.CeilToInt(ResourceCooldown.Count);
 
         public float ResourceFraction => ResourceCooldown.CooldownFraction;
+
+        public float ChangeFraction => Change / ResourceCooldown.CooldownValue;
 
         public bool Empty => ResourceCooldown.Empty;
         public bool Full => ResourceCooldown.Full;
@@ -46,6 +50,8 @@ namespace RPG_Project
         {
             ResourceCooldown.Tick();
 
+            Change = ResourceCooldown.Change;
+
             UpdateUI();
         }
 
@@ -53,12 +59,16 @@ namespace RPG_Project
         {
             ResourceCooldown.Tick(dt);
 
+            Change = ResourceCooldown.Change;
+
             UpdateUI();
         }
 
         public void ChangeValue(float amount)
         {
             ResourceCooldown.Count += amount;
+
+            Change = ResourceCooldown.Change;
 
             UpdateUI();
         }

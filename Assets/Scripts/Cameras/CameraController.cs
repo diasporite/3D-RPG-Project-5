@@ -30,6 +30,11 @@ namespace RPG_Project
             }
         }
 
+        public void Init(Transform player)
+        {
+            Follow = player.transform;
+        }
+
         float RoundAngle(float angle)
         {
             if (angle < 90) return 0;

@@ -4,61 +4,21 @@ using UnityEngine;
 
 namespace RPG_Project
 {
-    public class PartyPanel : MonoBehaviour, IUIElement
+    public class PartyPanel : MonoBehaviour
     {
         PartyController party;
+        BattleHUD hud;
 
         [SerializeField] int index;
 
-        [SerializeField] StaminaBar stamina;
-        [SerializeField] PowerBar power;
+        [SerializeField] StaminaBarUI stamina;
 
         private void Awake()
         {
-            stamina = GetComponentInChildren<StaminaBar>();
-            power = GetComponentInChildren<PowerBar>();
+            stamina = GetComponentInChildren<StaminaBarUI>();
+
+            hud = GetComponentInParent<BattleHUD>();
         }
 
-        private void OnEnable()
-        {
-            if (party != null) SubscribeToDelegates();
-        }
-
-        private void OnDisable()
-        {
-            UnsubscribeFromDelegates();
-        }
-
-        public void InitUI(PartyController party, int index)
-        {
-            this.party = party;
-
-            this.index = index;
-
-            stamina.InitUI(party, index);
-            power.InitUI(party, index);
-
-            SubscribeToDelegates();
-        }
-
-        public void SubscribeToDelegates()
-        {
-            party.OnCharacterChange += UpdateCharacter;
-        }
-
-        public void UnsubscribeFromDelegates()
-        {
-            party.OnCharacterChange -= UpdateCharacter;
-        }
-
-        void UpdateCharacter()
-        {
-
-        }
-
-        void UpdateUI()
-        {
-
-        }
     }
 }

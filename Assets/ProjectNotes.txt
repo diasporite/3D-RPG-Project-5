@@ -101,6 +101,9 @@
 23/10/2022
 - Imported Paladin model (setup to be completed)
 
+22/11/22
+- Massive refactor from 3D RPG Project 6
+
 RESOURCES
 - Bezier curves (30/9/22)
   - https://en.wikipedia.org/wiki/B%C3%A9zier_curve

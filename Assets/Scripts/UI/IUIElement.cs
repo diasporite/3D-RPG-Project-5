@@ -6,6 +6,9 @@ namespace RPG_Project
 {
     public interface IUIElement
     {
+        void InitUI();
+        void UpdateUI();
+
         void SubscribeToDelegates();
         void UnsubscribeFromDelegates();
     }

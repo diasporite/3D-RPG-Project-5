@@ -4,8 +4,12 @@ namespace RPG_Project
     {
         Empty = 0,
 
-        GameOverworld = 1,
-        GameMenu = 2,
+        GameMainMenu = 1,
+        GameLoading = 2,
+        GameMenu = 3,
+        GameWorld = 4,
+        GameOverworld = 5,
+        GameOver = 6,
 
         ControllerMove = 11,
         ControllerRun = 12,
@@ -24,5 +28,10 @@ namespace RPG_Project
         EnemyAIChase = 32,
         EnemyAIStrafe = 33,
         EnemyAIStandby = 34,
+
+        MainMenuHome = 41,
+        MainMenuOptions = 42,
+
+        MenuHome = 51,
     }
 }

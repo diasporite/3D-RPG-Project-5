@@ -12,6 +12,10 @@ namespace RPG_Project
         
         [field: SerializeField] public Reticle Reticle { get; private set; }
 
+        [field: SerializeField] public PartyController Player { get; private set; }
+
+        public IUIElement[] Elements { get; private set; }
+
         private void Awake()
         {
             CharInfo = GetComponentInChildren<CharInfo>();
@@ -19,15 +23,57 @@ namespace RPG_Project
             ActionInfo = GetComponentInChildren<ActionInfo>();
 
             Reticle = FindObjectOfType<Reticle>();
+
+            Elements = GetComponentsInChildren<IUIElement>();
         }
 
-        public void InitHUD(PartyController party)
+        private void OnEnable()
         {
-            CharInfo.InitUI(party);
-            PartyInfo.InitUI(party);
-            ActionInfo.InitUI(party);
+            SubscribeToDelegates();
+        }
 
-            Reticle.Init(party);
+        private void OnDisable()
+        {
+            UnsubscribeFromDelegates();
+        }
+
+        public void InitUI()
+        {
+            Player = GameManager.instance.Player;
+
+            if (Player == null) return;
+
+            //CharInfo.InitUI(Player);
+            //PartyInfo.InitUI(Player);
+            //ActionInfo.InitUI(Player);
+
+            Reticle.Init(Player);
+
+            // i = 1 to exclude BattleHUD
+            for (int i = 1; i < Elements.Length; i++)
+            {
+                Elements[i].InitUI();
+                Elements[i].SubscribeToDelegates();
+            }
+        }
+
+        public void UpdateUI()
+        {
+
+        }
+
+        public void SubscribeToDelegates()
+        {
+            if (Player != null)
+                for (int i = 1; i < Elements.Length; i++)
+                    Elements[i].SubscribeToDelegates();
+        }
+
+        public void UnsubscribeFromDelegates()
+        {
+            if (Player != null)
+                for (int i = 1; i < Elements.Length; i++)
+                    Elements[i].UnsubscribeFromDelegates();
         }
     }
 }

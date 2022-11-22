@@ -15,8 +15,8 @@ namespace RPG_Project
 
         [SerializeField] Transform uiHolder;
 
-        [SerializeField] HealthBar hBar;
-        [SerializeField] StaminaBar sBar;
+        [SerializeField] HealthBarUI hBar;
+        [SerializeField] StaminaBarUI sBar;
         [SerializeField] DamageText dText;
 
         [SerializeField] Cooldown Timer;
@@ -25,8 +25,8 @@ namespace RPG_Project
         {
             party = GetComponentInParent<PartyController>();
 
-            hBar = GetComponentInChildren<HealthBar>();
-            sBar = GetComponentInChildren<StaminaBar>();
+            hBar = GetComponentInChildren<HealthBarUI>();
+            sBar = GetComponentInChildren<StaminaBarUI>();
             dText = GetComponentInChildren<DamageText>();
 
             Timer = new Cooldown(showtime, 1f, showtime);
@@ -40,8 +40,8 @@ namespace RPG_Project
                 Camera.main.WorldToScreenPoint(party.transform.position +
                 height * Vector3.up);
 
-            hBar.InitUI(party);
-            sBar.InitUI(party);
+            hBar.InitUI();
+            sBar.InitUI();
             dText.InitUI(party);
 
             hBar.gameObject.SetActive(false);

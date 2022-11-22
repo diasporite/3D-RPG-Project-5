@@ -24,10 +24,8 @@ namespace RPG_Project
         {
             game.currentState = StateID.GameWorld;
 
-            // Find combatants
-
-            //ui.BattleHUD.gameObject.SetActive(true);
-            //ui.BattleHUD.InitUI();
+            ui.BattleHUD.gameObject.SetActive(true);
+            ui.BattleHUD.InitUI();
         }
 
         public void ExecuteFrame()

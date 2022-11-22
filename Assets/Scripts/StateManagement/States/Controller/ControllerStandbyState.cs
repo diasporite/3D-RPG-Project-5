@@ -29,6 +29,8 @@ namespace RPG_Project
 
         public void Enter(params object[] args)
         {
+            controller.currentState = StateID.ControllerStandby;
+
             health.SpeedFactor = 0f;
             if (controller.InCombat && !controller.IsDead)
                 stamina.SpeedFactor = 1f;
@@ -36,7 +38,7 @@ namespace RPG_Project
            
             stamina.Charged = stamina.Full;
 
-            controller.Cm.gameObject.SetActive(false);
+            controller.Model.gameObject.SetActive(false);
         }
 
         public void ExecuteFrame()
@@ -62,7 +64,7 @@ namespace RPG_Project
 
         public void Exit()
         {
-            controller.Cm.gameObject.SetActive(true);
+            controller.Model.gameObject.SetActive(true);
         }
     }
 }

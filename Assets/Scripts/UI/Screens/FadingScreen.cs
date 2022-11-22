@@ -31,7 +31,7 @@ namespace RPG_Project
 
             while (t < 1)
             {
-                t += speed * Time.deltaTime;
+                t += speed * Time.unscaledDeltaTime;
                 canvasGroup.alpha = t;
                 yield return null;
             }
@@ -49,7 +49,7 @@ namespace RPG_Project
 
             while (t < 1)
             {
-                t += speed * Time.deltaTime;
+                t += speed * Time.unscaledDeltaTime;
                 canvasGroup.alpha = Mathf.Lerp(start_alpha, a, t);
                 yield return null;
             }

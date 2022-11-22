@@ -26,24 +26,26 @@ namespace RPG_Project
 
             movement = controller.Movement;
 
-            cm = controller.Cm;
+            cm = controller.Model;
         }
 
         public void Enter(params object[] args)
         {
+            controller.currentState = StateID.ControllerStrafe;
+
             health.SpeedFactor = 1f;
             stamina.SpeedFactor = 1f;
 
             stamina.Charged = stamina.Full;
 
-            controller.Ir.InputQueue.ClearInputs();
+            controller.InputReader.InputQueue.ClearInputs();
 
             cm.PlayAnimation(controller.strafeHash);
         }
 
         public void ExecuteFrame()
         {
-            var dir = controller.Ir.Move;
+            var dir = controller.InputReader.Move;
 
             if (dir == Vector2.zero) health.Tick(0f);
             else health.Tick();
@@ -51,7 +53,7 @@ namespace RPG_Project
 
             UpdateAnim(dir);
 
-            controller.Ir.InputQueue.Execute();
+            controller.InputReader.InputQueue.Execute();
 
             controller.Party.Tc?.SetTimescale(dir.magnitude);
 
@@ -59,7 +61,7 @@ namespace RPG_Project
 
             if (!controller.Party.Ts.Locked)
                 csm.ChangeState(StateID.ControllerMove);
-            if (controller.Ir.Guard) csm.ChangeState(StateID.ControllerGuard);
+            if (controller.InputReader.Guard) csm.ChangeState(StateID.ControllerGuard);
             if (!movement.Grounded)
             {
                 movement.FallSpeed = movement.WalkSpeed;

@@ -25,7 +25,7 @@ namespace RPG_Project
                 var rightward = pcc.Party.Movement.CurrentPath.Rightward;
                 var orthoPath = Quaternion.Euler(0, 90f, 0) * rightward;
 
-                transform.position = pcc.Party.CurrentController.Cm.transform.position +
+                transform.position = pcc.Party.CurrentController.Model.transform.position +
                     distance * orthoPath + height * Vector3.up;
             }
 

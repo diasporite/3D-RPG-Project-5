@@ -11,6 +11,7 @@ namespace RPG_Project
         public BattleHUD BattleHUD { get; private set; }
         public MainMenu MainMenu { get; private set; }
         public LoadingScreen LoadingScreen { get; private set; }
+        public GameOverScreen GameOverScreen { get; private set; }
 
         // Always loaded (alpha = 0)
         public FadingScreen FadingScreen { get; private set; }
@@ -21,6 +22,7 @@ namespace RPG_Project
             BattleHUD = GetComponentInChildren<BattleHUD>();
             MainMenu = GetComponentInChildren<MainMenu>();
             LoadingScreen = GetComponentInChildren<LoadingScreen>();
+            GameOverScreen = GetComponentInChildren<GameOverScreen>();
 
             FadingScreen = GetComponentInChildren<FadingScreen>();
             AreaName = GetComponentInChildren<AreaName>();
@@ -28,6 +30,7 @@ namespace RPG_Project
             BattleHUD.gameObject.SetActive(false);
             MainMenu.gameObject.SetActive(false);
             LoadingScreen.gameObject.SetActive(false);
+            GameOverScreen.gameObject.SetActive(false);
         }
     }
 }

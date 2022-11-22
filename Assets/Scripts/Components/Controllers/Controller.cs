@@ -56,9 +56,10 @@ namespace RPG_Project
         public readonly Dictionary<int, int> actionHashes = new Dictionary<int, int>();
         #endregion
 
-        [SerializeField] StateID currentState;
+        public StateID currentState;
 
         [field: SerializeField] public bool DirectionalDodging { get; private set; }
+
         public bool IsDead { get; set; }
         public bool IsStaggered { get; set; }
 
@@ -69,14 +70,14 @@ namespace RPG_Project
 
         public PartyController Party { get; private set; }
         public Movement Movement { get; private set; }
-        public InputReader Ir { get; private set; }
+        public InputReader InputReader { get; private set; }
 
         public Health Health { get; private set; }
         public Stamina Stamina { get; private set; }
         public Power Power { get; private set; }
         public Character Character { get; private set; }
 
-        public CharacterModel Cm { get; private set; }
+        public CharacterModel Model { get; private set; }
 
         public readonly StateMachine sm = new StateMachine();
 
@@ -84,15 +85,10 @@ namespace RPG_Project
 
         public bool InCombat => Party.Aggro.Count > 0;
 
-        //bool InActionState => sm.InState(StateID.ControllerAction, StateID.ControllerAction1, 
-        //    StateID.ControllerAction2, StateID.ControllerAction3, StateID.ControllerAction4, 
-        //    StateID.ControllerAction5, StateID.ControllerAction6, StateID.ControllerAction7, 
-        //    StateID.ControllerAction8);
-
         private void Awake()
         {
             Party = GetComponentInParent<PartyController>();
-            Ir = GetComponentInParent<InputReader>();
+            InputReader = GetComponentInParent<InputReader>();
             Movement = GetComponentInParent<Movement>();
             Health = GetComponentInParent<Health>();
 
@@ -100,7 +96,7 @@ namespace RPG_Project
             Power = GetComponent<Power>();
             Character = GetComponent<Character>();
 
-            Cm = GetComponentInChildren<CharacterModel>();
+            Model = GetComponentInChildren<CharacterModel>();
 
             actionTags.Add(0, action1Tag);
             actionTags.Add(1, action2Tag);
@@ -121,48 +117,40 @@ namespace RPG_Project
             actionHashes.Add(7, action8Hash);
         }
 
-        private void Update()
-        {
-            currentState = sm.CurrentStateKey;
-
-            sm.Update();
-        }
-
         private void OnEnable()
         {
-            Ir.OnDodgeAction += Dodge;
+            InputReader.OnDodgeAction += Dodge;
 
             //Ir.OnGuardAction += Guard;
             //Ir.OnGuardCancelAction += GuardCancel;
 
-            Ir.OnJumpAction += Jump;
+            InputReader.OnJumpAction += Jump;
 
             //Ir.OnRunAction += Run;
             //Ir.OnRunCancelAction += RunCancel;
 
-            Ir.OnAttackAction += Action;
+            InputReader.OnAttackAction += Action;
         }
 
         private void OnDisable()
         {
-            Ir.OnDodgeAction -= Dodge;
+            InputReader.OnDodgeAction -= Dodge;
 
             //Ir.OnGuardAction -= Guard;
             //Ir.OnGuardCancelAction -= GuardCancel;
 
-            Ir.OnJumpAction -= Jump;
+            InputReader.OnJumpAction -= Jump;
 
             //Ir.OnRunAction -= Run;
             //Ir.OnRunCancelAction -= RunCancel;
 
-            Ir.OnAttackAction -= Action;
+            InputReader.OnAttackAction -= Action;
         }
 
         public void Init()
         {
             DirectionalDodging = Character.CharData.DodgeAction.IsDirectional;
 
-            Health.Init();
             Stamina.Init();
             Power.Init();
 
@@ -197,10 +185,10 @@ namespace RPG_Project
                 StateID.ControllerStrafe, StateID.ControllerDodge, 
                 StateID.ControllerGuard, StateID.ControllerAction))
             {
-                CurrentDodgeDir = Ir.Move.x * Cm.transform.right + 
-                    Ir.Move.y * Cm.transform.forward;
+                CurrentDodgeDir = InputReader.Move.x * Model.transform.right + 
+                    InputReader.Move.y * Model.transform.forward;
                 Stamina.ChangeValue(-Character.DodgeAction.StaminaCost);
-                Power.ChangeValue(-Character.DodgeAction.PowerCost);
+
                 sm.ChangeState(StateID.ControllerDodge);
             }
         }
@@ -263,7 +251,7 @@ namespace RPG_Project
                 CurrentActionTag = actionTags[index];
                 CurrentActionHash = actionHashes[index];
                 Stamina.ChangeValue(-Character.CharData.CombatActions[CurrentActionIndex].StaminaCost);
-                Power.ChangeValue(-Character.CharData.CombatActions[CurrentActionIndex].PowerCost);
+
                 sm.ChangeState(StateID.ControllerAction);
             }
         }

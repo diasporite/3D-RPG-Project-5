@@ -29,9 +29,9 @@ namespace RPG_Project
             data = GameManager.instance.CharData;
         }
 
-        public virtual void Spawn()
+        public virtual PartyController Spawn()
         {
-
+            return null;
         }
     }
 }

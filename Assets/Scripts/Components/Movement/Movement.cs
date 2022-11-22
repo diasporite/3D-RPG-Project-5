@@ -243,8 +243,8 @@ namespace RPG_Project
 
                 if (party.IsPlayer) cm.Rotation(pcc.Fp.EulerY);
 
-                ds = dir.x * party.CurrentController.Cm.transform.right +
-                    dir.y * party.CurrentController.Cm.transform.forward;
+                ds = dir.x * party.CurrentController.Model.transform.right +
+                    dir.y * party.CurrentController.Model.transform.forward;
 
                 if (ds != Vector3.zero)
                     cc.Move(CurrentSpeed * ds * dt);
@@ -327,7 +327,7 @@ namespace RPG_Project
         {
             if (party.CurrentController.Character != null)
             {
-                cm = party.CurrentController.Cm;
+                cm = party.CurrentController.Model;
 
                 WalkSpeed = party.CurrentController.Character.WalkSpeed;
                 RunSpeed = party.CurrentController.Character.RunSpeed;

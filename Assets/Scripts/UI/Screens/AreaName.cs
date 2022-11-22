@@ -38,20 +38,20 @@ namespace RPG_Project
 
             while (t < 1)
             {
-                t += speed * Time.deltaTime;
+                t += speed * Time.unscaledDeltaTime;
                 canvasGroup.alpha = t;
                 yield return null;
             }
 
             canvasGroup.alpha = 1;
 
-            yield return new WaitForSeconds(duration);
+            yield return new WaitForSecondsRealtime(duration);
 
             t = 0;
 
             while (t < 1)
             {
-                t += speed * Time.deltaTime;
+                t += speed * Time.unscaledDeltaTime;
                 canvasGroup.alpha = 1 - t;
                 yield return null;
             }

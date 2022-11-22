@@ -28,39 +28,41 @@ namespace RPG_Project
 
             movement = controller.Movement;
 
-            cm = controller.Cm;
+            cm = controller.Model;
         }
 
         public void Enter(params object[] args)
         {
+            controller.currentState = StateID.ControllerMove;
+
             health.SpeedFactor = 1f;
             stamina.SpeedFactor = 1f;
             power.SpeedFactor = -1f;
 
             stamina.Charged = stamina.Full;
 
-            controller.Ir.InputQueue.ClearInputs();
+            controller.InputReader.InputQueue.ClearInputs();
 
             cm.PlayAnimation(controller.moveHash);
         }
 
         public void ExecuteFrame()
         {
-            var dir = controller.Ir.Move;
+            var dir = controller.InputReader.Move;
 
             Tick(dir);
 
             UpdateAnim(dir);
 
-            controller.Ir.InputQueue.Execute();
+            controller.InputReader.InputQueue.Execute();
 
             controller.Party.Tc?.SetTimescale(dir.magnitude);
 
             movement.MovePosition(dir, Time.deltaTime, SpeedMode.Walk);
 
-            if (controller.Ir.Run && stamina.ResourceFraction >= 0.25f)
+            if (controller.InputReader.Run && stamina.ResourceFraction >= 0.25f)
                 csm.ChangeState(StateID.ControllerRun);
-            else if (controller.Ir.Guard)
+            else if (controller.InputReader.Guard)
                 csm.ChangeState(StateID.ControllerGuard);
             else if (controller.Party.Ts.Locked)
                 csm.ChangeState(StateID.ControllerStrafe);

@@ -735,6 +735,134 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""MainMenu"",
+            ""id"": ""4ca23fef-f17c-41bb-a63a-2bfd0ac82a58"",
+            ""actions"": [
+                {
+                    ""name"": ""Back"",
+                    ""type"": ""Button"",
+                    ""id"": ""6fbde449-f4e1-41f1-a357-ab0980beb8d4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""7546cad1-a784-48f2-8a5d-b47daf223e99"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Next"",
+                    ""type"": ""Button"",
+                    ""id"": ""efaeb43e-4f80-447e-88eb-8f8d2ab16414"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Previous"",
+                    ""type"": ""Button"",
+                    ""id"": ""92e9476a-1161-4d70-9fbf-6af4ffee0082"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8a628a6e-dc96-4048-86a6-1bf85d84fe55"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""da3b53e3-fa6c-4bf7-8f76-f78d759c2f7a"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Back"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cfc08acf-98f6-494e-bf50-9ed2f3727ea3"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac13dc71-ddc0-4542-a06d-3f13aaeb7984"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2525b31a-405d-47a3-93ed-71bed2ea5915"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Next"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27c9d964-38e5-4c3f-bb28-f5448da4f7bf"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Next"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""77d906f6-b144-4f87-9d08-51024ea8b1a5"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Previous"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ceb5675-bea7-4063-bad4-bc82267a2b96"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Previous"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -779,6 +907,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player_Action4 = m_Player.FindAction("Action4", throwIfNotFound: true);
         m_Player_PauseSelect = m_Player.FindAction("PauseSelect", throwIfNotFound: true);
         m_Player_ToggleTarget = m_Player.FindAction("ToggleTarget", throwIfNotFound: true);
+        // MainMenu
+        m_MainMenu = asset.FindActionMap("MainMenu", throwIfNotFound: true);
+        m_MainMenu_Back = m_MainMenu.FindAction("Back", throwIfNotFound: true);
+        m_MainMenu_Confirm = m_MainMenu.FindAction("Confirm", throwIfNotFound: true);
+        m_MainMenu_Next = m_MainMenu.FindAction("Next", throwIfNotFound: true);
+        m_MainMenu_Previous = m_MainMenu.FindAction("Previous", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -969,6 +1103,63 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // MainMenu
+    private readonly InputActionMap m_MainMenu;
+    private IMainMenuActions m_MainMenuActionsCallbackInterface;
+    private readonly InputAction m_MainMenu_Back;
+    private readonly InputAction m_MainMenu_Confirm;
+    private readonly InputAction m_MainMenu_Next;
+    private readonly InputAction m_MainMenu_Previous;
+    public struct MainMenuActions
+    {
+        private @PlayerControls m_Wrapper;
+        public MainMenuActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Back => m_Wrapper.m_MainMenu_Back;
+        public InputAction @Confirm => m_Wrapper.m_MainMenu_Confirm;
+        public InputAction @Next => m_Wrapper.m_MainMenu_Next;
+        public InputAction @Previous => m_Wrapper.m_MainMenu_Previous;
+        public InputActionMap Get() { return m_Wrapper.m_MainMenu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MainMenuActions set) { return set.Get(); }
+        public void SetCallbacks(IMainMenuActions instance)
+        {
+            if (m_Wrapper.m_MainMenuActionsCallbackInterface != null)
+            {
+                @Back.started -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnBack;
+                @Back.performed -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnBack;
+                @Back.canceled -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnBack;
+                @Confirm.started -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnConfirm;
+                @Confirm.performed -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnConfirm;
+                @Confirm.canceled -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnConfirm;
+                @Next.started -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnNext;
+                @Next.performed -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnNext;
+                @Next.canceled -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnNext;
+                @Previous.started -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnPrevious;
+                @Previous.performed -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnPrevious;
+                @Previous.canceled -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnPrevious;
+            }
+            m_Wrapper.m_MainMenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Back.started += instance.OnBack;
+                @Back.performed += instance.OnBack;
+                @Back.canceled += instance.OnBack;
+                @Confirm.started += instance.OnConfirm;
+                @Confirm.performed += instance.OnConfirm;
+                @Confirm.canceled += instance.OnConfirm;
+                @Next.started += instance.OnNext;
+                @Next.performed += instance.OnNext;
+                @Next.canceled += instance.OnNext;
+                @Previous.started += instance.OnPrevious;
+                @Previous.performed += instance.OnPrevious;
+                @Previous.canceled += instance.OnPrevious;
+            }
+        }
+    }
+    public MainMenuActions @MainMenu => new MainMenuActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -1004,5 +1195,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnAction4(InputAction.CallbackContext context);
         void OnPauseSelect(InputAction.CallbackContext context);
         void OnToggleTarget(InputAction.CallbackContext context);
+    }
+    public interface IMainMenuActions
+    {
+        void OnBack(InputAction.CallbackContext context);
+        void OnConfirm(InputAction.CallbackContext context);
+        void OnNext(InputAction.CallbackContext context);
+        void OnPrevious(InputAction.CallbackContext context);
     }
 }

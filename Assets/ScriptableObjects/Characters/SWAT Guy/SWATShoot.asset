@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: SWATShoot
   m_EditorClassIdentifier: 
   <ActionName>k__BackingField: Shoot
-  <StaminaCost>k__BackingField: 0
-  <PowerCost>k__BackingField: 32
+  <StaminaCost>k__BackingField: 15
+  <InfiniteUse>k__BackingField: 0
+  <Uses>k__BackingField: 20
   <MotionCurve>k__BackingField:
     serializedVersion: 2
     m_Curve: []

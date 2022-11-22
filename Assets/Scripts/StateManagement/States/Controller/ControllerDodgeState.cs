@@ -30,11 +30,13 @@ namespace RPG_Project
             stamina = controller.Stamina;
             character = controller.Character;
 
-            cm = controller.Cm;
+            cm = controller.Model;
         }
 
         public void Enter(params object[] args)
         {
+            controller.currentState = StateID.ControllerDodge;
+
             health.ResourceCooldown.Speed = 0f;
             stamina.ResourceCooldown.Speed = 0f;
 
@@ -42,8 +44,8 @@ namespace RPG_Project
 
             advancing = false;
 
-            cm.SetFloat("InputX", controller.Ir.Move.x);
-            cm.SetFloat("InputY", controller.Ir.Move.y);
+            cm.SetFloat("InputX", controller.InputReader.Move.x);
+            cm.SetFloat("InputY", controller.InputReader.Move.y);
 
             controller.Party.Tc?.SetTimescale(1f);
 
@@ -53,9 +55,9 @@ namespace RPG_Project
             {
                 if (controller.CurrentDodgeDir != Vector3.zero)
                     dodgeDir = controller.CurrentDodgeDir;
-                else dodgeDir = controller.Cm.transform.forward;
+                else dodgeDir = controller.Model.transform.forward;
             }
-            else dodgeDir = controller.Cm.transform.forward;
+            else dodgeDir = controller.Model.transform.forward;
         }
 
         public void ExecuteFrame()
@@ -77,10 +79,10 @@ namespace RPG_Project
             {
                 advancing = true;
 
-                var actionsLeft = controller.Ir.InputQueue.Advance();
+                var actionsLeft = controller.InputReader.InputQueue.Advance();
 
                 if (actionsLeft)
-                    controller.Ir.InputQueue.Execute();
+                    controller.InputReader.InputQueue.Execute();
                 else
                 {
                     if (!controller.Movement.Grounded)

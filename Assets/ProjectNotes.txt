@@ -2,8 +2,9 @@
 3D RPG PROJECT 5 NOTES
 
 - Builds on 3D RPG Project 4
-  - Time slow mechanics removed
+  - Time slow mechanics removed [SCRAPPED]
 - Attacks can only be used at full stamina or during an attack chain
+  - Consider renaming stamina to charge
 - Defensive actions can be performed anytime
 - Standby party members build stamina slower (currently 2/3x speed)
 
@@ -101,8 +102,22 @@
 23/10/2022
 - Imported Paladin model (setup to be completed)
 
-22/11/22
+=========================================================================================
+
+22/11/22 - 
 - Massive refactor from 3D RPG Project 6
+  - Importing main menu
+  - Transition from main menu to game
+  - Spawning logic
+- TO DO:
+  - Game over sequence
+    - Implement GameOver state
+	- Finish screen menu setup
+  - Game menu
+    - Only have 'save and quit' option for start
+	  - Implement only quit for now
+  - Fix health bar
+  - Consider scrapping power in favour of individual usages
 
 RESOURCES
 - Bezier curves (30/9/22)

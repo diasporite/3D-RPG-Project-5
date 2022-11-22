@@ -6,9 +6,9 @@ namespace RPG_Project
 {
     public class HealthBarUI : CooldownBar, IUIElement
     {
-        [SerializeField] float updateDelay = 0.8f;
-        [SerializeField] float updateSpeed = 0.6f;
-        [SerializeField] float shadowThreshold = 0.04f;
+        float updateDelay = 0.8f;
+        float updateSpeed = 0.6f;
+        float shadowThreshold = 0.04f;
 
         Cooldown delayTimer;
 
@@ -45,21 +45,22 @@ namespace RPG_Project
             }
             else
             {
-                if (!delayTimer.Full) delayTimer.Tick();
+                if (!delayTimer.Full) delayTimer.TickUnscaled();
                 else
                 {
-                    if (!delayTimer.Full) delayTimer.Tick();
+                    if (!delayTimer.Full) delayTimer.TickUnscaled();
                     else
                     {
                         if (delayTimer.Full)
                         {
                             delayTimer.Reset();
-                            delayTimer.Tick();
+                            delayTimer.TickUnscaled();
                         }
                         else
                         {
                             if (FillShadow.fillAmount != health.ResourceFraction)
-                                FillShadow.fillAmount = Mathf.MoveTowards(FillShadow.fillAmount, health.ResourceFraction, updateSpeed * Time.deltaTime);
+                                FillShadow.fillAmount = Mathf.MoveTowards(FillShadow.fillAmount, 
+                                    health.ResourceFraction, updateSpeed * Time.unscaledDeltaTime);
                         }
                     }
                 }

@@ -75,16 +75,11 @@ namespace RPG_Project
             Es = GetComponentInChildren<EnemyStats>();
 
             IsPlayer = Ir is PlayerInputReader;
+        }
 
-            var pms = GetComponentsInChildren<Controller>();
-
-            foreach (var p in pms)
-            {
-                PartyMembers.Add(p);
-                p.gameObject.layer = gameObject.layer;
-            }
-
-            SwitchCharacter(0);
+        private void Update()
+        {
+            CurrentController?.sm.Update();
         }
 
         private void OnEnable()
@@ -97,37 +92,8 @@ namespace RPG_Project
             Ir.OnSwitchAction -= SwitchCharDpad;
         }
 
-        private void Start()
-        {
-            foreach (var pm in PartyMembers) pm.Init();
-
-            if (IsPlayer) FindObjectOfType<UIManager>().BattleHUD.InitUI();
-
-            SwitchCharacter(0);
-        }
-
         #region Instantiation
-        public void InstantiateParty(params CharData[] characters)
-        {
-            foreach (var c in characters)
-            {
-                GameObject chObj = Instantiate(c.Character.gameObject, transform.position,
-                    Quaternion.identity, memberHolder) as GameObject;
-
-                // Initialise combat data
-                var con = chObj.GetComponent<Controller>();
-                PartyMembers.Add(con);
-                con.Init();
-            }
-
-            Health.Init();
-
-            SwitchCharacter(0);
-
-            if (IsPlayer) FindObjectOfType<CameraController>().Init(transform);
-        }
-
-        public void InstantiateParty(SpawnData[] data)
+        public void InitParty(SpawnData[] data)
         {
             foreach (var d in data)
             {
@@ -138,13 +104,11 @@ namespace RPG_Project
                 var con = chObj.GetComponent<Controller>();
                 PartyMembers.Add(con);
                 con.Init();
-
-                chObj.gameObject.SetActive(false);
             }
 
-            Health.Init();
-
             SwitchCharacter(0);
+
+            Health.Init();
 
             if (IsPlayer)
             {
@@ -177,7 +141,7 @@ namespace RPG_Project
         void SwitchCharacter(int index)
         {
             if (CurrentController != null)
-                CurrentModelRotation = CurrentController.Cm.transform.localRotation;
+                CurrentModelRotation = CurrentController.Model.transform.localRotation;
 
             index = Mathf.Clamp(index, 0, PartyMembers.Count);
 
@@ -189,8 +153,8 @@ namespace RPG_Project
 
             CurrentController = PartyMembers[index];
 
-            if (CurrentController.Cm != null)
-                CurrentController.Cm.transform.localRotation = CurrentModelRotation;
+            if (CurrentController.Model != null)
+                CurrentController.Model.transform.localRotation = CurrentModelRotation;
 
             InvokeCharacterChange();
         }

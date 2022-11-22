@@ -23,12 +23,14 @@ namespace RPG_Project
 
         public void Enter(params object[] args)
         {
+            controller.currentState = StateID.ControllerGuard;
+
             health.ResourceCooldown.Speed = 0f;
             stamina.ResourceCooldown.Speed = 0f;
 
             controller.Party.Tc?.SetTimescale(1f);
 
-            controller.Cm.PlayAnimation(controller.guardHash);
+            controller.Model.PlayAnimation(controller.guardHash);
         }
 
         public void ExecuteFrame()
@@ -39,11 +41,11 @@ namespace RPG_Project
             controller.Party.Tc?.SetTimescale(1f);
 
             if (controller.Party.Ts.Locked)
-                controller.Cm.RotateTowardsTarget(controller.Party.transform.rotation, controller.Party.Ts.CurrentTargetTransform);
+                controller.Model.RotateTowardsTarget(controller.Party.transform.rotation, controller.Party.Ts.CurrentTargetTransform);
 
-            controller.Ir.InputQueue.Execute();
+            controller.InputReader.InputQueue.Execute();
 
-            if (!controller.Ir.Guard) csm.ChangeState(StateID.ControllerMove);
+            if (!controller.InputReader.Guard) csm.ChangeState(StateID.ControllerMove);
         }
 
         public void ExecuteFrameFixed()

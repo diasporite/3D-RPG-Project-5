@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharName>k__BackingField: SWAT Guy
   <Portrait>k__BackingField: {fileID: 0}
+  <Character>k__BackingField: {fileID: 7348577461334316451, guid: 7fcfa9c2a24b1654db5dfba4d6565c4d,
+    type: 3}
   <WalkSpeed>k__BackingField: 2.61
   <RunSpeed>k__BackingField: 6.91
   <StrafeSpeed>k__BackingField: 2.61

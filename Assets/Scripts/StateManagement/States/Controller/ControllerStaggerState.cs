@@ -18,11 +18,13 @@ namespace RPG_Project
             this.controller = controller;
             csm = controller.sm;
 
-            cm = controller.Cm;
+            cm = controller.Model;
         }
 
         public void Enter(params object[] args)
         {
+            controller.currentState = StateID.ControllerStagger;
+
             controller.Health.SpeedFactor = 0f;
             controller.Stamina.SpeedFactor = 0f;
             controller.Power.SpeedFactor = 0f;
@@ -31,7 +33,7 @@ namespace RPG_Project
 
             controller.IsStaggered = true;
 
-            controller.Ir.InputQueue.ClearInputs();
+            controller.InputReader.InputQueue.ClearInputs();
 
             controller.Character.DisableHitDetectors();
 

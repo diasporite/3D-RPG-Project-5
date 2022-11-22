@@ -28,12 +28,14 @@ namespace RPG_Project
 
             movement = controller.Movement;
 
-            cm = controller.Cm;
+            cm = controller.Model;
         }
 
         #region InterfaceMethods
         public void Enter(params object[] args)
         {
+            controller.currentState = StateID.ControllerRun;
+
             health.SpeedFactor = 0f;
             if (controller.InCombat) stamina.SpeedFactor = -0.5f;
             else stamina.SpeedFactor = 1f;
@@ -51,7 +53,7 @@ namespace RPG_Project
             if (controller.InCombat) stamina.SpeedFactor = -1f;
             else stamina.SpeedFactor = 1f;
 
-            var dir = controller.Ir.Move;
+            var dir = controller.InputReader.Move;
 
             health.Tick();
             stamina.Tick();
@@ -62,14 +64,14 @@ namespace RPG_Project
             if (dir == Vector2.zero || stamina.Empty)
                 csm.ChangeState(StateID.ControllerMove);
 
-            UpdateAnim(controller.Ir.Move);
+            UpdateAnim(controller.InputReader.Move);
 
-            controller.Ir.InputQueue.Execute();
+            controller.InputReader.InputQueue.Execute();
 
             controller.Movement.MovePosition(dir, Time.deltaTime, SpeedMode.Run);
 
-            if (!controller.Ir.Run) csm.ChangeState(StateID.ControllerMove);
-            if (controller.Ir.Guard) csm.ChangeState(StateID.ControllerGuard);
+            if (!controller.InputReader.Run) csm.ChangeState(StateID.ControllerMove);
+            if (controller.InputReader.Guard) csm.ChangeState(StateID.ControllerGuard);
             if (controller.Party.Ts.Locked)
             {
                 csm.ChangeState(StateID.ControllerStrafe);

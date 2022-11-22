@@ -19,8 +19,10 @@ namespace RPG_Project
             enemyHolder = GameObject.Find("Enemies").transform;
         }
 
-        public override void Spawn()
+        public override PartyController Spawn()
         {
+            if (spawnData.Length <= 0) return null;
+
             print("spawn enemy");
 
             GameObject pObj = Instantiate(PartyPrefab.gameObject, transform.position, 
@@ -28,7 +30,9 @@ namespace RPG_Project
 
             var party = pObj.GetComponent<PartyController>();
 
-            party.InstantiateParty(spawnData);
+            party.InitParty(spawnData);
+
+            return party;
         }
     }
 }

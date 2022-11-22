@@ -13,11 +13,6 @@ namespace RPG_Project
 
         public Transform Follow { get; private set; }
 
-        private void Start()
-        {
-            Follow = FindObjectOfType<PlayerInputReader>().transform;
-        }
-
         private void LateUpdate()
         {
             if (CurrentCamera != null)

@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharName>k__BackingField: Maria
   <Portrait>k__BackingField: {fileID: 0}
+  <Character>k__BackingField: {fileID: 8598477651914444568, guid: 2796f62cd3295d242b1a09ca508b3abe,
+    type: 3}
   <WalkSpeed>k__BackingField: 2.17
   <RunSpeed>k__BackingField: 6.05
   <StrafeSpeed>k__BackingField: 2.17

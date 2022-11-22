@@ -43,10 +43,6 @@ namespace RPG_Project
 
             if (Player == null) return;
 
-            //CharInfo.InitUI(Player);
-            //PartyInfo.InitUI(Player);
-            //ActionInfo.InitUI(Player);
-
             Reticle.Init(Player);
 
             // i = 1 to exclude BattleHUD

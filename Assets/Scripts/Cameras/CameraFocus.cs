@@ -33,8 +33,8 @@ namespace RPG_Project
 
         void UpdateHips()
         {
-            if (party.CurrentController.Cm != null)
-                Hips = party.CurrentController.Cm.Hips;
+            if (party.CurrentController.Model != null)
+                Hips = party.CurrentController.Model.Hips;
         }
     }
 }

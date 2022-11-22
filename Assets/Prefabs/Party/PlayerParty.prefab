@@ -1185,6 +1185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsPlayer>k__BackingField: 0
+  memberHolder: {fileID: 5973199515166113831}
   <PartyMembers>k__BackingField: []
   <CurrentController>k__BackingField: {fileID: 0}
   <CurrentModelRotation>k__BackingField: {x: 0, y: 0, z: 0, w: 0}

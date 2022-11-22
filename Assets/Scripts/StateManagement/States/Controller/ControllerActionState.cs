@@ -39,13 +39,15 @@ namespace RPG_Project
             stamina = controller.Stamina;
             power = controller.Power;
 
-            input = controller.Ir;
+            input = controller.InputReader;
 
-            cm = controller.Cm;
+            cm = controller.Model;
         }
 
         public void Enter(params object[] args)
         {
+            controller.currentState = StateID.ControllerAction;
+
             health.SpeedFactor = 0f;
             stamina.SpeedFactor = 0f;
             power.SpeedFactor = 0f;

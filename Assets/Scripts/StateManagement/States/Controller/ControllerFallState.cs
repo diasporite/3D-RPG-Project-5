@@ -26,11 +26,13 @@ namespace RPG_Project
 
             movement = controller.Movement;
 
-            cm = controller.Cm;
+            cm = controller.Model;
         }
 
         public void Enter(params object[] args)
         {
+            controller.currentState = StateID.ControllerFall;
+
             health.SpeedFactor = 0f;
             stamina.SpeedFactor = 1f;
 
@@ -41,7 +43,7 @@ namespace RPG_Project
 
         public void ExecuteFrame()
         {
-            var dir = controller.Ir.Move;
+            var dir = controller.InputReader.Move;
 
             health.Tick();
             stamina.Tick();

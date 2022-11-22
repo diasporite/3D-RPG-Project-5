@@ -26,11 +26,13 @@ namespace RPG_Project
             stamina = controller.Stamina;
             power = controller.Power;
 
-            cm = controller.Cm;
+            cm = controller.Model;
         }
 
         public void Enter(params object[] args)
         {
+            controller.currentState = StateID.ControllerDeath;
+
             health.SpeedFactor = 0f;
             stamina.SpeedFactor = 0f;
             power.SpeedFactor = 0f;
@@ -39,7 +41,7 @@ namespace RPG_Project
 
             controller.IsDead = true;
 
-            controller.Ir.InputQueue.ClearInputs();
+            controller.InputReader.InputQueue.ClearInputs();
 
             controller.Character.DisableHitDetectors();
 

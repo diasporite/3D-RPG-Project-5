@@ -7,6 +7,8 @@ namespace RPG_Project
 {
     public class PlayerSpawner : Spawner
     {
+        [SerializeField] SpawnData[] spawns;
+
         PlayerPartyDatabase playerParty;
 
         protected override void Awake()
@@ -16,10 +18,10 @@ namespace RPG_Project
             
         }
 
-        public override void Spawn()
+        public override PartyController Spawn()
         {
             // Check if player exists
-            if (GameManager.instance.Player != null) return;
+            if (GameManager.instance.Player != null) return null;
 
             // If not spawn player (look for way to move party into Persistent scene)
             print("spawn player");
@@ -30,10 +32,9 @@ namespace RPG_Project
 
             var party = pObj.GetComponent<PartyController>();
 
-            //party.InstantiateParty(GameManager.instance.CharData.GetCharacters("Capsule", "Capsule", "Capsule"));
-            party.InstantiateParty(GameManager.instance.CharData.GetCharacters("Mutant"));
+            party.InitParty(spawns);
 
-            GameManager.instance.Player = party;
+            return party;
         }
     }
 }

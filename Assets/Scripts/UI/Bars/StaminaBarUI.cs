@@ -6,14 +6,17 @@ namespace RPG_Project
 {
     public class StaminaBarUI : CooldownBar, IUIElement
     {
-        [SerializeField] float updateDelay = 0.8f;
-        [SerializeField] float updateSpeed = 0.6f;
-        [SerializeField] float shadowThreshold = 0.04f;
+        float updateDelay = 0.8f;
+        float updateSpeed = 0.6f;
+        float shadowThreshold = 0.04f;
+
+        [SerializeField] Color charging = new Color(.753f, .753f, .753f);
+        [SerializeField] Color charged = new Color(.125f, .753f, .125f);
 
         Cooldown delayTimer;
 
-        PartyController player;
-        Stamina stamina;
+        [SerializeField] PartyController player;
+        [SerializeField] Stamina stamina;
 
         BattleHUD hud;
 
@@ -38,6 +41,9 @@ namespace RPG_Project
             if (Fill.fillAmount != stamina.ResourceFraction)
                 Fill.fillAmount = stamina.ResourceFraction;
 
+            if (stamina.Charged) Fill.color = charged;
+            else Fill.color = charging;
+
             if (Mathf.Abs(stamina.ChangeFraction) < shadowThreshold)
             {
                 if (FillShadow.fillAmount != stamina.ResourceFraction)
@@ -45,12 +51,13 @@ namespace RPG_Project
             }
             else
             {
-                if (!delayTimer.Full) delayTimer.Tick();
+                if (!delayTimer.Full) delayTimer.TickUnscaled();
                 else
                 {
 
                     if (FillShadow.fillAmount != stamina.ResourceFraction)
-                        FillShadow.fillAmount = Mathf.MoveTowards(FillShadow.fillAmount, stamina.ResourceFraction, updateSpeed * Time.deltaTime);
+                        FillShadow.fillAmount = Mathf.MoveTowards(FillShadow.fillAmount, 
+                            stamina.ResourceFraction, updateSpeed * Time.unscaledDeltaTime);
                 }
             }
         }
@@ -58,11 +65,21 @@ namespace RPG_Project
         public void SubscribeToDelegates()
         {
             player.OnHealthTick += UpdateUI;
+            player.OnCharacterChange += UpdateStamina;
         }
 
         public void UnsubscribeFromDelegates()
         {
             player.OnHealthTick -= UpdateUI;
+            player.OnCharacterChange -= UpdateStamina;
+        }
+
+        void UpdateStamina()
+        {
+            stamina = player.CurrentStamina;
+
+            Fill.fillAmount = stamina.ResourceFraction;
+            FillShadow.fillAmount = stamina.ResourceFraction;
         }
     }
 }

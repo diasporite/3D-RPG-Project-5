@@ -30,17 +30,19 @@ namespace RPG_Project
 
         public void Enter(params object[] args)
         {
+            controller.currentState = StateID.ControllerJump;
+
             health.SpeedFactor = 0f;
             stamina.SpeedFactor = 0f;
 
             controller.Party.Tc?.SetTimescale(1f);
 
-            controller.Cm.PlayAnimationInstant(controller.fallHash);
+            controller.Model.PlayAnimationInstant(controller.fallHash);
         }
 
         public void ExecuteFrame()
         {
-            var dir = controller.Ir.Move;
+            var dir = controller.InputReader.Move;
 
             health.Tick();
             stamina.Tick();
@@ -48,7 +50,7 @@ namespace RPG_Project
             controller.Party.Tc?.SetTimescale(1f);
 
             if (controller.Party.Ts.Locked)
-                controller.Cm.RotateTowardsTarget(controller.Party.transform.rotation, controller.Party.Ts.CurrentTargetTransform);
+                controller.Model.RotateTowardsTarget(controller.Party.transform.rotation, controller.Party.Ts.CurrentTargetTransform);
 
             movement.MovePosition(dir, Time.deltaTime, SpeedMode.Fall);
 
@@ -94,7 +96,7 @@ namespace RPG_Project
 
         float NormalizedTime()
         {
-            float t = controller.Cm.Anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            float t = controller.Model.Anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
             return t - Mathf.Floor(t);
         }
     }

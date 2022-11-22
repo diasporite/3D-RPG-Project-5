@@ -37,18 +37,24 @@ namespace RPG_Project
             Timer = new Cooldown(minDelay, 1f, 0f);
         }
 
+        private void Start()
+        {
+            Player = GameManager.instance.Player;
+            Follow = Player.transform;
+
+            InitSM();
+
+            sm.ChangeState(StateID.EnemyAIIdle);
+        }
+
         private void OnEnable()
         {
             Party.OnCharacterChange += UpdateCharacter;
-
-            SceneManager.sceneLoaded += FindPlayer;
         }
 
         private void OnDisable()
         {
             Party.OnCharacterChange -= UpdateCharacter;
-
-            SceneManager.sceneLoaded -= FindPlayer;
         }
 
         private void Update()
@@ -89,7 +95,6 @@ namespace RPG_Project
         {
             if (Party.CurrentController.Character != null)
             {
-                print(Party.CurrentController.Character == null);
                 Pattern = Party.CurrentController.Character.EnemyAi;
 
                 Timer = new Cooldown(Pattern.MinDelay, 1f, 0f);

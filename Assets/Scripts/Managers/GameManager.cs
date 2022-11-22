@@ -19,6 +19,8 @@ namespace RPG_Project
         public UIManager Ui { get; private set; }
         public AreaManager Area { get; private set; }
 
+        readonly List<int> loadedSceneIndexes = new List<int>();
+
         public readonly StateMachine sm = new StateMachine();
 
         private void Awake()
@@ -42,11 +44,23 @@ namespace RPG_Project
             sm.AddState(StateID.GameMainMenu, new GameMainMenuState(this));
             sm.AddState(StateID.GameLoading, new GameLoadingState(this));
             sm.AddState(StateID.GameWorld, new GameWorldState(this));
+            sm.AddState(StateID.GameOver, new GameOverState(this));
 
             sm.ChangeState(StateID.GameMainMenu);
         }
 
-        public IEnumerator LoadScene(int index)
+        public void LoadScene(int index)
+        {
+            StartCoroutine(LoadSceneCo(index));
+        }
+
+        public void GameOver()
+        {
+            StartCoroutine(GameOverCo());
+        }
+
+        #region Coroutines
+        IEnumerator LoadSceneCo(int index)
         {
             yield return StartCoroutine(Ui.FadingScreen.FadeTo(1f, Color.black));
 
@@ -58,6 +72,8 @@ namespace RPG_Project
 
             yield return new WaitUntil(() => async.isDone);
 
+            loadedSceneIndexes.Add(index);
+
             yield return Area.InitAreaCo();
 
             yield return StartCoroutine(Ui.FadingScreen.FadeTo(1f, Color.black));
@@ -68,5 +84,22 @@ namespace RPG_Project
 
             Ui.AreaName.DisplayText(Area.AreaName, 3f);
         }
+
+        IEnumerator GameOverCo()
+        {
+            yield return StartCoroutine(Ui.FadingScreen.FadeTo(1f, Color.black));
+
+            sm.ChangeState(StateID.GameOver);
+
+            foreach (var index in loadedSceneIndexes)
+                SceneManager.UnloadSceneAsync(index);
+
+            Destroy(Player);
+
+            Player = null;
+
+            yield return StartCoroutine(Ui.FadingScreen.FadeTo(0f, Color.black));
+        }
+        #endregion
     }
 }

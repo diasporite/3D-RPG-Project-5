@@ -6,7 +6,10 @@ namespace RPG_Project
 {
     public class CameraFocus : MonoBehaviour
     {
-        [field: SerializeField] public Transform Hips { get; private set; }
+        float height = 1f;
+
+        [field: SerializeField] public Transform Model { get; private set; }
+        [field: SerializeField] public Transform Focus { get; private set; }
 
         PartyController party;
 
@@ -15,26 +18,35 @@ namespace RPG_Project
             party = GetComponentInParent<PartyController>();
         }
 
+        private void Start()
+        {
+            Focus = party.TargetSphere.TargetFocus.transform;
+        }
+
         private void Update()
         {
-            if (Hips != null)
-                transform.position = Hips.transform.position;
+            if (Model != null && Focus != null)
+            {
+                if (party.TargetSphere.Locked)
+                    transform.position = Focus.transform.position;
+                else transform.position = Model.transform.position + height * Model.transform.up;
+            }
         }
 
         private void OnEnable()
         {
-            party.OnCharacterChange += UpdateHips;
+            party.OnCharacterChange += UpdateModelPos;
         }
 
         private void OnDisable()
         {
-            party.OnCharacterChange -= UpdateHips;
+            party.OnCharacterChange -= UpdateModelPos;
         }
 
-        void UpdateHips()
+        void UpdateModelPos()
         {
             if (party.CurrentController.Model != null)
-                Hips = party.CurrentController.Model.Hips;
+                Model = party.CurrentController.Model.transform;
         }
     }
 }

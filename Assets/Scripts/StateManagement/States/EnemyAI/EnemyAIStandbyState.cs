@@ -21,10 +21,13 @@ namespace RPG_Project
 
         public void Enter(params object[] args)
         {
-            if (ai.Player.Aggro.Contains(ai.Party))
+            if (ai.Player != null)
             {
-                ai.Party.Aggro.Remove(ai.Player);
-                ai.Player.Aggro.Remove(ai.Party);
+                if (ai.Player.Aggro.Contains(ai.Party))
+                {
+                    ai.Party.Aggro.Remove(ai.Player);
+                    ai.Player.Aggro.Remove(ai.Party);
+                }
             }
         }
 

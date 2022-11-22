@@ -7,13 +7,13 @@ namespace RPG_Project
 {
     public class MenuInputReader : MonoBehaviour, PlayerControls.IMainMenuActions
     {
-        MainMenu mainMenu;
+        MenuScreen menu;
 
         PlayerControls controls;
 
         private void Awake()
         {
-            mainMenu = GetComponent<MainMenu>();
+            menu = GetComponent<MenuScreen>();
 
             controls = new PlayerControls();
             controls.MainMenu.SetCallbacks(this);
@@ -31,22 +31,22 @@ namespace RPG_Project
 
         public void OnBack(InputAction.CallbackContext context)
         {
-            if (context.performed) mainMenu.CurrentMenu.Back();
+            if (context.performed) menu.CurrentMenu.Back();
         }
 
         public void OnConfirm(InputAction.CallbackContext context)
         {
-            if (context.performed) mainMenu.CurrentMenu.Confirm();
+            if (context.performed) menu.CurrentMenu.Confirm();
         }
 
         public void OnNext(InputAction.CallbackContext context)
         {
-            if (context.performed) mainMenu.CurrentMenu.Next();
+            if (context.performed) menu.CurrentMenu.Next();
         }
 
         public void OnPrevious(InputAction.CallbackContext context)
         {
-            if (context.performed) mainMenu.CurrentMenu.Previous();
+            if (context.performed) menu.CurrentMenu.Previous();
         }
     }
 }

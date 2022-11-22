@@ -20,7 +20,7 @@ namespace RPG_Project
         private void Start()
         {
             if (controller != null)
-                targetTypes = controller.Party.Ts.Types;
+                targetTypes = controller.Party.TargetSphere.Types;
             else targetTypes = new TargetType[] { TargetType.Player,
                 TargetType.Enemy, TargetType.Object };
         }

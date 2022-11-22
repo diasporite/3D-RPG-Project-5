@@ -25,7 +25,7 @@ namespace RPG_Project
         {
             print("new game");
 
-            GameManager.instance.StartCoroutine(GameManager.instance.LoadScene(1));
+            GameManager.instance.LoadScene(1);
         }
 
         public void Options()

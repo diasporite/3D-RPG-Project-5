@@ -10,7 +10,7 @@ namespace RPG_Project
         [SerializeField] float minTimescale = 0.1f;
         [SerializeField] float acceleration = 10f;
 
-        public void SetTimescale(float scale)
+        public void MoveTowardTimescale(float scale)
         {
             if (Time.timeScale == scale) return;
 
@@ -21,7 +21,7 @@ namespace RPG_Project
                 acceleration * Time.unscaledDeltaTime), ts_min, 1f);
         }
 
-        public void SetTimescaleInstant(float scale)
+        public void SetTimescale(float scale)
         {
             if (Time.timeScale == scale) return;
 

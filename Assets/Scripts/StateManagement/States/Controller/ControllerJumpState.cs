@@ -35,7 +35,7 @@ namespace RPG_Project
             health.SpeedFactor = 0f;
             stamina.SpeedFactor = 0f;
 
-            controller.Party.Tc?.SetTimescale(1f);
+            controller.Party.Tc?.MoveTowardTimescale(1f);
 
             controller.Model.PlayAnimationInstant(controller.fallHash);
         }
@@ -47,10 +47,10 @@ namespace RPG_Project
             health.Tick();
             stamina.Tick();
 
-            controller.Party.Tc?.SetTimescale(1f);
+            controller.Party.Tc?.MoveTowardTimescale(1f);
 
-            if (controller.Party.Ts.Locked)
-                controller.Model.RotateTowardsTarget(controller.Party.transform.rotation, controller.Party.Ts.CurrentTargetTransform);
+            if (controller.Party.TargetSphere.Locked)
+                controller.Model.RotateTowardsTarget(controller.Party.transform.rotation, controller.Party.TargetSphere.CurrentTargetTransform);
 
             movement.MovePosition(dir, Time.deltaTime, SpeedMode.Fall);
 

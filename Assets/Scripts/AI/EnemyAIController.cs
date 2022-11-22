@@ -42,6 +42,8 @@ namespace RPG_Project
             Player = GameManager.instance.Player;
             Follow = Player.transform;
 
+            Player.OnDeath += RemovePlayerRef;
+
             InitSM();
 
             sm.ChangeState(StateID.EnemyAIIdle);
@@ -50,11 +52,13 @@ namespace RPG_Project
         private void OnEnable()
         {
             Party.OnCharacterChange += UpdateCharacter;
+            if (Player != null) Player.OnDeath += RemovePlayerRef;
         }
 
         private void OnDisable()
         {
             Party.OnCharacterChange -= UpdateCharacter;
+            if (Player != null) Player.OnDeath -= RemovePlayerRef;
         }
 
         private void Update()
@@ -64,32 +68,32 @@ namespace RPG_Project
             currentState = sm.CurrentStateKey;
         }
 
-        void FindPlayer(Scene scene, LoadSceneMode mode)
-        {
-            if (Player == null)
-            {
-                var gos = SceneManager.GetSceneByName("PersistentObjects").GetRootGameObjects();
+        //void FindPlayer(Scene scene, LoadSceneMode mode)
+        //{
+        //    if (Player == null)
+        //    {
+        //        var gos = SceneManager.GetSceneByName("PersistentObjects").GetRootGameObjects();
 
-                foreach(var go in gos)
-                {
-                    var p = go.GetComponent<PartyController>();
+        //        foreach(var go in gos)
+        //        {
+        //            var p = go.GetComponent<PartyController>();
 
-                    if (p == null) continue;
+        //            if (p == null) continue;
 
-                    if (p.IsPlayer)
-                    {
-                        Player = p;
-                        Follow = Player.transform;
+        //            if (p.IsPlayer)
+        //            {
+        //                Player = p;
+        //                Follow = Player.transform;
 
-                        InitSM();
+        //                InitSM();
 
-                        sm.ChangeState(StateID.EnemyAIIdle);
+        //                sm.ChangeState(StateID.EnemyAIIdle);
 
-                        break;
-                    }
-                }
-            }
-        }
+        //                break;
+        //            }
+        //        }
+        //    }
+        //}
 
         void UpdateCharacter()
         {
@@ -111,6 +115,16 @@ namespace RPG_Project
 
         public void Standby()
         {
+            sm.ChangeState(StateID.EnemyAIStandby);
+        }
+
+        void RemovePlayerRef()
+        {
+            Player.OnDeath -= RemovePlayerRef;
+
+            Player = null;
+            Follow = null;
+
             sm.ChangeState(StateID.EnemyAIStandby);
         }
     }

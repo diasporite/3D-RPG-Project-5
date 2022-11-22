@@ -77,7 +77,7 @@ namespace RPG_Project
 
         private void Start()
         {
-            ts = GetComponentInParent<PartyController>().Ts;
+            ts = GetComponentInParent<PartyController>().TargetSphere;
         }
 
         private void Update()
@@ -103,7 +103,7 @@ namespace RPG_Project
                 radius = InterpolateRadius(height);
 
                 transform.position = TargetCamPos;
-                transform.LookAt(ts.Tf.transform);
+                transform.LookAt(ts.TargetFocus.transform);
             }
             else
             {

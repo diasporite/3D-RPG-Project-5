@@ -89,15 +89,18 @@ namespace RPG_Project
 
             var act = 1.4f;
 
-            var hDamage = info.FinalHealthDamage;
-            var sDamage = info.FinalStaminaDamage;
+            var hDamage = info.HealthDamage;
+            var sDamage = info.StaminaDamage;
 
-            if (controller.sm.InState(StateID.ControllerDodge))
-                hDamage = Mathf.RoundToInt(hDamage * dodgeMult);
-            if (controller.sm.InState(StateID.ControllerGuard))
-                hDamage = Mathf.RoundToInt(hDamage * guardMult);
-            if (controller.sm.InState(StateID.ControllerAction, StateID.ControllerJump))
-                hDamage = Mathf.RoundToInt(hDamage * act);
+            if (!info.FlatDamage)
+            {
+                if (controller.sm.InState(StateID.ControllerDodge))
+                    hDamage = Mathf.RoundToInt(hDamage * dodgeMult);
+                if (controller.sm.InState(StateID.ControllerGuard))
+                    hDamage = Mathf.RoundToInt(hDamage * guardMult);
+                if (controller.sm.InState(StateID.ControllerAction, StateID.ControllerJump))
+                    hDamage = Mathf.RoundToInt(hDamage * act);
+            }
 
             health.ChangeValue(-hDamage);
             stamina.ChangeValue(-sDamage);

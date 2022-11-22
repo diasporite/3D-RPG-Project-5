@@ -39,7 +39,7 @@ namespace RPG_Project
 
             normalizedTime = 0f;
 
-            controller.Party.Tc?.SetTimescale(1f);
+            controller.Party.Tc?.MoveTowardTimescale(1f);
 
             cm.PlayAnimation(controller.staggerHash);
         }
@@ -50,7 +50,7 @@ namespace RPG_Project
             controller.Stamina.Tick();
             controller.Power.Tick();
 
-            controller.Party.Tc?.SetTimescale(1f);
+            controller.Party.Tc?.MoveTowardTimescale(1f);
 
             normalizedTime = cm.GetNormalizedTime(controller.staggerTag);
 

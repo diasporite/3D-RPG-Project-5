@@ -56,7 +56,7 @@ namespace RPG_Project
 
             normalizedTime = 0f;
 
-            controller.Party.Tc?.SetTimescaleInstant(1f);
+            controller.Party.Tc?.SetTimescale(1f);
 
             cm.PlayAnimation(controller.CurrentActionHash);
         }
@@ -67,13 +67,13 @@ namespace RPG_Project
             stamina.Tick();
             power.Tick();
 
-            controller.Party.Tc?.SetTimescale(1f);
+            controller.Party.Tc?.MoveTowardTimescale(1f);
 
             //normalizedTime = NormalizedTime();
             normalizedTime = cm.GetNormalizedTime(controller.CurrentActionTag);
 
-            if (party.Ts.Locked)
-                cm.RotateTowardsTarget(party.transform.rotation, party.Ts.CurrentTargetTransform);
+            if (party.TargetSphere.Locked)
+                cm.RotateTowardsTarget(party.transform.rotation, party.TargetSphere.CurrentTargetTransform);
 
             controller.Movement.MovePositionAction(cm.transform.forward, Time.deltaTime,
                 character.EvaluateActionMovement(normalizedTime));

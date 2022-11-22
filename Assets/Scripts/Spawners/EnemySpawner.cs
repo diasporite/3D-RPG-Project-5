@@ -30,7 +30,7 @@ namespace RPG_Project
 
             var party = pObj.GetComponent<PartyController>();
 
-            party.InitParty(spawnData);
+            party.InitParty(spawnData, transform.rotation);
 
             return party;
         }

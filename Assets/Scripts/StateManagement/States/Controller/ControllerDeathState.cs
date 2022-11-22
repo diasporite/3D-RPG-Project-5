@@ -16,6 +16,8 @@ namespace RPG_Project
 
         CharacterModel cm;
 
+        float screenThreshold = 0.95f;
+
         public ControllerDeathState(Controller controller)
         {
             this.controller = controller;
@@ -45,13 +47,13 @@ namespace RPG_Project
 
             controller.Character.DisableHitDetectors();
 
-            controller.Party.Tc?.SetTimescale(1f);
+            controller.Party.Tc?.MoveTowardTimescale(1f);
 
             controller.Party.OwnTarget.NotifyDeath();
 
             controller.GetComponentInParent<EnemyAIController>()?.Standby();
 
-            controller.Party.Ts.UnlockTarget();
+            controller.Party.TargetSphere.UnlockTarget();
 
             controller.Movement.gameObject.layer = 14;
 
@@ -64,7 +66,18 @@ namespace RPG_Project
             stamina.Tick();
             power.Tick();
 
-            controller.Party.Tc?.SetTimescale(1f);
+            controller.Party.Tc?.MoveTowardTimescale(1f);
+
+            if (controller.Party.IsPlayer)
+            {
+                if (controller.Party.CurrentController.Model.GetNormalizedTime("Death") >= 
+                    screenThreshold)
+                {
+                    GameManager.instance.GameOver();
+                    controller.Party.InvokeDeath();
+                    controller.Party.DestroySelf();
+                }
+            }
         }
 
         public void ExecuteFrameFixed()

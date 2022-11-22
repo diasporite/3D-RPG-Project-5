@@ -109,14 +109,16 @@
   - Importing main menu
   - Transition from main menu to game
   - Spawning logic
+- Game over sequence
+  - Basic complete game loop
+- Kill planes
+  - Flat damage
 - TO DO:
-  - Game over sequence
-    - Implement GameOver state
-	- Finish screen menu setup
   - Game menu
     - Only have 'save and quit' option for start
 	  - Implement only quit for now
   - Fix health bar
+  - Fix camera when respawning (instant follow)
   - Consider scrapping power in favour of individual usages
 
 RESOURCES

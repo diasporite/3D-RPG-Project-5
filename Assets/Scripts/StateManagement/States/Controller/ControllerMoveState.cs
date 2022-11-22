@@ -56,7 +56,7 @@ namespace RPG_Project
 
             controller.InputReader.InputQueue.Execute();
 
-            controller.Party.Tc?.SetTimescale(dir.magnitude);
+            controller.Party.Tc?.MoveTowardTimescale(dir.magnitude);
 
             movement.MovePosition(dir, Time.deltaTime, SpeedMode.Walk);
 
@@ -64,7 +64,7 @@ namespace RPG_Project
                 csm.ChangeState(StateID.ControllerRun);
             else if (controller.InputReader.Guard)
                 csm.ChangeState(StateID.ControllerGuard);
-            else if (controller.Party.Ts.Locked)
+            else if (controller.Party.TargetSphere.Locked)
                 csm.ChangeState(StateID.ControllerStrafe);
             else if (!movement.Grounded)
             {

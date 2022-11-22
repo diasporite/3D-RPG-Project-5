@@ -11,7 +11,7 @@ namespace RPG_Project
 
         [field: SerializeField] public PlayerCamera CurrentCamera { get; set; }
 
-        public Transform Follow { get; private set; }
+        public Transform Follow { get; set; }
 
         private void LateUpdate()
         {
@@ -20,14 +20,20 @@ namespace RPG_Project
                 transform.position = Vector3.MoveTowards(transform.position,
                     CurrentCamera.transform.position, linearUpdateSpeed * Time.unscaledDeltaTime);
 
+                //transform.rotation = Quaternion.RotateTowards(transform.rotation,
+                //    CurrentCamera.transform.rotation, rotationalUpdateSpeed * Time.unscaledDeltaTime);
+
                 transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                    CurrentCamera.transform.rotation, rotationalUpdateSpeed * Time.unscaledDeltaTime);
+                    Quaternion.LookRotation(Follow.position - transform.position), 
+                    rotationalUpdateSpeed * Time.unscaledDeltaTime);
             }
         }
 
-        public void Init(Transform player)
+        public void Init(Transform transform)
         {
-            Follow = player.transform;
+            Follow = transform;
+
+            InstantFollow();
         }
 
         float RoundAngle(float angle)

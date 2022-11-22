@@ -4,23 +4,19 @@ using UnityEngine;
 
 namespace RPG_Project
 {
-    public class MainMenu : MonoBehaviour
+    public class MainMenu : MenuScreen
     {
-        public StateID currentState;
-
         public MainMenuHome Home { get; private set; }
 
-        public MenuBase CurrentMenu { get; set; }
-
-        public readonly StateMachine sm = new StateMachine();
-
-        private void Awake()
+        protected override void Awake()
         {
             Home = GetComponentInChildren<MainMenuHome>();
 
             InitSM();
 
             Home.gameObject.SetActive(false);
+
+            base.Awake();
         }
 
         private void Update()
@@ -28,7 +24,7 @@ namespace RPG_Project
             sm.Update();
         }
 
-        void InitSM()
+        protected override void InitSM()
         {
             sm.AddState(StateID.MainMenuHome, new MainMenuHomeState(this));
         }

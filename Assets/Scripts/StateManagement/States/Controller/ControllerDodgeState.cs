@@ -47,11 +47,11 @@ namespace RPG_Project
             cm.SetFloat("InputX", controller.InputReader.Move.x);
             cm.SetFloat("InputY", controller.InputReader.Move.y);
 
-            controller.Party.Tc?.SetTimescale(1f);
+            controller.Party.Tc?.MoveTowardTimescale(1f);
 
             cm.PlayAnimationInstant(controller.dodgeHash);
 
-            if (controller.Party.Ts.Locked)
+            if (controller.Party.TargetSphere.Locked)
             {
                 if (controller.CurrentDodgeDir != Vector3.zero)
                     dodgeDir = controller.CurrentDodgeDir;
@@ -65,7 +65,7 @@ namespace RPG_Project
             health.Tick();
             stamina.Tick();
 
-            controller.Party.Tc?.SetTimescale(1f);
+            controller.Party.Tc?.MoveTowardTimescale(1f);
 
             normalizedTime = NormalizedTime();
 

@@ -55,11 +55,11 @@ namespace RPG_Project
 
             controller.InputReader.InputQueue.Execute();
 
-            controller.Party.Tc?.SetTimescale(dir.magnitude);
+            controller.Party.Tc?.MoveTowardTimescale(dir.magnitude);
 
             movement.MovePosition(dir, Time.deltaTime, SpeedMode.Strafe);
 
-            if (!controller.Party.Ts.Locked)
+            if (!controller.Party.TargetSphere.Locked)
                 csm.ChangeState(StateID.ControllerMove);
             if (controller.InputReader.Guard) csm.ChangeState(StateID.ControllerGuard);
             if (!movement.Grounded)
@@ -97,11 +97,11 @@ namespace RPG_Project
                     cm.SetFloat("DirY", input.y);
                     break;
                 case MovementState.TopDown:
-                    if (controller.Party.Ts.CurrentTargetTransform != null)
+                    if (controller.Party.TargetSphere.CurrentTargetTransform != null)
                     {
                         if (input != Vector2.zero)
                         {
-                            var dir = (controller.Party.Ts.CurrentTargetTransform.position -
+                            var dir = (controller.Party.TargetSphere.CurrentTargetTransform.position -
                                 controller.transform.position).normalized;
                             cm.SetFloat("DirX", dir.x);
                             cm.SetFloat("DirY", dir.y);

@@ -13,10 +13,9 @@ namespace RPG_Project
         [field: SerializeField] public int HealthDamage { get; private set; }
         [field: SerializeField] public int StaminaDamage { get; private set; }
 
-        CombatDatabase combat;
+        [field: SerializeField] public bool FlatDamage { get; private set; } = false;
 
-        public int FinalHealthDamage => HealthDamage;
-        public int FinalStaminaDamage => StaminaDamage;
+        CombatDatabase combat;
 
         public DamageInfo(Character instigator, int basePower)
         {
@@ -37,6 +36,15 @@ namespace RPG_Project
 
             HealthDamage = combat.Damage(data.HealthDamage);
             StaminaDamage = combat.Damage(data.StaminaDamage);
+        }
+
+        // For flat damage
+        public DamageInfo(int hDamage, int sDamage)
+        {
+            HealthDamage = hDamage;
+            StaminaDamage = sDamage;
+
+            FlatDamage = true;
         }
     }
 }

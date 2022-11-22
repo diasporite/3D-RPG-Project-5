@@ -37,7 +37,7 @@ namespace RPG_Project
 
         public void Init(PartyController party)
         {
-            ts = party.Ts;
+            ts = party.TargetSphere;
         }
     }
 }

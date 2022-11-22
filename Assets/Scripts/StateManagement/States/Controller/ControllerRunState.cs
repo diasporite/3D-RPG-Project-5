@@ -43,7 +43,7 @@ namespace RPG_Project
 
             stamina.Charged = false;
 
-            controller.Party.Tc?.SetTimescale(1f);
+            controller.Party.Tc?.MoveTowardTimescale(1f);
 
             cm.PlayAnimation(controller.moveHash);
         }
@@ -59,7 +59,7 @@ namespace RPG_Project
             stamina.Tick();
             power.Tick();
 
-            controller.Party.Tc?.SetTimescale(1f);
+            controller.Party.Tc?.MoveTowardTimescale(1f);
 
             if (dir == Vector2.zero || stamina.Empty)
                 csm.ChangeState(StateID.ControllerMove);
@@ -72,7 +72,7 @@ namespace RPG_Project
 
             if (!controller.InputReader.Run) csm.ChangeState(StateID.ControllerMove);
             if (controller.InputReader.Guard) csm.ChangeState(StateID.ControllerGuard);
-            if (controller.Party.Ts.Locked)
+            if (controller.Party.TargetSphere.Locked)
             {
                 csm.ChangeState(StateID.ControllerStrafe);
             }

@@ -22,15 +22,15 @@ namespace RPG_Project
         {
             Move(Vector2.zero);
 
-            if (pcc.Party.Ts.Locked) transform.LookAt(pcc.Party.Ts.Tf.transform);
+            if (pcc.Party.TargetSphere.Locked) transform.LookAt(pcc.Party.TargetSphere.TargetFocus.transform);
             else transform.LookAt(pcc.Follow);
         }
 
         protected override void Move(Vector2 inputDir)
         {
-            if (pcc.Party.Ts.Locked)
+            if (pcc.Party.TargetSphere.Locked)
             {
-                transform.position = pcc.Party.Ts.Tf.transform.position + 
+                transform.position = pcc.Party.TargetSphere.TargetFocus.transform.position + 
                     distance * Mathf.Cos(afvRad) * Vector3.up - 
                     distance * Mathf.Sin(afvRad) * Vector3.forward;
             }

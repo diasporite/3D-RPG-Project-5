@@ -4,18 +4,13 @@ using UnityEngine;
 
 namespace RPG_Project
 {
-    public class GameOverScreen : MenuBase
+    public class GameOverScreen : MenuScreen
     {
-        public void Retry()
+        protected override void Awake()
         {
-            print("retry");
-        }
+            CurrentMenu = GetComponent<GameOverMenu>();
 
-        public void Quit()
-        {
-            print("quit");
-
-            Application.Quit();
+            base.Awake();
         }
     }
 }

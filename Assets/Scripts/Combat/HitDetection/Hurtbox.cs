@@ -20,7 +20,7 @@ namespace RPG_Project
             var p = GetComponentInParent<PartyController>();
 
             if (p == null) TargetType = TargetType.Object;
-            else TargetType = p.Ts.SelfType;
+            else TargetType = p.TargetSphere.SelfType;
         }
     }
 }

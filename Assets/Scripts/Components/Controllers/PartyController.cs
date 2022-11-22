@@ -39,7 +39,7 @@ namespace RPG_Project
         public Health Health { get; private set; }
         public TimeController Tc { get; private set; }
 
-        public TargetSphere Ts { get; private set; }
+        public TargetSphere TargetSphere { get; private set; }
         public Target OwnTarget { get; private set; }
 
         [field: SerializeField] public EnemyStats Es { get; private set; }
@@ -69,7 +69,7 @@ namespace RPG_Project
             Health = GetComponent<Health>();
             Tc = GetComponent<TimeController>();
 
-            Ts = GetComponentInChildren<TargetSphere>();
+            TargetSphere = GetComponentInChildren<TargetSphere>();
             OwnTarget = GetComponentInChildren<Target>();
 
             Es = GetComponentInChildren<EnemyStats>();
@@ -93,7 +93,7 @@ namespace RPG_Project
         }
 
         #region Instantiation
-        public void InitParty(SpawnData[] data)
+        public void InitParty(SpawnData[] data, Quaternion spawnerRotation)
         {
             foreach (var d in data)
             {
@@ -101,9 +101,11 @@ namespace RPG_Project
                     Quaternion.identity, memberHolder) as GameObject;
 
                 // Initialise combat data
-                var con = chObj.GetComponent<Controller>();
-                PartyMembers.Add(con);
-                con.Init();
+                var controller = chObj.GetComponent<Controller>();
+
+                PartyMembers.Add(controller);
+                controller.Init();
+                controller.Model.transform.localRotation = spawnerRotation;
             }
 
             SwitchCharacter(0);
@@ -112,7 +114,7 @@ namespace RPG_Project
 
             if (IsPlayer)
             {
-                FindObjectOfType<CameraController>().Init(transform);
+                FindObjectOfType<CameraController>().Init(GetComponentInChildren<CameraFocus>().transform);
             }
         }
         #endregion
@@ -167,6 +169,11 @@ namespace RPG_Project
                 if (member != controller && !member.IsDead && !member.IsStaggered)
                     SwitchCharacter(i);
             }
+        }
+
+        public void DestroySelf()
+        {
+            Destroy(gameObject);
         }
 
         #region Delegates

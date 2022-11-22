@@ -23,7 +23,7 @@ namespace RPG_Project
         private void Start()
         {
             if (Controller != null)
-                TargetTypes = Controller.Party.Ts.Types;
+                TargetTypes = Controller.Party.TargetSphere.Types;
             else TargetTypes = new TargetType[] { TargetType.Player,
                 TargetType.Enemy, TargetType.Object };
         }
@@ -48,7 +48,7 @@ namespace RPG_Project
             var prObj = Instantiate(data.ProjectilePrefab.gameObject, muzzle.position,
                 Quaternion.identity) as GameObject;
             var pr = prObj.GetComponent<Projectile>();
-            pr.InitProjectile(this, data, muzzle, Controller.Party.Ts.CurrentTargetTransform);
+            pr.InitProjectile(this, data, muzzle, Controller.Party.TargetSphere.CurrentTargetTransform);
 
             FireCooldown.Reset();
         }

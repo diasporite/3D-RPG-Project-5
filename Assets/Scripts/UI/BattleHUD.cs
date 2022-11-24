@@ -45,8 +45,7 @@ namespace RPG_Project
 
             Reticle.Init(Player);
 
-            // i = 1 to exclude BattleHUD
-            for (int i = 1; i < Elements.Length; i++)
+            for (int i = 0; i < Elements.Length; i++)
             {
                 Elements[i].InitUI();
                 Elements[i].SubscribeToDelegates();

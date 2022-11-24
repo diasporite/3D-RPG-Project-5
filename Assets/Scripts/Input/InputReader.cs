@@ -57,6 +57,8 @@ namespace RPG_Project
         public event Action OnPauseSelectAction;
         public event Action OnToggleLockAction;
 
+        public event Action OnMenu;
+
         [field: SerializeField] public Vector2 Move { get; protected set; }
         [field: SerializeField] public Vector2 Rotate { get; protected set; }
         [field: SerializeField] public Vector2 Dpad { get; protected set; }
@@ -123,6 +125,11 @@ namespace RPG_Project
         public void InvokeToggleLock()
         {
             OnToggleLockAction?.Invoke();
+        }
+
+        public void InvokeMenu()
+        {
+            OnMenu?.Invoke();
         }
         #endregion
     }

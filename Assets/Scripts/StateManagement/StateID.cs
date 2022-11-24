@@ -23,6 +23,7 @@ namespace RPG_Project
         ControllerGuard = 20,
         ControllerJump = 21,
         ControllerStandby = 22,
+        ControllerInactive = 23,
 
         EnemyAIIdle = 31,
         EnemyAIChase = 32,

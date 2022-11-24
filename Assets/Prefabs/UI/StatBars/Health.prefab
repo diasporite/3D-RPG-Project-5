@@ -84,6 +84,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5405479274015146141}
   - component: {fileID: 1686900992533342549}
+  - component: {fileID: 1156114973477173441}
   m_Layer: 0
   m_Name: Health
   m_TagString: Untagged
@@ -129,9 +130,20 @@ MonoBehaviour:
   <Background>k__BackingField: {fileID: 3941432140607553306}
   <FillShadow>k__BackingField: {fileID: 1208287002448900897}
   <Fill>k__BackingField: {fileID: 3715107054551352685}
-  updateDelay: 0.8
-  updateSpeed: 0.6
-  shadowThreshold: 0.04
+  player: {fileID: 0}
+  health: {fileID: 0}
+--- !u!114 &1156114973477173441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4620527538242336915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e885f1489832e7a408a67dac66d2f3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4806725961394626051
 GameObject:
   m_ObjectHideFlags: 0

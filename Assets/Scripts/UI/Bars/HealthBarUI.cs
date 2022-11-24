@@ -12,8 +12,8 @@ namespace RPG_Project
 
         Cooldown delayTimer;
 
-        PartyController player;
-        Health health;
+        [SerializeField] PartyController player;
+        [SerializeField] Health health;
 
         BattleHUD hud;
 
@@ -45,24 +45,14 @@ namespace RPG_Project
             }
             else
             {
-                if (!delayTimer.Full) delayTimer.TickUnscaled();
+                if (!delayTimer.Full)
+                    delayTimer.TickUnscaled();
                 else
                 {
-                    if (!delayTimer.Full) delayTimer.TickUnscaled();
-                    else
-                    {
-                        if (delayTimer.Full)
-                        {
-                            delayTimer.Reset();
-                            delayTimer.TickUnscaled();
-                        }
-                        else
-                        {
-                            if (FillShadow.fillAmount != health.ResourceFraction)
-                                FillShadow.fillAmount = Mathf.MoveTowards(FillShadow.fillAmount, 
-                                    health.ResourceFraction, updateSpeed * Time.unscaledDeltaTime);
-                        }
-                    }
+
+                    if (FillShadow.fillAmount != health.ResourceFraction)
+                        FillShadow.fillAmount = Mathf.MoveTowards(FillShadow.fillAmount,
+                            health.ResourceFraction, updateSpeed * Time.unscaledDeltaTime);
                 }
             }
         }

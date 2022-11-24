@@ -77,12 +77,16 @@ namespace RPG_Project
         {
             ResourceCooldown.Count = amount;
 
+            Change = ResourceCooldown.Count;
+
             UpdateUI();
         }
 
         public void SetFraction(float fraction)
         {
             ResourceCooldown.CooldownFraction = fraction;
+
+            Change = ResourceCooldown.Count;
 
             UpdateUI();
         }

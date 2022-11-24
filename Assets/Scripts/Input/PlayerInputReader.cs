@@ -119,5 +119,10 @@ namespace RPG_Project
         {
             if (context.performed) InvokeToggleLock();
         }
+
+        public void OnOpenClose(InputAction.CallbackContext context)
+        {
+            if (context.performed) InvokeMenu();
+        }
     }
 }

@@ -93,7 +93,7 @@ namespace RPG_Project
         }
 
         #region Instantiation
-        public void InitParty(SpawnData[] data, Quaternion spawnerRotation)
+        public void InitParty(SpawnData[] data, Quaternion rotation)
         {
             foreach (var d in data)
             {
@@ -104,8 +104,7 @@ namespace RPG_Project
                 var controller = chObj.GetComponent<Controller>();
 
                 PartyMembers.Add(controller);
-                controller.Init();
-                controller.Model.transform.localRotation = spawnerRotation;
+                controller.Init(rotation);
             }
 
             SwitchCharacter(0);
@@ -114,7 +113,9 @@ namespace RPG_Project
 
             if (IsPlayer)
             {
-                FindObjectOfType<CameraController>().Init(GetComponentInChildren<CameraFocus>().transform);
+                GetComponentInChildren<PlayerCameraController>().Init();
+                FindObjectOfType<CameraController>().
+                    Init(GetComponentInChildren<CameraFocus>().transform);
             }
         }
         #endregion

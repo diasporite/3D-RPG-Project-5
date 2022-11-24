@@ -113,12 +113,13 @@
   - Basic complete game loop
 - Kill planes
   - Flat damage
+- Scaled time UI
 - TO DO:
   - Game menu
     - Only have 'save and quit' option for start
 	  - Implement only quit for now
-  - Fix health bar
-  - Fix camera when respawning (instant follow)
+  - Fix health bar [FIXED]
+  - Fix camera when respawning (instant follow) [FIXED]
   - Consider scrapping power in favour of individual usages
 
 RESOURCES

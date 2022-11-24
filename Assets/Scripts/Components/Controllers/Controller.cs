@@ -147,12 +147,14 @@ namespace RPG_Project
             InputReader.OnAttackAction -= Action;
         }
 
-        public void Init()
+        public void Init(Quaternion rotation)
         {
             DirectionalDodging = Character.CharData.DodgeAction.IsDirectional;
 
             Stamina.Init();
             Power.Init();
+
+            Model.Init(rotation);
 
             InitSM();
 
@@ -176,6 +178,8 @@ namespace RPG_Project
             sm.AddState(StateID.ControllerDeath, new ControllerDeathState(this));
 
             sm.AddState(StateID.ControllerStandby, new ControllerStandbyState(this));
+
+            sm.AddState(StateID.ControllerInactive, new ControllerInactiveState(this));
         }
 
         #region Actions
@@ -253,6 +257,21 @@ namespace RPG_Project
                 Stamina.ChangeValue(-Character.CharData.CombatActions[CurrentActionIndex].StaminaCost);
 
                 sm.ChangeState(StateID.ControllerAction);
+            }
+        }
+
+        void Menu()
+        {
+            var gameState = GameManager.instance.currentState;
+
+            switch (gameState)
+            {
+                case StateID.GameWorld:
+
+                    break;
+                case StateID.GameMenu:
+
+                    break;
             }
         }
         #endregion

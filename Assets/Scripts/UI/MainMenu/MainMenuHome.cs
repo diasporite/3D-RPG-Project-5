@@ -25,7 +25,7 @@ namespace RPG_Project
         {
             print("new game");
 
-            GameManager.instance.LoadScene(1);
+            GameManager.instance.LoadScene(1, true);
         }
 
         public void Options()

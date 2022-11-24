@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,8 @@ namespace RPG_Project
 {
     public class GameManager : MonoBehaviour
     {
+        public event Action OnMenu;
+
         public static GameManager instance = null;
 
         public StateID currentState;
@@ -17,6 +20,8 @@ namespace RPG_Project
         [field: SerializeField] public CharacterDatabase CharData { get; private set; }
 
         public UIManager Ui { get; private set; }
+
+        public TimeManager Time { get; private set; }
         public AreaManager Area { get; private set; }
 
         readonly List<int> loadedSceneIndexes = new List<int>();
@@ -29,6 +34,8 @@ namespace RPG_Project
             else Destroy(gameObject);
 
             Ui = FindObjectOfType<UIManager>();
+
+            Time = GetComponent<TimeManager>();
             Area = GetComponent<AreaManager>();
 
             CharData.BuildDatabase();
@@ -49,9 +56,9 @@ namespace RPG_Project
             sm.ChangeState(StateID.GameMainMenu);
         }
 
-        public void LoadScene(int index)
+        public void LoadScene(int index, bool resetTimer)
         {
-            StartCoroutine(LoadSceneCo(index));
+            StartCoroutine(LoadSceneCo(index, resetTimer));
         }
 
         public void GameOver()
@@ -60,7 +67,7 @@ namespace RPG_Project
         }
 
         #region Coroutines
-        IEnumerator LoadSceneCo(int index)
+        IEnumerator LoadSceneCo(int index, bool resetTimer)
         {
             yield return StartCoroutine(Ui.FadingScreen.FadeTo(1f, Color.black));
 
@@ -71,6 +78,8 @@ namespace RPG_Project
             var async = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
 
             yield return new WaitUntil(() => async.isDone);
+
+            if (resetTimer) Time.ResetLevelTime();
 
             loadedSceneIndexes.Add(index);
 

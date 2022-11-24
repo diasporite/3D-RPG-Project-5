@@ -10,7 +10,7 @@ namespace RPG_Project
         {
             print("retry");
 
-            GameManager.instance.LoadScene(1);
+            GameManager.instance.LoadScene(1, true);
         }
 
         public void Quit()

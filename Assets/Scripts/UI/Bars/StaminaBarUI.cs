@@ -51,7 +51,8 @@ namespace RPG_Project
             }
             else
             {
-                if (!delayTimer.Full) delayTimer.TickUnscaled();
+                if (!delayTimer.Full)
+                    delayTimer.TickUnscaled();
                 else
                 {
 

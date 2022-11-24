@@ -33,6 +33,11 @@ namespace RPG_Project
             Cc = FindObjectOfType<CameraController>();
         }
 
+        public void Init()
+        {
+            SwitchCamera(MovementState.ThirdPerson);
+        }
+
         public void SwitchCamera(MovementState state)
         {
             switch (state)

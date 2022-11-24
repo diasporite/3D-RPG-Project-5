@@ -477,7 +477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27838b74ee01cc4db35c8c0ab7c9c52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Hips>k__BackingField: {fileID: 0}
+  <Model>k__BackingField: {fileID: 0}
+  <Focus>k__BackingField: {fileID: 0}
 --- !u!1 &5309793519730659785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,7 +1268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0335eede2e5ae44f9c73a7e6abf4d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  completeFreeze: 1
+  completeFreeze: 0
   minTimescale: 0.1
   acceleration: 5
 --- !u!1 &6217373322490546336

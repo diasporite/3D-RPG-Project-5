@@ -48,5 +48,14 @@ namespace RPG_Project
         {
             if (context.performed) menu.CurrentMenu.Previous();
         }
+
+        public void OnOpenClose(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                if (menu.CurrentMenu.Open) menu.CurrentMenu.MenuClose();
+                else menu.CurrentMenu.MenuOpen();
+            }
+        }
     }
 }

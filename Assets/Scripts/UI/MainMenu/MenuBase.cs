@@ -6,6 +6,8 @@ namespace RPG_Project
 {
     public class MenuBase : MonoBehaviour
     {
+        public bool Open { get; protected set; } = false;
+
         [field: SerializeField] protected ButtonUI[] Buttons { get; private set; }
         [field: SerializeField] protected ButtonUI CurrentButton { get; set; }
         [field: SerializeField] protected int CurrentButtonIndex = 0;
@@ -55,12 +57,18 @@ namespace RPG_Project
 
         public virtual void MenuOpen()
         {
-
+            if (!Open)
+            {
+                Open = true;
+            }
         }
 
         public virtual void MenuClose()
         {
-
+            if (Open)
+            {
+                Open = false;
+            }
         }
         #endregion
     }

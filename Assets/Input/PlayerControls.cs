@@ -137,6 +137,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""OpenClose"",
+                    ""type"": ""Button"",
+                    ""id"": ""cfb47ebc-ac7c-4f34-97db-febb46309b4a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -733,6 +741,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""GuardCancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f56277bb-a6e5-4749-902c-17ddf9d4eeed"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""OpenClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""85e34681-205b-4a59-b54a-8fd32d263461"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""OpenClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -768,6 +798,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""Previous"",
                     ""type"": ""Button"",
                     ""id"": ""92e9476a-1161-4d70-9fbf-6af4ffee0082"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""OpenClose"",
+                    ""type"": ""Button"",
+                    ""id"": ""e912d234-085b-4805-90b1-630b1348d169"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -820,11 +858,33 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""5a9dd635-58dc-47f4-af54-afe35e8282ee"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Next"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""2525b31a-405d-47a3-93ed-71bed2ea5915"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
+                    ""action"": ""Next"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9cfb714-2445-4ac9-84a9-aab4dc1a6581"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Next"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -842,11 +902,33 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""78e4f66c-f3f7-4a48-95bc-a6a5955b251c"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Previous"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""77d906f6-b144-4f87-9d08-51024ea8b1a5"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
+                    ""action"": ""Previous"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd52680e-d07a-456b-bd65-0097170bbf7a"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Previous"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -859,6 +941,66 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Previous"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cb6db131-fd3b-4866-9c5d-d4dcdbaf3cb0"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""OpenClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57bc54ac-6aa4-444a-8313-1a4ae6dc4231"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""OpenClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""GameMenu"",
+            ""id"": ""67389d9f-3860-4f0f-8020-b6e4807b79a1"",
+            ""actions"": [
+                {
+                    ""name"": ""ToggleMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""d36fb793-d39f-48c4-a5e0-c56c21c986de"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d90c95df-fcc1-4006-8cc9-ae1e3e2d6041"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""ToggleMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4e9f5ae-e012-4ebe-98b9-e4f3917b3715"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ToggleMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -907,12 +1049,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Player_Action4 = m_Player.FindAction("Action4", throwIfNotFound: true);
         m_Player_PauseSelect = m_Player.FindAction("PauseSelect", throwIfNotFound: true);
         m_Player_ToggleTarget = m_Player.FindAction("ToggleTarget", throwIfNotFound: true);
+        m_Player_OpenClose = m_Player.FindAction("OpenClose", throwIfNotFound: true);
         // MainMenu
         m_MainMenu = asset.FindActionMap("MainMenu", throwIfNotFound: true);
         m_MainMenu_Back = m_MainMenu.FindAction("Back", throwIfNotFound: true);
         m_MainMenu_Confirm = m_MainMenu.FindAction("Confirm", throwIfNotFound: true);
         m_MainMenu_Next = m_MainMenu.FindAction("Next", throwIfNotFound: true);
         m_MainMenu_Previous = m_MainMenu.FindAction("Previous", throwIfNotFound: true);
+        m_MainMenu_OpenClose = m_MainMenu.FindAction("OpenClose", throwIfNotFound: true);
+        // GameMenu
+        m_GameMenu = asset.FindActionMap("GameMenu", throwIfNotFound: true);
+        m_GameMenu_ToggleMenu = m_GameMenu.FindAction("ToggleMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -977,6 +1124,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Action4;
     private readonly InputAction m_Player_PauseSelect;
     private readonly InputAction m_Player_ToggleTarget;
+    private readonly InputAction m_Player_OpenClose;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -996,6 +1144,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Action4 => m_Wrapper.m_Player_Action4;
         public InputAction @PauseSelect => m_Wrapper.m_Player_PauseSelect;
         public InputAction @ToggleTarget => m_Wrapper.m_Player_ToggleTarget;
+        public InputAction @OpenClose => m_Wrapper.m_Player_OpenClose;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1050,6 +1199,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @ToggleTarget.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleTarget;
                 @ToggleTarget.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleTarget;
                 @ToggleTarget.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleTarget;
+                @OpenClose.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenClose;
+                @OpenClose.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenClose;
+                @OpenClose.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenClose;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1099,6 +1251,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @ToggleTarget.started += instance.OnToggleTarget;
                 @ToggleTarget.performed += instance.OnToggleTarget;
                 @ToggleTarget.canceled += instance.OnToggleTarget;
+                @OpenClose.started += instance.OnOpenClose;
+                @OpenClose.performed += instance.OnOpenClose;
+                @OpenClose.canceled += instance.OnOpenClose;
             }
         }
     }
@@ -1111,6 +1266,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_MainMenu_Confirm;
     private readonly InputAction m_MainMenu_Next;
     private readonly InputAction m_MainMenu_Previous;
+    private readonly InputAction m_MainMenu_OpenClose;
     public struct MainMenuActions
     {
         private @PlayerControls m_Wrapper;
@@ -1119,6 +1275,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Confirm => m_Wrapper.m_MainMenu_Confirm;
         public InputAction @Next => m_Wrapper.m_MainMenu_Next;
         public InputAction @Previous => m_Wrapper.m_MainMenu_Previous;
+        public InputAction @OpenClose => m_Wrapper.m_MainMenu_OpenClose;
         public InputActionMap Get() { return m_Wrapper.m_MainMenu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1140,6 +1297,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Previous.started -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnPrevious;
                 @Previous.performed -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnPrevious;
                 @Previous.canceled -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnPrevious;
+                @OpenClose.started -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnOpenClose;
+                @OpenClose.performed -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnOpenClose;
+                @OpenClose.canceled -= m_Wrapper.m_MainMenuActionsCallbackInterface.OnOpenClose;
             }
             m_Wrapper.m_MainMenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -1156,10 +1316,46 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Previous.started += instance.OnPrevious;
                 @Previous.performed += instance.OnPrevious;
                 @Previous.canceled += instance.OnPrevious;
+                @OpenClose.started += instance.OnOpenClose;
+                @OpenClose.performed += instance.OnOpenClose;
+                @OpenClose.canceled += instance.OnOpenClose;
             }
         }
     }
     public MainMenuActions @MainMenu => new MainMenuActions(this);
+
+    // GameMenu
+    private readonly InputActionMap m_GameMenu;
+    private IGameMenuActions m_GameMenuActionsCallbackInterface;
+    private readonly InputAction m_GameMenu_ToggleMenu;
+    public struct GameMenuActions
+    {
+        private @PlayerControls m_Wrapper;
+        public GameMenuActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ToggleMenu => m_Wrapper.m_GameMenu_ToggleMenu;
+        public InputActionMap Get() { return m_Wrapper.m_GameMenu; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GameMenuActions set) { return set.Get(); }
+        public void SetCallbacks(IGameMenuActions instance)
+        {
+            if (m_Wrapper.m_GameMenuActionsCallbackInterface != null)
+            {
+                @ToggleMenu.started -= m_Wrapper.m_GameMenuActionsCallbackInterface.OnToggleMenu;
+                @ToggleMenu.performed -= m_Wrapper.m_GameMenuActionsCallbackInterface.OnToggleMenu;
+                @ToggleMenu.canceled -= m_Wrapper.m_GameMenuActionsCallbackInterface.OnToggleMenu;
+            }
+            m_Wrapper.m_GameMenuActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ToggleMenu.started += instance.OnToggleMenu;
+                @ToggleMenu.performed += instance.OnToggleMenu;
+                @ToggleMenu.canceled += instance.OnToggleMenu;
+            }
+        }
+    }
+    public GameMenuActions @GameMenu => new GameMenuActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -1195,6 +1391,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnAction4(InputAction.CallbackContext context);
         void OnPauseSelect(InputAction.CallbackContext context);
         void OnToggleTarget(InputAction.CallbackContext context);
+        void OnOpenClose(InputAction.CallbackContext context);
     }
     public interface IMainMenuActions
     {
@@ -1202,5 +1399,10 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnConfirm(InputAction.CallbackContext context);
         void OnNext(InputAction.CallbackContext context);
         void OnPrevious(InputAction.CallbackContext context);
+        void OnOpenClose(InputAction.CallbackContext context);
+    }
+    public interface IGameMenuActions
+    {
+        void OnToggleMenu(InputAction.CallbackContext context);
     }
 }

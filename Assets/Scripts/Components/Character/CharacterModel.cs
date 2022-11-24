@@ -36,19 +36,21 @@ namespace RPG_Project
             party = GetComponentInParent<PartyController>();
         }
 
-        private void Start()
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawRay(transform.position, 5f * transform.forward);
+        }
+
+        public void Init(Quaternion rotation)
         {
             main = Camera.main;
 
             rotationSpeed = GetComponentInParent<Movement>().RotationSpeed;
 
             if (party.IsPlayer) Anim.updateMode = AnimatorUpdateMode.UnscaledTime;
-        }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawRay(transform.position, 5f * transform.forward);
+            transform.localRotation = rotation;
         }
 
         public void Rotation(float eulerY)

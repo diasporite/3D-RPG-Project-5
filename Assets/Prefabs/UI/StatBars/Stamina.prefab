@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1071552236990596271}
   - component: {fileID: 2211064706125250805}
+  - component: {fileID: 9162145657208464388}
   m_Layer: 0
   m_Name: Stamina
   m_TagString: Untagged
@@ -55,13 +56,22 @@ MonoBehaviour:
   <Background>k__BackingField: {fileID: 8315952175457581864}
   <FillShadow>k__BackingField: {fileID: 6133418322504546067}
   <Fill>k__BackingField: {fileID: 8526514733080478047}
-  updateDelay: 0.8
-  updateSpeed: 0.6
-  shadowThreshold: 0.04
   charging: {r: 0.753, g: 0.753, b: 0.753, a: 1}
   charged: {r: 0.125, g: 0.753, b: 0.125, a: 1}
   player: {fileID: 0}
   stamina: {fileID: 0}
+--- !u!114 &9162145657208464388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415910644566031521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f449343f51088b54ebd829a57091843e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1087327329631982435
 GameObject:
   m_ObjectHideFlags: 0

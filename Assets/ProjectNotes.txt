@@ -104,7 +104,7 @@
 
 =========================================================================================
 
-22/11/22 - 
+22/11/22 - 23/11/22
 - Massive refactor from 3D RPG Project 6
   - Importing main menu
   - Transition from main menu to game
@@ -121,6 +121,10 @@
   - Fix health bar [FIXED]
   - Fix camera when respawning (instant follow) [FIXED]
   - Consider scrapping power in favour of individual usages
+
+24/11/22 -
+- Some work on side UI
+- Debug game over cheat
 
 RESOURCES
 - Bezier curves (30/9/22)

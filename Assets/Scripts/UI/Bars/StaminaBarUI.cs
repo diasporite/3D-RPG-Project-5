@@ -15,19 +15,19 @@ namespace RPG_Project
 
         Cooldown delayTimer;
 
-        [SerializeField] PartyController player;
-        [SerializeField] Stamina stamina;
+        [SerializeField] protected PartyController player;
+        [SerializeField] protected Stamina stamina;
 
-        BattleHUD hud;
+        protected BattleHUD hud;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             hud = GetComponentInParent<BattleHUD>();
 
             delayTimer = new Cooldown(updateDelay, 1f, updateDelay);
         }
 
-        public void InitUI()
+        public virtual void InitUI()
         {
             player = hud.Player;
             stamina = player.CurrentController.Stamina;
@@ -63,13 +63,13 @@ namespace RPG_Project
             }
         }
 
-        public void SubscribeToDelegates()
+        public virtual void SubscribeToDelegates()
         {
             player.OnHealthTick += UpdateUI;
             player.OnCharacterChange += UpdateStamina;
         }
 
-        public void UnsubscribeFromDelegates()
+        public virtual void UnsubscribeFromDelegates()
         {
             player.OnHealthTick -= UpdateUI;
             player.OnCharacterChange -= UpdateStamina;

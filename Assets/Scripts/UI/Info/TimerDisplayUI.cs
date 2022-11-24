@@ -15,7 +15,7 @@ namespace RPG_Project
         {
             text = GetComponentInChildren<TextMeshProUGUI>();
 
-            time = GameManager.instance.Time;
+            time = GameManager.instance.TimeManager;
         }
 
         public void SubscribeToDelegates()

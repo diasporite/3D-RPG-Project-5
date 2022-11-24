@@ -73,9 +73,8 @@ namespace RPG_Project
                 if (controller.Party.CurrentController.Model.GetNormalizedTime("Death") >= 
                     screenThreshold)
                 {
-                    GameManager.instance.GameOver();
                     controller.Party.InvokeDeath();
-                    controller.Party.DestroySelf();
+                    GameManager.instance.GameOver();
                 }
             }
         }

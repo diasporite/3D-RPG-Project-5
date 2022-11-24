@@ -21,7 +21,7 @@ namespace RPG_Project
 
         public UIManager Ui { get; private set; }
 
-        public TimeManager Time { get; private set; }
+        public TimeManager TimeManager { get; private set; }
         public AreaManager Area { get; private set; }
 
         readonly List<int> loadedSceneIndexes = new List<int>();
@@ -35,7 +35,7 @@ namespace RPG_Project
 
             Ui = FindObjectOfType<UIManager>();
 
-            Time = GetComponent<TimeManager>();
+            TimeManager = GetComponent<TimeManager>();
             Area = GetComponent<AreaManager>();
 
             CharData.BuildDatabase();
@@ -44,6 +44,11 @@ namespace RPG_Project
         private void Start()
         {
             InitSM();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown("space")) GameOver();
         }
 
         void InitSM()
@@ -79,7 +84,7 @@ namespace RPG_Project
 
             yield return new WaitUntil(() => async.isDone);
 
-            if (resetTimer) Time.ResetLevelTime();
+            if (resetTimer) TimeManager.ResetLevelTime();
 
             loadedSceneIndexes.Add(index);
 
@@ -101,9 +106,10 @@ namespace RPG_Project
             sm.ChangeState(StateID.GameOver);
 
             foreach (var index in loadedSceneIndexes)
-                SceneManager.UnloadSceneAsync(index);
+                if (SceneManager.GetSceneByBuildIndex(index).isLoaded)
+                    SceneManager.UnloadSceneAsync(index);
 
-            Destroy(Player);
+            Player?.DestroySelf();
 
             Player = null;
 

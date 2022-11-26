@@ -12,11 +12,6 @@ namespace RPG_Project
 
         Cooldown PauseTimer;
 
-        protected override void Awake()
-        {
-            base.Awake();
-        }
-
         public override void Init()
         {
             Charged = false;
@@ -32,8 +27,7 @@ namespace RPG_Project
                 baseSpeed = GameManager.instance.Combat.EnemyStaminaRegen;
             }
 
-            var sp = 2f * character.CharData.Stamina;
-            //ResourceCooldown = new Cooldown(sp, baseSpeed, Random.Range(0.2f, 0.8f) * sp);
+            var sp = party.Sp;
             ResourceCooldown = new Cooldown(sp, baseSpeed, sp);
             PauseTimer = new Cooldown(pauseTime, 1f, pauseTime);
         }

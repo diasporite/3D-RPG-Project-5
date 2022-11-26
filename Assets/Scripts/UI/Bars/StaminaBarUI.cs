@@ -10,8 +10,8 @@ namespace RPG_Project
         float updateSpeed = 0.6f;
         float shadowThreshold = 0.04f;
 
-        [SerializeField] Color charging = new Color(.753f, .753f, .753f);
-        [SerializeField] Color charged = new Color(.125f, .753f, .125f);
+        //[SerializeField] Color charging = new Color(.753f, .753f, .753f);
+        //[SerializeField] Color charged = new Color(.125f, .753f, .125f);
 
         Cooldown delayTimer;
 
@@ -30,7 +30,7 @@ namespace RPG_Project
         public virtual void InitUI()
         {
             player = hud.Player;
-            stamina = player.CurrentController.Stamina;
+            stamina = player.Stamina;
 
             Fill.fillAmount = stamina.ResourceFraction;
             FillShadow.fillAmount = stamina.ResourceFraction;
@@ -41,8 +41,8 @@ namespace RPG_Project
             if (Fill.fillAmount != stamina.ResourceFraction)
                 Fill.fillAmount = stamina.ResourceFraction;
 
-            if (stamina.Charged) Fill.color = charged;
-            else Fill.color = charging;
+            //if (stamina.Charged) Fill.color = charged;
+            //else Fill.color = charging;
 
             if (Mathf.Abs(stamina.ChangeFraction) < shadowThreshold)
             {
@@ -65,22 +65,13 @@ namespace RPG_Project
 
         public virtual void SubscribeToDelegates()
         {
-            player.OnHealthTick += UpdateUI;
-            player.OnCharacterChange += UpdateStamina;
+            player.OnStaminaTick += UpdateUI;
         }
 
         public virtual void UnsubscribeFromDelegates()
         {
-            player.OnHealthTick -= UpdateUI;
-            player.OnCharacterChange -= UpdateStamina;
-        }
+            player.OnStaminaTick -= UpdateUI;
 
-        void UpdateStamina()
-        {
-            stamina = player.CurrentStamina;
-
-            Fill.fillAmount = stamina.ResourceFraction;
-            FillShadow.fillAmount = stamina.ResourceFraction;
         }
     }
 }

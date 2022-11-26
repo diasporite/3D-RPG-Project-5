@@ -28,9 +28,9 @@ namespace RPG_Project
 
                 //return ScaledGameTime.ToString();
 
-                if (h > 0) return h + ":" + m.ToString("00") + ":" + s.ToString("0.000");
+                if (h > 0) return h + ":" + m.ToString("00") + ":" + s.ToString("0.00");
 
-                return m.ToString("00") + ":" + s.ToString("00.000");
+                return m.ToString("00") + ":" + s.ToString("00.00");
             }
         }
 

@@ -36,7 +36,7 @@ namespace RPG_Project
 
             //if (ai.Timer.Full)
             //{
-                if (ai.Party.CurrentStamina.Full)
+                if (ai.Party.Stamina.Full)
                 {
                     eir.Action(ai.Pattern.RandomPattern);
                     ai.Timer.Reset();

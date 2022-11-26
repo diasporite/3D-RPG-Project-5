@@ -374,6 +374,7 @@ GameObject:
   - component: {fileID: 5366002985647146284}
   - component: {fileID: 5366002985647146272}
   - component: {fileID: 7105879705422079894}
+  - component: {fileID: -8328167962114631112}
   - component: {fileID: 4668690320612597818}
   - component: {fileID: 7014217860757951035}
   m_Layer: 13
@@ -473,6 +474,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d1c904afcf370d4fa5544d28a39dad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ResourceCooldown>k__BackingField:
+    cooldown: 0
+    speed: 0
+    count: 0
+  baseSpeed: 0
+  speedFactor: 0
+--- !u!114 &-8328167962114631112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5366002985647146278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae2cea2a85dd144db5d1aba04f78374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <ResourceCooldown>k__BackingField:

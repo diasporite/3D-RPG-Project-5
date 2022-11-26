@@ -37,8 +37,8 @@ namespace RPG_Project
 
         protected virtual void Awake()
         {
-            party = GetComponentInParent<PartyController>();
-            character = GetComponent<Character>();
+            party = GetComponent<PartyController>();
+            character = GetComponentInChildren<Character>();
         }
 
         public virtual void Init()

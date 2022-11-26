@@ -8,7 +8,8 @@ namespace RPG_Project
     {
         protected override void Awake()
         {
-            base.Awake();
+            party = GetComponentInParent<PartyController>();
+            character = GetComponent<Character>();
         }
 
         public override void Init()

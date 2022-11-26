@@ -13,7 +13,7 @@ namespace RPG_Project
         public override void InitUI()
         {
             party = GetComponentInParent<BattleHUD>().Player;
-            stamina = party.CurrentStamina;
+            stamina = party.Stamina;
 
             header = "SP ";
 
@@ -49,7 +49,7 @@ namespace RPG_Project
 
         void UpdateCharacter()
         {
-            stamina = party.CurrentStamina;
+            stamina = party.Stamina;
 
             UpdateUI();
         }

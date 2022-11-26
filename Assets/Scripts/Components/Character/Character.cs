@@ -46,9 +46,9 @@ namespace RPG_Project
             party = GetComponentInParent<PartyController>();
             movement = GetComponentInParent<Movement>();
             health = GetComponentInParent<Health>();
+            stamina = GetComponentInParent<Stamina>();
 
             controller = GetComponent<Controller>();
-            stamina = GetComponent<Stamina>();
             power = GetComponent<Power>();
 
             Melee = GetComponentsInChildren<Hitbox>();
@@ -104,6 +104,7 @@ namespace RPG_Project
 
             health.ChangeValue(-hDamage);
             stamina.ChangeValue(-sDamage);
+
             if (sDamage > 0) stamina.Pause();
 
             party.Es?.OnDamage(hDamage, sDamage);

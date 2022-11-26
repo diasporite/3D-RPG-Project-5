@@ -53,7 +53,7 @@ namespace RPG_Project
             transform.localRotation = rotation;
         }
 
-        public void Rotation(float eulerY)
+        public void SetRotation(float eulerY)
         {
             transform.localRotation = Quaternion.Euler(0, eulerY, 0);
         }
@@ -80,18 +80,16 @@ namespace RPG_Project
             }
         }
 
-        public void RotateTowards(Vector2 inputDir, float camTheta)
+        public void RotateTowards(Vector3 dir)
         {
-            if (inputDir != Vector2.zero)
+            if (dir != Vector3.zero)
             {
-                var rotation = 180f - camTheta + Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg;
-
                 transform.localRotation = Quaternion.RotateTowards(transform.localRotation,
-                    Quaternion.Euler(0, rotation, 0), rotationSpeed * Time.deltaTime);
+                    Quaternion.LookRotation(dir), rotationSpeed * Time.deltaTime);
             }
         }
 
-        public void RotateTowards(Vector2 inputDir, Transform camera)
+        public void PlayerRotateTowards(Vector2 inputDir, Transform camera)
         {
             if (inputDir != Vector2.zero)
             {
@@ -103,18 +101,7 @@ namespace RPG_Project
                 var ds = inputDir.x * dx + inputDir.y * dy;
 
                 transform.localRotation = Quaternion.RotateTowards(transform.localRotation, 
-                    Quaternion.LookRotation(ds), rotationSpeed* Time.deltaTime);
-            }
-        }
-
-        public void RotateTowards(Vector3 dir)
-        {
-            if (dir != Vector3.zero)
-            {
-                //var rotation = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-
-                transform.localRotation = Quaternion.RotateTowards(transform.localRotation,
-                    Quaternion.LookRotation(dir), rotationSpeed * Time.deltaTime);
+                    Quaternion.LookRotation(ds), rotationSpeed* Time.unscaledDeltaTime);
             }
         }
 
@@ -126,7 +113,7 @@ namespace RPG_Project
             dir.y = 0;
 
             transform.localRotation = Quaternion.RotateTowards(transform.localRotation, 
-                Quaternion.LookRotation(partyRot * dir), rotationSpeed * Time.deltaTime);
+                Quaternion.LookRotation(partyRot * dir), rotationSpeed * Time.unscaledDeltaTime);
         }
 
         public void ResetRotation()

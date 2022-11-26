@@ -186,7 +186,7 @@ namespace RPG_Project
 
                 ds = inputDir.x * cm.transform.right + inputDir.y * cm.transform.forward;
 
-                if (party.IsPlayer) cm.RotateTowards(inputDir, main.transform);
+                if (party.IsPlayer) cm.PlayerRotateTowards(inputDir, main.transform);
                 else cm.RotateTowards(inputDir);
 
                 if (ds != Vector3.zero) cc.Move(CurrentSpeed * cm.transform.forward * dt);
@@ -241,7 +241,7 @@ namespace RPG_Project
             {
                 CurrentSpeed = speed;
 
-                if (party.IsPlayer) cm.Rotation(pcc.Fp.EulerY);
+                if (party.IsPlayer) cm.SetRotation(pcc.Fp.EulerY);
 
                 ds = dir.x * party.CurrentController.Model.transform.right +
                     dir.y * party.CurrentController.Model.transform.forward;

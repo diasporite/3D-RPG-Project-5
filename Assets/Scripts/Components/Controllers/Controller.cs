@@ -74,6 +74,7 @@ namespace RPG_Project
 
         public Health Health { get; private set; }
         public Stamina Stamina { get; private set; }
+
         public Power Power { get; private set; }
         public Character Character { get; private set; }
 
@@ -91,8 +92,8 @@ namespace RPG_Project
             InputReader = GetComponentInParent<InputReader>();
             Movement = GetComponentInParent<Movement>();
             Health = GetComponentInParent<Health>();
+            Stamina = GetComponentInParent<Stamina>();
 
-            Stamina = GetComponent<Stamina>();
             Power = GetComponent<Power>();
             Character = GetComponent<Character>();
 
@@ -151,8 +152,7 @@ namespace RPG_Project
         {
             DirectionalDodging = Character.CharData.DodgeAction.IsDirectional;
 
-            Stamina.Init();
-            Power.Init();
+            //Power.Init();
 
             Model.Init(rotation);
 

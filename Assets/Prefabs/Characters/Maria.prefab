@@ -2256,7 +2256,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8598477651914444572}
   - component: {fileID: 8598477651914444571}
-  - component: {fileID: 8598477651914444583}
   - component: {fileID: 8434227839298663190}
   - component: {fileID: 8598477651914444568}
   m_Layer: 0
@@ -2295,24 +2294,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   <DirectionalDodging>k__BackingField: 0
---- !u!114 &8598477651914444583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8598477651914444573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae2cea2a85dd144db5d1aba04f78374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <ResourceCooldown>k__BackingField:
-    cooldown: 0
-    speed: 0
-    count: 0
-  baseSpeed: 0
-  speedFactor: 0
 --- !u!114 &8434227839298663190
 MonoBehaviour:
   m_ObjectHideFlags: 0

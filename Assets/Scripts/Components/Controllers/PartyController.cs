@@ -37,6 +37,7 @@ namespace RPG_Project
         public Movement Movement { get; private set; }
         public InputReader Ir { get; private set; }
         public Health Health { get; private set; }
+        public Stamina Stamina { get; private set; }
         public TimeController Tc { get; private set; }
 
         public TargetSphere TargetSphere { get; private set; }
@@ -46,7 +47,6 @@ namespace RPG_Project
 
         public readonly StateMachine sm = new StateMachine();
 
-        public Stamina CurrentStamina => CurrentController?.Stamina;
         public Power CurrentPower => CurrentController?.Power;
 
         public bool Dead => Health.Empty;
@@ -62,11 +62,23 @@ namespace RPG_Project
             }
         }
 
+        public int Sp
+        {
+            get
+            {
+                var totalHp = 0;
+                foreach (var pm in PartyMembers)
+                    totalHp += Mathf.RoundToInt(3f * pm.Character.CharData.Stamina);
+                return Mathf.RoundToInt(totalHp / PartyMembers.Count);
+            }
+        }
+
         private void Awake()
         {
             Movement = GetComponent<Movement>();
             Ir = GetComponent<InputReader>();
             Health = GetComponent<Health>();
+            Stamina = GetComponent<Stamina>();
             Tc = GetComponent<TimeController>();
 
             TargetSphere = GetComponentInChildren<TargetSphere>();
@@ -110,6 +122,7 @@ namespace RPG_Project
             SwitchCharacter(0);
 
             Health.Init();
+            Stamina.Init();
 
             if (IsPlayer)
             {

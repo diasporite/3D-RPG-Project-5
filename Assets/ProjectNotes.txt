@@ -120,11 +120,14 @@
 	  - Implement only quit for now
   - Fix health bar [FIXED]
   - Fix camera when respawning (instant follow) [FIXED]
-  - Consider scrapping power in favour of individual usages
 
 24/11/22 -
 - Some work on side UI
 - Debug game over cheat
+- Moved back to single stamina
+  - TO DO: Remove stamina bars from party panels
+- CONSIDER:
+  - Decide power vs individual usages for actions
 
 RESOURCES
 - Bezier curves (30/9/22)

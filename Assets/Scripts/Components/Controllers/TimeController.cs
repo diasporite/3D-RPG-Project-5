@@ -7,6 +7,7 @@ namespace RPG_Project
     public class TimeController : MonoBehaviour
     {
         [SerializeField] bool completeFreeze = false;
+        [Range(0.01f, 1f)]
         [SerializeField] float minTimescale = 0.1f;
         [SerializeField] float acceleration = 10f;
 

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 560613870816806521}
   - component: {fileID: 560613870816806526}
-  - component: {fileID: 560613870816806466}
   - component: {fileID: 1635570116331049962}
   - component: {fileID: 560613870816806525}
   m_Layer: 0
@@ -49,24 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   <DirectionalDodging>k__BackingField: 0
---- !u!114 &560613870816806466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560613870816806520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae2cea2a85dd144db5d1aba04f78374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <ResourceCooldown>k__BackingField:
-    cooldown: 0
-    speed: 0
-    count: 0
-  baseSpeed: 0
-  speedFactor: 0
 --- !u!114 &1635570116331049962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,7 +86,8 @@ MonoBehaviour:
   <StrafeSpeed>k__BackingField: 3
   <Weight>k__BackingField: 128
   <DodgeAction>k__BackingField: {fileID: 0}
-  <HitDetectors>k__BackingField: []
+  <Melee>k__BackingField: []
+  <Projectile>k__BackingField: []
 --- !u!1 &560613870895991662
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 722cd4416de69c94cb3e899f48ff0482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Hips>k__BackingField: {fileID: 0}
 --- !u!1001 &6981150063467108315
 PrefabInstance:
   m_ObjectHideFlags: 0

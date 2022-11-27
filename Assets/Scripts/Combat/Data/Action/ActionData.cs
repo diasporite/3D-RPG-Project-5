@@ -14,11 +14,14 @@ namespace RPG_Project
     [CreateAssetMenu(fileName = "New Action", menuName = "Combat/Actions/Action")]
     public class ActionData : ScriptableObject
     {
+        [field: Header("Information")]
         [field: SerializeField] public string ActionName { get; private set; }
+        [field: SerializeField] public ElementID Element { get; private set; }
 
         [field: SerializeField] public int StaminaCost { get; private set; } = 20;
         [field: SerializeField] public int PowerCost { get; private set; } = 5;
 
+        [field: Header("Movement")]
         [field: SerializeField] public AnimationCurve MotionCurve { get; private set; }
 
         [field: Header("HitDetection")]

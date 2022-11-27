@@ -125,12 +125,18 @@
 - Some work on side UI
 - Debug game over cheat
 - Moved back to single stamina
+- Added basic minimap
+  - Add direction indicators
+- Replaced individual ticks with ResourceTick() method
+- Adding elements
 - TO DO: 
  - Remove stamina bars from party panels
  - Serializable Action classes
    - Action validity checks
      - Colliders for obstruction detection
  - Refine single stamina system
+ - Refine hitbox logic (see Hitbox.cs top comment)
+ - Fix fill shadows on stat bars
 
 
 RESOURCES

@@ -33,9 +33,6 @@ namespace RPG_Project
         {
             controller.currentState = StateID.ControllerFall;
 
-            health.SpeedFactor = 0f;
-            stamina.SpeedFactor = 1f;
-
             controller.Party.Tc?.MoveTowardTimescale(1f);
 
             cm.PlayAnimation(controller.fallHash);
@@ -45,8 +42,7 @@ namespace RPG_Project
         {
             var dir = controller.InputReader.Move;
 
-            health.Tick();
-            stamina.Tick();
+            controller.ResourceTick(0f, 1f, 0f);
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
 

@@ -11,6 +11,8 @@ namespace RPG_Project
 
         Health health;
         Stamina stamina;
+        Power power;
+
         Character character;
 
         CharacterModel cm;
@@ -28,6 +30,8 @@ namespace RPG_Project
 
             health = controller.Health;
             stamina = controller.Stamina;
+            power = controller.Power;
+
             character = controller.Character;
 
             cm = controller.Model;
@@ -64,6 +68,7 @@ namespace RPG_Project
         {
             health.Tick();
             stamina.Tick();
+            power.Tick(0f);
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
 

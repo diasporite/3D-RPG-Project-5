@@ -182,6 +182,15 @@ namespace RPG_Project
             sm.AddState(StateID.ControllerInactive, new ControllerInactiveState(this));
         }
 
+        public void ResourceTick(float healthScale, float staminaScale, float powerScale)
+        {
+            float dt = Time.deltaTime;
+
+            Health.Tick(healthScale * dt);
+            Stamina.Tick(staminaScale * dt);
+            Power.Tick(powerScale * dt);
+        }
+
         #region Actions
         void Dodge()
         {

@@ -22,7 +22,7 @@ namespace RPG_Project
             this.instigator = instigator;
             instPos = instigator.transform.position;
 
-            combat = GameManager.instance.Combat;
+            combat = GameManager.instance.CombatData;
 
             HealthDamage = combat.Damage(basePower);
         }
@@ -32,7 +32,7 @@ namespace RPG_Project
             this.instigator = instigator;
             instPos = instigator.transform.position;
 
-            combat = GameManager.instance.Combat;
+            combat = GameManager.instance.CombatData;
 
             HealthDamage = combat.Damage(data.HealthDamage);
             StaminaDamage = combat.Damage(data.StaminaDamage);

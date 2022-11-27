@@ -16,16 +16,6 @@ namespace RPG_Project
         protected PartyController party;
         protected Character character;
 
-        public float SpeedFactor
-        {
-            get => speedFactor;
-            set
-            {
-                speedFactor = value;
-                ResourceCooldown.Speed = speedFactor * baseSpeed;
-            }
-        }
-
         public int ResourcePoints => Mathf.CeilToInt(ResourceCooldown.Count);
 
         public float ResourceFraction => ResourceCooldown.CooldownFraction;

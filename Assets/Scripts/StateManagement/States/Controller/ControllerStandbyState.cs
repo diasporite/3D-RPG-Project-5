@@ -31,11 +31,6 @@ namespace RPG_Project
         {
             controller.currentState = StateID.ControllerStandby;
 
-            health.SpeedFactor = 0f;
-            if (controller.InCombat && !controller.IsDead)
-                stamina.SpeedFactor = 1f;
-            else stamina.SpeedFactor = 0f;
-           
             stamina.Charged = stamina.Full;
 
             controller.Model.gameObject.SetActive(false);
@@ -43,13 +38,8 @@ namespace RPG_Project
 
         public void ExecuteFrame()
         {
-            health.Tick(0f);
-            stamina.Tick();
-            power.Tick(0f);
-
-            if (controller.InCombat && !controller.IsDead)
-                stamina.SpeedFactor = 0.333f;
-            else stamina.SpeedFactor = 0f;
+            controller.ResourceTick(0f, 
+                (controller.InCombat && !controller.IsDead) ? .333f : 0f, 0f);
         }
 
         public void ExecuteFrameFixed()

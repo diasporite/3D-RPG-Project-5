@@ -21,6 +21,9 @@ namespace RPG_Project
             hud = GetComponentInParent<BattleHUD>();
 
             delayTimer = new Cooldown(updateDelay, 1f, updateDelay);
+
+            updateSpeed = 0.3f;
+            shadowThreshold = 0.005f;
         }
 
         public void InitUI()
@@ -61,7 +64,7 @@ namespace RPG_Project
 
         public void SubscribeToDelegates()
         {
-            player.OnHealthTick += UpdateUI;
+            player.OnPowerTick += UpdateUI;
 
             if (forCurrentCharacter)
                 player.OnPowerTick += UpdateCharacter;
@@ -69,7 +72,7 @@ namespace RPG_Project
 
         public void UnsubscribeFromDelegates()
         {
-            player.OnHealthTick -= UpdateUI;
+            player.OnPowerTick -= UpdateUI;
 
             if (forCurrentCharacter)
                 player.OnPowerTick -= UpdateCharacter;

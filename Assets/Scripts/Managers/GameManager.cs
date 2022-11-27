@@ -16,7 +16,7 @@ namespace RPG_Project
 
         [field: SerializeField] public PartyController Player { get; set; }
 
-        [field: SerializeField] public CombatDatabase Combat { get; private set; }
+        [field: SerializeField] public CombatDatabase CombatData { get; private set; }
         [field: SerializeField] public CharacterDatabase CharData { get; private set; }
 
         public UIManager Ui { get; private set; }
@@ -38,6 +38,7 @@ namespace RPG_Project
             TimeManager = GetComponent<TimeManager>();
             Area = GetComponent<AreaManager>();
 
+            CombatData.BuildDatabase();
             CharData.BuildDatabase();
         }
 

@@ -32,9 +32,6 @@ namespace RPG_Project
         {
             controller.currentState = StateID.ControllerJump;
 
-            health.SpeedFactor = 0f;
-            stamina.SpeedFactor = 0f;
-
             controller.Party.Tc?.MoveTowardTimescale(1f);
 
             controller.Model.PlayAnimationInstant(controller.fallHash);
@@ -44,8 +41,7 @@ namespace RPG_Project
         {
             var dir = controller.InputReader.Move;
 
-            health.Tick();
-            stamina.Tick();
+            controller.ResourceTick(0f, 0f, 0f);
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
 

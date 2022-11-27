@@ -23,3 +23,6 @@ MonoBehaviour:
   <EnemyStaminaPause>k__BackingField: 0.5
   <MinResist>k__BackingField: 0.3
   <MaxResist>k__BackingField: 0.7
+  <Elements>k__BackingField:
+  - {fileID: 11400000, guid: cd58fc0291e4caf41b586c093d8f5e9f, type: 2}
+  - {fileID: 11400000, guid: c954bb57cdeb3724eb7441ebc133244e, type: 2}

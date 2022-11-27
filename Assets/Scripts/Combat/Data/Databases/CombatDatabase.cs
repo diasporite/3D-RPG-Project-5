@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace RPG_Project
 {
+    public enum ElementID
+    {
+        Typeless = 0,
+
+        Neutral = 1,
+    }
+
     [CreateAssetMenu(fileName = "CombatDatabase", menuName = "Database/Combat")]
     public class CombatDatabase : ScriptableObject
     {
@@ -24,6 +31,19 @@ namespace RPG_Project
         [field: Header("Weight Scaling")]
         [field: SerializeField] public float MinResist { get; private set; } = 0.3f;
         [field: SerializeField] public float MaxResist { get; private set; } = 0.7f;
+
+        [field: Header("Element Database")]
+        [field: SerializeField] public ElementData[] Elements { get; private set; }
+
+        Dictionary<ElementID, ElementData> elementDatabase = 
+            new Dictionary<ElementID, ElementData>();
+
+        public void BuildDatabase()
+        {
+            foreach (var e in Elements)
+                if (!elementDatabase.ContainsKey(e.Id))
+                    elementDatabase.Add(e.Id, e);
+        }
 
         public int Damage(int basePower)
         {

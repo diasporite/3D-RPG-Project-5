@@ -48,10 +48,6 @@ namespace RPG_Project
         {
             controller.currentState = StateID.ControllerAction;
 
-            health.SpeedFactor = 0f;
-            stamina.SpeedFactor = 0f;
-            power.SpeedFactor = 0f;
-
             advancing = false;
 
             normalizedTime = 0f;
@@ -63,9 +59,7 @@ namespace RPG_Project
 
         public void ExecuteFrame()
         {
-            health.Tick();
-            stamina.Tick();
-            power.Tick(0f);
+            controller.ResourceTick(0f, 0f, 0f);
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
 

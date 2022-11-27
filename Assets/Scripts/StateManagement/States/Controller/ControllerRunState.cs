@@ -36,11 +36,6 @@ namespace RPG_Project
         {
             controller.currentState = StateID.ControllerRun;
 
-            health.SpeedFactor = 0f;
-            if (controller.InCombat) stamina.SpeedFactor = -0.5f;
-            else stamina.SpeedFactor = 1f;
-            power.SpeedFactor = -4f;
-
             stamina.Charged = false;
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
@@ -50,14 +45,9 @@ namespace RPG_Project
 
         public void ExecuteFrame()
         {
-            if (controller.InCombat) stamina.SpeedFactor = -1f;
-            else stamina.SpeedFactor = 1f;
-
             var dir = controller.InputReader.Move;
 
-            health.Tick();
-            stamina.Tick();
-            power.Tick();
+            controller.ResourceTick(0f, controller.InCombat ? -1f : 1f, -4f);
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
 

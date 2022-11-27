@@ -61,7 +61,7 @@ namespace RPG_Project
 
         private void Start()
         {
-            combat = GameManager.instance.Combat;
+            combat = GameManager.instance.CombatData;
 
             DodgeReduction = combat.DodgeReduction(Weight);
             GuardReduction = combat.GuardReduction(Weight);

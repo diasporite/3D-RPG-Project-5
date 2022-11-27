@@ -33,9 +33,6 @@ namespace RPG_Project
         {
             controller.currentState = StateID.ControllerStrafe;
 
-            health.SpeedFactor = 1f;
-            stamina.SpeedFactor = 1f;
-
             stamina.Charged = stamina.Full;
 
             controller.InputReader.InputQueue.ClearInputs();
@@ -47,9 +44,9 @@ namespace RPG_Project
         {
             var dir = controller.InputReader.Move;
 
-            if (dir == Vector2.zero) health.Tick(0f);
-            else health.Tick();
-            stamina.Tick();
+            var non_zero_dir = dir != Vector2.zero;
+
+            controller.ResourceTick(non_zero_dir ? 1f : 0f, 1f, non_zero_dir ? -1f : 0f);
 
             UpdateAnim(dir);
 

@@ -35,10 +35,6 @@ namespace RPG_Project
         {
             controller.currentState = StateID.ControllerDeath;
 
-            health.SpeedFactor = 0f;
-            stamina.SpeedFactor = 0f;
-            power.SpeedFactor = 0f;
-
             stamina.Charged = false;
 
             controller.IsDead = true;
@@ -64,7 +60,7 @@ namespace RPG_Project
         {
             health.Tick();
             stamina.Tick();
-            power.Tick();
+            power.Tick(0f);
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
 

@@ -18,13 +18,13 @@ namespace RPG_Project
 
             if (party.IsPlayer)
             {
-                pauseTime = GameManager.instance.Combat.PlayerStaminaPause;
-                baseSpeed = GameManager.instance.Combat.StaminaRegen;
+                pauseTime = GameManager.instance.CombatData.PlayerStaminaPause;
+                baseSpeed = GameManager.instance.CombatData.StaminaRegen;
             }
             else
             {
-                pauseTime = GameManager.instance.Combat.EnemyStaminaPause;
-                baseSpeed = GameManager.instance.Combat.EnemyStaminaRegen;
+                pauseTime = GameManager.instance.CombatData.EnemyStaminaPause;
+                baseSpeed = GameManager.instance.CombatData.EnemyStaminaRegen;
             }
 
             var sp = party.Sp;

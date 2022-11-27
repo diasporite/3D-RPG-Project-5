@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace RPG_Project
 {
+    // Note: Characters can get hit twice if they leave and reenter collider
+    //   in the same attack (low priority)
     public class Hitbox : HitDetector
     {
         Controller controller;

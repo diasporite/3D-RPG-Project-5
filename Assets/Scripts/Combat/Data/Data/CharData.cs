@@ -12,6 +12,9 @@ namespace RPG_Project
 
         [field: SerializeField] public Sprite Portrait { get; private set; }
 
+        [field: SerializeField] public ElementID Element1 { get; private set; }
+        [field: SerializeField] public ElementID Element2 { get; private set; }
+
         [field: SerializeField] public Character Character { get; private set; }
 
         [field: Header("Movement")]

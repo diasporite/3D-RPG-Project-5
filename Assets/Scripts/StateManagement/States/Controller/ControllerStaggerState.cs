@@ -25,10 +25,6 @@ namespace RPG_Project
         {
             controller.currentState = StateID.ControllerStagger;
 
-            controller.Health.SpeedFactor = 0f;
-            controller.Stamina.SpeedFactor = 0f;
-            controller.Power.SpeedFactor = 0f;
-
             controller.Stamina.Charged = false;
 
             controller.IsStaggered = true;
@@ -46,9 +42,7 @@ namespace RPG_Project
 
         public void ExecuteFrame()
         {
-            controller.Health.Tick();
-            controller.Stamina.Tick();
-            controller.Power.Tick();
+            controller.ResourceTick(0f, 0f, 0f);
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
 

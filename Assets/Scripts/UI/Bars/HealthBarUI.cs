@@ -6,10 +6,6 @@ namespace RPG_Project
 {
     public class HealthBarUI : CooldownBar, IUIElement
     {
-        float updateDelay = 0.8f;
-        float updateSpeed = 0.6f;
-        float shadowThreshold = 0.04f;
-
         Cooldown delayTimer;
 
         [SerializeField] PartyController player;

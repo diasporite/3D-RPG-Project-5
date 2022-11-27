@@ -65,7 +65,7 @@ namespace RPG_Project
         {
             health.Tick();
             stamina.Tick();
-            power.Tick();
+            power.Tick(0f);
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
 
@@ -124,12 +124,6 @@ namespace RPG_Project
                     }
                 }
             }
-        }
-
-        float NormalizedTime()
-        {
-            float t = cm.Anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
-            return t - Mathf.Floor(t);
         }
     }
 }

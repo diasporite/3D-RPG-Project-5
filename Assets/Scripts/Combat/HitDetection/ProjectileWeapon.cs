@@ -51,6 +51,9 @@ namespace RPG_Project
             pr.InitProjectile(this, data, muzzle, Controller.Party.TargetSphere.CurrentTargetTransform);
 
             FireCooldown.Reset();
+
+            Controller.Model.RotationOffset(-Character.CharData.
+                CombatActions[Controller.CurrentActionIndex].AngleToForward);
         }
     }
 }

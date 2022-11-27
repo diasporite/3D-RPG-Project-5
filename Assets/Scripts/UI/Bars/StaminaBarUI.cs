@@ -6,10 +6,6 @@ namespace RPG_Project
 {
     public class StaminaBarUI : CooldownBar, IUIElement
     {
-        float updateDelay = 0.8f;
-        float updateSpeed = 0.6f;
-        float shadowThreshold = 0.04f;
-
         //[SerializeField] Color charging = new Color(.753f, .753f, .753f);
         //[SerializeField] Color charged = new Color(.125f, .753f, .125f);
 

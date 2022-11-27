@@ -17,9 +17,7 @@ namespace RPG_Project
         [field: SerializeField] public string ActionName { get; private set; }
 
         [field: SerializeField] public int StaminaCost { get; private set; } = 20;
-
-        [field: SerializeField] public bool InfiniteUse { get; private set; } = false;
-        [field: SerializeField] public int Uses { get; private set; } = 20;
+        [field: SerializeField] public int PowerCost { get; private set; } = 5;
 
         [field: SerializeField] public AnimationCurve MotionCurve { get; private set; }
 

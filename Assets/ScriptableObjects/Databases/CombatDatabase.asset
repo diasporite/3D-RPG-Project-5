@@ -17,9 +17,9 @@ MonoBehaviour:
   <FrontMultiplier>k__BackingField: 0.7
   <BackMultiplier>k__BackingField: 1.4
   <HealthRegen>k__BackingField: 1
-  <StaminaRegen>k__BackingField: 12
+  <StaminaRegen>k__BackingField: 36
   <EnemyStaminaRegen>k__BackingField: 36
   <PlayerStaminaPause>k__BackingField: 0.5
-  <EnemyStaminaPause>k__BackingField: 0.2
+  <EnemyStaminaPause>k__BackingField: 0.5
   <MinResist>k__BackingField: 0.3
   <MaxResist>k__BackingField: 0.7

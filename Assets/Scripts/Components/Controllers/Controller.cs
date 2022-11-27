@@ -152,7 +152,7 @@ namespace RPG_Project
         {
             DirectionalDodging = Character.CharData.DodgeAction.IsDirectional;
 
-            //Power.Init();
+            Power.Init();
 
             Model.Init(rotation);
 
@@ -191,7 +191,9 @@ namespace RPG_Project
             {
                 CurrentDodgeDir = InputReader.Move.x * Model.transform.right + 
                     InputReader.Move.y * Model.transform.forward;
+
                 Stamina.ChangeValue(-Character.DodgeAction.StaminaCost);
+                Power.ChangeValue(-Character.DodgeAction.PowerCost);
 
                 sm.ChangeState(StateID.ControllerDodge);
             }
@@ -249,12 +251,16 @@ namespace RPG_Project
         {
             if (sm.InState(StateID.ControllerMove, StateID.ControllerRun, StateID.ControllerStrafe,
                 StateID.ControllerDodge, StateID.ControllerGuard, 
-                StateID.ControllerAction) && Stamina.Charged)
+                StateID.ControllerAction) /*&& Stamina.Charged*/)
             {
                 CurrentActionIndex = Mathf.Clamp(index, 0, actionHashes.Count);
                 CurrentActionTag = actionTags[index];
                 CurrentActionHash = actionHashes[index];
-                Stamina.ChangeValue(-Character.CharData.CombatActions[CurrentActionIndex].StaminaCost);
+
+                var action = Character.CharData.CombatActions[CurrentActionIndex];
+
+                Stamina.ChangeValue(-action.StaminaCost);
+                Power.ChangeValue(-action.PowerCost);
 
                 sm.ChangeState(StateID.ControllerAction);
             }

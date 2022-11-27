@@ -28,7 +28,7 @@ namespace RPG_Project
                 (0.25f + skinWidth) * cc.height * Vector3.up;
 
             // Any walkable surface - environment, objects, characters
-            ground = LayerMask.GetMask("Environment");
+            ground = LayerMask.GetMask("Ground");
         }
 
         private void OnDrawGizmos()

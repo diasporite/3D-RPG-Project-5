@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3016232999671254422}
   - component: {fileID: 3834392912058065534}
   m_Layer: 0
-  m_Name: StaminaCost
+  m_Name: Stamina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,11 +150,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab1135a303f0b74b90e7ba0535ad3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
   nameText: {fileID: 310662631527887784}
   typeText: {fileID: 2464037596303388547}
   elementText: {fileID: 6806103864907824056}
   staminaText: {fileID: 3016232999671254422}
-  usageText: {fileID: 4676854308442514424}
+  powerText: {fileID: 4676854308442514424}
   vignette: {fileID: 3090901742723551488}
 --- !u!1 &1204716198421566221
 GameObject:
@@ -214,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0}
+  m_Color: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 0.3372549}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -243,7 +244,7 @@ GameObject:
   - component: {fileID: 4676854308442514424}
   - component: {fileID: 3022443617825219200}
   m_Layer: 0
-  m_Name: Usage
+  m_Name: Power
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -465,7 +466,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 32
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -559,7 +560,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 32
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -570,9 +571,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'ELT
-
-'
+  m_Text: ELT (ft32)
 --- !u!114 &5602354265163452167
 MonoBehaviour:
   m_ObjectHideFlags: 0

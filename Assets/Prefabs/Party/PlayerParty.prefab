@@ -166,10 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63da22e1d6f26e54a865925474991b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pitchSpeed: 1
+  pitchSpeed: 4
   yawSpeed: 90
-  maxLockedAngle: 45
-  minLockedAngle: -45
+  maxLockedAngle: 25
+  minLockedAngle: -25
   height: 0
   radius: 0
   theta: 180
@@ -178,14 +178,14 @@ MonoBehaviour:
   thetaMax: 45
   thetaMin: -45
   <TopOrbit>k__BackingField:
-    <Height>k__BackingField: 2
-    <Radius>k__BackingField: 1.75
+    <Height>k__BackingField: 5.5
+    <Radius>k__BackingField: 7
   <MiddleOrbit>k__BackingField:
-    <Height>k__BackingField: 1
-    <Radius>k__BackingField: 3
+    <Height>k__BackingField: 2
+    <Radius>k__BackingField: 9
   <BottomOrbit>k__BackingField:
-    <Height>k__BackingField: 0
-    <Radius>k__BackingField: 1.75
+    <Height>k__BackingField: 0.5
+    <Radius>k__BackingField: 6
   freeTarget: {fileID: 0}
   lockTarget: {fileID: 0}
 --- !u!1 &3543820511860516341

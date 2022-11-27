@@ -73,6 +73,16 @@ namespace RPG_Project
             }
         }
 
+        public Controller GetController(int index)
+        {
+            index = Mathf.Abs(index);
+
+            if (index < PartyMembers.Count) return PartyMembers[index];
+
+            Debug.LogError("Index: " + index + " > Party count: " + PartyMembers.Count);
+            return null;
+        }
+
         private void Awake()
         {
             Movement = GetComponent<Movement>();

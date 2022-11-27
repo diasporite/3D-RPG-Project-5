@@ -39,5 +39,18 @@ namespace RPG_Project
 
         [field: Tooltip("Index in array corresponds to action hash.")]
         [field: SerializeField] public AttackActionData[] CombatActions { get; private set; }
+
+        public string ElementString
+        {
+            get
+            {
+                var output = "";
+
+                if (Element1 != ElementID.Typeless) output += Element1.ToString();
+                if (Element2 != ElementID.Typeless) output += "/" + Element2.ToString();
+
+                return output;
+            }
+        }
     }
 }

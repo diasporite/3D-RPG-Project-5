@@ -121,14 +121,10 @@
   - Fix health bar [FIXED]
   - Fix camera when respawning (instant follow) [FIXED]
 
-24/11/22 -
+24/11/22 - 26/11/22
 - Some work on side UI
 - Debug game over cheat
 - Moved back to single stamina
-- Added basic minimap
-  - Add direction indicators
-- Replaced individual ticks with ResourceTick() method
-- Adding elements
 - TO DO: 
  - Remove stamina bars from party panels
  - Serializable Action classes
@@ -136,8 +132,17 @@
      - Colliders for obstruction detection
  - Refine single stamina system
  - Refine hitbox logic (see Hitbox.cs top comment)
- - Fix fill shadows on stat bars
 
+27/11/22 -
+- More work on side UI
+- Added basic minimap
+  - Add direction indicators
+- Replaced individual ticks with ResourceTick() method
+- Adding element system
+- TO DO: 
+ - Fix fill shadows on stat bars
+ - Fix projectile trails (shows black)
+ - Fix projectile rotation (doesn't look like it's rotating about forward axis)
 
 RESOURCES
 - Bezier curves (30/9/22)

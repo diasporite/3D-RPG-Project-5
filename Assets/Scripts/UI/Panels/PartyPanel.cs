@@ -9,12 +9,14 @@ namespace RPG_Project
     {
         PartyController party;
         BattleHUD hud;
+        Character character;
 
         [field: SerializeField] public int Index { get; private set; }
 
         StaminaBarUI stamina;
 
         [SerializeField] Text nameText;
+        [SerializeField] Text elementText;
 
         private void Awake()
         {
@@ -26,7 +28,10 @@ namespace RPG_Project
         public void InitUI()
         {
             party = hud.Player;
-            nameText.text = party.PartyMembers[Index].Character.CharName;
+            character = party.PartyMembers[Index].Character;
+
+            nameText.text = character.CharName;
+            elementText.text = character.CharData.ElementString;
         }
 
         public void SubscribeToDelegates()

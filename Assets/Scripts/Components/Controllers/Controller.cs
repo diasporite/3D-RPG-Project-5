@@ -68,6 +68,8 @@ namespace RPG_Project
         public int CurrentActionHash { get; private set; }
         public Vector3 CurrentDodgeDir { get; private set; }
 
+        public BattleAction[] Actions { get; private set; }
+
         public PartyController Party { get; private set; }
         public Movement Movement { get; private set; }
         public InputReader InputReader { get; private set; }
@@ -122,13 +124,7 @@ namespace RPG_Project
         {
             InputReader.OnDodgeAction += Dodge;
 
-            //Ir.OnGuardAction += Guard;
-            //Ir.OnGuardCancelAction += GuardCancel;
-
             InputReader.OnJumpAction += Jump;
-
-            //Ir.OnRunAction += Run;
-            //Ir.OnRunCancelAction += RunCancel;
 
             InputReader.OnAttackAction += Action;
         }
@@ -137,22 +133,16 @@ namespace RPG_Project
         {
             InputReader.OnDodgeAction -= Dodge;
 
-            //Ir.OnGuardAction -= Guard;
-            //Ir.OnGuardCancelAction -= GuardCancel;
-
             InputReader.OnJumpAction -= Jump;
-
-            //Ir.OnRunAction -= Run;
-            //Ir.OnRunCancelAction -= RunCancel;
 
             InputReader.OnAttackAction -= Action;
         }
 
         public void Init(Quaternion rotation)
         {
-            DirectionalDodging = Character.CharData.DodgeAction.IsDirectional;
-
             Power.Init();
+
+            DirectionalDodging = Character.CharData.DodgeAction.IsDirectional;
 
             Model.Init(rotation);
 

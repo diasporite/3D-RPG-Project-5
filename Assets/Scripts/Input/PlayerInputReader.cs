@@ -9,12 +9,21 @@ namespace RPG_Project
     {
         PlayerControls controls;
 
+        // Key corresponds to button number, value corresponds to index in character's
+        //   CombatActions array
+        Dictionary<int, int> buttonActionMap = new Dictionary<int, int>();
+
         protected override void Awake()
         {
             base.Awake();
 
             controls = new PlayerControls();
             controls.Player.SetCallbacks(this);
+
+            buttonActionMap.Add(1, 0);
+            buttonActionMap.Add(2, 1);
+            buttonActionMap.Add(3, 2);
+            buttonActionMap.Add(4, 3);
         }
 
         private void OnEnable()
@@ -89,25 +98,25 @@ namespace RPG_Project
         public void OnAction1(InputAction.CallbackContext context)
         {
             if (context.performed/* && Party.Stamina.Charged*/)
-                InputQueue.AddInput(new AttackCommand(Party, this, 0));
+                InputQueue.AddInput(new AttackCommand(Party, this, buttonActionMap[1]));
         }
 
         public void OnAction2(InputAction.CallbackContext context)
         {
             if (context.performed/* && Party.Stamina.Charged*/)
-                InputQueue.AddInput(new AttackCommand(Party, this, 1));
+                InputQueue.AddInput(new AttackCommand(Party, this, buttonActionMap[2]));
         }
 
         public void OnAction3(InputAction.CallbackContext context)
         {
             if (context.performed/* && Party.Stamina.Charged*/)
-                InputQueue.AddInput(new AttackCommand(Party, this, 2));
+                InputQueue.AddInput(new AttackCommand(Party, this, buttonActionMap[3]));
         }
 
         public void OnAction4(InputAction.CallbackContext context)
         {
             if (context.performed/* && Party.Stamina.Charged*/)
-                InputQueue.AddInput(new AttackCommand(Party, this, 3));
+                InputQueue.AddInput(new AttackCommand(Party, this, buttonActionMap[4]));
         }
 
         public void OnPauseSelect(InputAction.CallbackContext context)

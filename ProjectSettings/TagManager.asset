@@ -13,17 +13,17 @@ TagManager:
   - UI
   - 
   - 
-  - Environment
-  - MoveTrigger
+  - Ground
+  - Wall
   - 
   - 
   - Player
   - Enemy
-  - Dead
+  - Destructible
   - 
   - Minimap
   - 
-  - 
+  - Object
   - 
   - 
   - 

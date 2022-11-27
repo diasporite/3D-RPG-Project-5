@@ -1761,6 +1761,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ActionPanel (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6607386997168664482, guid: 66a47fdb9ff2f4249b8d979238c1f6c3,
+        type: 3}
+      propertyPath: index
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7671647656935868336, guid: 66a47fdb9ff2f4249b8d979238c1f6c3,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2873,6 +2878,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ActionPanel (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607386997168664482, guid: 66a47fdb9ff2f4249b8d979238c1f6c3,
+        type: 3}
+      propertyPath: index
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7671647656935868336, guid: 66a47fdb9ff2f4249b8d979238c1f6c3,
         type: 3}
@@ -5885,7 +5895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   <Player>k__BackingField: {fileID: 0}
-  <Combat>k__BackingField: {fileID: 11400000, guid: 08a384756ff8df643acd418ee3d2afa5,
+  <CombatData>k__BackingField: {fileID: 11400000, guid: 08a384756ff8df643acd418ee3d2afa5,
     type: 2}
   <CharData>k__BackingField: {fileID: 11400000, guid: 0b16d4798662e2e4d98108aab76937d4,
     type: 2}
@@ -6085,6 +6095,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ActionPanel (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607386997168664482, guid: 66a47fdb9ff2f4249b8d979238c1f6c3,
+        type: 3}
+      propertyPath: index
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7671647656935868336, guid: 66a47fdb9ff2f4249b8d979238c1f6c3,
         type: 3}

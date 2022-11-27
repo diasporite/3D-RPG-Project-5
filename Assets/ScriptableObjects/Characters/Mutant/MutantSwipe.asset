@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: MutantSwipe
   m_EditorClassIdentifier: 
   <ActionName>k__BackingField: Swipe
+  <Type>k__BackingField: 0
+  <Element>k__BackingField: 1
   <StaminaCost>k__BackingField: 45
   <PowerCost>k__BackingField: 0
   <MotionCurve>k__BackingField:
@@ -48,10 +50,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  <CollisionCheckIndex>k__BackingField: 0
   <HitboxIndex>k__BackingField: 0
   <Windows>k__BackingField:
   - <EnableHitbox>k__BackingField: 0.452
     <DisableHitbox>k__BackingField: 0.63
+  <AngleToForward>k__BackingField: 0
   <Damage>k__BackingField:
     <IsDamaging>k__BackingField: 1
     <HealthDamage>k__BackingField: 115

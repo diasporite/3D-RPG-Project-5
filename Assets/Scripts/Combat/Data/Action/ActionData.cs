@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace RPG_Project
 {
+    public enum ActionType
+    {
+        Melee = 0,
+        Ranged = 1,
+    }
+
     [System.Serializable]
     public class HitboxWindow
     {
@@ -16,6 +22,7 @@ namespace RPG_Project
     {
         [field: Header("Information")]
         [field: SerializeField] public string ActionName { get; private set; }
+        [field: SerializeField] public ActionType Type { get; private set; }
         [field: SerializeField] public ElementID Element { get; private set; }
 
         [field: SerializeField] public int StaminaCost { get; private set; } = 20;
@@ -24,9 +31,15 @@ namespace RPG_Project
         [field: Header("Movement")]
         [field: SerializeField] public AnimationCurve MotionCurve { get; private set; }
 
+        [field: Header("Collision Checks")]
+        [field: SerializeField] public int CollisionCheckIndex { get; private set; }
+
         [field: Header("HitDetection")]
         [field: SerializeField] public int HitboxIndex { get; protected set; }
         [field: SerializeField] public HitboxWindow[] Windows { get; protected set; }
+
+        public virtual BattleAction GetAction(PartyController party) => 
+            new BattleAction(this, party);
 
         public virtual bool IsHitDetectorActive(float normTime)
         {

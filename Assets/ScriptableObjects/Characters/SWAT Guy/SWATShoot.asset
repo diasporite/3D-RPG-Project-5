@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: SWATShoot
   m_EditorClassIdentifier: 
   <ActionName>k__BackingField: Shoot
+  <Type>k__BackingField: 1
+  <Element>k__BackingField: 1
   <StaminaCost>k__BackingField: 15
-  <InfiniteUse>k__BackingField: 0
-  <Uses>k__BackingField: 20
+  <PowerCost>k__BackingField: 5
   <MotionCurve>k__BackingField:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  <CollisionCheckIndex>k__BackingField: 0
   <HitboxIndex>k__BackingField: 0
   <Windows>k__BackingField: []
   <AngleToForward>k__BackingField: 1.315
@@ -41,5 +43,6 @@ MonoBehaviour:
   <IsPiercing>k__BackingField: 0
   <ProjectileTracking>k__BackingField: 0
   <GravityStrength>k__BackingField: 0.02
-  <Lifetime>k__BackingField: 1
+  <Distance>k__BackingField: 20
   <Speed>k__BackingField: 20
+  <AngularSpeed>k__BackingField: 360

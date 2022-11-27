@@ -58,9 +58,7 @@ namespace RPG_Project
 
         public void ExecuteFrame()
         {
-            health.Tick();
-            stamina.Tick();
-            power.Tick(0f);
+            controller.ResourceTick(0f, 0f, 0f);
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
 

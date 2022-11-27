@@ -21,8 +21,9 @@ namespace RPG_Project
         [field: Tooltip("Gravity = 19.62 at 1.")]
         [field: Range(0f, 1f)]
         [field: SerializeField] public float GravityStrength { get; private set; } = 0f;
-        [field: SerializeField] public float Lifetime { get; private set; } = 1f;
+        [field: SerializeField] public float Distance { get; private set; } = 10f;
         [field: SerializeField] public float Speed { get; private set; } = 20f;
+        [field: SerializeField] public float AngularSpeed { get; private set; } = 360f;
 
         public override void TriggerAttack(float normTime, Hitbox[] hitboxes, 
             ProjectileWeapon[] weapons)

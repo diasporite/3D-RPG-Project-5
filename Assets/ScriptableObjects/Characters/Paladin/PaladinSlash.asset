@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: PaladinSlash
   m_EditorClassIdentifier: 
   <ActionName>k__BackingField: Slash
+  <Type>k__BackingField: 0
+  <Element>k__BackingField: 1
   <StaminaCost>k__BackingField: 20
   <PowerCost>k__BackingField: 4
   <MotionCurve>k__BackingField:
@@ -21,6 +23,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  <CollisionCheckIndex>k__BackingField: 0
   <HitboxIndex>k__BackingField: 0
   <Windows>k__BackingField: []
   <AngleToForward>k__BackingField: 0

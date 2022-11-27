@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Index>k__BackingField: 0
   nameText: {fileID: 1345390252001976124}
+  elementText: {fileID: 5228776119952643884}
 --- !u!1 &5253452544119657241
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +239,7 @@ GameObject:
   - component: {fileID: 5228776119952643884}
   - component: {fileID: 6583124453098169235}
   m_Layer: 0
-  m_Name: Name (1)
+  m_Name: Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,8 +261,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -12, y: -9}
-  m_SizeDelta: {x: 150, y: 60}
+  m_AnchoredPosition: {x: 18, y: -9}
+  m_SizeDelta: {x: 300, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3984950615968786916
 CanvasRenderer:
@@ -331,7 +332,7 @@ GameObject:
   - component: {fileID: 2789926244384937601}
   - component: {fileID: 6991459609644947605}
   m_Layer: 0
-  m_Name: Image (1)
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -405,7 +406,7 @@ GameObject:
   - component: {fileID: 5082162998754560383}
   - component: {fileID: 3376070189992383063}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Portrait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

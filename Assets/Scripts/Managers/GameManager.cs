@@ -49,7 +49,11 @@ namespace RPG_Project
 
         private void Update()
         {
-            if (Input.GetKeyDown("space")) GameOver();
+            if (Input.GetKeyDown("space"))
+            {
+                StopAllCoroutines();
+                GameOver();
+            }
         }
 
         void InitSM()

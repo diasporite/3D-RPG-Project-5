@@ -11,13 +11,14 @@ namespace RPG_Project
         [SerializeField] float projectileTracking;
         [SerializeField] float gravityStrength;
         [SerializeField] float speed;
+        [SerializeField] float angularSpeed;
 
         [SerializeField] Transform follow;
 
         float verticalVelocity = 0f;
         float gravity = -19.62f;
 
-        Cooldown Lifetime;
+        Cooldown distanceTravelled;
 
         Vector3 planeFollow;
         Vector3 planeStraight;
@@ -39,8 +40,9 @@ namespace RPG_Project
             projectileTracking = data.ProjectileTracking;
             gravityStrength = data.GravityStrength;
             speed = data.Speed;
+            angularSpeed = data.AngularSpeed;
 
-            Lifetime = new Cooldown(data.Lifetime, 1f, 0f);
+            distanceTravelled = new Cooldown(data.Distance, data.Speed, 0f);
 
             verticalVelocity = 0f;
         }
@@ -81,9 +83,9 @@ namespace RPG_Project
 
         void Tick()
         {
-            Lifetime.Tick();
+            distanceTravelled.Tick();
 
-            if (Lifetime.Full)
+            if (distanceTravelled.Full)
                 Destroy(gameObject);
         }
 
@@ -104,6 +106,8 @@ namespace RPG_Project
 
             transform.rotation = Quaternion.LookRotation(ds);
             transform.position += speed * (transform.forward + dy) * dt;
+
+            transform.RotateAround(transform.position, transform.forward, angularSpeed * dt);
         }
 
         void DealDamage()

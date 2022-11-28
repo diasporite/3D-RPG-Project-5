@@ -219,11 +219,8 @@ namespace RPG_Project
             {
                 Movement.Jump(8f);
 
-                if (InCombat)
-                {
-                    Stamina.ChangeValue(-30);
-                    Stamina.Charged = false;
-                }
+                //if (InCombat)
+                Stamina.ChangeValue(-30);
 
                 if (sm.InState(StateID.ControllerMove))
                     Movement.FallSpeed = Movement.WalkSpeed;

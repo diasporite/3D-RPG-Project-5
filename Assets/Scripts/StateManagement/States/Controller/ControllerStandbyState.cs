@@ -31,15 +31,12 @@ namespace RPG_Project
         {
             controller.currentState = StateID.ControllerStandby;
 
-            stamina.Charged = stamina.Full;
-
             controller.Model.gameObject.SetActive(false);
         }
 
         public void ExecuteFrame()
         {
-            controller.ResourceTick(0f, 
-                (controller.InCombat && !controller.IsDead) ? .333f : 0f, 0f);
+
         }
 
         public void ExecuteFrameFixed()

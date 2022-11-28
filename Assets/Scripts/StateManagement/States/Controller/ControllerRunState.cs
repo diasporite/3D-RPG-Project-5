@@ -36,8 +36,6 @@ namespace RPG_Project
         {
             controller.currentState = StateID.ControllerRun;
 
-            stamina.Charged = false;
-
             controller.Party.Tc?.MoveTowardTimescale(1f);
 
             cm.PlayAnimation(controller.moveHash);
@@ -47,7 +45,8 @@ namespace RPG_Project
         {
             var dir = controller.InputReader.Move;
 
-            controller.ResourceTick(0f, controller.InCombat ? -1f : 1f, -4f);
+            //controller.ResourceTick(0f, controller.InCombat ? -1f : 1f, -4f);
+            controller.ResourceTick(0f, -1f, -4f);
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
 

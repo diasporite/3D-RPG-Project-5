@@ -35,8 +35,6 @@ namespace RPG_Project
         {
             controller.currentState = StateID.ControllerDeath;
 
-            stamina.Charged = false;
-
             controller.IsDead = true;
 
             controller.InputReader.InputQueue.ClearInputs();

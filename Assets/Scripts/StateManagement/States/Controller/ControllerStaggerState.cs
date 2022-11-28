@@ -25,8 +25,6 @@ namespace RPG_Project
         {
             controller.currentState = StateID.ControllerStagger;
 
-            controller.Stamina.Charged = false;
-
             controller.IsStaggered = true;
 
             controller.InputReader.InputQueue.ClearInputs();

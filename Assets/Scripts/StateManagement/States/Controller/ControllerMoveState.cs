@@ -35,8 +35,6 @@ namespace RPG_Project
         {
             controller.currentState = StateID.ControllerMove;
 
-            stamina.Charged = stamina.Full;
-
             controller.InputReader.InputQueue.ClearInputs();
 
             cm.PlayAnimation(controller.moveHash);

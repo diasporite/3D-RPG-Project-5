@@ -6,16 +6,12 @@ namespace RPG_Project
 {
     public class Stamina : Resource
     {
-        public bool Charged { get; set; }
-
         float pauseTime;
 
         Cooldown PauseTimer;
 
         public override void Init()
         {
-            Charged = false;
-
             if (party.IsPlayer)
             {
                 pauseTime = GameManager.instance.CombatData.PlayerStaminaPause;
@@ -36,8 +32,6 @@ namespace RPG_Project
         {
             if (!PauseTimer.Full) PauseTimer.Tick();
             else ResourceCooldown.Tick();
-
-            if (Full) Charged = true;
 
             UpdateUI();
         }

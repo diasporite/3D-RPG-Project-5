@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharName>k__BackingField: Erika
   <Portrait>k__BackingField: {fileID: 0}
-  <Element1>k__BackingField: 1
-  <Element2>k__BackingField: 0
+  <Element1>k__BackingField: 2
+  <Element2>k__BackingField: 1
   <Character>k__BackingField: {fileID: 3192409093717308532, guid: 5802eb2c412bc274889e014941df7181,
     type: 3}
   <WalkSpeed>k__BackingField: 2.31

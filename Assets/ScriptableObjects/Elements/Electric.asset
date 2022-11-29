@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b62c7374b82ccb14aa0284735235aaf8, type: 3}
-  m_Name: Typeless
+  m_Name: Electric
   m_EditorClassIdentifier: 
-  <ElementName>k__BackingField: Typeless
-  <Icon>k__BackingField: {fileID: 21300000, guid: 89c28720bc6472543b3be43bc6112068,
+  <ElementName>k__BackingField: Electric
+  <Icon>k__BackingField: {fileID: 21300000, guid: c007a75ced368ce429f7eb8297d615c5,
     type: 3}
-  <Id>k__BackingField: 0
+  <Id>k__BackingField: 5
   <Weaknesses>k__BackingField: 
   <Resistances>k__BackingField: 
   <Immunities>k__BackingField: 

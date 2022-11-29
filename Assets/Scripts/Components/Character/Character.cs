@@ -10,6 +10,8 @@ namespace RPG_Project
         [field: SerializeField] public EnemyAIPattern EnemyAi { get; private set; }
 
         [field: SerializeField] public string CharName { get; private set; }
+        [field: SerializeField] public Sprite Portrait { get; private set; }
+        [field: SerializeField] public ElementID[] Elements { get; private set; }
 
         [field: Header("Movement")]
         [field: SerializeField] public float WalkSpeed { get; private set; } = 4f;
@@ -73,6 +75,8 @@ namespace RPG_Project
         void InitCharacter()
         {
             CharName = CharData.CharName;
+            Portrait = CharData.Portrait;
+            Elements = new ElementID[] { CharData.Element1, CharData.Element2 };
 
             WalkSpeed = CharData.WalkSpeed;
             RunSpeed = CharData.RunSpeed;

@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharName>k__BackingField: Mutant
   <Portrait>k__BackingField: {fileID: 0}
+  <Element1>k__BackingField: 6
+  <Element2>k__BackingField: 1
   <Character>k__BackingField: {fileID: 4367688941852044974, guid: b91bf64fe8e531344bf09cace846bf24,
     type: 3}
   <WalkSpeed>k__BackingField: 2.43

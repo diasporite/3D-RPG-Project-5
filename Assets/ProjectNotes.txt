@@ -126,12 +126,12 @@
 - Debug game over cheat
 - Moved back to single stamina
 - TO DO: 
- - Remove stamina bars from party panels
- - Serializable Action classes
-   - Action validity checks
-     - Colliders for obstruction detection
- - Refine single stamina system
- - Refine hitbox logic (see Hitbox.cs top comment)
+  - Remove stamina bars from party panels
+  - Serializable Action classes
+    - Action validity checks
+      - Colliders for obstruction detection
+  - Refine single stamina system
+  - Refine hitbox logic (see Hitbox.cs top comment)
 
 27/11/22 -
 - More work on side UI
@@ -140,9 +140,29 @@
 - Replaced individual ticks with ResourceTick() method
 - Adding element system
 - TO DO: 
- - Fix fill shadows on stat bars
- - Fix projectile trails (shows black)
- - Fix projectile rotation (doesn't look like it's rotating about forward axis)
+  - Fix fill shadows on stat bars
+  - Fix projectile trails (shows black)
+  - Fix projectile rotation (doesn't look like it's rotating about forward axis)
+- IDEAS:
+  - Move away from hitbox based detection
+    - Use area based detection (how far and what angle target is at from player)
+  - Distance decay
+    - Attacks get weaker at further distances
+    - Primarily used for projectiles
+    - Decay modes
+      - None - no change in damage with distance
+	  - Linear - linear decrease with distance
+	  - Slow exponential - inital slow decrease, gets faster approaching 1 (normalised)
+	  - Fast exponential - standard exp decay curve, faster at start
+  - Enemy AI
+    - Enemy attacks triggered by player movment/action
+	  - Pulse sent out when player acts/moves for long enough time (use cooldown for timer)
+	    - Use expanding sphere collider for pulse
+		- Time pulse to occur towards end of player action
+		  - All actions (player, enemy) are of similar length
+		- Detach pulse from player so it originates from constant position
+	  - Enemy decides action when pulse hits
+	- Enemies can only attack by themselves when in position for backstab
 
 RESOURCES
 - Bezier curves (30/9/22)

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Neutral
   m_EditorClassIdentifier: 
   <ElementName>k__BackingField: Neutral
-  <Icon>k__BackingField: {fileID: 0}
+  <Icon>k__BackingField: {fileID: 21300000, guid: 89c28720bc6472543b3be43bc6112068,
+    type: 3}
   <Id>k__BackingField: 1
   <Weaknesses>k__BackingField: 
   <Resistances>k__BackingField: 

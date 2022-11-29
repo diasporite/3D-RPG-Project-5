@@ -4,6 +4,20 @@ using UnityEngine;
 
 namespace RPG_Project
 {
+    public enum ElementID
+    {
+        Typeless = 0,
+
+        Neutral = 1,
+
+        Grass = 2,
+        Fire = 3,
+        Water = 4,
+
+        Electric = 5,
+        Rock = 6,
+    }
+
     [CreateAssetMenu(fileName = "New Element", menuName = "Combat/Element")]
     public class ElementData : ScriptableObject
     {

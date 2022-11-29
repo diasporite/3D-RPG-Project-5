@@ -4,11 +4,10 @@ using UnityEngine;
 
 namespace RPG_Project
 {
-    public enum ElementID
+    [System.Serializable]
+    public class DamageCalculator
     {
-        Typeless = 0,
 
-        Neutral = 1,
     }
 
     [CreateAssetMenu(fileName = "CombatDatabase", menuName = "Database/Combat")]
@@ -43,6 +42,14 @@ namespace RPG_Project
             foreach (var e in Elements)
                 if (!elementDatabase.ContainsKey(e.Id))
                     elementDatabase.Add(e.Id, e);
+        }
+
+        public ElementData GetElement(ElementID id)
+        {
+            if (elementDatabase.ContainsKey(id)) return elementDatabase[id];
+
+            Debug.Log("Element " + id.ToString() + " does not exist.");
+            return elementDatabase[ElementID.Typeless];
         }
 
         public int Damage(int basePower)

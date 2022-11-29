@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <CharName>k__BackingField: Maria
   <Portrait>k__BackingField: {fileID: 0}
-  <Element1>k__BackingField: 1
+  <Element1>k__BackingField: 3
   <Element2>k__BackingField: 0
   <Character>k__BackingField: {fileID: 8598477651914444568, guid: 2796f62cd3295d242b1a09ca508b3abe,
     type: 3}

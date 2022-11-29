@@ -15,8 +15,7 @@ namespace RPG_Project
 
         StaminaBarUI stamina;
 
-        [SerializeField] Text nameText;
-        [SerializeField] Text elementText;
+        [SerializeField] Image[] elementIcons;
 
         private void Awake()
         {
@@ -30,8 +29,8 @@ namespace RPG_Project
             party = hud.Player;
             character = party.PartyMembers[Index].Character;
 
-            nameText.text = character.CharName;
-            elementText.text = character.CharData.ElementString;
+            SetElementIcon(0);
+            SetElementIcon(1);
         }
 
         public void SubscribeToDelegates()
@@ -47,6 +46,16 @@ namespace RPG_Project
         public void UpdateUI()
         {
 
+        }
+
+        void SetElementIcon(int index)
+        {
+            var element = GameManager.instance.CombatData.GetElement(character.Elements[index]);
+
+            elementIcons[index].sprite = element.Icon;
+            if (element.Id != ElementID.Typeless)
+                elementIcons[index].color = new Color(1f, 1f, 1f, 1f);
+            else elementIcons[index].color = new Color(1f, 1f, 1f, 0f);
         }
     }
 }

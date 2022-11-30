@@ -1219,6 +1219,7 @@ GameObject:
   - component: {fileID: 5813617767982093506}
   - component: {fileID: -6538955321188961387}
   - component: {fileID: 5632557853045993198}
+  - component: {fileID: 678708329012074579}
   m_Layer: 12
   m_Name: PlayerParty
   m_TagString: Untagged
@@ -1377,6 +1378,20 @@ MonoBehaviour:
   completeFreeze: 0
   minTimescale: 0.05
   acceleration: 5
+--- !u!114 &678708329012074579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5973199515669013823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7db774093edab479ff6d14f7feddfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulsePrefab: {fileID: 1527391960565043069, guid: e263a531da082294d863674adf348410,
+    type: 3}
 --- !u!1 &6217373322490546336
 GameObject:
   m_ObjectHideFlags: 0

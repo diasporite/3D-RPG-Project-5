@@ -133,7 +133,7 @@
   - Refine single stamina system
   - Refine hitbox logic (see Hitbox.cs top comment)
 
-27/11/22 -
+27/11/22 - 28/11/22
 - More work on side UI
 - Added basic minimap
   - Add direction indicators
@@ -163,6 +163,9 @@
 		- Detach pulse from player so it originates from constant position
 	  - Enemy decides action when pulse hits
 	- Enemies can only attack by themselves when in position for backstab
+
+29/11/22
+- Start work on new AI system
 
 RESOURCES
 - Bezier curves (30/9/22)

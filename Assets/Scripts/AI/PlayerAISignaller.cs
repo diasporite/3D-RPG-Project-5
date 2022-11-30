@@ -1,0 +1,30 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace RPG_Project
+{
+    public class PlayerAISignaller : MonoBehaviour
+    {
+        [SerializeField] PlayerAIPulse pulsePrefab;
+
+        Cooldown pulseDelay = new Cooldown(0.5f, 1f, 0f);
+
+        public void Tick()
+        {
+            pulseDelay.Tick();
+
+            if (pulseDelay.Full)
+            {
+                SendPulse();
+                pulseDelay.Reset();
+            }
+        }
+
+        public void SendPulse()
+        {
+            GameObject pulseObj = Instantiate(pulsePrefab.gameObject, transform.position, 
+                Quaternion.identity) as GameObject;
+        }
+    }
+}

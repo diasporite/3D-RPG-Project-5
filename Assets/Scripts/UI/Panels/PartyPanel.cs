@@ -13,14 +13,10 @@ namespace RPG_Project
 
         [field: SerializeField] public int Index { get; private set; }
 
-        StaminaBarUI stamina;
-
         [SerializeField] Image[] elementIcons;
 
         private void Awake()
         {
-            stamina = GetComponentInChildren<StaminaBarUI>();
-
             hud = GetComponentInParent<BattleHUD>();
         }
 

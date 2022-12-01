@@ -8,6 +8,7 @@ namespace RPG_Project
     {
         Melee = 0,
         Ranged = 1,
+        Status = 2,
     }
 
     [System.Serializable]

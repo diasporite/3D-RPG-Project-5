@@ -111,7 +111,7 @@ namespace RPG_Project
 
             if (sDamage > 0) stamina.Pause();
 
-            party.Es?.OnDamage(hDamage, sDamage);
+            //party.Es?.OnDamage(hDamage, sDamage);
 
             if (health.Empty)
             {

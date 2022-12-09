@@ -24,7 +24,15 @@ namespace RPG_Project
 
         public readonly StateMachine sm = new StateMachine();
 
-        public bool InPlayerRange => Vector3.Distance(transform.position, Follow.position) <= 12f;
+        public bool InPlayerRange
+        {
+            get
+            {
+                if (Follow == null) return false;
+
+                return Vector3.Distance(transform.position, Follow.position) <= 12f;
+            }
+        }
 
         public Vector3 RelativeDirToPlayer => 
             transform.rotation * (Follow.position - transform.position);

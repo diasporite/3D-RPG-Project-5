@@ -6,8 +6,7 @@ namespace RPG_Project
 {
     public class StaminaBarUI : CooldownBar, IUIElement
     {
-        //[SerializeField] Color charging = new Color(.753f, .753f, .753f);
-        //[SerializeField] Color charged = new Color(.125f, .753f, .125f);
+        [SerializeField] ResourceBarType type;
 
         Cooldown delayTimer;
 
@@ -15,17 +14,22 @@ namespace RPG_Project
         [SerializeField] protected Stamina stamina;
 
         protected BattleHUD hud;
+        EnemyStats stats;
 
         protected virtual void Awake()
         {
             hud = GetComponentInParent<BattleHUD>();
+            stats = GetComponentInParent<EnemyStats>();
 
             delayTimer = new Cooldown(updateDelay, 1f, updateDelay);
         }
 
         public virtual void InitUI()
         {
-            player = hud.Player;
+            if (type == ResourceBarType.Battle)
+                player = hud.Player;
+            else player = stats.Party;
+
             stamina = player.Stamina;
 
             Fill.fillAmount = stamina.ResourceFraction;
@@ -36,9 +40,6 @@ namespace RPG_Project
         {
             if (Fill.fillAmount != stamina.ResourceFraction)
                 Fill.fillAmount = stamina.ResourceFraction;
-
-            //if (stamina.Charged) Fill.color = charged;
-            //else Fill.color = charging;
 
             if (Mathf.Abs(stamina.ChangeFraction) < shadowThreshold)
             {

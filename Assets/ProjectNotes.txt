@@ -167,6 +167,9 @@
 29/11/22
 - Start work on new AI system
 
+6/12/22 - 
+- Start work on revamped EnemyStats
+
 RESOURCES
 - Bezier curves (30/9/22)
   - https://en.wikipedia.org/wiki/B%C3%A9zier_curve

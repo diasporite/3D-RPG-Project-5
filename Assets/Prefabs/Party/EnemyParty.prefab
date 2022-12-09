@@ -105,7 +105,7 @@ MonoBehaviour:
   showtime: 6
   height: 0.5
   updateSpeed: 2000
-  party: {fileID: 0}
+  <Party>k__BackingField: {fileID: 0}
   ai: {fileID: 0}
   uiHolder: {fileID: 2975621889441025444}
   hBar: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9071945329113452050
 RectTransform:
   m_ObjectHideFlags: 0
@@ -861,6 +861,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 800
       objectReference: {fileID: 0}
+    - target: {fileID: 2211064706125250805, guid: 6a64b7a62f8d3b34b9958caca9935512,
+        type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2688386653298043078, guid: 6a64b7a62f8d3b34b9958caca9935512,
         type: 3}
       propertyPath: m_Layer
@@ -1067,6 +1072,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2975621889441025444}
     m_Modifications:
+    - target: {fileID: 1686900992533342549, guid: 397191c9da4729e4d80deddc2a9467f3,
+        type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3131166250475623994, guid: 397191c9da4729e4d80deddc2a9467f3,
         type: 3}
       propertyPath: m_Layer

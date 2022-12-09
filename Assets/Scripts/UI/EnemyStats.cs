@@ -10,7 +10,7 @@ namespace RPG_Project
         [SerializeField] float height = 1.5f;
         [SerializeField] float updateSpeed = 250f;
 
-        [SerializeField] PartyController party;
+        [field: SerializeField] public PartyController Party { get; private set; }
         [SerializeField] EnemyAIController ai;
 
         [SerializeField] Transform uiHolder;
@@ -23,7 +23,7 @@ namespace RPG_Project
 
         private void Awake()
         {
-            party = GetComponentInParent<PartyController>();
+            Party = GetComponentInParent<PartyController>();
 
             hBar = GetComponentInChildren<HealthBarUI>();
             sBar = GetComponentInChildren<StaminaBarUI>();
@@ -34,15 +34,18 @@ namespace RPG_Project
 
         private void Start()
         {
-            ai = party.GetComponent<EnemyAIController>();
+            ai = Party.GetComponent<EnemyAIController>();
 
             uiHolder.transform.position =
-                Camera.main.WorldToScreenPoint(party.transform.position +
+                Camera.main.WorldToScreenPoint(Party.transform.position +
                 height * Vector3.up);
 
             hBar.InitUI();
             sBar.InitUI();
-            dText.InitUI(party);
+            dText.InitUI(Party);
+
+            hBar.SubscribeToDelegates();
+            sBar.SubscribeToDelegates();
 
             hBar.gameObject.SetActive(false);
             sBar.gameObject.SetActive(false);
@@ -51,15 +54,15 @@ namespace RPG_Project
 
         private void Update()
         {
-            var visible = party.GetComponent<EnemyAIController>().InPlayerRange && 
-                !party.GetComponentInChildren<Renderer>().isVisible;
+            var visible = Party.GetComponent<EnemyAIController>().InPlayerRange && 
+                !Party.GetComponentInChildren<Renderer>().isVisible;
 
-            hBar.gameObject.SetActive(visible && !party.Dead);
-            sBar.gameObject.SetActive(visible && !party.Dead);
-            dText.gameObject.SetActive(visible && !party.Dead && !Timer.Full);
+            hBar.gameObject.SetActive(visible && !Party.Dead);
+            sBar.gameObject.SetActive(visible && !Party.Dead);
+            dText.gameObject.SetActive(visible && !Party.Dead && !Timer.Full);
 
             uiHolder.transform.position = Vector3.MoveTowards(uiHolder.transform.position,
-                Camera.main.WorldToScreenPoint(party.transform.position +
+                Camera.main.WorldToScreenPoint(Party.transform.position +
                 height * Vector3.up), updateSpeed * Time.unscaledDeltaTime);
 
             Timer.TickUnscaled();
@@ -73,26 +76,14 @@ namespace RPG_Project
             //}
         }
 
-        public void OnDamage(int hChange, int sChange)
+        private void OnEnable()
         {
-            ShowHealthBar(hChange);
-            ShowStaminaBar(sChange);
+            hBar.SubscribeToDelegates();
         }
 
-        void ShowHealthBar(int change)
+        private void OnDisable()
         {
-            Timer.Reset();
-
-            hBar.gameObject.SetActive(true);
-            dText.gameObject.SetActive(true);
-
-            dText.UpdateDamage(change);
-        }
-
-        void ShowStaminaBar(int change)
-        {
-            if (change > 0 && hBar.gameObject.activeSelf)
-                sBar.gameObject.SetActive(true);
+            hBar.UnsubscribeFromDelegates();
         }
     }
 }

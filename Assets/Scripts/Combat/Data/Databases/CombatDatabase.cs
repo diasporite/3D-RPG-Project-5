@@ -31,6 +31,12 @@ namespace RPG_Project
         [field: SerializeField] public float MinResist { get; private set; } = 0.3f;
         [field: SerializeField] public float MaxResist { get; private set; } = 0.7f;
 
+        [field: Header("Dodge")]
+        [field: SerializeField] public float LightweightDodgeRange { get; private set; } = 4;
+        [field: SerializeField] public float MiddleWeightDodgeRange { get; private set; } = 3;
+        [field: SerializeField] public float HeavyweightDodgeRange { get; private set; } = 2;
+        [field: SerializeField] public int SpCostPerDodgeTile { get; private set; } = 12;
+
         [field: Header("Element Database")]
         [field: SerializeField] public ElementData[] Elements { get; private set; }
 
@@ -71,6 +77,13 @@ namespace RPG_Project
             float t = (float)weight / 255;
 
             return Mathf.Lerp(MinResist, MaxResist, t);
+        }
+
+        public float DodgeRange(int weight)
+        {
+            if (weight > 170) return HeavyweightDodgeRange;
+            if (weight > 85) return MiddleWeightDodgeRange;
+            return LightweightDodgeRange;
         }
     }
 }

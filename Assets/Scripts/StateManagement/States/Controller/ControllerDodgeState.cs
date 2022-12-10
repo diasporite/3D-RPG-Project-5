@@ -23,6 +23,9 @@ namespace RPG_Project
 
         Vector3 dodgeDir;
 
+        float delay = 0.4f;
+        Cooldown delayTimer;
+
         public ControllerDodgeState(Controller con)
         {
             controller = con;
@@ -35,6 +38,8 @@ namespace RPG_Project
             character = controller.Character;
 
             cm = controller.Model;
+
+            delayTimer = new Cooldown(delay, 1f, 0f);
         }
 
         public void Enter(params object[] args)
@@ -50,7 +55,7 @@ namespace RPG_Project
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
 
-            cm.PlayAnimationInstant(controller.dodgeHash);
+            //cm.PlayAnimationInstant(controller.dodgeHash);
 
             if (controller.Party.TargetSphere.Locked)
             {
@@ -59,6 +64,8 @@ namespace RPG_Project
                 else dodgeDir = controller.Model.transform.forward;
             }
             else dodgeDir = controller.Model.transform.forward;
+
+            delayTimer.Reset();
         }
 
         public void ExecuteFrame()
@@ -67,28 +74,40 @@ namespace RPG_Project
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
 
-            normalizedTime = NormalizedTime();
+            //normalizedTime = NormalizedTime();
 
-            controller.Movement.MovePositionAction(dodgeDir, Time.deltaTime, 
-                controller.Character.DodgeAction.MotionCurve.Evaluate(normalizedTime));
+            //controller.Movement.MovePositionAction(dodgeDir, Time.deltaTime, 
+            //    controller.Character.DodgeAction.MotionCurve.Evaluate(normalizedTime));
 
-            if (!controller.DirectionalDodging)
-                cm.RotateTowards(controller.Party.transform.rotation * dodgeDir);
+            //if (!controller.DirectionalDodging)
+            //    cm.RotateTowards(controller.Party.transform.rotation * dodgeDir);
 
-            if (!advancing && normalizedTime >= 0.8f)
+            //if (!advancing && normalizedTime >= 0.8f)
+            //{
+            //    advancing = true;
+
+            //    var actionsLeft = controller.InputReader.InputQueue.Advance();
+
+            //    if (actionsLeft)
+            //        controller.InputReader.InputQueue.Execute();
+            //    else
+            //    {
+            //        if (!controller.Movement.Grounded)
+            //            csm.ChangeState(StateID.ControllerFall);
+            //        else csm.ChangeState(StateID.ControllerMove);
+            //    }
+            //}
+
+            delayTimer.Tick();
+
+            if (delayTimer.Full)
             {
-                advancing = true;
+                controller.Movement.MoveToPosition(controller.transform.position + 4f *
+                    dodgeDir.normalized + 0.5f * Vector3.up);
 
-                var actionsLeft = controller.InputReader.InputQueue.Advance();
-
-                if (actionsLeft)
-                    controller.InputReader.InputQueue.Execute();
-                else
-                {
-                    if (!controller.Movement.Grounded)
-                        csm.ChangeState(StateID.ControllerFall);
-                    else csm.ChangeState(StateID.ControllerMove);
-                }
+                if (!controller.Movement.Grounded)
+                    csm.ChangeState(StateID.ControllerFall);
+                else csm.ChangeState(StateID.ControllerMove);
             }
         }
 

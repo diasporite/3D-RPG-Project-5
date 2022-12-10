@@ -169,6 +169,9 @@
 
 6/12/22 - 
 - Start work on revamped EnemyStats
+- Experiment - change dodge to teleport
+- TO DO:
+  - Change back to point based usage (scrap power bar)
 
 RESOURCES
 - Bezier curves (30/9/22)

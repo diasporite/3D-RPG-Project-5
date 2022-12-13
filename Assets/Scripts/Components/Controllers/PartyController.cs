@@ -39,10 +39,11 @@ namespace RPG_Project
         public Health Health { get; private set; }
         public Stamina Stamina { get; private set; }
         public TimeController Tc { get; private set; }
-
+ 
         public TargetSphere TargetSphere { get; private set; }
         public Target OwnTarget { get; private set; }
 
+        public PlayerAISignaller PlayerSignal { get; private set; }
         [field: SerializeField] public EnemyStats Es { get; private set; }
 
         public readonly StateMachine sm = new StateMachine();
@@ -93,6 +94,8 @@ namespace RPG_Project
 
             TargetSphere = GetComponentInChildren<TargetSphere>();
             OwnTarget = GetComponentInChildren<Target>();
+
+            PlayerSignal = GetComponent<PlayerAISignaller>();
 
             Es = GetComponentInChildren<EnemyStats>();
 

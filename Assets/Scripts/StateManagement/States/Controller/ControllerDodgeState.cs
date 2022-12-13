@@ -55,6 +55,8 @@ namespace RPG_Project
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
 
+            controller.Party.PlayerSignal?.SendPulse();
+
             //cm.PlayAnimationInstant(controller.dodgeHash);
 
             if (controller.Party.TargetSphere.Locked)

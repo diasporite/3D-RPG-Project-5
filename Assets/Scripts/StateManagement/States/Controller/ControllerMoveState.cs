@@ -48,6 +48,8 @@ namespace RPG_Project
 
             controller.ResourceTick(non_zero_dir ? 1f : 0f, 1f, non_zero_dir ? 1f : 0f);
 
+            controller.Party.PlayerSignal?.Tick();
+
             UpdateAnim(dir);
 
             controller.InputReader.InputQueue.Execute();

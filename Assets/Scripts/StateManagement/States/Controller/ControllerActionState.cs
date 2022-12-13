@@ -54,6 +54,8 @@ namespace RPG_Project
 
             controller.Party.Tc?.SetTimescale(1f);
 
+            controller.Party.PlayerSignal?.SendPulse();
+
             cm.PlayAnimation(controller.CurrentActionHash);
         }
 

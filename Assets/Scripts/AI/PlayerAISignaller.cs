@@ -8,16 +8,15 @@ namespace RPG_Project
     {
         [SerializeField] PlayerAIPulse pulsePrefab;
 
-        Cooldown pulseDelay = new Cooldown(0.5f, 1f, 0f);
+        Cooldown pulseTimer = new Cooldown(1f, 1f, 0f);
 
         public void Tick()
         {
-            pulseDelay.Tick();
+            pulseTimer.Tick();
 
-            if (pulseDelay.Full)
+            if (pulseTimer.Full)
             {
                 SendPulse();
-                pulseDelay.Reset();
             }
         }
 
@@ -25,6 +24,8 @@ namespace RPG_Project
         {
             GameObject pulseObj = Instantiate(pulsePrefab.gameObject, transform.position, 
                 Quaternion.identity) as GameObject;
+
+            pulseTimer.Reset();
         }
     }
 }

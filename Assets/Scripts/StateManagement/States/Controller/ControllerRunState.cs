@@ -50,6 +50,8 @@ namespace RPG_Project
 
             controller.Party.Tc?.MoveTowardTimescale(1f);
 
+            controller.Party.PlayerSignal?.Tick();
+
             if (dir == Vector2.zero || stamina.Empty)
                 csm.ChangeState(StateID.ControllerMove);
 

@@ -12,6 +12,8 @@ namespace RPG_Project
         Health health;
         Stamina stamina;
 
+        PartyController party;
+
         public ControllerGuardState(Controller con)
         {
             controller = con;
@@ -19,6 +21,8 @@ namespace RPG_Project
 
             health = controller.Health;
             stamina = controller.Stamina;
+
+            party = controller.Party;
         }
 
         public void Enter(params object[] args)
@@ -28,7 +32,7 @@ namespace RPG_Project
             health.ResourceCooldown.Speed = 0f;
             stamina.ResourceCooldown.Speed = 0f;
 
-            controller.Party.Tc?.MoveTowardTimescale(1f);
+            party.Tc?.MoveTowardTimescale(1f);
 
             controller.Model.PlayAnimation(controller.guardHash);
         }
@@ -37,10 +41,13 @@ namespace RPG_Project
         {
             controller.ResourceTick(0f, 0f, 0f);
 
-            controller.Party.Tc?.MoveTowardTimescale(1f);
+            party.Tc?.MoveTowardTimescale(1f);
 
-            if (controller.Party.TargetSphere.Locked)
-                controller.Model.RotateTowardsTarget(controller.Party.transform.rotation, controller.Party.TargetSphere.CurrentTargetTransform);
+            party.PlayerSignal?.Tick();
+
+            if (party.TargetSphere.Locked)
+                controller.Model.RotateTowardsTarget(party.transform.rotation, 
+                    party.TargetSphere.CurrentTargetTransform);
 
             controller.InputReader.InputQueue.Execute();
 

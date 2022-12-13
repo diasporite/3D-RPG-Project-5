@@ -7,7 +7,7 @@ namespace RPG_Project
     public class PlayerAIPulse : MonoBehaviour
     {
         [SerializeField] float speed = 7f;
-        [SerializeField] float maxRadius = 8f;
+        [SerializeField] float maxRadius = 12f;
 
         float radius;
         Vector3 scale = new Vector3(0f, 2f, 0f);
@@ -24,8 +24,8 @@ namespace RPG_Project
             if (radius >= maxRadius)
                 Destroy(gameObject);
 
-            scale.x = radius;
-            scale.z = radius;
+            scale.x = 2f * radius;
+            scale.z = 2f * radius;
 
             transform.localScale = scale;
         }
@@ -38,7 +38,7 @@ namespace RPG_Project
             {
                 // Increment attack count on EnemyAIController
 
-                Destroy(gameObject);
+                //Destroy(gameObject);
             }
         }
     }

@@ -50,7 +50,7 @@ namespace RPG_Project
 
             if (party.IsPlayer) Anim.updateMode = AnimatorUpdateMode.UnscaledTime;
 
-            transform.localRotation = rotation;
+            transform.rotation = rotation;
         }
 
         public void SetRotation(float eulerY)
